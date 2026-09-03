@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "cuerpo": {
+      "type": "pag-portada"
+    }
+  },
+  "order": [
+    "cuerpo"
+  ]
+}

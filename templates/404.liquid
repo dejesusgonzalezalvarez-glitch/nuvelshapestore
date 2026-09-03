@@ -1,0 +1,51 @@
+<div id="nuvel-404" hidden>
+  <main class="wrap" style="padding:120px 0; text-align:center;">
+    <h1 style="font-size:32px; margin-bottom:14px;">Página no encontrada</h1>
+    <p style="color:#7a6f61; margin-bottom:26px;">El enlace que has seguido ya no existe.</p>
+    <a href="/" class="btn btn-dark">Volver al inicio</a>
+  </main>
+</div>
+
+<script>
+(function () {
+  var aviso = document.getElementById("nuvel-404");
+  function mostrarAviso() { if (aviso) aviso.hidden = false; }
+
+  var BASE = "{{ 'cart.js' | asset_url }}".split("cart.js")[0];
+  var CONOCIDAS = ["producto","short","vestido","corse","catalogo","sobre-nosotros",
+                   "preguntas-frecuentes","faq","envios","devoluciones","privacidad","terminos"];
+
+  var ruta = location.pathname.toLowerCase().replace(/\/+$/, "");
+  ruta = ruta.replace(/^\/pages\//, "").replace(/^\//, "");
+  if (ruta === "faq") ruta = "preguntas-frecuentes";
+
+  if (CONOCIDAS.indexOf(ruta) === -1) { mostrarAviso(); return; }
+
+  var s = document.createElement("script");
+  s.src = BASE + "pagina-" + ruta + ".js";
+  s.onload = function () {
+    var p = window.__NUVEL_PAGINA__;
+    if (!p) { mostrarAviso(); return; }
+    document.title = p.titulo;
+    var html = p.html.split("__ASSET__").join(BASE);
+
+    var attrs = p.attrs.match(/([a-z\-]+)="([^"]*)"/g) || [];
+    attrs.forEach(function (a) {
+      var i = a.indexOf("=");
+      document.body.setAttribute(a.slice(0, i), a.slice(i + 2, -1));
+    });
+
+    document.body.innerHTML = html;
+
+    // los scripts insertados con innerHTML no se ejecutan: hay que recrearlos
+    var viejos = Array.prototype.slice.call(document.body.querySelectorAll("script"));
+    viejos.forEach(function (v) {
+      var n = document.createElement("script");
+      if (v.src) { n.src = v.src; } else { n.textContent = v.textContent; }
+      v.parentNode.replaceChild(n, v);
+    });
+  };
+  s.onerror = mostrarAviso;
+  document.head.appendChild(s);
+})();
+</script>
