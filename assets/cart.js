@@ -133,7 +133,12 @@
 
   window.NuvelCart = { addToCart, openCart, closeCart, renderCart, getCart };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  // Este archivo se inyecta con un <script src> creado por JS (ver
+  // global-footer.liquid), lo que pasa siempre despues de que el DOM ya esta
+  // listo. Un listener de "DOMContentLoaded" en ese momento no se dispara
+  // nunca: nada de esto (carrito, filtros del catalogo, galeria de fotos...)
+  // llegaba a engancharse. Se ejecuta directo en vez de esperar el evento.
+  function nuvelInitCart() {
     renderCart();
     document.querySelectorAll("[data-cart-open]").forEach((b) => b.addEventListener("click", openCart));
     document.getElementById("cart-close")?.addEventListener("click", closeCart);
@@ -523,7 +528,13 @@
         openCart();
       });
     });
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", nuvelInitCart);
+  } else {
+    nuvelInitCart();
+  }
 })();
 
 /* ---------- selector de color en la ficha del short ---------- */
