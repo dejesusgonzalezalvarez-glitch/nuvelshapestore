@@ -13,7 +13,11 @@
   };
 
   function imgPath(name) {
-    // resolves relative to whatever page is loading this script
+    // resolves relative to the theme assets path (using favicon as anchor)
+    const favicon = document.querySelector('link[rel="icon"][href*="favicon"]');
+    if (favicon) {
+      return favicon.href.split('favicon')[0] + name;
+    }
     const depth = document.body.getAttribute("data-root") || "";
     return depth + "images/" + name;
   }
@@ -159,6 +163,7 @@
     menuBtn?.addEventListener("click", () => {
       const open = mobileMenu?.classList.toggle("open");
       menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) lockScroll(); else unlockScroll();
     });
 
     // FAQ accordion
@@ -181,15 +186,15 @@
 
     // ===== Search overlay =====
     const SITE_INDEX = [
-      { title: "Faja Moldeadora Invisible (producto)", url: "producto.html", keywords: "faja moldeadora producto comprar talla precio invisible cintura" },
-      { title: "Catálogo de fajas", url: "catalogo.html", keywords: "catalogo catálogo fajas moldeadoras tienda" },
-      { title: "Sobre Nuvel", url: "sobre-nosotros.html", keywords: "sobre nosotros historia marca quienes somos" },
-      { title: "Preguntas frecuentes", url: "faq.html", keywords: "faq preguntas frecuentes dudas ayuda" },
-      { title: "Guía de tallas", url: "faq.html#talla", keywords: "talla tallas guia guía medidas s m l xl" },
-      { title: "Envíos", url: "envios.html", keywords: "envio envío entrega tiempo plazo" },
-      { title: "Devoluciones", url: "devoluciones.html", keywords: "devolucion devolución cambio reembolso" },
-      { title: "Privacidad", url: "privacidad.html", keywords: "privacidad datos rgpd" },
-      { title: "Términos y condiciones", url: "terminos.html", keywords: "terminos términos condiciones legal" },
+      { title: "Faja Moldeadora Invisible (producto)", url: "/pages/producto", keywords: "faja moldeadora producto comprar talla precio invisible cintura" },
+      { title: "Catálogo de fajas", url: "/pages/catalogo", keywords: "catalogo catálogo fajas moldeadoras tienda" },
+      { title: "Sobre Nuvel", url: "/pages/sobre-nosotros", keywords: "sobre nosotros historia marca quienes somos" },
+      { title: "Preguntas frecuentes", url: "/pages/preguntas-frecuentes", keywords: "faq preguntas frecuentes dudas ayuda" },
+      { title: "Guía de tallas", url: "/pages/preguntas-frecuentes#talla", keywords: "talla tallas guia guía medidas s m l xl" },
+      { title: "Envíos", url: "/pages/envios", keywords: "envio envío entrega tiempo plazo" },
+      { title: "Devoluciones", url: "/pages/devoluciones", keywords: "devolucion devolución cambio reembolso" },
+      { title: "Privacidad", url: "/pages/privacidad", keywords: "privacidad datos rgpd" },
+      { title: "Términos y condiciones", url: "/pages/terminos", keywords: "terminos términos condiciones legal" },
     ];
     const searchOverlay = document.getElementById("search-overlay");
     const searchInput = document.getElementById("search-input");
@@ -200,7 +205,7 @@
       if (!query) { searchResults.innerHTML = ""; return; }
       const matches = SITE_INDEX.filter((it) => it.title.toLowerCase().includes(query) || it.keywords.includes(query));
       if (matches.length === 0) {
-        searchResults.innerHTML = `<div class="search-empty">No encontramos nada para "${q}". <a href="producto.html" style="text-decoration:underline;">Ver nuestra faja</a> o <a href="faq.html" style="text-decoration:underline;">revisa las preguntas frecuentes</a>.</div>`;
+        searchResults.innerHTML = `<div class="search-empty">No encontramos nada para "${q}". <a href="/pages/producto" style="text-decoration:underline;">Ver nuestra faja</a> o <a href="/pages/preguntas-frecuentes" style="text-decoration:underline;">revisa las preguntas frecuentes</a>.</div>`;
         return;
       }
       searchResults.innerHTML = matches.map((it) => `<a href="${it.url}">${it.title}</a>`).join("");
@@ -421,6 +426,27 @@
     document.getElementById("zoom-prev")?.addEventListener("click", () => moveGallery(-1));
     document.getElementById("zoom-next")?.addEventListener("click", () => moveGallery(1));
 
+    // Gallery swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const mainShot = document.querySelector(".main-shot");
+    if (mainShot) {
+      mainShot.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+      mainShot.addEventListener('touchend', e => { 
+        touchEndX = e.changedTouches[0].screenX; 
+        if (touchEndX < touchStartX - 40) moveGallery(1); 
+        if (touchEndX > touchStartX + 40) moveGallery(-1); 
+      }, {passive: true});
+    }
+    if (zoomBox) {
+      zoomBox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+      zoomBox.addEventListener('touchend', e => { 
+        touchEndX = e.changedTouches[0].screenX; 
+        if (touchEndX < touchStartX - 40) moveGallery(1); 
+        if (touchEndX > touchStartX + 40) moveGallery(-1); 
+      }, {passive: true});
+    }
+
     // Size selector
     let selectedSize = "M";
     document.querySelectorAll("[data-size]").forEach((btn) => {
@@ -519,9 +545,9 @@
       // marcar como activa la miniatura correspondiente — las miniaturas apuntan a
       // "images/lg/archivo.jpg" y el color a "images/archivo.jpg", así que se compara
       // por nombre de archivo, no por la ruta completa.
-      var fotoFile = foto.split('/').pop();
+      var fotoFile = foto.split('/').pop().split('?')[0];
       document.querySelectorAll('[data-thumb]').forEach(function (t) {
-        var thumbFile = (t.dataset.full || '').split('/').pop();
+        var thumbFile = (t.dataset.full || '').split('/').pop().split('?')[0].replace(/^lg-/, '');
         t.classList.toggle('active', thumbFile === fotoFile);
       });
 
