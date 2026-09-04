@@ -36,11 +36,17 @@
       <div class="opt-group">
         <div class="opt-head"><label>Talla</label><a href="/pages/preguntas-frecuentes#talla">Guía de tallas</a></div>
         <div class="opt-choices">
-          {%- assign tallas_vistas = "" -%}
+          {%- comment -%}
+            Ojo: "contains" en Liquid busca subcadena, no un valor exacto de
+            lista. Sin los separadores "|" a los lados, "L" aparece como
+            "encontrado" dentro de "XL", "2XL" y "3XL" y esa talla desaparece.
+          {%- endcomment -%}
+          {%- assign tallas_vistas = "|" -%}
           {%- for variant in p.variants -%}
-            {%- unless tallas_vistas contains variant.option2 -%}
+            {%- assign talla_clave = "|" | append: variant.option2 | append: "|" -%}
+            {%- unless tallas_vistas contains talla_clave -%}
           <button type="button" class="opt-btn{% if variant.option2 == 'M' %} selected{% endif %}" data-size="{{ variant.option2 }}" data-variant-id="{{ variant.id }}">{{ variant.option2 }}</button>
-              {%- assign tallas_vistas = tallas_vistas | append: variant.option2 | append: ',' -%}
+              {%- assign tallas_vistas = tallas_vistas | append: variant.option2 | append: "|" -%}
             {%- endunless -%}
           {%- endfor -%}
         </div>
