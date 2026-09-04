@@ -2,9 +2,23 @@
   Shopify entrega siempre "/404" en request.path, asi que la ruta real la lee
   el navegador. El contenido se inyecta en #nuvel-contenido, entre la cabecera
   y el pie globales, para no destruirlos.
+
+  Las URL de abajo salen de asset_url, que incluye el hash del archivo. Si se
+  pidiera "pagina-x.js" a pelo (sin el hash), Shopify/Cloudflare la cachean
+  hasta un año y un visitante puede seguir viendo la version vieja despues de
+  un despliegue nuevo. Con el hash en la URL, un cambio de contenido cambia la
+  URL y la cache vieja deja de usarse sola.
 {%- endcomment -%}
 
-<script>window.__NUVEL_ESPERA_CONTENIDO__ = true;</script>
+{%- assign nuvel_paginas = "producto,short,vestido,corse,catalogo,sobre-nosotros,preguntas-frecuentes,envios,devoluciones,privacidad,terminos" | split: "," -%}
+<script>
+  window.__NUVEL_ASSETS__ = {
+    {%- for nombre in nuvel_paginas -%}
+    "{{ nombre }}": {{ 'pagina-' | append: nombre | append: '.js' | asset_url | json }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  };
+  window.__NUVEL_ESPERA_CONTENIDO__ = true;
+</script>
 
 <div id="nuvel-contenido"></div>
 
@@ -37,7 +51,7 @@
   if (CONOCIDAS.indexOf(ruta) === -1) { rendirse(); return; }
 
   var s = document.createElement("script");
-  s.src = BASE + "pagina-" + ruta + ".js";
+  s.src = (window.__NUVEL_ASSETS__ && window.__NUVEL_ASSETS__[ruta]) || (BASE + "pagina-" + ruta + ".js");
   s.onload = function () {
     var p = window.__NUVEL_PAGINA__;
     if (!p || !caja) { rendirse(); return; }
