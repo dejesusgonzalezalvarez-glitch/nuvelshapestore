@@ -140,6 +140,18 @@
   // llegaba a engancharse. Se ejecuta directo en vez de esperar el evento.
   function nuvelInitCart() {
     renderCart();
+
+    // Resalta en el menu la seccion en la que se esta, y solo esa. Se lee
+    // location.pathname (la URL real del navegador) en vez de comparar contra
+    // Liquid: las paginas que aun no existen en Shopify se sirven desde el
+    // puente de 404.liquid, que siempre ve "/404" del lado del servidor.
+    let ruta = location.pathname.toLowerCase().replace(/\/+$/, "") || "/";
+    if (ruta === "/pages/faq") ruta = "/pages/preguntas-frecuentes";
+    document.querySelectorAll(".nav-link, .mobile-menu a").forEach((a) => {
+      const href = (a.getAttribute("href") || "").toLowerCase().replace(/\/+$/, "") || "/";
+      a.classList.toggle("active", href === ruta);
+    });
+
     document.querySelectorAll("[data-cart-open]").forEach((b) => b.addEventListener("click", openCart));
     document.getElementById("cart-close")?.addEventListener("click", closeCart);
     document.getElementById("cart-overlay")?.addEventListener("click", closeCart);
