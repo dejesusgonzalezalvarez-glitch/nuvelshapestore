@@ -209,6 +209,11 @@ section.pad { padding: 96px 64px; }
 .stars-wrap { position: relative; display: inline-block; }
 .stars-bg, .stars-fg { display: flex; }
 .stars-fg { position: absolute; top: 0; left: 0; overflow: hidden; }
+/* Las estrellas rellenas van en una capa mas angosta que se recorta segun la
+   nota (4.6 de 5, etc). Sin flex-shrink:0 el flexbox las encogia para caber
+   en ese ancho menor en vez de dejar que "overflow:hidden" las recortara, asi
+   que no coincidian de tamano con las estrellas vacias de fondo. */
+.stars-bg svg, .stars-fg svg { flex-shrink: 0; }
 .rating-row .rating-value { color: var(--text); font-weight: 600; }
 .rating-row--tile { margin: 6px 0 0; gap: 6px; }
 .rating-row--tile .rating-value { font-size: 12px; }
