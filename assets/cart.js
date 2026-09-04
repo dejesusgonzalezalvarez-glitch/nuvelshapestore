@@ -13,6 +13,13 @@
   };
 
   function imgPath(name) {
+    if (!name) return "";
+    // La foto del producto principal y la de los selectores de color ya
+    // llegan como URL completa (salen de "asset_url" en el liquid). Solo las
+    // fotos de los bundles llegan como nombre de archivo suelto. Antepone la
+    // base del tema unicamente en ese segundo caso; si no, la URL completa
+    // terminaba con el dominio pegado dos veces y la imagen no cargaba.
+    if (/^(https?:)?\/\//.test(name)) return name;
     // resolves relative to the theme assets path (using favicon as anchor)
     const favicon = document.querySelector('link[rel="icon"][href*="favicon"]');
     if (favicon) {
