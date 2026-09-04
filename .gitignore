@@ -1,0 +1,10 @@
+# Scripts de desarrollo: no forman parte del tema y Shopify no debe verlos
+refactor.js
+check-images.js
+check-js-images.js
+
+# Basura del sistema
+.DS_Store
+Thumbs.db
+*.zip
+node_modules/

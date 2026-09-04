@@ -1,3 +1,13 @@
+{%- comment -%}
+  Shopify entrega siempre "/404" en request.path, asi que la ruta real la lee
+  el navegador. El contenido se inyecta en #nuvel-contenido, entre la cabecera
+  y el pie globales, para no destruirlos.
+{%- endcomment -%}
+
+<script>window.__NUVEL_ESPERA_CONTENIDO__ = true;</script>
+
+<div id="nuvel-contenido"></div>
+
 <div id="nuvel-404" hidden>
   <main class="wrap" style="padding:120px 0; text-align:center;">
     <h1 style="font-size:32px; margin-bottom:14px;">Página no encontrada</h1>
@@ -9,7 +19,12 @@
 <script>
 (function () {
   var aviso = document.getElementById("nuvel-404");
-  function mostrarAviso() { if (aviso) aviso.hidden = false; }
+  var caja  = document.getElementById("nuvel-contenido");
+
+  function rendirse() {
+    if (aviso) aviso.hidden = false;
+    if (window.__nuvelArrancarCarrito) window.__nuvelArrancarCarrito();
+  }
 
   var BASE = "{{ 'cart.js' | asset_url }}".split("cart.js")[0];
   var CONOCIDAS = ["producto","short","vestido","corse","catalogo","sobre-nosotros",
@@ -19,33 +34,37 @@
   ruta = ruta.replace(/^\/pages\//, "").replace(/^\//, "");
   if (ruta === "faq") ruta = "preguntas-frecuentes";
 
-  if (CONOCIDAS.indexOf(ruta) === -1) { mostrarAviso(); return; }
+  if (CONOCIDAS.indexOf(ruta) === -1) { rendirse(); return; }
 
   var s = document.createElement("script");
   s.src = BASE + "pagina-" + ruta + ".js";
   s.onload = function () {
     var p = window.__NUVEL_PAGINA__;
-    if (!p) { mostrarAviso(); return; }
-    document.title = p.titulo;
-    var html = p.html.split("__ASSET__").join(BASE);
+    if (!p || !caja) { rendirse(); return; }
 
+    document.title = p.titulo;
+
+    // los data-producto-* que necesita el carrito para saber que producto es
     var attrs = p.attrs.match(/([a-z\-]+)="([^"]*)"/g) || [];
     attrs.forEach(function (a) {
       var i = a.indexOf("=");
       document.body.setAttribute(a.slice(0, i), a.slice(i + 2, -1));
     });
 
-    document.body.innerHTML = html;
+    caja.innerHTML = p.html.split("__ASSET__").join(BASE);
 
     // los scripts insertados con innerHTML no se ejecutan: hay que recrearlos
-    var viejos = Array.prototype.slice.call(document.body.querySelectorAll("script"));
+    var viejos = Array.prototype.slice.call(caja.querySelectorAll("script"));
     viejos.forEach(function (v) {
       var n = document.createElement("script");
       if (v.src) { n.src = v.src; } else { n.textContent = v.textContent; }
       v.parentNode.replaceChild(n, v);
     });
+
+    // ahora si: el carrito arranca una sola vez, con el producto ya declarado
+    if (window.__nuvelArrancarCarrito) window.__nuvelArrancarCarrito();
   };
-  s.onerror = mostrarAviso;
+  s.onerror = rendirse;
   document.head.appendChild(s);
 })();
 </script>
