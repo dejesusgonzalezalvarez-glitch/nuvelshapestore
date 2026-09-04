@@ -1,6 +1,4 @@
-<span data-tema-foto="{{ 'producto-frente.jpg' | asset_url }}" hidden></span>
-<script>
-(function(){var b=document.body;b.setAttribute('data-producto-id', 'nuvel-faja-invisible');b.setAttribute('data-producto-nombre', 'Faja Moldeadora Invisible');b.setAttribute('data-producto-precio', '39.90');b.setAttribute('data-producto-foto', document.querySelector('[data-tema-foto]').getAttribute('data-tema-foto'));})();</script>
+{%- assign p = all_products['faja-moldeadora-invisible-nuvel'] -%}
 
 <main class="wrap">
   <nav class="breadcrumb">
@@ -32,23 +30,25 @@
       <h1>Faja Moldeadora Invisible · Nuvel</h1>
       <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:78.7px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.8</span><span>123 reseñas</span></div>
       <div class="price-row">
-        <span class="price-now">39,90&nbsp;€</span>
-        <span class="price-was">54,90&nbsp;€</span>
+        <span class="price-now">{{ p.price | money }}</span>
       </div>
 
       <div class="opt-group">
         <div class="opt-head"><label>Talla</label><a href="/pages/preguntas-frecuentes#talla">Guía de tallas</a></div>
         <div class="opt-choices">
-          <button class="opt-btn" data-size="S">S</button>
-          <button class="opt-btn selected" data-size="M">M</button>
-          <button class="opt-btn" data-size="L">L</button>
-          <button class="opt-btn" data-size="XL">XL</button>
+          {%- assign tallas_vistas = "" -%}
+          {%- for variant in p.variants -%}
+            {%- unless tallas_vistas contains variant.option2 -%}
+          <button type="button" class="opt-btn{% if variant.option2 == 'M' %} selected{% endif %}" data-size="{{ variant.option2 }}" data-variant-id="{{ variant.id }}">{{ variant.option2 }}</button>
+              {%- assign tallas_vistas = tallas_vistas | append: variant.option2 | append: ',' -%}
+            {%- endunless -%}
+          {%- endfor -%}
         </div>
       </div>
 
       <div class="qty-offer">
-        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">39,90&nbsp;€</div></button>
-        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">AHORRA 15%</span><div class="qty-label">2 unidades</div><div class="qty-price">67,90&nbsp;€</div></button>
+        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">{{ p.price | money }}</div></button>
+        <button class="qty-opt" data-qty-offer="2"><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
       </div>
 
       <div class="bundle-box" data-main-id="nuvel-faja-invisible" data-main-name="Faja Moldeadora Invisible" data-main-price="39.9" data-main-img="producto-frente.jpg"
@@ -199,7 +199,7 @@
 </main><div class="buy-bar" id="buy-bar">
   <div class="buy-bar-info">
     <span class="buy-bar-name">Faja Moldeadora Invisible</span>
-    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · 39,90&nbsp;€</span>
+    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · {{ p.price | money }}</span>
   </div>
   <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>Añadir</button>
 </div>

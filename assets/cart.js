@@ -473,11 +473,13 @@
 
     // Size selector
     let selectedSize = "M";
+    let selectedVariantId = document.querySelector("[data-size].selected")?.dataset.variantId || null;
     document.querySelectorAll("[data-size]").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll("[data-size]").forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
         selectedSize = btn.dataset.size;
+        selectedVariantId = btn.dataset.variantId || null;
       });
     });
 
@@ -492,8 +494,28 @@
     });
 
     // Add to cart (product page)
-    document.getElementById("add-to-cart-btn")?.addEventListener("click", () => {
-      addToCart({ size: selectedSize, quantity: selectedQty });
+    // Si la talla tiene un ID de variante real de Shopify (producto ya dado de
+    // alta), la compra va directo al carrito y checkout reales — ahi es donde
+    // PayPal ya esta conectado. Si no lo tiene (paginas que aun no tienen un
+    // producto real detras), sigue con el carrito de demo de siempre.
+    document.getElementById("add-to-cart-btn")?.addEventListener("click", (e) => {
+      if (!selectedVariantId) {
+        addToCart({ size: selectedSize, quantity: selectedQty });
+        return;
+      }
+      const boton = e.currentTarget;
+      boton.disabled = true;
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: [{ id: Number(selectedVariantId), quantity: selectedQty }] }),
+      })
+        .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+        .then(() => { window.location.href = "/checkout"; })
+        .catch(() => {
+          boton.disabled = false;
+          alert("No se pudo añadir el producto al carrito. Intenta de nuevo.");
+        });
     });
 
     // ===== Comprados juntos habitualmente (bundle) =====
