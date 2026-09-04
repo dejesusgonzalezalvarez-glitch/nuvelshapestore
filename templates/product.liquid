@@ -1,1 +1,22 @@
-<main class="wrap" style="padding:80px 0;"><h1>product</h1></main>
+{%- comment -%}
+  El sitio nunca enlaza a /products/<handle> — el diseño real de cada
+  producto vive en su propia pagina (/pages/producto, /pages/corse...).
+  Shopify igual crea y a veces indexa esta URL sola, asi que en vez de
+  dejarla en blanco, redirige a la pagina bonita que le corresponde.
+{%- endcomment -%}
+{%- assign destino = "catalogo" -%}
+{%- case product.handle -%}
+  {%- when "faja-moldeadora-invisible-nuvel" -%}
+    {%- assign destino = "producto" -%}
+  {%- when "retro-shapewear-top-with-zipper" -%}
+    {%- assign destino = "corse" -%}
+  {%- when "womens-shapewear-dress-jumpsuit" -%}
+    {%- assign destino = "vestido" -%}
+  {%- when "seamless-shapewear-panties" -%}
+    {%- assign destino = "short" -%}
+{%- endcase -%}
+<meta http-equiv="refresh" content="0; url=/pages/{{ destino }}">
+<script>window.location.replace("/pages/{{ destino }}");</script>
+<main class="wrap" style="padding:80px 0; text-align:center;">
+  <p>Redirigiendo… <a href="/pages/{{ destino }}">Haz clic aquí si no avanza automáticamente</a>.</p>
+</main>
