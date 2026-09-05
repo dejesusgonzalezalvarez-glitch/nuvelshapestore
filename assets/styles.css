@@ -4,8 +4,8 @@ html { -webkit-text-size-adjust: 100%; }
 /* Bloquea el scroll de fondo mientras hay un panel/modal abierto encima (carrito, buscador, cuenta, checkout, zoom) */
 html.no-scroll, html.no-scroll body { overflow: hidden; height: 100%; }
 :root {
-  --bg: #F5F1EC;
-  --bg-alt: #EFEAE2;
+  --bg: #FFFFFF;
+  --bg-alt: #F4F4F2;
   --dark: #1A1A1A;
   --accent: #C9A87C;
   --text: #3A2E26;
@@ -344,7 +344,7 @@ section.pad { padding: 96px 64px; }
 .legal-section ul li { display: flex; gap: 12px; margin-bottom: 10px; font-size: 14px; line-height: 1.7; color: #5a504a; }
 .legal-section ul li::before { content: "—"; color: var(--accent); flex-shrink: 0; }
 .legal-section p { font-size: 14px; line-height: 1.85; color: #5a504a; margin: 0; }
-.legal-callout { background: #f0ebe2; border-left: 3px solid var(--accent); padding: 20px 24px; font-size: 13px; line-height: 1.7; color: #5a504a; }
+.legal-callout { background: var(--bg-alt); border-left: 3px solid var(--accent); padding: 20px 24px; font-size: 13px; line-height: 1.7; color: #5a504a; }
 .legal-callout-dark { background: var(--dark); color: var(--bg); padding: 32px 36px; text-align: center; margin-bottom: 56px; border-radius: 4px; }
 .legal-callout-dark p:first-child { font-family: 'Lora', serif; font-size: clamp(1.2rem,2.5vw,1.6rem); margin-bottom: 10px; }
 .legal-callout-dark p:last-child { font-size: 14px; color: #a89c90; margin: 0; }
@@ -409,7 +409,7 @@ section.pad { padding: 96px 64px; }
 .reviews-note.center { margin-left: auto; margin-right: auto; text-align: center; }
 
 /* Bloque legal pendiente de completar */
-.legal-pending { background: #FBF6EE; border: 1px dashed var(--accent); padding: 24px 26px; border-radius: 4px; }
+.legal-pending { background: var(--bg-alt); border: 1px dashed var(--accent); padding: 24px 26px; border-radius: 4px; }
 .legal-pending h2 { border-bottom: none; padding-bottom: 0; margin-bottom: 12px; }
 .legal-fill { background: rgba(201,168,124,.22); padding: 1px 7px; border-radius: 3px; font-weight: 500; color: #6b5335; }
 .legal-warning { margin-top: 14px !important; font-size: 12.5px !important; color: #8a6a3a !important; font-style: italic; }
