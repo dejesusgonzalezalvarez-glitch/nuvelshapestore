@@ -72,6 +72,8 @@
         </div>
       </div>
 
+      {%- render 'payment-icons' -%}
+
       {%- assign partner = all_products['seamless-shapewear-panties'] -%}
       {%- assign partner_variant = partner.variants.first -%}
       <div class="bundle-box" data-main-id="nuvel-vestido-2en1" data-main-name="Vestido Moldeador 2 en 1" data-main-price="{{ p.price | divided_by: 100.0 }}" data-main-img="vestido-negro-frente.jpg"

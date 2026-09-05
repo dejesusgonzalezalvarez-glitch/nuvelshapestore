@@ -76,6 +76,8 @@
         <button class="qty-opt" data-qty-offer="2"><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
       </div>
 
+      {%- render 'payment-icons' -%}
+
       {%- assign partner = all_products['faja-moldeadora-invisible-nuvel'] -%}
       {%- assign partner_variant = partner.variants.first -%}
       <div class="bundle-box" data-main-id="nuvel-corse-cintura" data-main-name="Corsé Moldeador de Cintura" data-main-price="{{ p.price | divided_by: 100.0 }}" data-main-img="corse-negro-frente.jpg"

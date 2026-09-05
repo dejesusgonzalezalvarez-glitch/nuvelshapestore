@@ -609,6 +609,25 @@ section.pad { padding: 96px 64px; }
   .gallery-arrow, .gallery-zoom-btn { width: 44px; height: 44px; }
 }
 
+/* ===== Íconos de métodos de pago (encima del bundle) ===== */
+.payment-icons-block {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  margin-bottom: 20px; padding: 16px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.payment-icons-block__label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-mute); margin: 0;
+}
+.payment-icons-block__row {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;
+}
+.payment-icons-block__icon {
+  height: 26px; width: auto; border-radius: 4px; border: 1px solid var(--border);
+  opacity: 0.9; transition: opacity 0.2s ease;
+}
+.payment-icons-block__icon:hover { opacity: 1; }
+
 /* ===== Comprados juntos habitualmente (bundle) =====
    Vive dentro de la columna de compra (pdp-info), justo arriba del botón
    principal — por eso es una tarjeta compacta y siempre vertical, no una

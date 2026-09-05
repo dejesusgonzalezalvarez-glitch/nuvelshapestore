@@ -1,0 +1,8 @@
+<div class="payment-icons-block">
+  <p class="payment-icons-block__label">Pago 100% seguro</p>
+  <div class="payment-icons-block__row">
+    {%- for type in shop.enabled_payment_types -%}
+      {{ type | payment_type_svg_tag: class: 'payment-icons-block__icon' }}
+    {%- endfor -%}
+  </div>
+</div>
