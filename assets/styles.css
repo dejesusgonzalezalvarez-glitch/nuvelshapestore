@@ -627,6 +627,9 @@ section.pad { padding: 96px 64px; }
   opacity: 0.9; transition: opacity 0.2s ease;
 }
 .payment-icons-block__icon:hover { opacity: 1; }
+.payment-icons-block__note {
+  font-size: 10.5px; color: var(--text-mute); margin: 2px 0 0; text-align: center;
+}
 
 /* ===== Comprados juntos habitualmente (bundle) =====
    Vive dentro de la columna de compra (pdp-info), justo arriba del botón
