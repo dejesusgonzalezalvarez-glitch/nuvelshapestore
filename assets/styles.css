@@ -319,6 +319,11 @@ section.pad { padding: 96px 64px; }
 .product-tile { display: block; }
 .product-tile .shot { height: 300px; position: relative; overflow: hidden; background: #fff; padding: 14px; }
 .product-tile .shot img { width: 100%; height: 100%; object-fit: contain; }
+/* Las fotos de estudio del short y el vestido se tomaron sobre un fondo
+   gris claro (no blanco puro), y ahora que el resto de la tienda es blanco
+   se nota como un recuadro. Sube el contraste para blanquear ese fondo sin
+   afectar la prenda negra (muy oscura, queda fuera de este rango). */
+img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contrast(1.12); }
 /* La etiqueta "Nuevo"/"Más vendido" mucho más pequeña en las tarjetas de
    catálogo que en las fotos grandes (feature-img), y separada de la esquina
    para que nunca tape la cabeza de la modelo. */
