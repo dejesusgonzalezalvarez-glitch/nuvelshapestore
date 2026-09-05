@@ -1,6 +1,4 @@
-<span data-tema-foto="{{ 'corse-negro-frente.jpg' | asset_url }}" hidden></span>
-<script>
-(function(){var b=document.body;b.setAttribute('data-producto-id', 'nuvel-corse-cintura');b.setAttribute('data-producto-nombre', 'Corsé Moldeador de Cintura');b.setAttribute('data-producto-precio', '34.90');b.setAttribute('data-producto-foto', document.querySelector('[data-tema-foto]').getAttribute('data-tema-foto'));})();</script>
+{%- assign p = all_products['retro-shapewear-top-with-zipper'] -%}
 
 <main class="wrap">
   <nav class="breadcrumb">
@@ -36,8 +34,7 @@
       <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:77.1px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span><span>41 reseñas</span>
       </div>
       <div class="price-row">
-        <span class="price-now">34,90&nbsp;€</span>
-        <span class="price-was">49,90&nbsp;€</span>
+        <span class="price-now">{{ p.price | money }}</span>
       </div>
 
       <div class="opt-group">
@@ -52,18 +49,24 @@
       <div class="opt-group">
         <div class="opt-head"><label>Talla</label><a href="#" data-ver-tallas>Guía de tallas</a></div>
         <div class="opt-choices">
-          <button class="opt-btn" data-size="XS">XS</button>
-          <button class="opt-btn" data-size="S">S</button>
-          <button class="opt-btn selected" data-size="M">M</button>
-          <button class="opt-btn" data-size="L">L</button>
-          <button class="opt-btn" data-size="XL">XL</button>
-          <button class="opt-btn" data-size="2XL">2XL</button>
+          {%- comment -%}
+            "contains" busca subcadena: hay que envolver con "|" para que "L"
+            no aparezca como "encontrado" dentro de "XL" o "2XL".
+          {%- endcomment -%}
+          {%- assign tallas_vistas = "|" -%}
+          {%- for variant in p.variants -%}
+            {%- assign talla_clave = "|" | append: variant.option2 | append: "|" -%}
+            {%- unless tallas_vistas contains talla_clave -%}
+          <button type="button" class="opt-btn{% if variant.option2 == 'M' %} selected{% endif %}" data-size="{{ variant.option2 }}" data-variant-id="{{ variant.id }}">{{ variant.option2 }}</button>
+              {%- assign tallas_vistas = tallas_vistas | append: variant.option2 | append: "|" -%}
+            {%- endunless -%}
+          {%- endfor -%}
         </div>
       </div>
 
       <div class="qty-offer">
-        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">34,90&nbsp;€</div></button>
-        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">UNO PARA LAVAR, OTRO PUESTO</span><div class="qty-label">2 unidades</div><div class="qty-price">62,90&nbsp;€</div></button>
+        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">{{ p.price | money }}</div></button>
+        <button class="qty-opt" data-qty-offer="2"><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
       </div>
 
       <div class="bundle-box" data-main-id="nuvel-corse-cintura" data-main-name="Corsé Moldeador de Cintura" data-main-price="34.9" data-main-img="corse-negro-frente.jpg"
@@ -80,7 +83,7 @@
         <label class="bundle-line">
           <input type="checkbox" checked disabled>
           <span>Este producto: <strong>Corsé Moldeador de Cintura</strong></span>
-          <span class="bundle-line-price">34,90&nbsp;€</span>
+          <span class="bundle-line-price">{{ p.price | money }}</span>
         </label>
         <label class="bundle-line">
           <input type="checkbox" checked data-bundle-toggle>
@@ -240,7 +243,7 @@
 </main><div class="buy-bar" id="buy-bar">
   <div class="buy-bar-info">
     <span class="buy-bar-name">Corsé Moldeador</span>
-    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · Negro · 34,90&nbsp;€</span>
+    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · Negro · {{ p.price | money }}</span>
   </div>
   <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>Añadir</button>
 </div>

@@ -1,6 +1,4 @@
-<span data-tema-foto="{{ 'vestido-negro-frente.jpg' | asset_url }}" hidden></span>
-<script>
-(function(){var b=document.body;b.setAttribute('data-producto-id', 'nuvel-vestido-2en1');b.setAttribute('data-producto-nombre', 'Vestido Moldeador 2 en 1');b.setAttribute('data-producto-precio', '59.90');b.setAttribute('data-producto-foto', document.querySelector('[data-tema-foto]').getAttribute('data-tema-foto'));})();</script>
+{%- assign p = all_products['womens-shapewear-dress-jumpsuit'] -%}
 
 <main class="wrap">
   <nav class="breadcrumb">
@@ -34,8 +32,7 @@
       <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:77.1px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span><span>28 reseñas</span>
       </div>
       <div class="price-row">
-        <span class="price-now">59,90&nbsp;€</span>
-        <span class="price-was">79,90&nbsp;€</span>
+        <span class="price-now">{{ p.price | money }}</span>
       </div>
 
       <div class="opt-group">
@@ -49,12 +46,20 @@
       <div class="opt-group">
         <div class="opt-head"><label>Talla</label><a href="#" data-ver-tallas>Guía de tallas</a></div>
         <div class="opt-choices">
-          <button class="opt-btn" data-size="S">S</button>
-          <button class="opt-btn selected" data-size="M">M</button>
-          <button class="opt-btn" data-size="L">L</button>
-          <button class="opt-btn" data-size="XL">XL</button>
-          <button class="opt-btn" data-size="2XL">2XL</button>
-          <button class="opt-btn" data-size="3XL">3XL</button>
+          {%- comment -%}
+            Este producto real no tiene una opcion "Size" separada: la talla
+            viene pegada dentro de option1 ("Black / S"), asi que se extrae
+            partiendo por " / " y tomando el ultimo pedazo.
+          {%- endcomment -%}
+          {%- assign tallas_vistas = "|" -%}
+          {%- for variant in p.variants -%}
+            {%- assign talla = variant.option1 | split: " / " | last -%}
+            {%- assign talla_clave = "|" | append: talla | append: "|" -%}
+            {%- unless tallas_vistas contains talla_clave -%}
+          <button type="button" class="opt-btn{% if talla == 'M' %} selected{% endif %}" data-size="{{ talla }}" data-variant-id="{{ variant.id }}">{{ talla }}</button>
+              {%- assign tallas_vistas = tallas_vistas | append: talla | append: "|" -%}
+            {%- endunless -%}
+          {%- endfor -%}
         </div>
       </div>
 
@@ -72,7 +77,7 @@
         <label class="bundle-line">
           <input type="checkbox" checked disabled>
           <span>Este producto: <strong>Vestido Moldeador 2 en 1</strong></span>
-          <span class="bundle-line-price">59,90&nbsp;€</span>
+          <span class="bundle-line-price">{{ p.price | money }}</span>
         </label>
         <label class="bundle-line">
           <input type="checkbox" checked data-bundle-toggle>
@@ -201,7 +206,7 @@
 </main><div class="buy-bar" id="buy-bar">
   <div class="buy-bar-info">
     <span class="buy-bar-name">Vestido Moldeador 2 en 1</span>
-    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · Negro · 59,90&nbsp;€</span>
+    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · Negro · {{ p.price | money }}</span>
   </div>
   <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>Añadir</button>
 </div>
