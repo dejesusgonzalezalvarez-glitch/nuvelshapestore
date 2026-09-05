@@ -474,12 +474,32 @@
     // Size selector
     let selectedSize = "M";
     let selectedVariantId = document.querySelector("[data-size].selected")?.dataset.variantId || null;
+
+    // En productos con color real (Corse, Short, Vestido) la variante depende
+    // de talla Y color juntos, asi que no basta con el data-variant-id de la
+    // talla sola. window.__NUVEL_VARIANTES__ (si el liquid lo genero) mapea
+    // "ColorReal_Talla" -> id de variante; esto recalcula cada vez que cambia
+    // cualquiera de los dos. Los productos sin ese mapa (como la Faja, que no
+    // expone selector de color) siguen usando el id fijo de la talla.
+    function recalcularVariante() {
+      const mapa = window.__NUVEL_VARIANTES__;
+      if (!mapa) return;
+      const colorBtn = document.querySelector("[data-color-key].selected");
+      const colorKey = colorBtn?.dataset.colorKey;
+      if (!colorKey || !selectedSize) return;
+      const id = mapa[colorKey + "_" + selectedSize];
+      if (id) selectedVariantId = id;
+    }
+    window.__nuvelRecalcularVariante = recalcularVariante;
+    recalcularVariante();
+
     document.querySelectorAll("[data-size]").forEach((btn) => {
       btn.addEventListener("click", () => {
         document.querySelectorAll("[data-size]").forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
         selectedSize = btn.dataset.size;
         selectedVariantId = btn.dataset.variantId || null;
+        recalcularVariante();
       });
     });
 
@@ -588,6 +608,7 @@
     btn.addEventListener('click', function () {
       botonesColor.forEach(function (b) { b.classList.remove('selected'); });
       btn.classList.add('selected');
+      if (window.__nuvelRecalcularVariante) window.__nuvelRecalcularVariante();
 
       var foto = btn.dataset.colorShot;
       // Igual que en las miniaturas: hay que quitar "srcset" o el navegador

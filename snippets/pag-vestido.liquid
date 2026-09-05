@@ -1,4 +1,13 @@
 {%- assign p = all_products['womens-shapewear-dress-jumpsuit'] -%}
+<script>
+  window.__NUVEL_VARIANTES__ = {
+    {%- for variant in p.variants -%}
+    {%- assign color_base = variant.option1 | split: " / " | first -%}
+    {%- assign talla = variant.option1 | split: " / " | last -%}
+    {{ color_base | append: "_" | append: talla | json }}: {{ variant.id }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  };
+</script>
 
 <main class="wrap">
   <nav class="breadcrumb">
@@ -38,8 +47,8 @@
       <div class="opt-group">
         <div class="opt-head"><label>Color</label></div>
         <div class="opt-choices">
-          <button class="opt-btn selected" data-color="negro" data-color-shot="{{ 'vestido-negro-frente.jpg' | asset_url }}">Negro</button>
-          <button class="opt-btn" data-color="gris" data-color-shot="{{ 'vestido-gris-frente.jpg' | asset_url }}">Gris</button>
+          <button class="opt-btn selected" data-color="negro" data-color-key="Black" data-color-shot="{{ 'vestido-negro-frente.jpg' | asset_url }}">Negro</button>
+          <button class="opt-btn" data-color="gris" data-color-key="Grey" data-color-shot="{{ 'vestido-gris-frente.jpg' | asset_url }}">Gris</button>
         </div>
       </div>
 
