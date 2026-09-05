@@ -72,9 +72,11 @@
         </div>
       </div>
 
-      <div class="bundle-box" data-main-id="nuvel-vestido-2en1" data-main-name="Vestido Moldeador 2 en 1" data-main-price="59.9" data-main-img="vestido-negro-frente.jpg"
-         data-partner-id="nuvel-short-moldeador" data-partner-name="Short Moldeador Sin Costuras" data-partner-price="24.9" data-partner-img="short-negro-frente.jpg"
-         data-discount-pct="10">
+      {%- assign partner = all_products['seamless-shapewear-panties'] -%}
+      {%- assign partner_variant = partner.variants.first -%}
+      <div class="bundle-box" data-main-id="nuvel-vestido-2en1" data-main-name="Vestido Moldeador 2 en 1" data-main-price="{{ p.price | divided_by: 100.0 }}" data-main-img="vestido-negro-frente.jpg"
+         data-partner-id="nuvel-short-moldeador" data-partner-name="Short Moldeador Sin Costuras" data-partner-price="{{ partner.price | divided_by: 100.0 }}" data-partner-img="short-negro-frente.jpg"
+         data-partner-variant-id="{{ partner_variant.id }}">
       <p class="bundle-title">Comprados juntos habitualmente</p>
       <p class="bundle-reason">El vestido ya lleva la faja cosida por dentro. El short suaviza la parte alta del muslo para que tampoco se note nada al sentarte.</p>
       <div class="bundle-items">
@@ -91,7 +93,7 @@
         <label class="bundle-line">
           <input type="checkbox" checked data-bundle-toggle>
           <span><strong>Short Moldeador Sin Costuras</strong></span>
-          <span class="bundle-line-price">24,90&nbsp;€</span>
+          <span class="bundle-line-price">{{ partner.price | money }}</span>
         </label>
       </div>
       <div class="bundle-summary">
@@ -104,7 +106,7 @@
       </div>
     </div>
 
-      <button class="btn btn-dark btn-block" id="add-to-cart-btn">Añadir al carrito</button>
+      <button class="btn btn-dark btn-block" id="add-to-cart-btn">Comprar ahora</button>
 
       <div class="trust-strip">
         <div class="trust-compact">

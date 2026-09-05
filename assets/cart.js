@@ -1,114 +1,77 @@
 /* ===== Nuvel — carrito funcional (localStorage), sin backend real ===== */
 (function () {
-  const CART_KEY = "nuvel_cart_v1";
-  // El producto de cada ficha se declara en su propio HTML con
-  // <body data-producto-id data-producto-nombre data-producto-precio data-producto-foto>.
-  // Si no lo declara, se usa la faja como valor por defecto.
-  const CUERPO = document.body;
-  const PRODUCT = {
-    id: CUERPO.dataset.productoId || "nuvel-faja-invisible",
-    name: CUERPO.dataset.productoNombre || "Faja Moldeadora Invisible",
-    price: parseFloat(CUERPO.dataset.productoPrecio || "39.90"),
-    image: CUERPO.dataset.productoFoto || "producto-frente.jpg",
-  };
-
-  function imgPath(name) {
-    if (!name) return "";
-    // La foto del producto principal y la de los selectores de color ya
-    // llegan como URL completa (salen de "asset_url" en el liquid). Solo las
-    // fotos de los bundles llegan como nombre de archivo suelto. Antepone la
-    // base del tema unicamente en ese segundo caso; si no, la URL completa
-    // terminaba con el dominio pegado dos veces y la imagen no cargaba.
-    if (/^(https?:)?\/\//.test(name)) return name;
-    // resolves relative to the theme assets path (using favicon as anchor)
-    const favicon = document.querySelector('link[rel="icon"][href*="favicon"]');
-    if (favicon) {
-      return favicon.href.split('favicon')[0] + name;
-    }
-    const depth = document.body.getAttribute("data-root") || "";
-    return depth + "images/" + name;
-  }
-
-  function getCart() {
-    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
-    catch { return []; }
-  }
-  function saveCart(cart) {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    renderCart();
-  }
-  function addToCart({ size, quantity }) {
-    const cart = getCart();
-    const elegido = document.querySelector("[data-color-shot].selected");
-    const color = elegido ? elegido.dataset.color : null;
-    const key = PRODUCT.id + "-" + size + (color ? "-" + color : "");
-    const etiqueta = color ? size + " · " + color.charAt(0).toUpperCase() + color.slice(1) : size;
-    const foto = elegido ? elegido.dataset.colorShot.replace("images/", "") : PRODUCT.image;
-    const existing = cart.find((i) => i.key === key);
-    if (existing) existing.qty += quantity;
-    else cart.push({ key, name: PRODUCT.name, size: etiqueta, price: PRODUCT.price, qty: quantity, image: foto });
-    saveCart(cart);
-    openCart();
-  }
-  function updateQty(key, delta) {
-    const cart = getCart();
-    const item = cart.find((i) => i.key === key);
-    if (!item) return;
-    item.qty += delta;
-    const filtered = item.qty <= 0 ? cart.filter((i) => i.key !== key) : cart;
-    saveCart(filtered);
-  }
-  function removeItem(key) {
-    saveCart(getCart().filter((i) => i.key !== key));
-  }
-
   function fmt(n) {
     return n.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
   }
 
   function renderCart() {
-    const cart = getCart();
-    const countEls = document.querySelectorAll("[data-cart-count]");
-    const totalCount = cart.reduce((s, i) => s + i.qty, 0);
-    countEls.forEach((el) => {
-      el.textContent = totalCount;
-      el.style.display = totalCount > 0 ? "flex" : "none";
-    });
+    return fetch("/cart.js")
+      .then((r) => r.json())
+      .then((cart) => {
+        document.querySelectorAll("[data-cart-count]").forEach((el) => {
+          el.textContent = cart.item_count;
+          el.style.display = cart.item_count > 0 ? "flex" : "none";
+        });
 
-    const itemsEl = document.getElementById("cart-items");
-    const footEl = document.getElementById("cart-foot");
-    if (!itemsEl) return;
+        const itemsEl = document.getElementById("cart-items");
+        const footEl = document.getElementById("cart-foot");
+        if (!itemsEl) return cart;
 
-    if (cart.length === 0) {
-      itemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío.</div>';
-      if (footEl) footEl.style.display = "none";
-      return;
-    }
-    if (footEl) footEl.style.display = "block";
+        if (cart.item_count === 0) {
+          itemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío.</div>';
+          if (footEl) footEl.style.display = "none";
+          return cart;
+        }
+        if (footEl) footEl.style.display = "block";
 
-    itemsEl.innerHTML = cart.map((item) => `
-      <div class="cart-item">
-        <img src="${imgPath(item.image)}" alt="${item.name}">
-        <div class="ci-info">
-          <h5>${item.name}</h5>
-          <div class="ci-meta">Talla: ${item.size} · ${fmt(item.price)}</div>
-          <div class="qty-stepper">
-            <button data-qty-minus="${item.key}" aria-label="Restar">−</button>
-            <span>${item.qty}</span>
-            <button data-qty-plus="${item.key}" aria-label="Sumar">+</button>
-            <button class="remove-link" data-remove="${item.key}">Eliminar</button>
+        itemsEl.innerHTML = cart.items.map((item) => `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.product_title}">
+            <div class="ci-info">
+              <h5>${item.product_title}</h5>
+              <div class="ci-meta">${item.variant_title ? item.variant_title + " · " : ""}${fmt(item.price / 100)}</div>
+              <div class="qty-stepper">
+                <button data-qty-minus="${item.key}" aria-label="Restar">−</button>
+                <span>${item.quantity}</span>
+                <button data-qty-plus="${item.key}" aria-label="Sumar">+</button>
+                <button class="remove-link" data-remove="${item.key}">Eliminar</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    `).join("");
+        `).join("");
 
-    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    const subEl = document.getElementById("cart-subtotal-value");
-    if (subEl) subEl.textContent = fmt(subtotal);
+        const subEl = document.getElementById("cart-subtotal-value");
+        if (subEl) subEl.textContent = fmt(cart.total_price / 100);
 
-    itemsEl.querySelectorAll("[data-qty-plus]").forEach((b) => b.addEventListener("click", () => updateQty(b.dataset.qtyPlus, 1)));
-    itemsEl.querySelectorAll("[data-qty-minus]").forEach((b) => b.addEventListener("click", () => updateQty(b.dataset.qtyMinus, -1)));
-    itemsEl.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => removeItem(b.dataset.remove)));
+        itemsEl.querySelectorAll("[data-qty-plus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyPlus, 1)));
+        itemsEl.querySelectorAll("[data-qty-minus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyMinus, -1)));
+        itemsEl.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => removeItem(b.dataset.remove)));
+        return cart;
+      });
+  }
+
+  function changeQty(key, delta) {
+    fetch("/cart.js")
+      .then((r) => r.json())
+      .then((cart) => {
+        const item = cart.items.find((i) => i.key === key);
+        if (!item) return null;
+        const nuevaCantidad = Math.max(0, item.quantity + delta);
+        return fetch("/cart/change.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: key, quantity: nuevaCantidad }),
+        });
+      })
+      .then(() => renderCart());
+  }
+
+  function removeItem(key) {
+    fetch("/cart/change.js", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: key, quantity: 0 }),
+    }).then(() => renderCart());
   }
 
   // Evita que la página de fondo haga scroll mientras hay un panel/modal abierto encima
@@ -138,7 +101,7 @@
     unlockScroll();
   }
 
-  window.NuvelCart = { addToCart, openCart, closeCart, renderCart, getCart };
+  window.NuvelCart = { openCart, closeCart, renderCart };
 
   // Este archivo se inyecta con un <script src> creado por JS (ver
   // global-footer.liquid), lo que pasa siempre despues de que el DOM ya esta
@@ -163,23 +126,11 @@
     document.getElementById("cart-close")?.addEventListener("click", closeCart);
     document.getElementById("cart-overlay")?.addEventListener("click", closeCart);
 
-    // ===== Modal de checkout (demo sin pasarela de pago) =====
-    const checkoutOverlay = document.getElementById("checkout-overlay");
-    const checkoutModal = document.getElementById("checkout-modal");
-    function openCheckoutModal() {
-      checkoutOverlay?.classList.add("open");
-      checkoutModal?.classList.add("open");
-      lockScroll();
-    }
-    function closeCheckoutModal() {
-      if (!checkoutModal?.classList.contains("open")) return;
-      checkoutOverlay?.classList.remove("open");
-      checkoutModal?.classList.remove("open");
-      unlockScroll();
-    }
-    document.getElementById("checkout-btn")?.addEventListener("click", openCheckoutModal);
-    document.getElementById("checkout-modal-close")?.addEventListener("click", closeCheckoutModal);
-    checkoutOverlay?.addEventListener("click", closeCheckoutModal);
+    // El carrito ya es el real de Shopify, asi que "Pagar" va directo al
+    // checkout real — ya no hace falta ningun modal de aviso.
+    document.getElementById("checkout-btn")?.addEventListener("click", () => {
+      window.location.href = "/checkout";
+    });
 
     // Mobile menu toggle
     const menuBtn = document.getElementById("menu-toggle");
@@ -254,7 +205,7 @@
       if (match) window.location.href = match.url;
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") { closeSearch(); closeCart(); closeAccount(); closeCheckoutModal(); closeZoom(); }
+      if (e.key === "Escape") { closeSearch(); closeCart(); closeAccount(); closeZoom(); }
     });
 
     // ===== Account panel (honest "no accounts yet" info panel) =====
@@ -513,16 +464,11 @@
       });
     });
 
-    // Add to cart (product page)
-    // Si la talla tiene un ID de variante real de Shopify (producto ya dado de
-    // alta), la compra va directo al carrito y checkout reales — ahi es donde
-    // PayPal ya esta conectado. Si no lo tiene (paginas que aun no tienen un
-    // producto real detras), sigue con el carrito de demo de siempre.
+    // Add to cart (product page): agrega la variante real al carrito real de
+    // Shopify y abre el cajon para que se vea lo que se llevo antes de pagar
+    // — el boton "Pagar" del cajon es el que de verdad manda al checkout.
     document.getElementById("add-to-cart-btn")?.addEventListener("click", (e) => {
-      if (!selectedVariantId) {
-        addToCart({ size: selectedSize, quantity: selectedQty });
-        return;
-      }
+      if (!selectedVariantId) return;
       const boton = e.currentTarget;
       boton.disabled = true;
       fetch("/cart/add.js", {
@@ -531,7 +477,8 @@
         body: JSON.stringify({ items: [{ id: Number(selectedVariantId), quantity: selectedQty }] }),
       })
         .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-        .then(() => { window.location.href = "/checkout"; })
+        .then(() => renderCart())
+        .then(() => { boton.disabled = false; openCart(); })
         .catch(() => {
           boton.disabled = false;
           alert("No se pudo añadir el producto al carrito. Intenta de nuevo.");
@@ -539,54 +486,46 @@
     });
 
     // ===== Comprados juntos habitualmente (bundle) =====
-    // Añade una prenda "en bruto" al carrito con talla M por defecto — a
-    // diferencia de addToCart(), no depende del producto de la página actual,
-    // porque un bundle añade DOS prendas distintas a la vez.
-    function addRawItem({ id, name, price, image }) {
-      const cart = getCart();
-      const key = id + "-M";
-      const existing = cart.find((i) => i.key === key);
-      if (existing) existing.qty += 1;
-      else cart.push({ key, name, size: "M", price, qty: 1, image });
-      saveCart(cart);
-    }
-
+    // El pack se cobra a precio real de cada prenda (Shopify no aplica un
+    // descuento aparte sin un codigo de verdad), asi que el total mostrado es
+    // la suma real, sin una rebaja que luego no se refleja en el cobro.
     document.querySelectorAll(".bundle-box").forEach((box) => {
       const mainPrice = parseFloat(box.dataset.mainPrice);
       const partnerPrice = parseFloat(box.dataset.partnerPrice);
-      const pct = parseFloat(box.dataset.discountPct);
       const checkbox = box.querySelector("[data-bundle-toggle]");
       const wasEl = box.querySelector(".bundle-total-was");
       const nowEl = box.querySelector(".bundle-total-now");
       const saveEl = box.querySelector(".bundle-save");
+      if (wasEl) wasEl.style.display = "none";
+      if (saveEl) saveEl.style.display = "none";
 
       function refresh() {
-        if (checkbox.checked) {
-          const total = mainPrice + partnerPrice;
-          const bundlePrice = total * (1 - pct / 100);
-          wasEl.style.display = "";
-          wasEl.textContent = fmt(total);
-          nowEl.textContent = fmt(bundlePrice);
-          saveEl.style.display = "";
-          saveEl.textContent = `Ahorras ${fmt(total - bundlePrice)} (${pct}%) llevando el pack`;
-        } else {
-          wasEl.style.display = "none";
-          nowEl.textContent = fmt(mainPrice);
-          saveEl.style.display = "none";
-        }
+        nowEl.textContent = fmt(checkbox.checked ? mainPrice + partnerPrice : mainPrice);
       }
       checkbox?.addEventListener("change", refresh);
+      refresh();
 
-      box.querySelector(".bundle-add-btn")?.addEventListener("click", () => {
-        // El descuento del pack se reparte proporcionalmente entre las dos
-        // prendas, para que lo que se lleva al carrito sea el mismo precio
-        // que se le prometió al pack, no la suma sin descontar.
-        const factor = checkbox.checked ? 1 - pct / 100 : 1;
-        addRawItem({ id: box.dataset.mainId, name: box.dataset.mainName, price: Math.round(mainPrice * factor * 100) / 100, image: box.dataset.mainImg });
-        if (checkbox.checked) {
-          addRawItem({ id: box.dataset.partnerId, name: box.dataset.partnerName, price: Math.round(partnerPrice * factor * 100) / 100, image: box.dataset.partnerImg });
+      box.querySelector(".bundle-add-btn")?.addEventListener("click", (e) => {
+        const items = [];
+        if (selectedVariantId) items.push({ id: Number(selectedVariantId), quantity: 1 });
+        if (checkbox.checked && box.dataset.partnerVariantId) {
+          items.push({ id: Number(box.dataset.partnerVariantId), quantity: 1 });
         }
-        openCart();
+        if (!items.length) return;
+        const boton = e.currentTarget;
+        boton.disabled = true;
+        fetch("/cart/add.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items }),
+        })
+          .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+          .then(() => renderCart())
+          .then(() => { boton.disabled = false; openCart(); })
+          .catch(() => {
+            boton.disabled = false;
+            alert("No se pudo añadir el pack. Intenta de nuevo.");
+          });
       });
     });
   }

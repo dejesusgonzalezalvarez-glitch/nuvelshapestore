@@ -69,9 +69,11 @@
         <button class="qty-opt" data-qty-offer="2"><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
       </div>
 
-      <div class="bundle-box" data-main-id="nuvel-short-moldeador" data-main-name="Short Moldeador Sin Costuras" data-main-price="24.9" data-main-img="short-negro-frente.jpg"
-         data-partner-id="nuvel-faja-invisible" data-partner-name="Faja Moldeadora Invisible" data-partner-price="39.9" data-partner-img="producto-frente.jpg"
-         data-discount-pct="10">
+      {%- assign partner = all_products['faja-moldeadora-invisible-nuvel'] -%}
+      {%- assign partner_variant = partner.variants.first -%}
+      <div class="bundle-box" data-main-id="nuvel-short-moldeador" data-main-name="Short Moldeador Sin Costuras" data-main-price="{{ p.price | divided_by: 100.0 }}" data-main-img="short-negro-frente.jpg"
+         data-partner-id="nuvel-faja-invisible" data-partner-name="Faja Moldeadora Invisible" data-partner-price="{{ partner.price | divided_by: 100.0 }}" data-partner-img="producto-frente.jpg"
+         data-partner-variant-id="{{ partner_variant.id }}">
       <p class="bundle-title">Comprados juntos habitualmente</p>
       <p class="bundle-reason">La faja cubre cintura y abdomen, el short cubre cadera y muslo: la rutina completa en dos prendas.</p>
       <div class="bundle-items">
@@ -88,7 +90,7 @@
         <label class="bundle-line">
           <input type="checkbox" checked data-bundle-toggle>
           <span><strong>Faja Moldeadora Invisible</strong></span>
-          <span class="bundle-line-price">39,90&nbsp;€</span>
+          <span class="bundle-line-price">{{ partner.price | money }}</span>
         </label>
       </div>
       <div class="bundle-summary">
@@ -101,7 +103,7 @@
       </div>
     </div>
 
-      <button class="btn btn-dark btn-block" id="add-to-cart-btn">Añadir al carrito</button>
+      <button class="btn btn-dark btn-block" id="add-to-cart-btn">Comprar ahora</button>
 
       <div class="trust-strip">
         <div class="trust-compact">

@@ -57,9 +57,11 @@
         <button class="qty-opt" data-qty-offer="2"><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
       </div>
 
-      <div class="bundle-box" data-main-id="nuvel-faja-invisible" data-main-name="Faja Moldeadora Invisible" data-main-price="39.9" data-main-img="producto-frente.jpg"
-         data-partner-id="nuvel-corse-cintura" data-partner-name="Corsé Moldeador de Cintura" data-partner-price="34.9" data-partner-img="corse-negro-frente.jpg"
-         data-discount-pct="10">
+      {%- assign partner = all_products['retro-shapewear-top-with-zipper'] -%}
+      {%- assign partner_variant = partner.variants.first -%}
+      <div class="bundle-box" data-main-id="nuvel-faja-invisible" data-main-name="Faja Moldeadora Invisible" data-main-price="{{ p.price | divided_by: 100.0 }}" data-main-img="producto-frente.jpg"
+         data-partner-id="nuvel-corse-cintura" data-partner-name="Corsé Moldeador de Cintura" data-partner-price="{{ partner.price | divided_by: 100.0 }}" data-partner-img="corse-negro-frente.jpg"
+         data-partner-variant-id="{{ partner_variant.id }}">
       <p class="bundle-title">Comprados juntos habitualmente</p>
       <p class="bundle-reason">El corsé marca la cintura y la faja cubre abdomen y cadera: juntas dan el resultado completo que ninguna de las dos consigue sola.</p>
       <div class="bundle-items">
@@ -71,12 +73,12 @@
         <label class="bundle-line">
           <input type="checkbox" checked disabled>
           <span>Este producto: <strong>Faja Moldeadora Invisible</strong></span>
-          <span class="bundle-line-price">39,90&nbsp;€</span>
+          <span class="bundle-line-price">{{ p.price | money }}</span>
         </label>
         <label class="bundle-line">
           <input type="checkbox" checked data-bundle-toggle>
           <span><strong>Corsé Moldeador de Cintura</strong></span>
-          <span class="bundle-line-price">34,90&nbsp;€</span>
+          <span class="bundle-line-price">{{ partner.price | money }}</span>
         </label>
       </div>
       <div class="bundle-summary">
