@@ -147,9 +147,10 @@ section.pad { padding: 96px 64px; }
 .qty-save { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--dark); color: var(--bg); font-size: 10px; padding: 2px 10px; letter-spacing: 0.05em; white-space: nowrap; }
 
 /* Espaciado en fichas del home para que las etiquetas negras no vayan pegadas */
-.product-tile .qty-offer { gap: 16px; }
-.product-tile .qty-opt { padding: 14px 14px 22px; }
+.product-tile .qty-offer { gap: 18px; }
+.product-tile .qty-opt { padding: 22px 14px 18px; }
 .product-tile .qty-save { top: -13px; }
+.product-tile .qty-label { margin-top: 8px; }
 
 /* Testimonials */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
