@@ -4,7 +4,11 @@
   window.__NUVEL_VARIANTES__ = {
     {%- for variant in p.variants -%}
     {%- assign color_base = variant.option1 | split: " / " | first -%}
-    {%- assign talla = variant.option2 | default: (variant.option1 | split: " / " | last) -%}
+    {%- assign talla = variant.option2 -%}
+    {%- if talla == blank -%}
+      {%- assign partes_titulo = variant.option1 | split: " / " -%}
+      {%- assign talla = partes_titulo | last -%}
+    {%- endif -%}
     {{ color_base | append: "_" | append: talla | json }}: {{ variant.id }}{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
   };
