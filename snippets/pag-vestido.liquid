@@ -4,7 +4,7 @@
   window.__NUVEL_VARIANTES__ = {
     {%- for variant in p.variants -%}
     {%- assign color_base = variant.option1 | split: " / " | first -%}
-    {%- assign talla = variant.option1 | split: " / " | last -%}
+    {%- assign talla = variant.option2 | default: (variant.option1 | split: " / " | last) -%}
     {{ color_base | append: "_" | append: talla | json }}: {{ variant.id }}{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
   };
@@ -55,13 +55,16 @@
       <div class="opt-group">
         <div class="opt-head"><label>Talla</label><a href="#" data-ver-tallas>Guía de tallas</a></div>
         <div class="opt-choices">
-          {%- assign tallas_vistas = "|" -%}
-          {%- for variant in p.variants -%}
-            {%- assign talla = variant.option1 | split: " / " | last -%}
-            {%- assign talla_clave = "|" | append: talla | append: "|" -%}
-            {%- unless tallas_vistas contains talla_clave -%}
-          <button type="button" class="opt-btn{% if talla == 'M' %} selected{% endif %}" data-size="{{ talla }}" data-variant-id="{{ variant.id }}">{{ talla }}</button>
-            {%- endunless -%}
+          {%- assign orden_tallas = "XS,S,M,L,XL,2XL,3XL,4XL" | split: "," -%}
+          {%- for t in orden_tallas -%}
+            {%- assign ya = false -%}
+            {%- for variant in p.variants -%}
+              {%- assign vt = variant.title | split: " / " | last -%}
+              {%- if vt == t and ya == false -%}
+          <button type="button" class="opt-btn{% if t == 'M' %} selected{% endif %}" data-size="{{ t }}" data-variant-id="{{ variant.id }}">{{ t }}</button>
+                {%- assign ya = true -%}
+              {%- endif -%}
+            {%- endfor -%}
           {%- endfor -%}
         </div>
       </div>

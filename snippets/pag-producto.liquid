@@ -37,12 +37,16 @@
       <div class="opt-group">
         <div class="opt-head"><label>Talla</label><a href="#" data-ver-tallas>Guía de tallas</a></div>
         <div class="opt-choices">
-          {%- assign tallas_vistas = "|" -%}
-          {%- for variant in p.variants -%}
-            {%- assign talla_clave = "|" | append: variant.option2 | append: "|" -%}
-            {%- unless tallas_vistas contains talla_clave -%}
-          <button type="button" class="opt-btn{% if variant.option2 == 'M' %} selected{% endif %}" data-size="{{ variant.option2 }}" data-variant-id="{{ variant.id }}">{{ variant.option2 }}</button>
-            {%- endunless -%}
+          {%- assign orden_tallas = "XS,S,M,L,XL,2XL,3XL,4XL" | split: "," -%}
+          {%- for t in orden_tallas -%}
+            {%- assign ya = false -%}
+            {%- for variant in p.variants -%}
+              {%- assign vt = variant.title | split: " / " | last -%}
+              {%- if vt == t and ya == false -%}
+          <button type="button" class="opt-btn{% if t == 'M' %} selected{% endif %}" data-size="{{ t }}" data-variant-id="{{ variant.id }}">{{ t }}</button>
+                {%- assign ya = true -%}
+              {%- endif -%}
+            {%- endfor -%}
           {%- endfor -%}
         </div>
       </div>
