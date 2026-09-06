@@ -585,9 +585,9 @@ img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contr
       no tape el precio de debajo. */
    .qty-save { font-size: 10px; padding: 4px 6px; white-space: normal; text-align: center; line-height: 1.25; width: 128px; max-width: 92vw; top: -19px; }
 
-   /* Etiquetas negras de pack en movil: apiladas y separadas para que no se vean pegadas */
-   .qty-offer { flex-direction: column; gap: 14px; align-items: stretch; }
-   .qty-save { top: 0; }
+   /* Etiquetas negras de pack en movil: apiladas y bien separadas para que no se vean pegadas */
+   .qty-offer { flex-direction: column; gap: 32px; align-items: stretch; }
+   .qty-save { top: 4px; }
    .qty-label { margin-top: 4px; }
   .card p, .trust-item p, .testi-card span { font-size: 14px; }
 
