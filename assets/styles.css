@@ -579,11 +579,16 @@ img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contr
   .product-tile .info div,
   .cart-item .ci-meta { font-size: 13.5px; }
   .eyebrow { font-size: 12px; letter-spacing: .14em; }
-  /* Insignias largas ("UNO PARA LAVAR, OTRO PUESTO") envuelven a dos líneas
-     en vez de desbordar el ancho de la tarjeta en pantallas estrechas — con un
-     ancho fijo (no shrink-to-fit) para que envuelva en 2 líneas, no en 3, y
-     no tape el precio de debajo. */
-  .qty-save { font-size: 10px; padding: 4px 6px; white-space: normal; text-align: center; line-height: 1.25; width: 128px; max-width: 92vw; top: -19px; }
+   /* Insignias largas ("UNO PARA LAVAR, OTRO PUESTO") envuelven a dos líneas
+      en vez de desbordar el ancho de la tarjeta en pantallas estrechas — con un
+      ancho fijo (no shrink-to-fit) para que envuelva en 2 líneas, no en 3, y
+      no tape el precio de debajo. */
+   .qty-save { font-size: 10px; padding: 4px 6px; white-space: normal; text-align: center; line-height: 1.25; width: 128px; max-width: 92vw; top: -19px; }
+
+   /* Etiquetas de pack en el home (movil): apiladas y separadas para que no se vean pegadas */
+   .product-tile .qty-offer { flex-direction: column; gap: 12px; align-items: stretch; }
+   .product-tile .qty-save { top: 0; }
+   .product-tile .qty-label { margin-top: 4px; }
   .card p, .trust-item p, .testi-card span { font-size: 14px; }
 
   /* --- Selectores de talla y color: dedo, no ratón --- */
