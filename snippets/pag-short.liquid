@@ -1,4 +1,5 @@
 {%- assign p = all_products['seamless-shapewear-panties'] -%}
+{%- assign socio = all_products['faja-moldeadora-invisible-nuvel'] -%}{%- capture socio_map -%}{%- for v in socio.variants -%}{%- if v.available -%}"{{ v.option2 }}":{{ v.id }},{%- endif -%}{%- endfor -%}{%- endcapture -%}
 <script>
   window.__NUVEL_VARIANTES__ = {
     {%- for variant in p.variants -%}
@@ -37,7 +38,7 @@
 
     <div class="pdp-info">
       <h1>Short Moldeador Sin Costuras · Nuvel</h1>
-      <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:75.4px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.6</span><span>34 reseñas</span></div>
+      <p class="product-new-note"><span class="badge">Nuevo</span> Sin reseñas todavía</p>
       <div class="price-row">
         <span class="price-now">{{ p.price | money }}</span>
       </div>
@@ -58,63 +59,44 @@
             {%- assign talla_clave = "|" | append: variant.option2 | append: "|" -%}
             {%- unless tallas_vistas contains talla_clave -%}
           <button type="button" class="opt-btn{% if variant.option2 == 'M' %} selected{% endif %}" data-size="{{ variant.option2 }}" data-variant-id="{{ variant.id }}">{{ variant.option2 }}</button>
-              {%- assign tallas_vistas = tallas_vistas | append: variant.option2 | append: "|" -%}
             {%- endunless -%}
           {%- endfor -%}
         </div>
       </div>
 
+      <div class="guia-tallas">
+        <div class="guia-tallas__head"><span class="guia-tallas__title">Tu talla, en centímetros</span></div>
+        <table class="guia-tallas__tabla">
+          <thead><tr><th>Talla</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+          <tbody>
+            <tr><td>S</td><td>66&ndash;70</td><td>92&ndash;97</td></tr>
+            <tr><td>M</td><td>70&ndash;76</td><td>97&ndash;104</td></tr>
+            <tr><td>L</td><td>76&ndash;84</td><td>104&ndash;112</td></tr>
+            <tr><td>XL</td><td>84&ndash;92</td><td>112&ndash;120</td></tr>
+            <tr><td>2XL</td><td>92&ndash;100</td><td>120&ndash;128</td></tr>
+          </tbody>
+        </table>
+        <p class="guia-tallas__tip">¿Estás entre dos tallas? Pide la mayor: comprime igual y no se sube.</p>
+      </div>
+
       <div class="qty-offer">
         <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">{{ p.price | money }}</div></button>
-        <button class="qty-opt" data-qty-offer="2"><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
+        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">La segunda, para rotar</span><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
+        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Faja Moldeadora Invisible" data-pack-partner="faja-moldeadora-invisible-nuvel" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">El que más piden</span><div class="qty-label">Short + Faja</div><div class="qty-price">64,80&nbsp;€</div></button>
       </div>
 
       {%- render 'payment-icons' -%}
-
-      {%- assign partner = all_products['faja-moldeadora-invisible-nuvel'] -%}
-      {%- assign partner_variant = partner.variants.first -%}
-      <div class="bundle-box" data-main-id="nuvel-short-moldeador" data-main-name="Short Moldeador Sin Costuras" data-main-price="{{ p.price | divided_by: 100.0 }}" data-main-img="short-negro-frente.jpg"
-         data-partner-id="nuvel-faja-invisible" data-partner-name="Faja Moldeadora Invisible" data-partner-price="{{ partner.price | divided_by: 100.0 }}" data-partner-img="producto-frente.jpg"
-         data-partner-variant-id="{{ partner_variant.id }}">
-      <p class="bundle-title">Comprados juntos habitualmente</p>
-      <p class="bundle-reason">La faja cubre cintura y abdomen, el short cubre cadera y muslo: la rutina completa en dos prendas.</p>
-      <div class="bundle-items">
-        <a href="/pages/short" class="bundle-thumb"><img src="{{ 'mini-short-negro-frente.jpg' | asset_url }}" alt="Short Moldeador Sin Costuras Nuvel" loading="lazy"></a>
-        <span class="bundle-plus">+</span>
-        <a href="/pages/producto" class="bundle-thumb"><img src="{{ 'mini-producto-frente.jpg' | asset_url }}" alt="Faja Moldeadora Invisible" loading="lazy"></a>
-      </div>
-      <div class="bundle-lines">
-        <label class="bundle-line">
-          <input type="checkbox" checked disabled>
-          <span>Este producto: <strong>Short Moldeador Sin Costuras</strong></span>
-          <span class="bundle-line-price">{{ p.price | money }}</span>
-        </label>
-        <label class="bundle-line">
-          <input type="checkbox" checked data-bundle-toggle>
-          <span><strong>Faja Moldeadora Invisible</strong></span>
-          <span class="bundle-line-price">{{ partner.price | money }}</span>
-        </label>
-      </div>
-      <div class="bundle-summary">
-        <div class="bundle-total">
-          <span>Precio del pack</span>
-          <span><span class="bundle-total-was">64,80&nbsp;€</span> <span class="bundle-total-now">58,32&nbsp;€</span></span>
-        </div>
-        <p class="bundle-save">Ahorras 6,48&nbsp;€ (10%) llevando el pack</p>
-        <button type="button" class="btn btn-outline btn-block bundle-add-btn">Añadir el pack al carrito</button>
-      </div>
-    </div>
 
       <button class="btn btn-dark btn-block" id="add-to-cart-btn">Comprar ahora</button>
 
       <div class="trust-strip">
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/></svg>
-          <span>Envío 7-15 días</span>
+          <span>Envíos a toda España</span>
         </div>
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v6h6"/></svg>
-          <span>Devolución fácil</span>
+          <span>30 días de prueba</span>
         </div>
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
@@ -137,6 +119,17 @@
     <div class="product-details-copy">
       <p class="pd-headline">EL SHORT QUE ACABA CON EL ROCE ENTRE PIERNAS</p>
       <p>El Short Moldeador Sin Costuras Nuvel resuelve dos cosas a la vez: afina la silueta en cadera y muslo, y elimina el roce entre piernas que aparece con vestidos, faldas y el calor del verano. Cintura alta sin marcar, borde plano que no se enrolla al caminar ni al sentarte, y compresión media pensada para llevarlo bajo cualquier prenda sin que se note el límite de la tela. Combínalo con la Faja Moldeadora Invisible para cobertura completa de abdomen a muslo. Tallas de la S a la 2XL en negro y beige.</p>
+    </div>
+  </section>
+
+  <section class="pad" style="padding-left:0; padding-right:0;">
+    <h3 style="font-size:26px; margin-bottom:24px;">En movimiento (próximamente, en vídeo)</h3>
+    <div class="video-box">
+      <img src="{{ 'short-ugc-negro.jpg' | asset_url }}" srcset="{{ 'med-short-ugc-negro.jpg' | asset_url }} 800w, {{ 'lg-short-ugc-negro.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 1152px" alt="Videoclip del short Nuvel" loading="lazy" decoding="async">
+      <div class="video-overlay">
+        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M8 5v14l11-7z"/></svg></div>
+        <p style="font-size:14px; font-weight:500;">Hueco listo para el videoclip de clientas</p>
+      </div>
     </div>
   </section>
 
@@ -172,8 +165,8 @@
   </section>
 
   <section style="padding-bottom:96px;">
-    <h2 style="font-size:26px; margin-bottom:6px;">También te puede interesar</h2>
-    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">El resto de la familia Nuvel, pensada para completar la misma rutina.</p>
+    <h2 style="font-size:26px; margin-bottom:6px;">¿Buscas moldear otra zona?</h2>
+    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">El resto de la familia Nuvel, con lo que hace cada una.</p>
     <div class="suggestions-grid"><a href="/pages/producto" class="product-tile">
       <div class="shot">
         <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible" loading="lazy">
@@ -182,6 +175,7 @@
       </div>
       <div class="info">
         <h4>Faja Moldeadora Invisible</h4>
+        <p class="tile-why">La invisible: para que el vestido caiga liso sin marcarse.</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:69.1px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.8</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">39,90&nbsp;€</span>
@@ -196,7 +190,7 @@
       </div>
       <div class="info">
         <h4>Corsé Moldeador de Cintura</h4>
-        <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:67.7px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span></div>
+        <p class="tile-why">Para marcar la cintura bajo un vestido o un blazer.</p>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">34,90&nbsp;€</span>
           <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">49,90&nbsp;€</span>
@@ -210,7 +204,7 @@
       </div>
       <div class="info">
         <h4>Vestido Moldeador 2 en 1</h4>
-        <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:67.7px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#C9A87C"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span></div>
+        <p class="tile-why">Faja y vestido en una sola prenda: para llegar, ponértelo y salir.</p>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">59,90&nbsp;€</span>
           <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">79,90&nbsp;€</span>

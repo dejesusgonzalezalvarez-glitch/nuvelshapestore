@@ -454,13 +454,28 @@
       });
     });
 
-    // Quantity offer selector
+    // Quantity offer selector (incluye la opcion de pack: producto + pareja)
     let selectedQty = 1;
+    let packOffer = null;
     document.querySelectorAll("[data-qty-offer]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        document.querySelectorAll("[data-qty-offer]").forEach((b) => b.classList.remove("selected"));
+        document.querySelectorAll("[data-qty-offer], [data-pack-offer]").forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
         selectedQty = Number(btn.dataset.qtyOffer);
+        packOffer = null;
+      });
+    });
+    document.querySelectorAll("[data-pack-offer]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-qty-offer], [data-pack-offer]").forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        var mapaSocio = {};
+        try { mapaSocio = JSON.parse(btn.dataset.packPartnerVariants || "{}"); } catch (e) { mapaSocio = {}; }
+        packOffer = {
+          name: btn.dataset.packName || "",
+          partner: btn.dataset.packPartner || "",
+          variantesSocio: mapaSocio
+        };
       });
     });
 
@@ -468,13 +483,37 @@
     // Shopify y abre el cajon para que se vea lo que se llevo antes de pagar
     // — el boton "Pagar" del cajon es el que de verdad manda al checkout.
     document.getElementById("add-to-cart-btn")?.addEventListener("click", (e) => {
-      if (!selectedVariantId) return;
       const boton = e.currentTarget;
+      let items = [];
+      if (packOffer) {
+        // El pack anade el producto de la pagina + el companero. Solo se puede
+        // activar cuando Shopify ya tiene esa variante (importada por la duena):
+        // hasta entonces se avisa con honestidad y no se anade a medias.
+        // La pareja del pack se lleva en la MISMA talla elegida arriba; si esa
+        // talla no existe en la otra prenda, se coge la primera disponible.
+        var mapa = packOffer.variantesSocio || {};
+        var idSocio = mapa[selectedSize];
+        if (!idSocio) {
+          var claves = Object.keys(mapa).filter(function (k) { return k !== "_" && mapa[k]; });
+          if (claves.length) idSocio = mapa[claves[0]];
+        }
+        if (!selectedVariantId || !idSocio) {
+          alert("El pack aún no está listo para añadirse. Cuando lo activemos lo anunciamos aquí mismo.");
+          return;
+        }
+        items = [
+          { id: Number(selectedVariantId), quantity: 1 },
+          { id: Number(idSocio), quantity: 1 }
+        ];
+      } else {
+        if (!selectedVariantId) return;
+        items = [{ id: Number(selectedVariantId), quantity: selectedQty }];
+      }
       boton.disabled = true;
       fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ id: Number(selectedVariantId), quantity: selectedQty }] }),
+        body: JSON.stringify({ items }),
       })
         .then((r) => (r.ok ? r.json() : Promise.reject(r)))
         .then(() => renderCart())
@@ -600,9 +639,15 @@
   // el texto de la barra refleja lo que hay elegido en la ficha
   function refrescar() {
     if (!meta) return;
+    var pack = document.querySelector('.qty-opt.selected[data-pack-offer]');
     var talla = document.querySelector('.opt-btn.selected[data-size]');
     var color = document.querySelector('.opt-btn.selected[data-color]');
     var precio = document.querySelector('.price-now');
+    if (pack) {
+      var packPrecio = pack.querySelector('.qty-price');
+      meta.textContent = 'Pack ' + (pack.dataset.packName || '') + (packPrecio ? ' · ' + packPrecio.textContent.trim() : '');
+      return;
+    }
     var partes = [];
     if (talla) partes.push('Talla ' + talla.textContent.trim());
     if (color) partes.push(color.textContent.trim());
@@ -610,7 +655,7 @@
     meta.textContent = partes.join(' · ');
   }
 
-  document.querySelectorAll('.opt-btn, [data-qty-offer]').forEach(function (b) {
+  document.querySelectorAll('.opt-btn, [data-qty-offer], [data-pack-offer]').forEach(function (b) {
     b.addEventListener('click', function () { setTimeout(refrescar, 20); });
   });
   refrescar();
