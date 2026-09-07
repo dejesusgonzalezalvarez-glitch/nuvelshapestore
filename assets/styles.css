@@ -800,3 +800,52 @@ select.chip { appearance: none; -webkit-appearance: none; padding-right: 34px; b
   color: var(--dark);
 }
 
+/* ===== Popup de bienvenida: codigo NUVEL10 (una sola vez por visitante) ===== */
+.welcome-overlay {
+  position: fixed; inset: 0; z-index: 310;
+  background: rgba(26,20,15,.62);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.welcome-overlay.open { display: flex; }
+.welcome-box {
+  position: relative;
+  width: 100%; max-width: 420px;
+  background: var(--bg); color: var(--dark);
+  padding: 42px 32px 32px;
+  text-align: center;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.45);
+}
+.welcome-close { position: absolute; top: 14px; right: 14px; color: var(--text-mute); }
+.welcome-close:hover { color: var(--dark); }
+.welcome-kicker {
+  margin: 0 0 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent);
+}
+.welcome-title {
+  margin: 0 0 12px;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 24px; line-height: 1.3; font-weight: 500;
+  color: var(--dark);
+}
+.welcome-text { margin: 0 0 22px; font-size: 14px; line-height: 1.65; color: var(--text-soft); }
+.welcome-code {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin: 0 0 14px; padding: 14px 30px;
+  font-size: 20px; font-weight: 600; letter-spacing: .16em;
+  color: var(--dark);
+  border: 1px dashed var(--accent); border-radius: 2px;
+  background: var(--bg-alt);
+  cursor: pointer;
+}
+.welcome-code .wc-copy { font-size: 12px; font-weight: 500; letter-spacing: 0; color: var(--text-mute); }
+.welcome-code.copied { border-color: var(--accent); background: #FDF6EC; }
+.welcome-hint { margin: 0 0 22px; font-size: 12px; line-height: 1.5; color: var(--text-mute); }
+.welcome-box .btn-block { width: 100%; }
+@media (max-width: 600px) {
+  .welcome-box { padding: 36px 22px 28px; }
+  .welcome-title { font-size: 21px; }
+  .welcome-code { font-size: 18px; padding: 12px 22px; }
+}
+

@@ -20,5 +20,71 @@
 {% render 'global-header' %}
 {{ content_for_layout }}
 {% render 'global-footer' %}
+<div class="welcome-overlay" id="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+  <div class="welcome-box">
+    <button type="button" class="cart-close welcome-close" id="welcome-close" aria-label="Cerrar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <p class="welcome-kicker">Bienvenida a Nuvel</p>
+    <h3 class="welcome-title" id="welcome-title">Llévate un 10&nbsp;% en tu primer pedido</h3>
+    <p class="welcome-text">Usa el código <strong>NUVEL10</strong> en el checkout y llévate un 10&nbsp;% de descuento en tu primer pedido.</p>
+    <button type="button" class="welcome-code" id="welcome-copy">NUVEL10 <span class="wc-copy">copiar</span></button>
+    <p class="welcome-hint">Escríbelo en el campo «Código de descuento» del checkout, antes de pagar.</p>
+    <button type="button" class="btn btn-dark btn-block" id="welcome-cta">Entendido</button>
+  </div>
+</div>
+<script>
+  (function () {
+    var KEY = "nuvel_welcome_visto";
+    var visto = false;
+    try { visto = localStorage.getItem(KEY); } catch (e) {}
+    if (visto) return;
+    var overlay = document.getElementById("welcome-overlay");
+    if (!overlay) return;
+    var cta = document.getElementById("welcome-cta");
+    var btnCerrar = document.getElementById("welcome-close");
+    function marcarVisto() {
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    }
+    function abrir() {
+      overlay.classList.add("open");
+      document.documentElement.classList.add("no-scroll");
+      if (cta) cta.focus();
+    }
+    function cerrar() {
+      overlay.classList.remove("open");
+      document.documentElement.classList.remove("no-scroll");
+      marcarVisto();
+    }
+    if (btnCerrar) btnCerrar.addEventListener("click", cerrar);
+    if (cta) cta.addEventListener("click", cerrar);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) cerrar(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") cerrar(); });
+    var copiar = document.getElementById("welcome-copy");
+    if (copiar) {
+      copiar.addEventListener("click", function () {
+        var ta = document.createElement("textarea");
+        ta.value = "NUVEL10";
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        if (!ok) { try { navigator.clipboard.writeText("NUVEL10"); } catch (e) {} }
+        document.body.removeChild(ta);
+        var span = copiar.querySelector(".wc-copy");
+        if (span) span.textContent = "¡Copiado!";
+        copiar.classList.add("copied");
+        setTimeout(function () {
+          if (span) span.textContent = "copiar";
+          copiar.classList.remove("copied");
+        }, 1800);
+      });
+    }
+    setTimeout(abrir, 1400);
+  })();
+</script>
 </body>
 </html>
