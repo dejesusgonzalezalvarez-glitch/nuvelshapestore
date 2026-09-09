@@ -86,5 +86,56 @@
     setTimeout(abrir, 1400);
   })();
 </script>
+
+<script>
+  (function() {
+    var html = document.documentElement;
+    var lang = navigator.language || navigator.userLanguage || '';
+    var isHispanic = false;
+    var spanishCountries = ['es', 'mx', 'co', 'ar', 'pe', 'cl', 'ec', 've', 'do', 'cu', 'pa', 'py', 'uy', 'bo', 'gt', 'hn', 'sv', 'ni', 'cr'];
+    var spanishLanguages = ['es-', 'sp'];
+    
+    if (lang.toLowerCase().indexOf('es') === 0) {
+      isHispanic = true;
+    } else {
+      isHispanic = false;
+    }
+    
+    if (isHispanic) {
+      html.setAttribute('lang', 'es');
+    } else {
+      html.setAttribute('lang', 'en');
+    }
+  })();
+</script>
+
+<script>
+  (function() {
+    var htmlLang = document.documentElement.getAttribute('lang');
+    var isEnglish = htmlLang === 'en';
+    
+    function replaceText(elementId, enText, esText) {
+      var el = document.getElementById(elementId);
+      if (el) {
+        el.textContent = isEnglish ? enText : esText;
+      }
+    }
+    
+    replaceText('welcome-title', 'Get 10% on your first order', 'Llévate un 10 % en tu primer pedido');
+    replaceText('welcome-text', 'Use code NUVEL10 at checkout and get 10% off your first order.', 'Usa el código <strong>NUVEL10</strong> en el checkout y llévate un 10 % de descuento en tu primer pedido.');
+    replaceText('welcome-hint', 'Enter it in the \'Discount code\' field at checkout, before paying.', 'Escríbelo en el campo «Código de descuento» del checkout, antes de pagar.');
+    replaceText('welcome-cta', 'Understood', 'Entendido');
+    
+    var welcomeKicker = document.querySelector('.welcome-kicker');
+    if (welcomeKicker) {
+      welcomeKicker.textContent = isEnglish ? 'Welcome to Nuvel' : 'Bienvenida a Nuvel';
+    }
+    
+    var cartCountBadges = document.querySelectorAll('.cart-count-badge');
+    cartCountBadges.forEach(function(badge) {
+      badge.textContent = isEnglish ? '' : '';
+    });
+  })();
+</script>
 </body>
 </html>
