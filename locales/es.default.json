@@ -43,7 +43,7 @@
     }
   },
   "banner": {
-    "free_shipping": "Envío gratis a todo el mundo &nbsp;·&nbsp; Entrega en 7-15 días laborables"
+    "free_shipping": "Envío gratis a todo el mundo · Entrega en 7-15 días laborables"
   },
   "nav": {
     "open_menu": "Abrir menú",
@@ -63,7 +63,7 @@
   },
   "footer": {
     "brand_tagline": "Moldeadores invisibles para que el vestido te caiga perfecto, te sientes y te muevas como si nada: nadie sabrá que los llevas.",
-    "guarantee": "30 días de prueba &nbsp;·&nbsp; Envío gratis a todo el mundo en 7-15 días",
+    "guarantee": "30 días de prueba · Envío gratis a todo el mundo en 7-15 días",
     "col_policies": "Políticas",
     "col_shipping": "Envíos",
     "col_returns": "Devoluciones",
@@ -71,7 +71,7 @@
     "col_terms": "Términos",
     "col_follow_us": "Síguenos",
     "col_contact": "Contacto",
-    "copyright": "&copy; 2026 Nuvel. Todos los derechos reservados."
+    "copyright": "© 2026 Nuvel. Todos los derechos reservados."
   },
   "cart": {
     "heading": "Tu carrito",
@@ -95,8 +95,9 @@
   },
   "welcome": {
     "kicker": "Bienvenida a Nuvel",
-    "title": "Llévate un 10&nbsp;% en tu primer pedido",
-    "text": "Usa el código <strong>NUVEL10</strong> en el checkout y llévate un 10&nbsp;% de descuento en tu primer pedido.",
+    "title": "Llévate un 10 % en tu primer pedido",
+    "text_before": "Usa el código ",
+    "text_after": " en el checkout y llévate un 10 % de descuento en tu primer pedido.",
     "copy": "copiar",
     "copied": "¡Copiado!",
     "hint": "Escríbelo en el campo «Código de descuento» del checkout, antes de pagar.",
@@ -106,7 +107,8 @@
     "hero": {
       "image_alt": "Mujer con faja moldeadora Nuvel",
       "eyebrow": "Faja Moldeadora Invisible",
-      "title": "Fajas Moldeadoras Invisibles: la faja que se nota en el espejo,<br>no en la ropa.",
+      "title_line1": "Fajas Moldeadoras Invisibles: la faja que se nota en el espejo,",
+      "title_line2": "no en la ropa.",
       "subtitle": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
       "cta": "Descubre la Faja Moldeadora Invisible"
     },
@@ -188,8 +190,8 @@
     "category_full_body": "Cuerpo entero",
     "filter_size": "Talla",
     "filter_price": "Precio",
-    "filter_price_under_50": "Menos de 50&nbsp;€",
-    "filter_price_50_100": "50&#8211;100&nbsp;€",
+    "filter_price_under_50": "Menos de 50 €",
+    "filter_price_50_100": "50–100 €",
     "filter_zone": "Zona del cuerpo",
     "filter_zone_abdomen": "Abdomen y cintura",
     "filter_zone_legs": "Piernas",
@@ -382,7 +384,7 @@
     "fear_3_title": "Que no sea tu talla",
     "fear_3_text": "Si no es tu talla, la devuelves gratis dentro de los 30 días de prueba. Y si estás entre dos, pide la mayor: comprime igual y no se sube.",
     "testimonials_title": "Lo que dicen las clientas por WhatsApp",
-    "testimonials_text": "4,8 sobre 5 &middot; 123 clientas atendidas por WhatsApp. Pedimos permiso para publicar sus mensajes tal cual, sin retocar.",
+    "testimonials_text": "4,8 sobre 5 · 123 clientas atendidas por WhatsApp. Pedimos permiso para publicar sus mensajes tal cual, sin retocar.",
     "faq_title": "Las ocho preguntas de siempre",
     "faq_1_q": "¿Se nota por debajo del vestido?",
     "faq_1_a": "No. Los bordes son láser-cut, sin costura en relieve ni escalón de tejido: caen planos sobre la piel y no dejan línea bajo seda, crepé ni ningún tejido ajustado. Es la razón de que se llame invisible.",

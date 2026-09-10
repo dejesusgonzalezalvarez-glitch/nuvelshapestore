@@ -43,7 +43,7 @@
     }
   },
   "banner": {
-    "free_shipping": "Free shipping worldwide &nbsp;·&nbsp; Delivery in 7-15 business days"
+    "free_shipping": "Free shipping worldwide · Delivery in 7-15 business days"
   },
   "nav": {
     "open_menu": "Open menu",
@@ -63,7 +63,7 @@
   },
   "footer": {
     "brand_tagline": "Invisible shapers so your dress falls perfectly, and you sit and move like normal: no one will know you have them on.",
-    "guarantee": "30-day trial &nbsp;·&nbsp; Free worldwide shipping in 7-15 days",
+    "guarantee": "30-day trial · Free worldwide shipping in 7-15 days",
     "col_policies": "Policies",
     "col_shipping": "Shipping",
     "col_returns": "Returns",
@@ -71,7 +71,7 @@
     "col_terms": "Terms",
     "col_follow_us": "Follow us",
     "col_contact": "Contact",
-    "copyright": "&copy; 2026 Nuvel. All rights reserved."
+    "copyright": "© 2026 Nuvel. All rights reserved."
   },
   "cart": {
     "heading": "Your cart",
@@ -96,7 +96,8 @@
   "welcome": {
     "kicker": "Welcome to Nuvel",
     "title": "Get 10% off your first order",
-    "text": "Use code <strong>NUVEL10</strong> at checkout and get 10% off your first order.",
+    "text_before": "Use code ",
+    "text_after": " at checkout and get 10% off your first order.",
     "copy": "copy",
     "copied": "Copied!",
     "hint": "Enter it in the 'Discount code' field at checkout, before you pay.",
@@ -106,7 +107,8 @@
     "hero": {
       "image_alt": "Woman wearing a Nuvel shaping girdle",
       "eyebrow": "Invisible Shaping Girdle",
-      "title": "Invisible Shaping Girdles: the shaper that shows in the mirror,<br>not through your clothes.",
+      "title_line1": "Invisible Shaping Girdles: the shaper that shows in the mirror,",
+      "title_line2": "not through your clothes.",
       "subtitle": "Because the perfect shaper is the one nobody knows you're wearing: it slips under any dress, never rolls up, and its edge never shows.",
       "cta": "Discover the Invisible Shaping Girdle"
     },
@@ -382,7 +384,7 @@
     "fear_3_title": "That it's the wrong size",
     "fear_3_text": "If it's not your size, return it for free within the 30-day trial. And if you're between two sizes, order the larger one: it compresses the same and won't ride up.",
     "testimonials_title": "What customers say on WhatsApp",
-    "testimonials_text": "4.8 out of 5 &middot; 123 customers helped over WhatsApp. We're asking permission to publish their messages exactly as they are, unedited.",
+    "testimonials_text": "4.8 out of 5 · 123 customers helped over WhatsApp. We're asking permission to publish their messages exactly as they are, unedited.",
     "faq_title": "The eight questions everyone asks",
     "faq_1_q": "Does it show under a dress?",
     "faq_1_a": "No. The edges are laser-cut, with no raised seam or fabric step: they lie flat on your skin and leave no line under silk, crepe or any fitted fabric. That's why it's called invisible.",
