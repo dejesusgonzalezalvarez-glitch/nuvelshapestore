@@ -11,50 +11,50 @@
 
 <main class="wrap">
   <nav class="breadcrumb">
-    <a href="/">Inicio</a> / <a href="/pages/catalogo">Catálogo</a> / <span class="current">Short Moldeador</span>
+    <a href="/">{{ 'nav.home' | t }}</a> / <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ 'tile.short.title' | t }}</span>
   </nav>
 
   <div class="pdp-row">
     <div class="gallery">
       <div class="thumbs">
-        <div class="thumb active" data-thumb data-full="{{ 'lg-short-negro-frente.jpg' | asset_url }}"><img src="{{ 'mini-short-negro-frente.jpg' | asset_url }}" alt="Short Moldeador Nuvel en negro, vista de frente" width="400" height="536" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-short-negro-espalda.jpg' | asset_url }}"><img src="{{ 'mini-short-negro-espalda.jpg' | asset_url }}" alt="Short Moldeador Nuvel en negro, vista por detrás" width="400" height="536" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-short-tallas.jpg' | asset_url }}"><img src="{{ 'mini-short-tallas.jpg' | asset_url }}" alt="Guía de tallas del Short Moldeador Nuvel, de la S a la 2XL" width="400" height="536" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-short-ugc-negro.jpg' | asset_url }}"><img src="{{ 'mini-short-ugc-negro.jpg' | asset_url }}" alt="El short Nuvel negro puesto, ajustado en cadera y muslo" width="400" height="536" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-short-beige-frente.jpg' | asset_url }}"><img src="{{ 'mini-short-beige-frente.jpg' | asset_url }}" alt="Short Moldeador Nuvel en beige, vista de frente" width="400" height="536" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-short-beige-espalda.jpg' | asset_url }}"><img src="{{ 'mini-short-beige-espalda.jpg' | asset_url }}" alt="Short Moldeador Nuvel en beige, vista por detrás" width="400" height="536" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-short-ugc-beige.jpg' | asset_url }}"><img src="{{ 'mini-short-ugc-beige.jpg' | asset_url }}" alt="El short Nuvel beige puesto, sin marcarse ni enrollarse" width="400" height="536" loading="lazy"></div>
+        <div class="thumb active" data-thumb data-full="{{ 'lg-short-negro-frente.jpg' | asset_url }}"><img src="{{ 'mini-short-negro-frente.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_1' | t }}" width="400" height="536" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-short-negro-espalda.jpg' | asset_url }}"><img src="{{ 'mini-short-negro-espalda.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_2' | t }}" width="400" height="536" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-short-tallas.jpg' | asset_url }}"><img src="{{ 'mini-short-tallas.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_3' | t }}" width="400" height="536" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-short-ugc-negro.jpg' | asset_url }}"><img src="{{ 'mini-short-ugc-negro.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_4' | t }}" width="400" height="536" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-short-beige-frente.jpg' | asset_url }}"><img src="{{ 'mini-short-beige-frente.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_5' | t }}" width="400" height="536" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-short-beige-espalda.jpg' | asset_url }}"><img src="{{ 'mini-short-beige-espalda.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_6' | t }}" width="400" height="536" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-short-ugc-beige.jpg' | asset_url }}"><img src="{{ 'mini-short-ugc-beige.jpg' | asset_url }}" alt="{{ 'product_short.thumb_alt_7' | t }}" width="400" height="536" loading="lazy"></div>
       </div>
-      <div class="main-shot"><img id="main-shot-img" src="{{ 'short-negro-frente.jpg' | asset_url }}" srcset="{{ 'med-short-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-short-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 90vw, 640px" alt="Short Moldeador Nuvel sin costuras, anti roce entre piernas" fetchpriority="high"><button type="button" class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="Foto anterior">
+      <div class="main-shot"><img id="main-shot-img" src="{{ 'short-negro-frente.jpg' | asset_url }}" srcset="{{ 'med-short-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-short-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 90vw, 640px" alt="{{ 'product_short.main_image_alt' | t }}" fetchpriority="high"><button type="button" class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="{{ 'gallery.prev' | t }}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
   </button>
-  <button type="button" class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="Foto siguiente">
+  <button type="button" class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="{{ 'gallery.next' | t }}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
   </button>
-  <button type="button" class="gallery-zoom-btn" id="gallery-zoom" aria-label="Ver foto más de cerca">
+  <button type="button" class="gallery-zoom-btn" id="gallery-zoom" aria-label="{{ 'gallery.zoom' | t }}">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M10.5 8v5M8 10.5h5"/><path d="M20 20l-4.8-4.8"/></svg>
   </button></div>
     </div>
 
     <div class="pdp-info">
-      <h1>Short Moldeador Sin Costuras · Nuvel</h1>
-      <p class="product-new-note"><span class="badge">Nuevo</span></p>
-      <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:75.4px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.6</span><span>34 reseñas</span></div>
+      <h1>{{ 'tile.short.title' | t }} · Nuvel</h1>
+      <p class="product-new-note"><span class="badge">{{ 'general.badge_new' | t }}</span></p>
+      <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:75.4px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.6</span><span>34 {{ 'general.reviews' | t }}</span></div>
       <div class="price-row">
         <span class="price-now">{{ p.price | money }}</span>
         <span class="price-was">34,90&nbsp;€</span>
       </div>
 
       <div class="opt-group">
-        <div class="opt-head"><label>Color</label></div>
+        <div class="opt-head"><label>{{ 'general.color_label' | t }}</label></div>
         <div class="opt-choices">
-          <button class="opt-btn selected" data-color="negro" data-color-key="Black" data-color-shot="{{ 'short-negro-frente.jpg' | asset_url }}">Negro</button>
-          <button class="opt-btn" data-color="beige" data-color-key="Skintone" data-color-shot="{{ 'short-beige-frente.jpg' | asset_url }}">Beige</button>
+          <button class="opt-btn selected" data-color="negro" data-color-key="Black" data-color-shot="{{ 'short-negro-frente.jpg' | asset_url }}">{{ 'general.color_black' | t }}</button>
+          <button class="opt-btn" data-color="beige" data-color-key="Skintone" data-color-shot="{{ 'short-beige-frente.jpg' | asset_url }}">{{ 'general.color_beige' | t }}</button>
         </div>
       </div>
 
       <div class="opt-group">
-        <div class="opt-head"><label>Talla</label><a href="#" data-ver-tallas>Guía de tallas</a></div>
+        <div class="opt-head"><label>{{ 'general.size_label' | t }}</label><a href="#" data-ver-tallas>{{ 'general.size_guide' | t }}</a></div>
         <div class="opt-choices">
           {%- assign orden_tallas = "XS,S,M,L,XL,2XL,3XL,4XL" | split: "," -%}
           {%- for t in orden_tallas -%}
@@ -71,9 +71,9 @@
       </div>
 
       <div class="guia-tallas">
-        <div class="guia-tallas__head"><span class="guia-tallas__title">Tu talla, en centímetros</span></div>
+        <div class="guia-tallas__head"><span class="guia-tallas__title">{{ 'general.size_table_title' | t }}</span></div>
         <table class="guia-tallas__tabla">
-          <thead><tr><th>Talla</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+          <thead><tr><th>{{ 'general.size_table_col_size' | t }}</th><th>{{ 'general.size_table_col_waist' | t }}</th><th>{{ 'general.size_table_col_hip' | t }}</th></tr></thead>
           <tbody>
             <tr><td>S</td><td>66&ndash;70</td><td>92&ndash;97</td></tr>
             <tr><td>M</td><td>70&ndash;76</td><td>97&ndash;104</td></tr>
@@ -82,59 +82,59 @@
             <tr><td>2XL</td><td>92&ndash;100</td><td>120&ndash;128</td></tr>
           </tbody>
         </table>
-        <p class="guia-tallas__tip">¿Estás entre dos tallas? Pide la mayor: comprime igual y no se sube.</p>
+        <p class="guia-tallas__tip">{{ 'general.size_tip' | t }}</p>
       </div>
 
       <div class="qty-offer">
-        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">{{ p.price | money }}</div></button>
-        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">La segunda, para rotar</span><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
-        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Faja Moldeadora Invisible" data-pack-partner="faja-moldeadora-invisible-nuvel" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">El que más piden</span><div class="qty-label">Short + Faja</div><div class="qty-price">64,80&nbsp;€</div></button>
+        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ p.price | money }}</div></button>
+        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
+        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Faja Moldeadora Invisible" data-pack-partner="faja-moldeadora-invisible-nuvel" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'product_short.pack_label' | t }}</div><div class="qty-price">64,80&nbsp;€</div></button>
       </div>
 
       {%- render 'payment-icons' -%}
 
-      <button class="btn btn-dark btn-block" id="add-to-cart-btn">Comprar ahora</button>
+      <button class="btn btn-dark btn-block" id="add-to-cart-btn">{{ 'general.buy_now' | t }}</button>
 
       <div class="trust-strip">
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/></svg>
-          <span>Envío gratis a todo el mundo</span>
+          <span>{{ 'trust.compact.shipping' | t }}</span>
         </div>
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v6h6"/></svg>
-          <span>30 días de prueba</span>
+          <span>{{ 'trust.compact.trial' | t }}</span>
         </div>
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
-          <span>Pago seguro</span>
+          <span>{{ 'trust.compact.secure_payment' | t }}</span>
         </div>
       </div>
 
-      <p class="pdp-desc">Short de compresión sin costuras, de cintura alta y largo hasta medio muslo. Evita el roce entre piernas bajo vestidos y faldas, y afina la silueta en cadera y muslo sin que se marque el borde.</p>
+      <p class="pdp-desc">{{ 'product_short.description' | t }}</p>
       <ul class="bullets">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Se acabó el roce entre piernas en verano</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>No se sube ni se enrolla al caminar o sentarte</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Borde plano: no marca la línea bajo la ropa</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Combínalo con la Faja Invisible para cobertura completa</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_short.bullet_1' | t }}</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_short.bullet_2' | t }}</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_short.bullet_3' | t }}</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_short.bullet_4' | t }}</li>
       </ul>
     </div>
   </div>
 
   <section style="padding-bottom:64px;">
-    <h2 style="font-size:24px; margin-bottom:20px;">Detalles del producto</h2>
+    <h2 style="font-size:24px; margin-bottom:20px;">{{ 'general.product_details_title' | t }}</h2>
     <div class="product-details-copy">
-      <p class="pd-headline">EL SHORT QUE ACABA CON EL ROCE ENTRE PIERNAS</p>
-      <p>El Short Moldeador Sin Costuras Nuvel resuelve dos cosas a la vez: afina la silueta en cadera y muslo, y elimina el roce entre piernas que aparece con vestidos, faldas y el calor del verano. Cintura alta sin marcar, borde plano que no se enrolla al caminar ni al sentarte, y compresión media pensada para llevarlo bajo cualquier prenda sin que se note el límite de la tela. Combínalo con la Faja Moldeadora Invisible para cobertura completa de abdomen a muslo. Tallas de la S a la 2XL en negro y beige.</p>
+      <p class="pd-headline">{{ 'product_short.headline' | t }}</p>
+      <p>{{ 'product_short.details_text' | t }}</p>
     </div>
   </section>
 
   <section class="pad" style="padding-left:0; padding-right:0;">
-    <h3 style="font-size:26px; margin-bottom:24px;">En movimiento (próximamente, en vídeo)</h3>
+    <h3 style="font-size:26px; margin-bottom:24px;">{{ 'general.video_soon_title' | t }}</h3>
     <div class="video-box">
-      <img src="{{ 'short-ugc-negro.jpg' | asset_url }}" srcset="{{ 'med-short-ugc-negro.jpg' | asset_url }} 800w, {{ 'lg-short-ugc-negro.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 1152px" alt="Videoclip del short Nuvel" loading="lazy" decoding="async">
+      <img src="{{ 'short-ugc-negro.jpg' | asset_url }}" srcset="{{ 'med-short-ugc-negro.jpg' | asset_url }} 800w, {{ 'lg-short-ugc-negro.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 1152px" alt="{{ 'product_short.video_image_alt' | t }}" loading="lazy" decoding="async">
       <div class="video-overlay">
         <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M8 5v14l11-7z"/></svg></div>
-        <p style="font-size:14px; font-weight:500;">Hueco listo para el videoclip de clientas</p>
+        <p style="font-size:14px; font-weight:500;">{{ 'general.video_placeholder_text' | t }}</p>
       </div>
     </div>
   </section>
@@ -142,46 +142,46 @@
   <section class="pad" style="padding-left:0; padding-right:0;">
     <div class="feature-row">
       <div class="feature-img" style="height:520px;">
-        <img src="{{ 'short-ugc-negro.jpg' | asset_url }}" srcset="{{ 'med-short-ugc-negro.jpg' | asset_url }} 800w, {{ 'lg-short-ugc-negro.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="El short Nuvel negro puesto, ajustado sin marcar" loading="lazy" decoding="async">
+        <img src="{{ 'short-ugc-negro.jpg' | asset_url }}" srcset="{{ 'med-short-ugc-negro.jpg' | asset_url }} 800w, {{ 'lg-short-ugc-negro.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="{{ 'product_short.feature_image_alt' | t }}" loading="lazy" decoding="async">
       </div>
       <div class="feature-info">
-        <span class="eyebrow">Los dos colores</span>
-        <h2 style="font-size:30px; margin-top:10px;">Negro para el día a día, beige para la ropa clara</h2>
-        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">El negro es el que usarás casi siempre. El beige es el que salva un vestido blanco o de lino claro, donde cualquier prenda oscura debajo se transparenta. Si dudas, llévate los dos: el conjunto tiene mejor precio que pedirlos sueltos.</p>
+        <span class="eyebrow">{{ 'product_short.feature_eyebrow' | t }}</span>
+        <h2 style="font-size:30px; margin-top:10px;">{{ 'product_short.feature_title' | t }}</h2>
+        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">{{ 'product_short.feature_text' | t }}</p>
       </div>
     </div>
   </section>
 
   <section style="padding-bottom:96px;">
-    <h2 style="font-size:26px; margin-bottom:32px;">Va con tu faja</h2>
+    <h2 style="font-size:26px; margin-bottom:32px;">{{ 'general.pairs_with_title' | t }}</h2>
     <div class="feature-row">
       <div class="feature-img feature-img--contain" style="height:420px; width:380px; max-width:100%;">
-        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible Nuvel" loading="lazy"><span class="badge">Más vendido</span>
+        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.title' | t }}" loading="lazy"><span class="badge">{{ 'general.badge_bestseller' | t }}</span>
       </div>
       <div class="feature-info">
-        <h3 style="font-size:24px; margin-bottom:10px;">Faja Moldeadora Invisible</h3>
-        <p style="font-size:15px; line-height:1.7; color:var(--text); margin-bottom:16px;">La faja te cubre abdomen y cintura. El short cubre cadera y muslo. Juntas hacen el trabajo completo, y las clientas que compran una acaban pidiendo la otra.</p>
+        <h3 style="font-size:24px; margin-bottom:10px;">{{ 'tile.faja.title' | t }}</h3>
+        <p style="font-size:15px; line-height:1.7; color:var(--text); margin-bottom:16px;">{{ 'product_short.pairs_text' | t }}</p>
         <div class="price-row" style="margin:0 0 18px;">
           <span class="price-now" style="font-size:22px;">39,90&nbsp;€</span>
           <span class="price-was">54,90&nbsp;€</span>
         </div>
-        <a href="/pages/producto" class="btn btn-outline">Ver la faja</a>
+        <a href="/pages/producto" class="btn btn-outline">{{ 'general.view_faja_cta' | t }}</a>
       </div>
     </div>
   </section>
 
   <section style="padding-bottom:96px;">
-    <h2 style="font-size:26px; margin-bottom:6px;">¿Buscas moldear otra zona?</h2>
-    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">El resto de la familia Nuvel, con lo que hace cada una.</p>
+    <h2 style="font-size:26px; margin-bottom:6px;">{{ 'general.suggestions_title' | t }}</h2>
+    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">{{ 'general.suggestions_subtitle' | t }}</p>
     <div class="suggestions-grid"><a href="/pages/producto" class="product-tile">
       <div class="shot">
-        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-faja-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-faja-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-faja-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible puesta" loading="lazy" aria-hidden="true">
-        <span class="badge">Más vendido</span>
+        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.image_alt' | t }}" loading="lazy">
+        <img class="shot-hover" src="{{ 'med-faja-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-faja-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-faja-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
+        <span class="badge">{{ 'general.badge_bestseller' | t }}</span>
       </div>
       <div class="info">
-        <h4>Faja Moldeadora Invisible</h4>
-        <p class="tile-why">La invisible: para que el vestido caiga liso sin marcarse.</p>
+        <h4>{{ 'tile.faja.title' | t }}</h4>
+        <p class="tile-why">{{ 'tile.faja.why' | t }}</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:69.1px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.8</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">39,90&nbsp;€</span>
@@ -190,13 +190,13 @@
       </div>
     </a><a href="/pages/corse" class="product-tile">
       <div class="shot">
-        <img src="{{ 'med-corse-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-corse-negro-frente.jpg' | asset_url }} 400w, {{ 'med-corse-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Corsé Moldeador de Cintura Nuvel" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-corse-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-corse-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-corse-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Corsé Moldeador de Cintura puesto" loading="lazy" aria-hidden="true">
-        <span class="badge">Nuevo</span>
+        <img src="{{ 'med-corse-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-corse-negro-frente.jpg' | asset_url }} 400w, {{ 'med-corse-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.corse.image_alt' | t }}" loading="lazy">
+        <img class="shot-hover" src="{{ 'med-corse-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-corse-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-corse-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.corse.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
+        <span class="badge">{{ 'general.badge_new' | t }}</span>
       </div>
       <div class="info">
-        <h4>Corsé Moldeador de Cintura</h4>
-        <p class="tile-why">Para marcar la cintura bajo un vestido o un blazer.</p>
+        <h4>{{ 'tile.corse.title' | t }}</h4>
+        <p class="tile-why">{{ 'tile.corse.why' | t }}</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:70px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.9</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">34,90&nbsp;€</span>
@@ -205,13 +205,13 @@
       </div>
     </a><a href="/pages/vestido" class="product-tile">
       <div class="shot">
-        <img src="{{ 'med-vestido-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-vestido-negro-frente.jpg' | asset_url }} 400w, {{ 'med-vestido-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-vestido-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Vestido Moldeador 2 en 1 Nuvel" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-vestido-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-vestido-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-vestido-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Vestido Moldeador 2 en 1 puesto" loading="lazy" aria-hidden="true">
-        <span class="badge">Nuevo</span>
+        <img src="{{ 'med-vestido-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-vestido-negro-frente.jpg' | asset_url }} 400w, {{ 'med-vestido-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-vestido-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.vestido.image_alt' | t }}" loading="lazy">
+        <img class="shot-hover" src="{{ 'med-vestido-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-vestido-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-vestido-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.vestido.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
+        <span class="badge">{{ 'general.badge_new' | t }}</span>
       </div>
       <div class="info">
-        <h4>Vestido Moldeador 2 en 1</h4>
-        <p class="tile-why">Faja y vestido en una sola prenda: para llegar, ponértelo y salir.</p>
+        <h4>{{ 'tile.vestido.title' | t }}</h4>
+        <p class="tile-why">{{ 'tile.vestido.why' | t }}</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:67px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">59,90&nbsp;€</span>
@@ -222,8 +222,8 @@
   </section>
 </main><div class="buy-bar" id="buy-bar">
   <div class="buy-bar-info">
-    <span class="buy-bar-name">Short Moldeador</span>
-    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · Negro · {{ p.price | money }}</span>
+    <span class="buy-bar-name">{{ 'tile.short.title' | t }}</span>
+    <span class="buy-bar-meta" data-buy-bar-meta>{{ 'general.size_label' | t }} M · {{ 'general.color_black' | t }} · {{ p.price | money }}</span>
   </div>
-  <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>Añadir</button>
+  <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>{{ 'general.add_short' | t }}</button>
 </div>

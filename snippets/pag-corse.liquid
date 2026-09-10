@@ -10,53 +10,53 @@
 
 <main class="wrap">
   <nav class="breadcrumb">
-    <a href="/">Inicio</a> / <a href="/pages/catalogo">Catálogo</a> / <span class="current">Corsé Moldeador</span>
+    <a href="/">{{ 'nav.home' | t }}</a> / <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ 'tile.corse.title' | t }}</span>
   </nav>
 
   <div class="pdp-row">
     <div class="gallery">
       <div class="thumbs">
-        <div class="thumb active" data-thumb data-full="{{ 'lg-corse-negro-frente.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-frente.jpg' | asset_url }}" alt="Corsé Moldeador Nuvel en negro, vista de frente" width="400" height="428" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-negro-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-espalda.jpg' | asset_url }}" alt="Corsé Moldeador Nuvel en negro, vista por detrás" width="400" height="439" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-tallas.jpg' | asset_url }}"><img src="{{ 'mini-corse-tallas.jpg' | asset_url }}" alt="Guía de tallas del Corsé Moldeador Nuvel, de la XS a la 2XL" width="400" height="511" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-negro-modelo.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-modelo.jpg' | asset_url }}" alt="El corsé Nuvel negro puesto, vista de frente" width="400" height="533" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-negro-modelo-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-modelo-espalda.jpg' | asset_url }}" alt="El corsé Nuvel negro puesto, vista por detrás" width="400" height="533" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-beige-frente.jpg' | asset_url }}"><img src="{{ 'mini-corse-beige-frente.jpg' | asset_url }}" alt="El corsé Nuvel beige puesto, vista de frente" width="400" height="600" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-beige-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-beige-espalda.jpg' | asset_url }}" alt="El corsé Nuvel beige puesto, vista por detrás" width="400" height="600" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-rosa-modelo.jpg' | asset_url }}"><img src="{{ 'mini-corse-rosa-modelo.jpg' | asset_url }}" alt="El corsé Nuvel rosa puesto, vista de frente" width="400" height="600" loading="lazy"></div>
-        <div class="thumb" data-thumb data-full="{{ 'lg-corse-rosa-modelo-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-rosa-modelo-espalda.jpg' | asset_url }}" alt="El corsé Nuvel rosa puesto, vista por detrás" width="400" height="601" loading="lazy"></div>
+        <div class="thumb active" data-thumb data-full="{{ 'lg-corse-negro-frente.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-frente.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_1' | t }}" width="400" height="428" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-negro-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-espalda.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_2' | t }}" width="400" height="439" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-tallas.jpg' | asset_url }}"><img src="{{ 'mini-corse-tallas.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_3' | t }}" width="400" height="511" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-negro-modelo.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-modelo.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_4' | t }}" width="400" height="533" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-negro-modelo-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-negro-modelo-espalda.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_5' | t }}" width="400" height="533" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-beige-frente.jpg' | asset_url }}"><img src="{{ 'mini-corse-beige-frente.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_6' | t }}" width="400" height="600" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-beige-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-beige-espalda.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_7' | t }}" width="400" height="600" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-rosa-modelo.jpg' | asset_url }}"><img src="{{ 'mini-corse-rosa-modelo.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_8' | t }}" width="400" height="600" loading="lazy"></div>
+        <div class="thumb" data-thumb data-full="{{ 'lg-corse-rosa-modelo-espalda.jpg' | asset_url }}"><img src="{{ 'mini-corse-rosa-modelo-espalda.jpg' | asset_url }}" alt="{{ 'product_corse.thumb_alt_9' | t }}" width="400" height="601" loading="lazy"></div>
       </div>
-      <div class="main-shot"><img id="main-shot-img" src="{{ 'corse-negro-frente.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 90vw, 640px" alt="Corsé Moldeador de Cintura Nuvel, entrenador de cintura con varillas" fetchpriority="high"><button type="button" class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="Foto anterior">
+      <div class="main-shot"><img id="main-shot-img" src="{{ 'corse-negro-frente.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 90vw, 640px" alt="{{ 'product_corse.main_image_alt' | t }}" fetchpriority="high"><button type="button" class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="{{ 'gallery.prev' | t }}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
   </button>
-  <button type="button" class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="Foto siguiente">
+  <button type="button" class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="{{ 'gallery.next' | t }}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
   </button>
-  <button type="button" class="gallery-zoom-btn" id="gallery-zoom" aria-label="Ver foto más de cerca">
+  <button type="button" class="gallery-zoom-btn" id="gallery-zoom" aria-label="{{ 'gallery.zoom' | t }}">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M10.5 8v5M8 10.5h5"/><path d="M20 20l-4.8-4.8"/></svg>
   </button></div>
     </div>
 
     <div class="pdp-info">
-      <h1>Corsé Moldeador de Cintura · Nuvel</h1>
-      <p class="product-new-note"><span class="badge">Nuevo</span></p>
-      <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:77.1px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span><span>41 reseñas</span></div>
+      <h1>{{ 'tile.corse.title' | t }} · Nuvel</h1>
+      <p class="product-new-note"><span class="badge">{{ 'general.badge_new' | t }}</span></p>
+      <div class="rating-row"><div class="stars-wrap" style="width:82px;"><div class="stars-bg" style="gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:77.1px; gap:3px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span><span>41 {{ 'general.reviews' | t }}</span></div>
       <div class="price-row">
         <span class="price-now">{{ p.price | money }}</span>
         <span class="price-was">49,90&nbsp;€</span>
       </div>
 
       <div class="opt-group">
-        <div class="opt-head"><label>Color</label></div>
+        <div class="opt-head"><label>{{ 'general.color_label' | t }}</label></div>
         <div class="opt-choices">
-          <button class="opt-btn selected" data-color="negro" data-color-key="Black" data-color-shot="{{ 'corse-negro-frente.jpg' | asset_url }}">Negro</button>
-          <button class="opt-btn" data-color="beige" data-color-key="Skin Colour" data-color-shot="{{ 'corse-beige-frente.jpg' | asset_url }}">Beige</button>
-          <button class="opt-btn" data-color="rosa" data-color-key="Pink" data-color-shot="{{ 'corse-rosa-modelo.jpg' | asset_url }}">Rosa</button>
+          <button class="opt-btn selected" data-color="negro" data-color-key="Black" data-color-shot="{{ 'corse-negro-frente.jpg' | asset_url }}">{{ 'general.color_black' | t }}</button>
+          <button class="opt-btn" data-color="beige" data-color-key="Skin Colour" data-color-shot="{{ 'corse-beige-frente.jpg' | asset_url }}">{{ 'general.color_beige' | t }}</button>
+          <button class="opt-btn" data-color="rosa" data-color-key="Pink" data-color-shot="{{ 'corse-rosa-modelo.jpg' | asset_url }}">{{ 'general.color_pink' | t }}</button>
         </div>
       </div>
 
       <div class="opt-group">
-        <div class="opt-head"><label>Talla</label><a href="#" data-ver-tallas>Guía de tallas</a></div>
+        <div class="opt-head"><label>{{ 'general.size_label' | t }}</label><a href="#" data-ver-tallas>{{ 'general.size_guide' | t }}</a></div>
         <div class="opt-choices">
           {%- assign orden_tallas = "XS,S,M,L,XL,2XL,3XL,4XL" | split: "," -%}
           {%- for t in orden_tallas -%}
@@ -73,9 +73,9 @@
       </div>
 
       <div class="guia-tallas">
-        <div class="guia-tallas__head"><span class="guia-tallas__title">Tu talla, en centímetros</span></div>
+        <div class="guia-tallas__head"><span class="guia-tallas__title">{{ 'general.size_table_title' | t }}</span></div>
         <table class="guia-tallas__tabla">
-          <thead><tr><th>Talla</th><th>Cintura (cm)</th><th>Cadera (cm)</th></tr></thead>
+          <thead><tr><th>{{ 'general.size_table_col_size' | t }}</th><th>{{ 'general.size_table_col_waist' | t }}</th><th>{{ 'general.size_table_col_hip' | t }}</th></tr></thead>
           <tbody>
             <tr><td>XS</td><td>58&ndash;62</td><td>84&ndash;89</td></tr>
             <tr><td>S</td><td>62&ndash;66</td><td>89&ndash;94</td></tr>
@@ -85,59 +85,59 @@
             <tr><td>2XL</td><td>88&ndash;96</td><td>116&ndash;124</td></tr>
           </tbody>
         </table>
-        <p class="guia-tallas__tip">¿Estás entre dos tallas? Pide la mayor: el corsé se ajusta por los corchetes y no se te sube.</p>
+        <p class="guia-tallas__tip">{{ 'product_corse.size_tip' | t }}</p>
       </div>
 
       <div class="qty-offer">
-        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">1 unidad</div><div class="qty-price">{{ p.price | money }}</div></button>
-        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">La segunda, para rotar</span><div class="qty-label">2 unidades</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
-        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Faja Moldeadora Invisible" data-pack-partner="faja-moldeadora-invisible-nuvel" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">El que más piden</span><div class="qty-label">Corsé + Faja</div><div class="qty-price">74,80&nbsp;€</div></button>
+        <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ p.price | money }}</div></button>
+        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
+        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Faja Moldeadora Invisible" data-pack-partner="faja-moldeadora-invisible-nuvel" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'product_corse.pack_label' | t }}</div><div class="qty-price">74,80&nbsp;€</div></button>
       </div>
 
       {%- render 'payment-icons' -%}
 
-      <button class="btn btn-dark btn-block" id="add-to-cart-btn">Comprar ahora</button>
+      <button class="btn btn-dark btn-block" id="add-to-cart-btn">{{ 'general.buy_now' | t }}</button>
 
       <div class="trust-strip">
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/></svg>
-          <span>Envío gratis a todo el mundo</span>
+          <span>{{ 'trust.compact.shipping' | t }}</span>
         </div>
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v6h6"/></svg>
-          <span>30 días de prueba</span>
+          <span>{{ 'trust.compact.trial' | t }}</span>
         </div>
         <div class="trust-compact">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
-          <span>Pago seguro</span>
+          <span>{{ 'trust.compact.secure_payment' | t }}</span>
         </div>
       </div>
 
-      <p class="pdp-desc">Corsé de cintura con varillas verticales, cremallera frontal y una columna de corchetes detrás. Se cierra al nivel que tú decidas y aguanta ahí: marca la curva de la cintura y sostiene la espalda mientras lo llevas puesto.</p>
+      <p class="pdp-desc">{{ 'product_corse.description' | t }}</p>
       <ul class="bullets">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Doble cierre: cremallera para entrar, corchetes para ajustar</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Varillas verticales: no se dobla ni se enrolla al sentarte</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Tirantes regulables, así que la altura la eliges tú</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Se lleva encima del sujetador, debajo de la ropa</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_corse.bullet_1' | t }}</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_corse.bullet_2' | t }}</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_corse.bullet_3' | t }}</li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'product_corse.bullet_4' | t }}</li>
       </ul>
     </div>
   </div>
 
   <section style="padding-bottom:64px;">
-    <h2 style="font-size:24px; margin-bottom:20px;">Detalles del producto</h2>
+    <h2 style="font-size:24px; margin-bottom:20px;">{{ 'general.product_details_title' | t }}</h2>
     <div class="product-details-copy">
-      <p class="pd-headline">TÚ DECIDES CUÁNTO APRIETA</p>
-      <p>El Corsé Moldeador de Cintura Nuvel combina varillas verticales, cremallera frontal y una columna de corchetes ajustables en la espalda, así que el nivel de compresión lo controlas tú, no la prenda. Ideal para marcar la curva de la cintura bajo un blazer, un vestido, o incluso como top con un pantalón de tiro alto. Espalda de una sola pieza sin cierres que se claven, tirantes anchos regulables y disponible en negro, beige y rosa, de la XS a la 2XL.</p>
+      <p class="pd-headline">{{ 'product_corse.headline' | t }}</p>
+      <p>{{ 'product_corse.details_text' | t }}</p>
     </div>
   </section>
 
   <section class="pad" style="padding-left:0; padding-right:0;">
-    <h3 style="font-size:26px; margin-bottom:24px;">En movimiento (próximamente, en vídeo)</h3>
+    <h3 style="font-size:26px; margin-bottom:24px;">{{ 'general.video_soon_title' | t }}</h3>
     <div class="video-box">
-      <img src="{{ 'corse-negro-modelo.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-modelo.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-modelo.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 1152px" alt="Videoclip del corsé Nuvel" loading="lazy" decoding="async">
+      <img src="{{ 'corse-negro-modelo.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-modelo.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-modelo.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 1152px" alt="{{ 'product_corse.video_image_alt' | t }}" loading="lazy" decoding="async">
       <div class="video-overlay">
         <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M8 5v14l11-7z"/></svg></div>
-        <p style="font-size:14px; font-weight:500;">Hueco listo para el videoclip de clientas</p>
+        <p style="font-size:14px; font-weight:500;">{{ 'general.video_placeholder_text' | t }}</p>
       </div>
     </div>
   </section>
@@ -145,12 +145,12 @@
   <section class="pad" style="padding-left:0; padding-right:0;">
     <div class="feature-row">
       <div class="feature-img" style="height:520px;">
-        <img src="{{ 'corse-negro-modelo.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-modelo.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-modelo.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="El corsé Nuvel negro puesto, cintura marcada" loading="lazy" decoding="async">
+        <img src="{{ 'corse-negro-modelo.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-modelo.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-modelo.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="{{ 'product_corse.feature_1_image_alt' | t }}" loading="lazy" decoding="async">
       </div>
       <div class="feature-info">
-        <span class="eyebrow">Cómo se ajusta</span>
-        <h2 style="font-size:30px; margin-top:10px;">Tú decides cuánto aprieta</h2>
-        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">La cremallera es para entrar y salir sin pelearte con la prenda. Los corchetes de detrás son los que mandan: tienen tres posiciones, así que empiezas por la más suelta y vas cerrando conforme te acostumbras. No hay que sufrir para que se note.</p>
+        <span class="eyebrow">{{ 'product_corse.feature_1_eyebrow' | t }}</span>
+        <h2 style="font-size:30px; margin-top:10px;">{{ 'product_corse.feature_1_title' | t }}</h2>
+        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">{{ 'product_corse.feature_1_text' | t }}</p>
       </div>
     </div>
   </section>
@@ -158,12 +158,12 @@
   <section class="pad" style="padding-left:0; padding-right:0;">
     <div class="feature-row reverse">
       <div class="feature-img" style="height:520px;">
-        <img src="{{ 'corse-negro-modelo-espalda.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-modelo-espalda.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-modelo-espalda.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="El corsé Nuvel visto por detrás, espalda lisa" loading="lazy" decoding="async">
+        <img src="{{ 'corse-negro-modelo-espalda.jpg' | asset_url }}" srcset="{{ 'med-corse-negro-modelo-espalda.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-modelo-espalda.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="{{ 'product_corse.feature_2_image_alt' | t }}" loading="lazy" decoding="async">
       </div>
       <div class="feature-info">
-        <span class="eyebrow">Por detrás</span>
-        <h2 style="font-size:30px; margin-top:10px;">Espalda lisa, sin cortes</h2>
-        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">La espalda es una sola pieza con una costura central, sin cierres ni ganchos que se claven o se marquen. Los tirantes son anchos y planos, así que no se hunden en el hombro aunque lo lleves todo el día.</p>
+        <span class="eyebrow">{{ 'product_corse.feature_2_eyebrow' | t }}</span>
+        <h2 style="font-size:30px; margin-top:10px;">{{ 'product_corse.feature_2_title' | t }}</h2>
+        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">{{ 'product_corse.feature_2_text' | t }}</p>
       </div>
     </div>
   </section>
@@ -171,46 +171,46 @@
   <section class="pad" style="padding-left:0; padding-right:0;">
     <div class="feature-row">
       <div class="feature-img" style="height:520px;">
-        <img src="{{ 'corse-rosa-modelo.jpg' | asset_url }}" srcset="{{ 'med-corse-rosa-modelo.jpg' | asset_url }} 800w, {{ 'lg-corse-rosa-modelo.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="Corsé Moldeador Nuvel en rosa" loading="lazy" decoding="async">
+        <img src="{{ 'corse-rosa-modelo.jpg' | asset_url }}" srcset="{{ 'med-corse-rosa-modelo.jpg' | asset_url }} 800w, {{ 'lg-corse-rosa-modelo.jpg' | asset_url }} 1100w" sizes="(max-width: 900px) 92vw, 520px" alt="{{ 'product_corse.feature_3_image_alt' | t }}" loading="lazy" decoding="async">
       </div>
       <div class="feature-info">
-        <span class="eyebrow">Tres colores</span>
-        <h2 style="font-size:30px; margin-top:10px;">Negro, beige y rosa</h2>
-        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">El negro va con todo y es el que más se pide. El beige desaparece bajo blanco, lino y cualquier tejido claro. Y el rosa es el que se enseña: con un pantalón de tiro alto se lleva como top, no como prenda interior.</p>
+        <span class="eyebrow">{{ 'product_corse.feature_3_eyebrow' | t }}</span>
+        <h2 style="font-size:30px; margin-top:10px;">{{ 'product_corse.feature_3_title' | t }}</h2>
+        <p style="font-size:15.5px; line-height:1.7; color:var(--text);">{{ 'product_corse.feature_3_text' | t }}</p>
       </div>
     </div>
   </section>
 
   <section style="padding-bottom:96px;">
-    <h2 style="font-size:26px; margin-bottom:32px;">Va con tu faja</h2>
+    <h2 style="font-size:26px; margin-bottom:32px;">{{ 'general.pairs_with_title' | t }}</h2>
     <div class="feature-row">
       <div class="feature-img feature-img--contain" style="height:420px; width:380px; max-width:100%;">
-        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible Nuvel" loading="lazy"><span class="badge">Más vendido</span>
+        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.title' | t }}" loading="lazy"><span class="badge">{{ 'general.badge_bestseller' | t }}</span>
       </div>
       <div class="feature-info">
-        <h3 style="font-size:24px; margin-bottom:10px;">Faja Moldeadora Invisible</h3>
-        <p style="font-size:15px; line-height:1.7; color:var(--text); margin-bottom:16px;">El corsé trabaja la cintura y sostiene el torso. La faja cubre abdomen y cadera sin que se note nada bajo la ropa. Cada una hace lo suyo, y juntas es cuando se ve el resultado completo.</p>
+        <h3 style="font-size:24px; margin-bottom:10px;">{{ 'tile.faja.title' | t }}</h3>
+        <p style="font-size:15px; line-height:1.7; color:var(--text); margin-bottom:16px;">{{ 'product_corse.pairs_text' | t }}</p>
         <div class="price-row" style="margin:0 0 18px;">
           <span class="price-now" style="font-size:22px;">39,90&nbsp;€</span>
           <span class="price-was">54,90&nbsp;€</span>
         </div>
-        <a href="/pages/producto" class="btn btn-outline">Ver la faja</a>
+        <a href="/pages/producto" class="btn btn-outline">{{ 'general.view_faja_cta' | t }}</a>
       </div>
     </div>
   </section>
 
   <section style="padding-bottom:96px;">
-    <h2 style="font-size:26px; margin-bottom:6px;">¿Buscas moldear otra zona?</h2>
-    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">El resto de la familia Nuvel, con lo que hace cada una.</p>
+    <h2 style="font-size:26px; margin-bottom:6px;">{{ 'general.suggestions_title' | t }}</h2>
+    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">{{ 'general.suggestions_subtitle' | t }}</p>
     <div class="suggestions-grid"><a href="/pages/producto" class="product-tile">
       <div class="shot">
-        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-faja-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-faja-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-faja-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Faja Moldeadora Invisible puesta" loading="lazy" aria-hidden="true">
-        <span class="badge">Más vendido</span>
+        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.image_alt' | t }}" loading="lazy">
+        <img class="shot-hover" src="{{ 'med-faja-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-faja-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-faja-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
+        <span class="badge">{{ 'general.badge_bestseller' | t }}</span>
       </div>
       <div class="info">
-        <h4>Faja Moldeadora Invisible</h4>
-        <p class="tile-why">La invisible: para que el vestido caiga liso sin marcarse.</p>
+        <h4>{{ 'tile.faja.title' | t }}</h4>
+        <p class="tile-why">{{ 'tile.faja.why' | t }}</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:69.1px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.8</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">39,90&nbsp;€</span>
@@ -219,13 +219,13 @@
       </div>
     </a><a href="/pages/short" class="product-tile">
       <div class="shot">
-        <img src="{{ 'med-short-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-short-negro-frente.jpg' | asset_url }} 400w, {{ 'med-short-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-short-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Short Moldeador Sin Costuras Nuvel" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-short-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-short-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-short-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Short Moldeador Nuvel puesto" loading="lazy" aria-hidden="true">
-        <span class="badge">Nuevo</span>
+        <img src="{{ 'med-short-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-short-negro-frente.jpg' | asset_url }} 400w, {{ 'med-short-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-short-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.short.image_alt' | t }}" loading="lazy">
+        <img class="shot-hover" src="{{ 'med-short-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-short-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-short-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.short.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
+        <span class="badge">{{ 'general.badge_new' | t }}</span>
       </div>
       <div class="info">
-        <h4>Short Moldeador Sin Costuras</h4>
-        <p class="tile-why">Para el roce entre piernas y los muslos, bajo vestidos y faldas.</p>
+        <h4>{{ 'tile.short.title' | t }}</h4>
+        <p class="tile-why">{{ 'tile.short.why' | t }}</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:69.1px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.6</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">24,90&nbsp;€</span>
@@ -234,13 +234,13 @@
       </div>
     </a><a href="/pages/vestido" class="product-tile">
       <div class="shot">
-        <img src="{{ 'med-vestido-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-vestido-negro-frente.jpg' | asset_url }} 400w, {{ 'med-vestido-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-vestido-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Vestido Moldeador 2 en 1 Nuvel" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-vestido-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-vestido-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-vestido-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="Vestido Moldeador 2 en 1 puesto" loading="lazy" aria-hidden="true">
-        <span class="badge">Nuevo</span>
+        <img src="{{ 'med-vestido-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-vestido-negro-frente.jpg' | asset_url }} 400w, {{ 'med-vestido-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-vestido-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.vestido.image_alt' | t }}" loading="lazy">
+        <img class="shot-hover" src="{{ 'med-vestido-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-vestido-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-vestido-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.vestido.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
+        <span class="badge">{{ 'general.badge_new' | t }}</span>
       </div>
       <div class="info">
-        <h4>Vestido Moldeador 2 en 1</h4>
-        <p class="tile-why">Faja y vestido en una sola prenda: para llegar, ponértelo y salir.</p>
+        <h4>{{ 'tile.vestido.title' | t }}</h4>
+        <p class="tile-why">{{ 'tile.vestido.why' | t }}</p>
         <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:67px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span></div>
         <div class="price-row" style="margin-top:6px;">
           <span style="font-weight:600;">59,90&nbsp;€</span>
@@ -251,8 +251,8 @@
   </section>
 </main><div class="buy-bar" id="buy-bar">
   <div class="buy-bar-info">
-    <span class="buy-bar-name">Corsé Moldeador</span>
-    <span class="buy-bar-meta" data-buy-bar-meta>Talla M · Negro · {{ p.price | money }}</span>
+    <span class="buy-bar-name">{{ 'tile.corse.title' | t }}</span>
+    <span class="buy-bar-meta" data-buy-bar-meta>{{ 'general.size_label' | t }} M · {{ 'general.color_black' | t }} · {{ p.price | money }}</span>
   </div>
-  <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>Añadir</button>
+  <button type="button" class="btn btn-dark buy-bar-btn" data-buy-bar-add>{{ 'general.add_short' | t }}</button>
 </div>

@@ -1,1 +1,507 @@
-{}
+{
+  "general": {
+    "meta": { "title_home": "Nuvel · La faja que se nota en el espejo, no en la ropa" },
+    "close": "Cerrar",
+    "badge_bestseller": "Más vendido",
+    "badge_new": "Nuevo",
+    "reviews": "reseñas",
+    "buy_now": "Comprar ahora",
+    "add_short": "Añadir",
+    "size_label": "Talla",
+    "color_label": "Color",
+    "color_black": "Negro",
+    "color_beige": "Beige",
+    "color_pink": "Rosa",
+    "color_grey": "Gris",
+    "size_guide": "Guía de tallas",
+    "size_table_title": "Tu talla, en centímetros",
+    "size_table_col_size": "Talla",
+    "size_table_col_waist": "Cintura (cm)",
+    "size_table_col_hip": "Cadera (cm)",
+    "size_tip": "¿Estás entre dos tallas? Pide la mayor: comprime igual y no se sube.",
+    "product_details_title": "Detalles del producto",
+    "video_soon_title": "En movimiento (próximamente, en vídeo)",
+    "video_placeholder_text": "Hueco listo para el videoclip de clientas",
+    "pairs_with_title": "Va con tu faja",
+    "view_faja_cta": "Ver la faja",
+    "suggestions_title": "¿Buscas moldear otra zona?",
+    "suggestions_subtitle": "El resto de la familia Nuvel, con lo que hace cada una.",
+    "last_updated": "Última actualización: septiembre de 2026",
+    "write_to_email": "Escribe a hola@nuvelshape.store"
+  },
+  "qty": {
+    "one_unit": "1 unidad",
+    "two_units": "2 unidades",
+    "save_rotate": "La segunda, para rotar",
+    "save_most_requested": "El que más piden"
+  },
+  "trust": {
+    "compact": {
+      "shipping": "Envío gratis a todo el mundo",
+      "trial": "30 días de prueba",
+      "secure_payment": "Pago seguro"
+    }
+  },
+  "banner": {
+    "free_shipping": "Envío gratis a todo el mundo &nbsp;·&nbsp; Entrega en 7-15 días laborables"
+  },
+  "nav": {
+    "open_menu": "Abrir menú",
+    "search": "Buscar",
+    "home": "Inicio",
+    "featured_product": "Producto Destacado",
+    "catalog": "Catálogo",
+    "about": "Sobre nosotros",
+    "faq": "Preguntas frecuentes",
+    "account": "Mi cuenta",
+    "open_cart": "Abrir carrito"
+  },
+  "gallery": {
+    "prev": "Foto anterior",
+    "next": "Foto siguiente",
+    "zoom": "Ver foto más de cerca"
+  },
+  "footer": {
+    "brand_tagline": "Moldeadores invisibles para que el vestido te caiga perfecto, te sientes y te muevas como si nada: nadie sabrá que los llevas.",
+    "guarantee": "30 días de prueba &nbsp;·&nbsp; Envío gratis a todo el mundo en 7-15 días",
+    "col_policies": "Políticas",
+    "col_shipping": "Envíos",
+    "col_returns": "Devoluciones",
+    "col_privacy": "Privacidad",
+    "col_terms": "Términos",
+    "col_follow_us": "Síguenos",
+    "col_contact": "Contacto",
+    "copyright": "&copy; 2026 Nuvel. Todos los derechos reservados."
+  },
+  "cart": {
+    "heading": "Tu carrito",
+    "close": "Cerrar carrito",
+    "subtotal": "Subtotal",
+    "checkout": "Pagar"
+  },
+  "search": {
+    "placeholder": "Busca por producto, talla, envíos, devoluciones...",
+    "close": "Cerrar búsqueda"
+  },
+  "account": {
+    "heading": "Mi cuenta",
+    "no_accounts_yet": "Todavía no tenemos cuentas de cliente activas en la tienda: estamos trabajando en ello.",
+    "help": "Mientras tanto, si necesitas ayuda con un pedido, una talla o una devolución, escríbenos directamente y te respondemos nosotras mismas:",
+    "write_to_us": "Escribe a hola@nuvelshape.store",
+    "view_faq": "Ver preguntas frecuentes"
+  },
+  "zoom": {
+    "label": "Foto ampliada"
+  },
+  "welcome": {
+    "kicker": "Bienvenida a Nuvel",
+    "title": "Llévate un 10&nbsp;% en tu primer pedido",
+    "text": "Usa el código <strong>NUVEL10</strong> en el checkout y llévate un 10&nbsp;% de descuento en tu primer pedido.",
+    "copy": "copiar",
+    "copied": "¡Copiado!",
+    "hint": "Escríbelo en el campo «Código de descuento» del checkout, antes de pagar.",
+    "cta": "Entendido"
+  },
+  "home": {
+    "hero": {
+      "image_alt": "Mujer con faja moldeadora Nuvel",
+      "eyebrow": "Faja Moldeadora Invisible",
+      "title": "Fajas Moldeadoras Invisibles: la faja que se nota en el espejo,<br>no en la ropa.",
+      "subtitle": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
+      "cta": "Descubre la Faja Moldeadora Invisible"
+    },
+    "real_life": {
+      "eyebrow": "Así se ve puesta",
+      "title": "El producto en la vida real",
+      "subtitle": "La prenda por sí sola, y cómo se ve puesta bajo la ropa de calle, sin que se note.",
+      "tag_product": "El producto",
+      "tag_worn": "Puesta, invisible",
+      "worn_image_alt": "Faja Nuvel puesta, invisible bajo la ropa"
+    },
+    "anchor": {
+      "eyebrow": "Producto ancla",
+      "bullet_1": "Sin costuras: invisible bajo cualquier prenda",
+      "bullet_2": "Compresión suave y cómoda todo el día",
+      "bullet_3": "Resiste lavados sin perder la forma",
+      "bullet_4": "Tabla de tallas incluida",
+      "pack_label": "Faja + Short"
+    },
+    "why": {
+      "title": "Por qué Nuvel",
+      "card_1_title": "Sin costuras, invisible",
+      "card_1_text": "No se marca bajo la ropa ni se adivina que la llevas.",
+      "card_2_title": "No se enrolla ni pica",
+      "card_2_text": "Compresión suave que aguanta todo el día sin molestar.",
+      "card_3_title": "Resiste lavados",
+      "card_3_text": "No pierde la forma ni la compresión al primer lavado.",
+      "card_4_title": "Tabla de tallas clara",
+      "card_4_text": "Guía sencilla para elegir tu talla sin miedo a equivocarte."
+    },
+    "testimonials": {
+      "title": "Clientas reales, mensajes reales",
+      "text_1": "Cada semana publicamos capturas de los WhatsApp de nuestras clientas: dudas de talla, qué talla pidieron y la foto de la prenda puesta. Sin poses, tal cual llegan.",
+      "text_2": "Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar."
+    },
+    "trust": {
+      "title": "Compra con tranquilidad",
+      "item_1_title": "Envío gratis a todo el mundo",
+      "item_1_text": "Entrega en 7-15 días laborables, con seguimiento por email.",
+      "item_2_title": "30 días de prueba",
+      "item_2_text": "Si no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.",
+      "item_3_title": "Pago 100% seguro",
+      "item_3_text": "Tus datos protegidos en cada compra."
+    }
+  },
+  "tile": {
+    "faja": {
+      "title": "Faja Moldeadora Invisible",
+      "why": "La invisible: para que el vestido caiga liso sin marcarse.",
+      "image_alt": "Faja Moldeadora Invisible",
+      "worn_image_alt": "Faja Moldeadora Invisible puesta"
+    },
+    "short": {
+      "title": "Short Moldeador Sin Costuras",
+      "why": "Para el roce entre piernas y los muslos, bajo vestidos y faldas.",
+      "image_alt": "Short Moldeador Sin Costuras Nuvel",
+      "worn_image_alt": "Short Moldeador Nuvel puesto"
+    },
+    "corse": {
+      "title": "Corsé Moldeador de Cintura",
+      "why": "Para marcar la cintura bajo un vestido o un blazer.",
+      "image_alt": "Corsé Moldeador de Cintura Nuvel",
+      "worn_image_alt": "Corsé Moldeador de Cintura puesto"
+    },
+    "vestido": {
+      "title": "Vestido Moldeador 2 en 1",
+      "why": "Faja y vestido en una sola prenda: para llegar, ponértelo y salir.",
+      "image_alt": "Vestido Moldeador 2 en 1 Nuvel",
+      "worn_image_alt": "Vestido Moldeador 2 en 1 puesto"
+    }
+  },
+  "catalog": {
+    "crumb_current": "Fajas moldeadoras",
+    "title": "Fajas moldeadoras",
+    "intro": "Nuvel es una familia de shapewear pensada para un mismo objetivo: que no se note que la llevas puesta. Empezamos por la faja de cintura alta, nuestro producto ancla, y estamos ampliando la misma familia con más prendas moldeadoras (piernas, cintura y cuerpo entero) pensadas para completar la misma rutina, con la misma compresión suave y los mismos acabados sin costuras.",
+    "category_high_waist": "Cintura alta",
+    "category_postpartum": "Posparto",
+    "category_seamless": "Sin costuras",
+    "category_full_body": "Cuerpo entero",
+    "filter_size": "Talla",
+    "filter_price": "Precio",
+    "filter_price_under_50": "Menos de 50&nbsp;€",
+    "filter_price_50_100": "50&#8211;100&nbsp;€",
+    "filter_zone": "Zona del cuerpo",
+    "filter_zone_abdomen": "Abdomen y cintura",
+    "filter_zone_legs": "Piernas",
+    "filter_zone_torso_soon": "Torso y cintura (próximamente)",
+    "filter_compression": "Compresión",
+    "filter_compression_medium": "Media",
+    "filter_compression_high_soon": "Alta (próximamente)",
+    "filter_clear": "Quitar filtros",
+    "sort_by": "Ordenar por",
+    "sort_relevance": "Relevancia",
+    "sort_price_asc": "Precio: menor a mayor",
+    "sort_price_desc": "Precio: mayor a menor",
+    "no_results": "Ningún producto disponible ahora mismo coincide con esos filtros. Vuelve pronto, seguimos ampliando el catálogo."
+  },
+  "returns": {
+    "hero_eyebrow": "Devolución sin riesgo",
+    "hero_title": "Política de Devoluciones",
+    "callout_1": "30 días. Devolución gratuita. Sin preguntas.",
+    "callout_2": "Nuvel no es para ti si no cumple exactamente lo que promete. Punto.",
+    "deadline": {
+      "title": "Plazo de devolución",
+      "item_1": "Tienes 30 días naturales desde la fecha de recepción del pedido para iniciar una devolución.",
+      "item_2": "Pasado ese plazo, no podemos aceptar devoluciones salvo defecto del producto."
+    },
+    "condition": {
+      "title": "Condiciones del producto",
+      "item_1": "El artículo debe estar sin usar, con las etiquetas originales puestas y en su embalaje original.",
+      "item_2": "Por higiene, no aceptamos devoluciones de artículos usados o lavados: te pedimos que lo pruebes directamente sobre ropa interior."
+    },
+    "how_to": {
+      "title": "Cómo iniciar una devolución",
+      "step_1": "Paso 1: Escribe a hola@nuvelshape.store con el número de pedido y motivo de la devolución (opcional).",
+      "step_2": "Paso 2: Te enviamos una etiqueta de devolución prepagada en menos de 24 horas (días hábiles).",
+      "step_3": "Paso 3: Depositas el paquete en cualquier punto de recogida de la agencia de transporte.",
+      "step_4": "Paso 4: En cuanto recibimos el artículo, procesamos el reembolso en 3-5 días hábiles."
+    },
+    "size_change": {
+      "title": "Cambios de talla",
+      "item_1": "Si te has equivocado de talla, el proceso es idéntico a una devolución: escribe a hola@nuvelshape.store.",
+      "item_2": "El cambio es gratuito en el primer pedido: queremos que aciertes con la talla.",
+      "item_3": "Gestionamos el envío del nuevo artículo en cuanto recibimos el original."
+    },
+    "defective": {
+      "title": "Productos con defecto",
+      "item_1": "Si recibes un artículo dañado o defectuoso, escríbenos en las primeras 48 horas con fotografías.",
+      "item_2": "Lo sustituimos sin coste y sin necesidad de devolver el artículo dañado en la mayoría de casos."
+    },
+    "refunds": {
+      "title": "Reembolsos",
+      "item_1": "El reembolso se realiza en el mismo método de pago utilizado en el pedido.",
+      "item_2": "Plazo: 3-5 días hábiles desde que recibimos el artículo.",
+      "item_3": "Posible demora adicional de 2-3 días según tu banco o entidad financiera."
+    }
+  },
+  "shipping": {
+    "hero_eyebrow": "Envíos y plazos",
+    "hero_title": "Política de Envíos",
+    "deadlines": {
+      "title": "Plazos de entrega",
+      "item_1": "España peninsular: entre 7 y 15 días laborables desde que confirmamos el pedido.",
+      "item_2": "Baleares: entre 10 y 18 días laborables.",
+      "item_3": "Canarias, Ceuta y Melilla: entre 12 y 25 días laborables, con posible trámite aduanero.",
+      "item_4": "Resto de la Unión Europea: entre 10 y 20 días laborables.",
+      "item_5": "Resto del mundo: entre 15 y 30 días laborables, con posible trámite aduanero según el país de destino.",
+      "item_6": "Preparación del pedido: 1-2 días laborables antes de que salga el paquete."
+    },
+    "why": {
+      "title": "Por qué estos plazos",
+      "item_1": "Trabajamos con un proveedor internacional en lugar de mantener almacén propio en España.",
+      "item_2": "Eso alarga la entrega, pero es lo que nos permite vender a 39,90 € una faja que en tienda física costaría bastante más.",
+      "item_3": "Preferimos decírtelo claro antes de que compres, y no que te lleves la sorpresa después.",
+      "item_4": "Si necesitas la faja para una fecha concreta, pídela con al menos tres semanas de margen (más si tu país está fuera de la Unión Europea)."
+    },
+    "costs": {
+      "title": "Costes de envío",
+      "item_1": "Envío gratuito a cualquier país del mundo, sin mínimo de compra.",
+      "item_2": "Los plazos varían según el destino: consulta la sección anterior."
+    },
+    "tracking": {
+      "title": "Seguimiento del pedido",
+      "item_1": "Recibes un email de confirmación en el momento de realizar el pedido.",
+      "item_2": "Cuando el paquete sale, recibes otro email con el número de seguimiento y el enlace para ver dónde está.",
+      "item_3": "Si pasados 4 días laborables no has recibido el número de seguimiento, escríbenos.",
+      "item_4": "El seguimiento puede tardar 2-3 días en empezar a mostrar movimientos: es normal en envíos internacionales."
+    },
+    "issues": {
+      "title": "Incidencias con el envío",
+      "item_1": "Paquete dañado al recibir: no lo rechaces. Fotografíalo y escríbenos en las primeras 24 horas.",
+      "item_2": "Si superas el plazo máximo indicado sin recibir el pedido, escríbenos con tu número de pedido y lo reclamamos o te devolvemos el dinero.",
+      "item_3": "Dirección incorrecta: avísanos el mismo día del pedido. Una vez que sale del almacén ya no podemos modificarla.",
+      "item_4": "Aduanas: en envíos a Canarias, Ceuta, Melilla y a países fuera de la Unión Europea puede haber tasas aduaneras o de importación que corren a cargo del destinatario, según la normativa de cada país."
+    },
+    "contact": {
+      "label": "Contacto:",
+      "text": "Para cualquier consulta sobre tu envío, escribe a",
+      "text_end": " indicando tu número de pedido. Respondemos en menos de 24 horas en días hábiles."
+    }
+  },
+  "faq": {
+    "hero_eyebrow": "Preguntas frecuentes",
+    "hero_title": "Las dudas que tenía antes de comprar, respondidas con honestidad",
+    "rolls": { "q": "¿Se enrolla al caminar o al sentarse?", "a": "No. Esa es exactamente la razón por la que existe Nuvel. La faja lleva una banda de silicona en el borde interior superior que la ancla a la piel y la mantiene en su sitio aunque te sientes, agaches, subas escaleras o bailes en una boda. Hemos probado distintos patrones y alturas de banda durante meses hasta dar con la combinación que funciona en cuerpos reales, no en maniquíes." },
+    "size": { "q": "¿Cómo elijo bien mi talla?", "a": "Usamos una guía basada en el contorno de cintura y cadera, no en la talla habitual de ropa (que varía mucho según la marca). En la página de producto tienes la tabla completa con medidas en centímetros. Si dudas entre dos tallas, escoge la mayor: Nuvel comprime sin apretar, y así nunca se sube." },
+    "visible": { "q": "¿Se nota bajo vestidos y pantalones ajustados?", "a": "No. Los bordes son láser-cut, sin costura en relieve, sin escalón de tejido. Son tan finos que desaparecen bajo seda, crepé o cualquier tejido ajustado. Fue el primer requisito del patrón: que una mujer pueda ponerse un vestido ceñido sin tener que revisar que no se nota antes de salir." },
+    "bathroom": { "q": "¿Puedo ir al baño sin quitármela?", "a": "La faja lleva una abertura en la zona que necesita, diseñada para que puedas ir al baño sin tener que desvestirte y volver a ponértela. Aun así, nosotros siempre recomendamos estar pendientes de que quede bien colocada al volver." },
+    "washing": { "q": "¿Cuántas veces puedo lavarla?", "a": "Sin límite. El tejido está diseñado para mantener su estructura y compresión después de muchos lavados. Recomendamos lavado a mano o programa delicado a 30 grados, sin centrifugado, y secado al aire. Siguiendo esto, la faja mantiene su forma." },
+    "curvy": { "q": "¿Funciona si tengo gorditos?", "a": "Sí. Usamos compresión progresiva: por capas, de más suave a más firme, en vez de apretar todo por igual hasta crear el clásico efecto donut en la espalda y la cadera. El resultado es un acabado liso, no un 'churro' marcado en el límite del tejido." },
+    "heat": { "q": "¿Es muy calurosa? ¿Transpira?", "a": "La microfibra es transpirable y no acumula calor como las fajas de tejidos sintéticos baratos. Puedes llevarla en verano, incluso a 30 grados en una boda, sin acabar empapada. Eso sí: sigue siendo una prenda de compresión, no un vestido." },
+    "itchy": { "q": "¿Pica? ¿Puedo llevarla todo el día?", "a": "La microfibra que usamos está certificada y no tiene costuras en relieve ni tejidos rígidos que rocen la piel. Diseñada para ocho horas de uso continuo. La estructura mantiene su forma después de decenas de lavados." },
+    "return": { "q": "¿Qué pasa si no me convence? ¿Puedo devolverla?", "a": "Sí. Tienes 30 días desde la recepción del pedido para devolverla sin dar ninguna explicación. Nos escribes a hola@nuvelshape.store y te gestionamos la recogida a domicilio, sin coste para ti. Comprar ropa interior online implica confianza, y esa confianza tiene que ir en las dos direcciones." },
+    "more_questions": "¿No encuentras lo que buscas?"
+  },
+  "privacy": {
+    "hero_eyebrow": "Legal",
+    "hero_title": "Política de Privacidad",
+    "controller": {
+      "title": "Responsable del tratamiento",
+      "text": "Nuvel es una tienda online gestionada desde Venezuela que vende a clientes de cualquier país del mundo. Cuando el comprador reside en la Unión Europea, tratamos sus datos conforme al Reglamento General de Protección de Datos (RGPD, Reglamento UE 2016/679), aunque no estemos establecidos en la Unión. Para compradores de otros países, aplicamos como mínimo estos mismos estándares de protección de datos.",
+      "owner_label": "Titular:",
+      "address_label": "Domicilio:",
+      "contact_label": "Correo de contacto:",
+      "platform_label": "Plataforma:",
+      "platform_text": "la tienda funciona sobre Shopify, que actúa como encargado del tratamiento."
+    },
+    "s1": { "title": "1. Responsable del tratamiento", "text": "Nuvel (en adelante, «la empresa»). Contacto a efectos de privacidad: hola@nuvelshape.store." },
+    "s2": { "title": "2. Datos que recopilamos", "text": "Recopilamos los datos que nos facilitas al realizar un pedido (nombre, apellidos, dirección de entrega, dirección de correo electrónico y teléfono), así como datos de navegación anónimos para el funcionamiento de la tienda (cookies técnicas)." },
+    "s3": { "title": "3. Finalidad del tratamiento", "text": "Los datos se utilizan exclusivamente para: (a) procesar y gestionar tu pedido; (b) comunicaciones relacionadas con dicho pedido (confirmación, seguimiento, incidencias); (c) atender consultas y solicitudes de devolución o cambio." },
+    "s4": { "title": "4. Base jurídica", "text": "El tratamiento se basa en la ejecución del contrato de compraventa (RGPD, art. 6.1.b). En el caso de comunicaciones de marketing, la base es el consentimiento expreso (art. 6.1.a)." },
+    "s5": { "title": "5. Conservación de datos", "text": "Los datos de pedidos se conservan durante el periodo legalmente exigido (5 años en materia fiscal). Una vez cumplido este plazo, los datos son eliminados de forma segura." },
+    "s6": { "title": "6. Cesión a terceros", "text": "No vendemos ni cedemos tus datos a terceros con fines comerciales. Únicamente los compartimos con el proveedor logístico necesario para entregar tu pedido y con la plataforma de pagos para procesar la transacción, ambos sujetos a acuerdos de confidencialidad." },
+    "s7": { "title": "7. Tus derechos", "text": "Tienes derecho a acceder, rectificar, suprimir, limitar u oponerte al tratamiento de tus datos, así como a la portabilidad. Para ejercerlos, escribe a hola@nuvelshape.store identificándote como cliente y especificando el derecho que deseas ejercer. Responderemos en un plazo máximo de 30 días." },
+    "s8": { "title": "8. Cookies", "text": "Usamos únicamente cookies técnicas necesarias para el funcionamiento de la tienda (sesión de carrito, preferencias). No usamos cookies de seguimiento ni publicidad de terceros sin tu consentimiento." },
+    "s9": { "title": "9. Cambios en la política", "text": "Nos reservamos el derecho a actualizar esta política. Los cambios relevantes se comunicarán por correo electrónico o mediante un aviso visible en la tienda." }
+  },
+  "terms": {
+    "hero_eyebrow": "Legal",
+    "hero_title": "Términos y Condiciones",
+    "seller": {
+      "title": "Identidad del vendedor",
+      "text": "El titular de esta tienda y vendedor de los productos aquí ofrecidos es:",
+      "jurisdiction_note": "Vendemos a clientes de cualquier país del mundo desde fuera de la Unión Europea. Los productos se envían desde el almacén de nuestro proveedor internacional. Si compras desde España o desde otro país de la Unión Europea, mantienes los derechos que te reconoce la normativa europea de consumo, incluidos el derecho de desistimiento y la garantía legal de conformidad, en los términos que se detallan más abajo. Si compras desde fuera de la Unión Europea, aplicamos estas mismas condiciones como estándar mínimo, sin perjuicio de los derechos adicionales que pueda reconocerte la legislación de tu país."
+    },
+    "s1": { "title": "1. Objeto", "text": "Las presentes condiciones regulan la compraventa de productos a través de la tienda online de Nuvel. Al realizar un pedido, el cliente acepta estas condiciones." },
+    "s2": { "title": "2. Productos y precios", "text": "Los precios mostrados incluyen IVA. Nos reservamos el derecho a modificar precios en cualquier momento, pero el pedido se facturará al precio vigente en el momento de su confirmación. Los productos están sujetos a disponibilidad de stock." },
+    "s3": { "title": "3. Proceso de pedido", "text": "El contrato de compraventa se formaliza cuando el cliente recibe la confirmación de pedido por correo electrónico. Dicha confirmación incluye el detalle de los artículos, precio total y datos de envío." },
+    "s4": { "title": "4. Formas de pago", "text": "Aceptamos tarjeta de crédito/débito (Visa, Mastercard, American Express) y los métodos de pago disponibles en el checkout. Todas las transacciones se procesan a través de pasarelas de pago certificadas PCI-DSS. No almacenamos datos de tarjeta." },
+    "s5": { "title": "5. Envío y entrega", "text": "Consulta la Política de Envíos para información detallada sobre plazos y costes. El riesgo sobre el producto pasa al comprador en el momento de la entrega." },
+    "s6": { "title": "6. Devolución y desistimiento", "text": "El cliente tiene derecho a desistir del contrato en un plazo de 14 días naturales desde la recepción del pedido (derecho de desistimiento legal, Directiva 2011/83/UE). Nuvel amplía este plazo a 30 días de forma voluntaria. Consulta la Política de Devoluciones para el proceso." },
+    "s7": { "title": "7. Garantía", "text": "Los productos tienen la garantía legal de conformidad de 2 años, el mínimo que reconoce la normativa europea de consumo (Directiva UE 2019/771). Si el artículo llega defectuoso o deja de funcionar como debería dentro de ese plazo, escríbenos y lo reponemos o te devolvemos el dinero." },
+    "s8": { "title": "8. Propiedad intelectual", "text": "Todos los contenidos de esta tienda (textos, imágenes, marca, logotipos) son propiedad de Nuvel o de sus licenciantes. Queda prohibida su reproducción sin autorización expresa." },
+    "s9": { "title": "9. Ley aplicable y jurisdicción", "text": "Si compras desde España o desde otro país de la Unión Europea, estas condiciones se rigen por la legislación española, y para cualquier litigio las partes se someten a los juzgados y tribunales del domicilio del consumidor, según lo establecido en la normativa europea de protección al consumidor. Para compradores fuera de la Unión Europea, estas condiciones se rigen por la legislación venezolana, sin perjuicio de cualquier derecho imperativo que te reconozca la legislación de consumo de tu país de residencia." },
+    "s10": { "title": "10. Contacto", "text": "Para cualquier consulta relacionada con estas condiciones: hola@nuvelshape.store." }
+  },
+  "about": {
+    "hero_eyebrow": "Sobre nosotros",
+    "hero_title": "Fajas que se notan en el espejo, no en la ropa: por qué las hicimos",
+    "p1": "Nuvel nace de la frustración de siempre: la faja que se enrolla a media tarde, la que pica, la que se marca bajo el vestido justo el día que más la necesitas. Antes de vender ni una prenda, nosotras mismas probamos las de moda rápida y anotamos cada cosa que fallaba, para no repetirla.",
+    "p2": "Compramos varias, de las baratas y de las caras, y las llevamos puestas días enteros: al trabajo, a cenar, a una boda. Apuntamos a qué hora se enrollaba cada una, dónde se marcaba y cuánto aguantaba sin molestar. Con esa lista en la mano buscamos un fabricante que cumpliera punto por punto, y no lanzamos nada hasta que una prenda pasó la misma prueba de un día entero.",
+    "quote": "No buscábamos una faja milagrosa. Buscábamos una que hiciera lo que promete: que no se enrolle, que no se marque y que aguante un día entero puesto.",
+    "p3": "De ahí salen las decisiones de producto: bordes láser-cut para que no se marquen bajo la ropa, compresión progresiva en lugar de apretar todo por igual, banda interior para que no suba, y una tabla de tallas por centímetros para saber exactamente cuál pedir.",
+    "p4": "Hoy vendemos directamente, sin tienda de por medio, y respondemos cada WhatsApp nosotras mismas. Sin promesas mágicas: si una prenda no nos hubiera convencido a nosotras en persona, no la lanzamos.",
+    "closing_line": "La silueta que quieres. Sin que nadie lo sepa.",
+    "closing_cta": "Descubrir la faja"
+  },
+  "payment": {
+    "secure_label": "Pago 100% seguro",
+    "note": "Tarjetas procesadas de forma segura a través de PayPal"
+  },
+  "product_faja": {
+    "thumb_alt_1": "Faja moldeadora invisible bajo un vestido ajustado, sin marcarse",
+    "thumb_alt_2": "Detalle del borde y el tejido sin costuras de la faja Nuvel",
+    "thumb_alt_3": "Faja Moldeadora Invisible Nuvel vista de frente",
+    "thumb_alt_4": "Faja Moldeadora Invisible Nuvel vista por detrás",
+    "thumb_alt_5": "Guía de tallas de la Faja Moldeadora Invisible Nuvel",
+    "thumb_alt_6": "La faja Nuvel puesta con ropa deportiva",
+    "main_image_alt": "Faja Moldeadora Invisible Nuvel puesta, invisible bajo un vestido ajustado",
+    "pack_label": "Faja + Short",
+    "description": "Faja moldeadora de cintura alta, sin costuras, con refuerzo abdominal suave. Hecha para que el vestido caiga liso sin marcar ni un pliegue, y para que la lleves un sábado entero sin pensar en ella.",
+    "bullet_1": "Bordes láser-cut sin costuras: no se nota bajo la ropa",
+    "bullet_2": "Compresión suave, para llevarla todo el día",
+    "bullet_3": "Resiste lavados sin perder la forma",
+    "headline": "Llevas faja y nadie lo adivina",
+    "details_text": "La Faja Moldeadora Invisible Nuvel coge la cintura sin que se le note el borde encima. Bordes láser-cut sin costura, compresión suave y ese recorte de cintura alta que se olvida a la hora de sentarte. Es la prenda que se pone el día de la boda, el día de la gala y el día que simplemente toca ir a trabajar con un pantalón que no perdona. Disponible de la S a la XL con una tabla hecha para tu cuerpo (cintura y cadera en centímetros), no para la talla que pone en la etiqueta de otra marca.",
+    "video_image_alt": "Videoclip de la faja Nuvel",
+    "fears_title": "Para los miedos de siempre, respuestas concretas",
+    "fear_1_title": "Que se note",
+    "fear_1_text": "No se nota. El borde es plano y sin costura: ni escalón de tejido ni una línea marcándose bajo el vestido. Es el primer requisito del patrón, no un extra.",
+    "fear_2_title": "Que se enrolle",
+    "fear_2_text": "Si se te enrolla al sentarte, te devolvemos el dinero. Sin preguntas. La banda de silicona del borde interior la ancla a la piel para que se quede donde va.",
+    "fear_3_title": "Que no sea tu talla",
+    "fear_3_text": "Si no es tu talla, la devuelves gratis dentro de los 30 días de prueba. Y si estás entre dos, pide la mayor: comprime igual y no se sube.",
+    "testimonials_title": "Lo que dicen las clientas por WhatsApp",
+    "testimonials_text": "4,8 sobre 5 &middot; 123 clientas atendidas por WhatsApp. Pedimos permiso para publicar sus mensajes tal cual, sin retocar.",
+    "faq_title": "Las ocho preguntas de siempre",
+    "faq_1_q": "¿Se nota por debajo del vestido?",
+    "faq_1_a": "No. Los bordes son láser-cut, sin costura en relieve ni escalón de tejido: caen planos sobre la piel y no dejan línea bajo seda, crepé ni ningún tejido ajustado. Es la razón de que se llame invisible.",
+    "faq_2_q": "¿Se me va a enrollar al sentarme?",
+    "faq_2_a": "La banda de silicona del borde interior la mantiene anclada a la piel aunque te sientes, agaches la cabeza o bailes. Y si con todo se te enrollara, te devolvemos el dinero durante los 30 días de prueba: no tiene que funcionar solo en condiciones de laboratorio.",
+    "faq_3_q": "¿Se me van a marcar gorditos en la espalda o en los muslos?",
+    "faq_3_a": "El borde superior es plano y sin costura, así que no ahueca sobre la piel. La compresión se reparte y va subiendo de forma progresiva hasta el borde, que es lo que evita el famoso marcado del «pellejito».",
+    "faq_4_q": "Estoy entre dos tallas, ¿cuál pido?",
+    "faq_4_a": "La mayor. Nuvel tiene compresión sin apretar: la talla grande comprime igual y, sobre todo, no se sube. La tabla mide tu cintura y cadera en centímetros, no la talla de otra marca. Y si te equivocas, 30 días para devolverla sin preguntas.",
+    "faq_5_q": "¿Me la tengo que quitar entera para ir al baño?",
+    "faq_5_a": "Tiene una abertura práctica en la parte inferior para ir al baño sin tener que desmontar la prenda. Si tu modelo no la tuviera, te lo diríamos antes de que compres, no después.",
+    "faq_6_q": "¿Puedo comer con ella puesta?",
+    "faq_6_a": "Sí. La compresión es media, no es un corsé de compresión extrema: puedes respirar hondo y comer sin que te corte la digestión. Para eso está pensada, para un sábado entero, no para dos horas de sufrimiento.",
+    "faq_7_q": "¿Da calor en verano?",
+    "faq_7_a": "El tejido es fino y transpirable, no es látex ni neopreno. No calienta como las fajas de gimnasio: comprime sin hacerte sudar por debajo de un vestido de verano.",
+    "faq_8_q": "¿Cuánto tarda en llegar?",
+    "faq_8_a": "Entre 7 y 15 días laborables a España peninsular, con seguimiento por email. Baleares, Canarias, Ceuta y Melilla: entre 12 y 25 días. Lo decimos claro para que no haya sorpresas la semana de la boda."
+  },
+  "product_corse": {
+    "thumb_alt_1": "Corsé Moldeador Nuvel en negro, vista de frente",
+    "thumb_alt_2": "Corsé Moldeador Nuvel en negro, vista por detrás",
+    "thumb_alt_3": "Guía de tallas del Corsé Moldeador Nuvel, de la XS a la 2XL",
+    "thumb_alt_4": "El corsé Nuvel negro puesto, vista de frente",
+    "thumb_alt_5": "El corsé Nuvel negro puesto, vista por detrás",
+    "thumb_alt_6": "El corsé Nuvel beige puesto, vista de frente",
+    "thumb_alt_7": "El corsé Nuvel beige puesto, vista por detrás",
+    "thumb_alt_8": "El corsé Nuvel rosa puesto, vista de frente",
+    "thumb_alt_9": "El corsé Nuvel rosa puesto, vista por detrás",
+    "main_image_alt": "Corsé Moldeador de Cintura Nuvel, entrenador de cintura con varillas",
+    "size_tip": "¿Estás entre dos tallas? Pide la mayor: el corsé se ajusta por los corchetes y no se te sube.",
+    "pack_label": "Corsé + Faja",
+    "description": "Corsé de cintura con varillas verticales, cremallera frontal y una columna de corchetes detrás. Se cierra al nivel que tú decidas y aguanta ahí: marca la curva de la cintura y sostiene la espalda mientras lo llevas puesto.",
+    "bullet_1": "Doble cierre: cremallera para entrar, corchetes para ajustar",
+    "bullet_2": "Varillas verticales: no se dobla ni se enrolla al sentarte",
+    "bullet_3": "Tirantes regulables, así que la altura la eliges tú",
+    "bullet_4": "Se lleva encima del sujetador, debajo de la ropa",
+    "headline": "TÚ DECIDES CUÁNTO APRIETA",
+    "details_text": "El Corsé Moldeador de Cintura Nuvel combina varillas verticales, cremallera frontal y una columna de corchetes ajustables en la espalda, así que el nivel de compresión lo controlas tú, no la prenda. Ideal para marcar la curva de la cintura bajo un blazer, un vestido, o incluso como top con un pantalón de tiro alto. Espalda de una sola pieza sin cierres que se claven, tirantes anchos regulables y disponible en negro, beige y rosa, de la XS a la 2XL.",
+    "video_image_alt": "Videoclip del corsé Nuvel",
+    "feature_1_eyebrow": "Cómo se ajusta",
+    "feature_1_image_alt": "El corsé Nuvel negro puesto, cintura marcada",
+    "feature_1_title": "Tú decides cuánto aprieta",
+    "feature_1_text": "La cremallera es para entrar y salir sin pelearte con la prenda. Los corchetes de detrás son los que mandan: tienen tres posiciones, así que empiezas por la más suelta y vas cerrando conforme te acostumbras. No hay que sufrir para que se note.",
+    "feature_2_eyebrow": "Por detrás",
+    "feature_2_image_alt": "El corsé Nuvel visto por detrás, espalda lisa",
+    "feature_2_title": "Espalda lisa, sin cortes",
+    "feature_2_text": "La espalda es una sola pieza con una costura central, sin cierres ni ganchos que se claven o se marquen. Los tirantes son anchos y planos, así que no se hunden en el hombro aunque lo lleves todo el día.",
+    "feature_3_eyebrow": "Tres colores",
+    "feature_3_image_alt": "Corsé Moldeador Nuvel en rosa",
+    "feature_3_title": "Negro, beige y rosa",
+    "feature_3_text": "El negro va con todo y es el que más se pide. El beige desaparece bajo blanco, lino y cualquier tejido claro. Y el rosa es el que se enseña: con un pantalón de tiro alto se lleva como top, no como prenda interior.",
+    "pairs_text": "El corsé trabaja la cintura y sostiene el torso. La faja cubre abdomen y cadera sin que se note nada bajo la ropa. Cada una hace lo suyo, y juntas es cuando se ve el resultado completo."
+  },
+  "product_short": {
+    "thumb_alt_1": "Short Moldeador Nuvel en negro, vista de frente",
+    "thumb_alt_2": "Short Moldeador Nuvel en negro, vista por detrás",
+    "thumb_alt_3": "Guía de tallas del Short Moldeador Nuvel, de la S a la 2XL",
+    "thumb_alt_4": "El short Nuvel negro puesto, ajustado en cadera y muslo",
+    "thumb_alt_5": "Short Moldeador Nuvel en beige, vista de frente",
+    "thumb_alt_6": "Short Moldeador Nuvel en beige, vista por detrás",
+    "thumb_alt_7": "El short Nuvel beige puesto, sin marcarse ni enrollarse",
+    "main_image_alt": "Short Moldeador Nuvel sin costuras, anti roce entre piernas",
+    "pack_label": "Short + Faja",
+    "description": "Short de compresión sin costuras, de cintura alta y largo hasta medio muslo. Evita el roce entre piernas bajo vestidos y faldas, y afina la silueta en cadera y muslo sin que se marque el borde.",
+    "bullet_1": "Se acabó el roce entre piernas en verano",
+    "bullet_2": "No se sube ni se enrolla al caminar o sentarte",
+    "bullet_3": "Borde plano: no marca la línea bajo la ropa",
+    "bullet_4": "Combínalo con la Faja Invisible para cobertura completa",
+    "headline": "EL SHORT QUE ACABA CON EL ROCE ENTRE PIERNAS",
+    "details_text": "El Short Moldeador Sin Costuras Nuvel resuelve dos cosas a la vez: afina la silueta en cadera y muslo, y elimina el roce entre piernas que aparece con vestidos, faldas y el calor del verano. Cintura alta sin marcar, borde plano que no se enrolla al caminar ni al sentarte, y compresión media pensada para llevarlo bajo cualquier prenda sin que se note el límite de la tela. Combínalo con la Faja Moldeadora Invisible para cobertura completa de abdomen a muslo. Tallas de la S a la 2XL en negro y beige.",
+    "video_image_alt": "Videoclip del short Nuvel",
+    "feature_eyebrow": "Los dos colores",
+    "feature_image_alt": "El short Nuvel negro puesto, ajustado sin marcar",
+    "feature_title": "Negro para el día a día, beige para la ropa clara",
+    "feature_text": "El negro es el que usarás casi siempre. El beige es el que salva un vestido blanco o de lino claro, donde cualquier prenda oscura debajo se transparenta. Si dudas, llévate los dos: el conjunto tiene mejor precio que pedirlos sueltos.",
+    "pairs_text": "La faja te cubre abdomen y cintura. El short cubre cadera y muslo. Juntas hacen el trabajo completo, y las clientas que compran una acaban pidiendo la otra."
+  },
+  "placeholders": {
+    "article": "Artículo",
+    "blog": "Blog - Nuvel Shapewear",
+    "cart": "Tu Carrito de Compras",
+    "collection": "Colecciones de Fajas Moldeadoras",
+    "account": "Mi Cuenta",
+    "activate_account": "Activar Cuenta",
+    "addresses": "Mis Direcciones",
+    "login": "Iniciar Sesión",
+    "order": "Mi Pedido",
+    "register": "Crear Cuenta",
+    "reset_password": "Restablecer Contraseña",
+    "gift_card": "Tarjeta de Regalo",
+    "list_collections": "Catálogo de Colecciones",
+    "password": "Tienda en Mantenimiento",
+    "search": "Resultados de Búsqueda"
+  },
+  "product_vestido": {
+    "thumb_alt_1": "Vestido Moldeador 2 en 1 Nuvel en negro, vista de frente",
+    "thumb_alt_2": "Vestido Moldeador 2 en 1 Nuvel en negro, vista por detrás",
+    "thumb_alt_3": "Guía de tallas del Vestido Moldeador Nuvel, de la S a la 3XL",
+    "thumb_alt_4": "El vestido Nuvel negro puesto, ajustado y liso",
+    "thumb_alt_5": "Vestido Moldeador 2 en 1 Nuvel en gris, vista de frente",
+    "thumb_alt_6": "Vestido Moldeador 2 en 1 Nuvel en gris, vista por detrás",
+    "thumb_alt_7": "El vestido Nuvel gris puesto, ajustado y liso",
+    "main_image_alt": "Vestido Moldeador 2 en 1 Nuvel, vestido con faja incorporada",
+    "pack_label": "Vestido + Short",
+    "description": "Un vestido y una faja en la misma prenda. La capa moldeadora va cosida por dentro, así que te pones una sola cosa y sales, sin pelearte con la faja, sin que se te enrolle y sin el borde marcándose bajo la tela.",
+    "bullet_1": "Faja incorporada: te ahorras ponerte dos prendas",
+    "bullet_2": "Ni bordes ni costuras marcándose bajo la tela",
+    "bullet_3": "Compresión suave en abdomen, cintura y cadera",
+    "bullet_4": "Tirantes finos y largo midi, de diario o para salir",
+    "feature_1_eyebrow": "Por qué 2 en 1",
+    "feature_1_image_alt": "El vestido moldeador Nuvel visto por detrás, liso y sin marcar",
+    "feature_1_title": "Dejas de necesitar dos prendas",
+    "feature_1_text": "Lo normal es faja más vestido: dos compras, dos capas, y el borde de la faja marcándose justo donde no quieres. Aquí la capa moldeadora va cosida dentro del vestido. Una sola prenda, cero bordes, y una compra en lugar de dos.",
+    "feature_2_eyebrow": "Los dos colores",
+    "feature_2_image_alt": "El vestido moldeador Nuvel en gris, visto por detrás",
+    "feature_2_title": "Negro para la noche, gris para el día",
+    "feature_2_text": "El negro es el de siempre: cena, boda, lo que sea. El gris es el que puedes llevar un martes con zapatillas y una chaqueta encima sin parecer que vas de fiesta. Mismo corte, misma compresión, distinta ocasión.",
+    "headline": "EL VESTIDO Y LA FAJA, EN UNA SOLA PRENDA",
+    "details_text": "El Vestido Moldeador 2 en 1 de Nuvel lleva la capa de compresión cosida por dentro, así que te ahorras la faja aparte y el borde que se marca bajo la tela. Compresión suave en abdomen, cintura y cadera, tirantes finos y largo midi que sirve tanto para el día a día como para una cena o un evento. Una sola prenda, cero capas de más. Disponible en negro y gris, de la S a la 3XL.",
+    "video_image_alt": "Videoclip del vestido Nuvel"
+  }
+}

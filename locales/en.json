@@ -1,0 +1,507 @@
+{
+  "general": {
+    "meta": { "title_home": "Nuvel · The shaper that shows in the mirror, not through your clothes" },
+    "close": "Close",
+    "badge_bestseller": "Bestseller",
+    "badge_new": "New",
+    "reviews": "reviews",
+    "buy_now": "Buy now",
+    "add_short": "Add",
+    "size_label": "Size",
+    "color_label": "Color",
+    "color_black": "Black",
+    "color_beige": "Beige",
+    "color_pink": "Pink",
+    "color_grey": "Grey",
+    "size_guide": "Size guide",
+    "size_table_title": "Your size, in centimeters",
+    "size_table_col_size": "Size",
+    "size_table_col_waist": "Waist (cm)",
+    "size_table_col_hip": "Hip (cm)",
+    "size_tip": "Between two sizes? Order the larger one: it compresses the same and won't ride up.",
+    "product_details_title": "Product details",
+    "video_soon_title": "In motion (video coming soon)",
+    "video_placeholder_text": "Space reserved for the customer video",
+    "pairs_with_title": "Pairs with your shaper",
+    "view_faja_cta": "View the shaper",
+    "suggestions_title": "Looking to shape another area?",
+    "suggestions_subtitle": "The rest of the Nuvel family, and what each one does.",
+    "last_updated": "Last updated: September 2026",
+    "write_to_email": "Email hola@nuvelshape.store"
+  },
+  "qty": {
+    "one_unit": "1 unit",
+    "two_units": "2 units",
+    "save_rotate": "The second one, to rotate",
+    "save_most_requested": "Most requested"
+  },
+  "trust": {
+    "compact": {
+      "shipping": "Free worldwide shipping",
+      "trial": "30-day trial",
+      "secure_payment": "Secure payment"
+    }
+  },
+  "banner": {
+    "free_shipping": "Free shipping worldwide &nbsp;·&nbsp; Delivery in 7-15 business days"
+  },
+  "nav": {
+    "open_menu": "Open menu",
+    "search": "Search",
+    "home": "Home",
+    "featured_product": "Featured Product",
+    "catalog": "Catalog",
+    "about": "About us",
+    "faq": "FAQ",
+    "account": "My account",
+    "open_cart": "Open cart"
+  },
+  "gallery": {
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "zoom": "Zoom in on photo"
+  },
+  "footer": {
+    "brand_tagline": "Invisible shapers so your dress falls perfectly, and you sit and move like normal: no one will know you have them on.",
+    "guarantee": "30-day trial &nbsp;·&nbsp; Free worldwide shipping in 7-15 days",
+    "col_policies": "Policies",
+    "col_shipping": "Shipping",
+    "col_returns": "Returns",
+    "col_privacy": "Privacy",
+    "col_terms": "Terms",
+    "col_follow_us": "Follow us",
+    "col_contact": "Contact",
+    "copyright": "&copy; 2026 Nuvel. All rights reserved."
+  },
+  "cart": {
+    "heading": "Your cart",
+    "close": "Close cart",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
+  },
+  "search": {
+    "placeholder": "Search by product, size, shipping, returns...",
+    "close": "Close search"
+  },
+  "account": {
+    "heading": "My account",
+    "no_accounts_yet": "We don't have active customer accounts in the store yet: we're working on it.",
+    "help": "In the meantime, if you need help with an order, a size or a return, write to us directly and we'll answer you ourselves:",
+    "write_to_us": "Email hola@nuvelshape.store",
+    "view_faq": "View FAQ"
+  },
+  "zoom": {
+    "label": "Enlarged photo"
+  },
+  "welcome": {
+    "kicker": "Welcome to Nuvel",
+    "title": "Get 10% off your first order",
+    "text": "Use code <strong>NUVEL10</strong> at checkout and get 10% off your first order.",
+    "copy": "copy",
+    "copied": "Copied!",
+    "hint": "Enter it in the 'Discount code' field at checkout, before you pay.",
+    "cta": "Got it"
+  },
+  "home": {
+    "hero": {
+      "image_alt": "Woman wearing a Nuvel shaping girdle",
+      "eyebrow": "Invisible Shaping Girdle",
+      "title": "Invisible Shaping Girdles: the shaper that shows in the mirror,<br>not through your clothes.",
+      "subtitle": "Because the perfect shaper is the one nobody knows you're wearing: it slips under any dress, never rolls up, and its edge never shows.",
+      "cta": "Discover the Invisible Shaping Girdle"
+    },
+    "real_life": {
+      "eyebrow": "How it looks on",
+      "title": "The product in real life",
+      "subtitle": "The garment on its own, and how it looks worn under everyday clothes, without showing.",
+      "tag_product": "The product",
+      "tag_worn": "Worn, invisible",
+      "worn_image_alt": "Nuvel shaper worn, invisible under clothing"
+    },
+    "anchor": {
+      "eyebrow": "Anchor product",
+      "bullet_1": "Seamless: invisible under any garment",
+      "bullet_2": "Soft, all-day comfortable compression",
+      "bullet_3": "Holds its shape wash after wash",
+      "bullet_4": "Size chart included",
+      "pack_label": "Shaper + Shorts"
+    },
+    "why": {
+      "title": "Why Nuvel",
+      "card_1_title": "Seamless, invisible",
+      "card_1_text": "It doesn't show under clothes, and no one can tell you're wearing it.",
+      "card_2_title": "Won't roll up or itch",
+      "card_2_text": "Soft compression that lasts all day without bothering you.",
+      "card_3_title": "Wash after wash",
+      "card_3_text": "It won't lose its shape or compression after the first wash.",
+      "card_4_title": "Clear size chart",
+      "card_4_text": "A simple guide to pick your size without fear of getting it wrong."
+    },
+    "testimonials": {
+      "title": "Real customers, real messages",
+      "text_1": "Every week we post screenshots from our customers' WhatsApp messages: sizing questions, what size they ordered, and the photo of the garment worn. No posing, exactly as they arrive.",
+      "text_2": "We're asking our customers for permission to publish their messages here as they are. As soon as we have it, you'll see them unedited."
+    },
+    "trust": {
+      "title": "Shop with peace of mind",
+      "item_1_title": "Free shipping worldwide",
+      "item_1_text": "Delivery in 7-15 business days, with email tracking.",
+      "item_2_title": "30-day trial",
+      "item_2_text": "If you're not convinced, write to us within the first 30 days and return it hassle-free.",
+      "item_3_title": "100% secure payment",
+      "item_3_text": "Your data protected on every purchase."
+    }
+  },
+  "tile": {
+    "faja": {
+      "title": "Invisible Shaping Girdle",
+      "why": "The invisible one: so your dress falls smooth without showing a line.",
+      "image_alt": "Invisible Shaping Girdle",
+      "worn_image_alt": "Invisible Shaping Girdle worn"
+    },
+    "short": {
+      "title": "Seamless Shaping Shorts",
+      "why": "For thigh chafing, under dresses and skirts.",
+      "image_alt": "Nuvel Seamless Shaping Shorts",
+      "worn_image_alt": "Nuvel Shaping Shorts worn"
+    },
+    "corse": {
+      "title": "Waist Shaping Corset",
+      "why": "For a defined waist under a dress or blazer.",
+      "image_alt": "Nuvel Waist Shaping Corset",
+      "worn_image_alt": "Waist Shaping Corset worn"
+    },
+    "vestido": {
+      "title": "2-in-1 Shaping Dress",
+      "why": "Shaper and dress in one garment: put it on and go.",
+      "image_alt": "Nuvel 2-in-1 Shaping Dress",
+      "worn_image_alt": "2-in-1 Shaping Dress worn"
+    }
+  },
+  "catalog": {
+    "crumb_current": "Shaping girdles",
+    "title": "Shaping girdles",
+    "intro": "Nuvel is a shapewear family built around one goal: so no one can tell you're wearing it. We started with the high-waist girdle, our anchor product, and we're expanding the same family with more shaping garments (legs, waist and full body) designed to complete the same routine, with the same soft compression and the same seamless finish.",
+    "category_high_waist": "High waist",
+    "category_postpartum": "Postpartum",
+    "category_seamless": "Seamless",
+    "category_full_body": "Full body",
+    "filter_size": "Size",
+    "filter_price": "Price",
+    "filter_price_under_50": "Under €50",
+    "filter_price_50_100": "€50–100",
+    "filter_zone": "Body area",
+    "filter_zone_abdomen": "Abdomen and waist",
+    "filter_zone_legs": "Legs",
+    "filter_zone_torso_soon": "Torso and waist (coming soon)",
+    "filter_compression": "Compression",
+    "filter_compression_medium": "Medium",
+    "filter_compression_high_soon": "High (coming soon)",
+    "filter_clear": "Clear filters",
+    "sort_by": "Sort by",
+    "sort_relevance": "Relevance",
+    "sort_price_asc": "Price: low to high",
+    "sort_price_desc": "Price: high to low",
+    "no_results": "No product available right now matches those filters. Check back soon, we're still expanding the catalog."
+  },
+  "returns": {
+    "hero_eyebrow": "Risk-free returns",
+    "hero_title": "Returns Policy",
+    "callout_1": "30 days. Free returns. No questions asked.",
+    "callout_2": "Nuvel isn't for you if it doesn't do exactly what it promises. Period.",
+    "deadline": {
+      "title": "Return window",
+      "item_1": "You have 30 calendar days from the date you receive your order to start a return.",
+      "item_2": "After that period, we can't accept returns unless the product is defective."
+    },
+    "condition": {
+      "title": "Product condition",
+      "item_1": "The item must be unused, with the original tags attached and in its original packaging.",
+      "item_2": "For hygiene reasons, we don't accept returns of used or washed items: please try it on over underwear."
+    },
+    "how_to": {
+      "title": "How to start a return",
+      "step_1": "Step 1: Email hola@nuvelshape.store with your order number and reason for the return (optional).",
+      "step_2": "Step 2: We'll send you a prepaid return label within 24 hours (business days).",
+      "step_3": "Step 3: Drop the package off at any carrier collection point.",
+      "step_4": "Step 4: As soon as we receive the item, we process the refund within 3-5 business days."
+    },
+    "size_change": {
+      "title": "Size exchanges",
+      "item_1": "If you ordered the wrong size, the process is identical to a return: email hola@nuvelshape.store.",
+      "item_2": "The exchange is free on your first order: we want you to get the size right.",
+      "item_3": "We arrange shipping of the new item as soon as we receive the original."
+    },
+    "defective": {
+      "title": "Defective products",
+      "item_1": "If you receive a damaged or defective item, write to us within the first 48 hours with photos.",
+      "item_2": "We'll replace it at no cost, and in most cases you won't need to return the damaged item."
+    },
+    "refunds": {
+      "title": "Refunds",
+      "item_1": "The refund is issued to the same payment method used for the order.",
+      "item_2": "Timeframe: 3-5 business days from when we receive the item.",
+      "item_3": "There may be an additional 2-3 day delay depending on your bank or financial institution."
+    }
+  },
+  "shipping": {
+    "hero_eyebrow": "Shipping and timelines",
+    "hero_title": "Shipping Policy",
+    "deadlines": {
+      "title": "Delivery times",
+      "item_1": "Mainland Spain: 7 to 15 business days from order confirmation.",
+      "item_2": "Balearic Islands: 10 to 18 business days.",
+      "item_3": "Canary Islands, Ceuta and Melilla: 12 to 25 business days, possibly subject to customs clearance.",
+      "item_4": "Rest of the European Union: 10 to 20 business days.",
+      "item_5": "Rest of the world: 15 to 30 business days, possibly subject to customs clearance depending on the destination country.",
+      "item_6": "Order preparation: 1-2 business days before the package ships."
+    },
+    "why": {
+      "title": "Why these timelines",
+      "item_1": "We work with an international supplier instead of keeping our own warehouse in Spain.",
+      "item_2": "That makes delivery longer, but it's what lets us sell for €39.90 a shaper that would cost quite a bit more in a physical store.",
+      "item_3": "We'd rather tell you clearly before you buy than have you be surprised afterward.",
+      "item_4": "If you need the shaper for a specific date, order it at least three weeks ahead (more if your country is outside the European Union)."
+    },
+    "costs": {
+      "title": "Shipping costs",
+      "item_1": "Free shipping to any country in the world, with no minimum purchase.",
+      "item_2": "Delivery times vary by destination: see the section above."
+    },
+    "tracking": {
+      "title": "Order tracking",
+      "item_1": "You'll receive a confirmation email as soon as you place your order.",
+      "item_2": "When the package ships, you'll get another email with the tracking number and a link to see where it is.",
+      "item_3": "If 4 business days pass and you haven't received a tracking number, write to us.",
+      "item_4": "Tracking can take 2-3 days to show movement: that's normal for international shipments."
+    },
+    "issues": {
+      "title": "Shipping issues",
+      "item_1": "Package damaged on arrival: don't refuse it. Photograph it and write to us within the first 24 hours.",
+      "item_2": "If you pass the maximum stated timeframe without receiving your order, write to us with your order number and we'll trace it or refund you.",
+      "item_3": "Wrong address: let us know the same day you order. Once it leaves the warehouse we can no longer change it.",
+      "item_4": "Customs: shipments to the Canary Islands, Ceuta, Melilla and countries outside the European Union may be subject to customs or import fees payable by the recipient, according to each country's regulations."
+    },
+    "contact": {
+      "label": "Contact:",
+      "text": "For any question about your shipment, email",
+      "text_end": " including your order number. We reply within 24 hours on business days."
+    }
+  },
+  "faq": {
+    "hero_eyebrow": "Frequently asked questions",
+    "hero_title": "The questions I had before buying, answered honestly",
+    "rolls": { "q": "Does it roll up when walking or sitting?", "a": "No. That's exactly why Nuvel exists. The girdle has a silicone band on the inner top edge that anchors it to your skin and keeps it in place even when you sit, bend, climb stairs or dance at a wedding. We tested different patterns and band heights for months until we found the combination that works on real bodies, not mannequins." },
+    "size": { "q": "How do I choose the right size?", "a": "We use a guide based on your waist and hip measurements, not your usual clothing size (which varies a lot by brand). On the product page you'll find the full chart in centimeters. If you're between two sizes, choose the larger one: Nuvel compresses without squeezing, so it never rides up." },
+    "visible": { "q": "Does it show under dresses and tight pants?", "a": "No. The edges are laser-cut, with no raised seam and no fabric step. They're so thin they disappear under silk, crepe or any fitted fabric. It was the first requirement of the pattern: that a woman could put on a fitted dress without having to check it doesn't show before heading out." },
+    "bathroom": { "q": "Can I use the bathroom without taking it off?", "a": "The girdle has an opening where it's needed, designed so you can use the bathroom without undressing and putting it back on. That said, we always recommend checking it's sitting right when you're done." },
+    "washing": { "q": "How many times can I wash it?", "a": "No limit. The fabric is designed to keep its structure and compression after many washes. We recommend hand washing or a delicate cycle at 30°C, no spin, and air drying. Following this, the girdle keeps its shape." },
+    "curvy": { "q": "Does it work if I have love handles?", "a": "Yes. We use progressive compression: layered, from softer to firmer, instead of squeezing everything equally and creating the classic bulge at the back and hips. The result is a smooth finish, not a roll marked at the fabric's edge." },
+    "heat": { "q": "Is it too warm? Does it breathe?", "a": "The microfiber breathes and doesn't trap heat like girdles made from cheap synthetic fabrics. You can wear it in summer, even at 30°C at a wedding, without ending up drenched. That said, it's still a compression garment, not a dress." },
+    "itchy": { "q": "Does it itch? Can I wear it all day?", "a": "The microfiber we use is certified and has no raised seams or stiff fabrics that chafe the skin. Designed for eight hours of continuous wear. The structure keeps its shape after dozens of washes." },
+    "return": { "q": "What if I'm not convinced? Can I return it?", "a": "Yes. You have 30 days from receiving your order to return it, no explanation needed. Email us at hola@nuvelshape.store and we'll arrange a home pickup, at no cost to you. Buying underwear online requires trust, and that trust has to go both ways." },
+    "more_questions": "Can't find what you're looking for?"
+  },
+  "privacy": {
+    "hero_eyebrow": "Legal",
+    "hero_title": "Privacy Policy",
+    "controller": {
+      "title": "Data controller",
+      "text": "Nuvel is an online store run from Venezuela that sells to customers in any country in the world. When the buyer resides in the European Union, we process their data in accordance with the General Data Protection Regulation (GDPR, EU Regulation 2016/679), even though we are not established in the Union. For buyers from other countries, we apply these same data protection standards as a minimum.",
+      "owner_label": "Owner:",
+      "address_label": "Address:",
+      "contact_label": "Contact email:",
+      "platform_label": "Platform:",
+      "platform_text": "the store runs on Shopify, which acts as the data processor."
+    },
+    "s1": { "title": "1. Data controller", "text": "Nuvel (hereinafter, \"the company\"). Contact for privacy matters: hola@nuvelshape.store." },
+    "s2": { "title": "2. Data we collect", "text": "We collect the data you provide when placing an order (first and last name, delivery address, email address and phone number), as well as anonymous browsing data needed for the store to function (technical cookies)." },
+    "s3": { "title": "3. Purpose of processing", "text": "The data is used exclusively to: (a) process and manage your order; (b) communications related to that order (confirmation, tracking, issues); (c) handle inquiries and return or exchange requests." },
+    "s4": { "title": "4. Legal basis", "text": "Processing is based on the performance of the sales contract (GDPR, art. 6.1.b). For marketing communications, the basis is explicit consent (art. 6.1.a)." },
+    "s5": { "title": "5. Data retention", "text": "Order data is kept for the legally required period (5 years for tax purposes). Once that period ends, the data is securely deleted." },
+    "s6": { "title": "6. Sharing with third parties", "text": "We don't sell or share your data with third parties for commercial purposes. We only share it with the logistics provider needed to deliver your order and with the payment platform to process the transaction, both bound by confidentiality agreements." },
+    "s7": { "title": "7. Your rights", "text": "You have the right to access, rectify, erase, restrict or object to the processing of your data, as well as to data portability. To exercise these rights, email hola@nuvelshape.store identifying yourself as a customer and specifying the right you wish to exercise. We will respond within a maximum of 30 days." },
+    "s8": { "title": "8. Cookies", "text": "We only use technical cookies necessary for the store to function (cart session, preferences). We don't use third-party tracking or advertising cookies without your consent." },
+    "s9": { "title": "9. Changes to this policy", "text": "We reserve the right to update this policy. Significant changes will be communicated by email or through a visible notice in the store." }
+  },
+  "terms": {
+    "hero_eyebrow": "Legal",
+    "hero_title": "Terms and Conditions",
+    "seller": {
+      "title": "Seller identity",
+      "text": "The owner of this store and seller of the products offered here is:",
+      "jurisdiction_note": "We sell to customers in any country in the world from outside the European Union. Products ship from our international supplier's warehouse. If you buy from Spain or another European Union country, you keep the rights granted to you under European consumer law, including the right of withdrawal and the legal guarantee of conformity, under the terms detailed below. If you buy from outside the European Union, we apply these same terms as a minimum standard, without prejudice to any additional rights granted to you under your country's laws."
+    },
+    "s1": { "title": "1. Purpose", "text": "These terms govern the purchase of products through the Nuvel online store. By placing an order, the customer accepts these terms." },
+    "s2": { "title": "2. Products and prices", "text": "Prices shown include VAT. We reserve the right to change prices at any time, but your order will be invoiced at the price in effect when it was confirmed. Products are subject to stock availability." },
+    "s3": { "title": "3. Order process", "text": "The sales contract is formed when the customer receives the order confirmation by email. That confirmation includes the item details, total price and shipping information." },
+    "s4": { "title": "4. Payment methods", "text": "We accept credit/debit cards (Visa, Mastercard, American Express) and the payment methods available at checkout. All transactions are processed through PCI-DSS certified payment gateways. We don't store card data." },
+    "s5": { "title": "5. Shipping and delivery", "text": "See the Shipping Policy for detailed information on timelines and costs. Risk in the product passes to the buyer upon delivery." },
+    "s6": { "title": "6. Returns and withdrawal", "text": "The customer has the right to withdraw from the contract within 14 calendar days of receiving the order (statutory right of withdrawal, Directive 2011/83/EU). Nuvel voluntarily extends this period to 30 days. See the Returns Policy for the process." },
+    "s7": { "title": "7. Warranty", "text": "Products carry the 2-year legal guarantee of conformity, the minimum required under European consumer law (EU Directive 2019/771). If the item arrives defective or stops working as it should within that period, write to us and we'll replace it or refund you." },
+    "s8": { "title": "8. Intellectual property", "text": "All content on this store (text, images, brand, logos) is the property of Nuvel or its licensors. Reproduction without express authorization is prohibited." },
+    "s9": { "title": "9. Governing law and jurisdiction", "text": "If you buy from Spain or another European Union country, these terms are governed by Spanish law, and for any dispute the parties submit to the courts of the consumer's domicile, as established under European consumer protection law. For buyers outside the European Union, these terms are governed by Venezuelan law, without prejudice to any mandatory rights granted to you under the consumer law of your country of residence." },
+    "s10": { "title": "10. Contact", "text": "For any question related to these terms: hola@nuvelshape.store." }
+  },
+  "about": {
+    "hero_eyebrow": "About us",
+    "hero_title": "Shapers that show in the mirror, not through your clothes: why we made them",
+    "p1": "Nuvel was born out of the same old frustration: the shaper that rolls up by mid-afternoon, the one that itches, the one that shows under your dress on exactly the day you need it most. Before selling a single garment, we tried the fast-fashion ones ourselves and wrote down everything that failed, so we wouldn't repeat it.",
+    "p2": "We bought several, the cheap ones and the expensive ones, and wore them for entire days: to work, to dinner, to a wedding. We noted what time each one rolled up, where it showed, and how long it lasted before bothering us. With that list in hand, we looked for a manufacturer that could meet every point, and we didn't launch anything until a garment passed that same full-day test.",
+    "quote": "We weren't looking for a miracle shaper. We were looking for one that did what it promised: doesn't roll up, doesn't show, and lasts a full day worn.",
+    "p3": "That's where our product decisions come from: laser-cut edges so they don't show under clothes, progressive compression instead of squeezing everything equally, an inner band so it doesn't ride up, and a size chart in centimeters so you know exactly which one to order.",
+    "p4": "Today we sell directly, with no store in between, and we answer every WhatsApp message ourselves. No magic promises: if a garment hadn't convinced us in person, we wouldn't launch it.",
+    "closing_line": "The silhouette you want. Without anyone knowing.",
+    "closing_cta": "Discover the shaper"
+  },
+  "payment": {
+    "secure_label": "100% secure payment",
+    "note": "Cards processed securely through PayPal"
+  },
+  "product_faja": {
+    "thumb_alt_1": "Invisible shaping girdle under a fitted dress, without showing",
+    "thumb_alt_2": "Detail of the edge and seamless fabric of the Nuvel girdle",
+    "thumb_alt_3": "Nuvel Invisible Shaping Girdle, front view",
+    "thumb_alt_4": "Nuvel Invisible Shaping Girdle, back view",
+    "thumb_alt_5": "Size guide for the Nuvel Invisible Shaping Girdle",
+    "thumb_alt_6": "The Nuvel girdle worn with activewear",
+    "main_image_alt": "Nuvel Invisible Shaping Girdle worn, invisible under a fitted dress",
+    "pack_label": "Girdle + Shorts",
+    "description": "High-waist, seamless shaping girdle with soft abdominal reinforcement. Made so your dress falls smooth without a single wrinkle showing, and so you can wear it all Saturday without thinking about it.",
+    "bullet_1": "Seamless laser-cut edges: doesn't show under clothes",
+    "bullet_2": "Soft compression, made to wear all day",
+    "bullet_3": "Holds its shape wash after wash",
+    "headline": "You're wearing a shaper and nobody can tell",
+    "details_text": "The Nuvel Invisible Shaping Girdle shapes your waist without its edge ever showing. Seamless laser-cut edges, soft compression, and a high-waist cut you forget about the moment you sit down. It's the garment for wedding day, gala night, and the day you simply have to go to work in pants that don't forgive anything. Available from S to XL with a chart built for your body (waist and hip in centimeters), not the size on another brand's label.",
+    "video_image_alt": "Nuvel girdle video clip",
+    "fears_title": "The usual worries, answered directly",
+    "fear_1_title": "That it shows",
+    "fear_1_text": "It doesn't show. The edge is flat and seamless: no fabric step, no line showing under your dress. It's the first requirement of the pattern, not an extra.",
+    "fear_2_title": "That it rolls up",
+    "fear_2_text": "If it rolls up when you sit down, we'll refund you. No questions asked. The silicone band on the inner edge anchors it to your skin so it stays where it belongs.",
+    "fear_3_title": "That it's the wrong size",
+    "fear_3_text": "If it's not your size, return it for free within the 30-day trial. And if you're between two sizes, order the larger one: it compresses the same and won't ride up.",
+    "testimonials_title": "What customers say on WhatsApp",
+    "testimonials_text": "4.8 out of 5 &middot; 123 customers helped over WhatsApp. We're asking permission to publish their messages exactly as they are, unedited.",
+    "faq_title": "The eight questions everyone asks",
+    "faq_1_q": "Does it show under a dress?",
+    "faq_1_a": "No. The edges are laser-cut, with no raised seam or fabric step: they lie flat on your skin and leave no line under silk, crepe or any fitted fabric. That's why it's called invisible.",
+    "faq_2_q": "Will it roll up when I sit down?",
+    "faq_2_a": "The silicone band on the inner edge keeps it anchored to your skin even when you sit, bend down or dance. And if it still rolls up on you, we'll refund you during the 30-day trial: it has to work in real life, not just in lab conditions.",
+    "faq_3_q": "Will it show love handles on my back or thighs?",
+    "faq_3_a": "The top edge is flat and seamless, so it doesn't dig into your skin. Compression is distributed and increases progressively toward the edge, which is what prevents that classic bulge line.",
+    "faq_4_q": "I'm between two sizes, which one should I order?",
+    "faq_4_a": "The larger one. Nuvel compresses without squeezing: the bigger size compresses just as well and, more importantly, won't ride up. The chart measures your waist and hip in centimeters, not another brand's size. And if you get it wrong, you have 30 days to return it, no questions asked.",
+    "faq_5_q": "Do I have to take it all off to use the bathroom?",
+    "faq_5_a": "It has a practical opening at the bottom so you can use the bathroom without having to take the garment off. If your model didn't have it, we'd tell you before you buy, not after.",
+    "faq_6_q": "Can I eat with it on?",
+    "faq_6_a": "Yes. The compression is medium, not an extreme-compression corset: you can take a deep breath and eat without it cutting off your digestion. It's designed for an entire Saturday, not two hours of suffering.",
+    "faq_7_q": "Is it hot in summer?",
+    "faq_7_a": "The fabric is thin and breathable, it's not latex or neoprene. It doesn't heat up like gym girdles: it compresses without making you sweat under a summer dress.",
+    "faq_8_q": "How long does it take to arrive?",
+    "faq_8_a": "7 to 15 business days to mainland Spain, with email tracking. Balearic Islands, Canary Islands, Ceuta and Melilla: 12 to 25 days. We say this clearly so there are no surprises the week of the wedding."
+  },
+  "product_corse": {
+    "thumb_alt_1": "Nuvel Waist Corset in black, front view",
+    "thumb_alt_2": "Nuvel Waist Corset in black, back view",
+    "thumb_alt_3": "Size guide for the Nuvel Waist Corset, from XS to 2XL",
+    "thumb_alt_4": "The black Nuvel corset worn, front view",
+    "thumb_alt_5": "The black Nuvel corset worn, back view",
+    "thumb_alt_6": "The beige Nuvel corset worn, front view",
+    "thumb_alt_7": "The beige Nuvel corset worn, back view",
+    "thumb_alt_8": "The pink Nuvel corset worn, front view",
+    "thumb_alt_9": "The pink Nuvel corset worn, back view",
+    "main_image_alt": "Nuvel Waist Shaping Corset, boned waist trainer",
+    "size_tip": "Between two sizes? Order the larger one: the corset adjusts with the hook closures and won't ride up.",
+    "pack_label": "Corset + Girdle",
+    "description": "Waist corset with vertical boning, a front zipper and a column of hook closures at the back. It closes at whatever level you decide and stays there: it defines your waistline and supports your back while you wear it.",
+    "bullet_1": "Double closure: zipper to put it on, hooks to adjust it",
+    "bullet_2": "Vertical boning: won't bend or roll up when you sit",
+    "bullet_3": "Adjustable straps, so you choose the height",
+    "bullet_4": "Worn over your bra, under your clothes",
+    "headline": "YOU DECIDE HOW MUCH IT HOLDS",
+    "details_text": "The Nuvel Waist Shaping Corset combines vertical boning, a front zipper and a column of adjustable hooks on the back, so you control the compression level, not the garment. Ideal for defining your waistline under a blazer, a dress, or even worn as a top with high-waisted pants. One-piece back with no clasps to dig in, adjustable wide straps, and available in black, beige and pink, from XS to 2XL.",
+    "video_image_alt": "Nuvel corset video clip",
+    "feature_1_eyebrow": "How it adjusts",
+    "feature_1_image_alt": "The black Nuvel corset worn, waist defined",
+    "feature_1_title": "You decide how much it holds",
+    "feature_1_text": "The zipper is for getting in and out without fighting the garment. The hooks at the back are what really matter: they have three positions, so you start with the loosest and tighten as you get used to it. You don't have to suffer for it to show results.",
+    "feature_2_eyebrow": "From the back",
+    "feature_2_image_alt": "The Nuvel corset seen from the back, smooth back",
+    "feature_2_title": "Smooth back, no seams",
+    "feature_2_text": "The back is one piece with a single center seam, with no clasps or hooks to dig in or show. The straps are wide and flat, so they won't dig into your shoulder even if you wear it all day.",
+    "feature_3_eyebrow": "Three colors",
+    "feature_3_image_alt": "Nuvel Waist Corset in pink",
+    "feature_3_title": "Black, beige and pink",
+    "feature_3_text": "Black goes with everything and is the most ordered. Beige disappears under white, linen and any light fabric. And pink is the one you show off: worn with high-waisted pants, it works as a top, not as underwear.",
+    "pairs_text": "The corset shapes your waist and supports your torso. The girdle covers your abdomen and hips without showing anything under your clothes. Each does its own job, and together is when you see the full result."
+  },
+  "product_short": {
+    "thumb_alt_1": "Nuvel Shaping Shorts in black, front view",
+    "thumb_alt_2": "Nuvel Shaping Shorts in black, back view",
+    "thumb_alt_3": "Size guide for the Nuvel Shaping Shorts, from S to 2XL",
+    "thumb_alt_4": "The black Nuvel shorts worn, fitted at hip and thigh",
+    "thumb_alt_5": "Nuvel Shaping Shorts in beige, front view",
+    "thumb_alt_6": "Nuvel Shaping Shorts in beige, back view",
+    "thumb_alt_7": "The beige Nuvel shorts worn, without showing or rolling up",
+    "main_image_alt": "Nuvel Seamless Shaping Shorts, anti-chafing",
+    "pack_label": "Shorts + Girdle",
+    "description": "Seamless high-waist compression shorts that reach mid-thigh. Prevents thigh chafing under dresses and skirts, and slims the silhouette at the hip and thigh without the edge showing.",
+    "bullet_1": "No more thigh chafing in summer",
+    "bullet_2": "Won't ride up or roll when you walk or sit",
+    "bullet_3": "Flat edge: no line showing under your clothes",
+    "bullet_4": "Pair it with the Invisible Girdle for full coverage",
+    "headline": "THE SHORTS THAT END THIGH CHAFING",
+    "details_text": "The Nuvel Seamless Shaping Shorts solve two things at once: they slim your silhouette at the hip and thigh, and eliminate the thigh chafing that comes with dresses, skirts and summer heat. A high waist that doesn't show, a flat edge that won't roll when you walk or sit, and medium compression designed to wear under any garment without the fabric's edge showing. Pair it with the Invisible Shaping Girdle for full coverage from abdomen to thigh. Sizes S to 2XL in black and beige.",
+    "video_image_alt": "Nuvel shorts video clip",
+    "feature_eyebrow": "The two colors",
+    "feature_image_alt": "The black Nuvel shorts worn, fitted without showing",
+    "feature_title": "Black for everyday, beige for light-colored clothes",
+    "feature_text": "Black is the one you'll wear almost always. Beige is the one that saves a white or light linen dress, where any dark garment underneath would show through. If you're not sure, get both: the set is cheaper than ordering them separately.",
+    "pairs_text": "The girdle covers your abdomen and waist. The shorts cover your hip and thigh. Together they do the complete job, and customers who buy one end up ordering the other."
+  },
+  "placeholders": {
+    "article": "Article",
+    "blog": "Blog - Nuvel Shapewear",
+    "cart": "Your Shopping Cart",
+    "collection": "Shaping Girdle Collections",
+    "account": "My Account",
+    "activate_account": "Activate Account",
+    "addresses": "My Addresses",
+    "login": "Sign In",
+    "order": "My Order",
+    "register": "Create Account",
+    "reset_password": "Reset Password",
+    "gift_card": "Gift Card",
+    "list_collections": "Collection Catalog",
+    "password": "Store Under Maintenance",
+    "search": "Search Results"
+  },
+  "product_vestido": {
+    "thumb_alt_1": "Nuvel 2-in-1 Shaping Dress in black, front view",
+    "thumb_alt_2": "Nuvel 2-in-1 Shaping Dress in black, back view",
+    "thumb_alt_3": "Size guide for the Nuvel Shaping Dress, from S to 3XL",
+    "thumb_alt_4": "The black Nuvel dress worn, fitted and smooth",
+    "thumb_alt_5": "Nuvel 2-in-1 Shaping Dress in grey, front view",
+    "thumb_alt_6": "Nuvel 2-in-1 Shaping Dress in grey, back view",
+    "thumb_alt_7": "The grey Nuvel dress worn, fitted and smooth",
+    "main_image_alt": "Nuvel 2-in-1 Shaping Dress, dress with built-in shaper",
+    "pack_label": "Dress + Shorts",
+    "description": "A dress and a shaper in one garment. The shaping layer is sewn in on the inside, so you put on just one thing and go, no fighting with a separate shaper, no rolling up, and no edge showing through the fabric.",
+    "bullet_1": "Built-in shaper: skip wearing two garments",
+    "bullet_2": "No edges or seams showing through the fabric",
+    "bullet_3": "Soft compression at abdomen, waist and hip",
+    "bullet_4": "Thin straps and midi length, for everyday or going out",
+    "feature_1_eyebrow": "Why 2-in-1",
+    "feature_1_image_alt": "The Nuvel shaping dress seen from the back, smooth and unmarked",
+    "feature_1_title": "You stop needing two garments",
+    "feature_1_text": "The usual routine is shaper plus dress: two purchases, two layers, and the shaper's edge showing exactly where you don't want it to. Here the shaping layer is sewn inside the dress. One garment, zero edges, and one purchase instead of two.",
+    "feature_2_eyebrow": "The two colors",
+    "feature_2_image_alt": "The Nuvel shaping dress in grey, seen from the back",
+    "feature_2_title": "Black for night, grey for day",
+    "feature_2_text": "Black is the everyday go-to: dinner, a wedding, anything. Grey is the one you can wear on a Tuesday with sneakers and a jacket over it without looking like you're dressed for a party. Same cut, same compression, different occasion.",
+    "headline": "THE DRESS AND THE SHAPER, IN ONE GARMENT",
+    "details_text": "The Nuvel 2-in-1 Shaping Dress has the compression layer sewn in on the inside, so you skip the separate shaper and the edge that shows through the fabric. Soft compression at abdomen, waist and hip, thin straps and a midi length that works for everyday wear as much as for a dinner or an event. One garment, zero extra layers. Available in black and grey, from S to 3XL.",
+    "video_image_alt": "Nuvel dress video clip"
+  }
+}

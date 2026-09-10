@@ -2,51 +2,51 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="logo">NUVEL</div>
-      <p>Moldeadores invisibles para que el vestido te caiga perfecto, te sientes y te muevas como si nada: nadie sabrá que los llevas.</p>
-      <p class="footer-guarantee">30 días de prueba &nbsp;·&nbsp; Envío gratis a todo el mundo en 7-15 días</p>
+      <p>{{ 'footer.brand_tagline' | t }}</p>
+      <p class="footer-guarantee">{{ 'footer.guarantee' | t }}</p>
     </div>
     <div class="footer-cols">
       <div class="footer-col">
-        <span class="footer-col-title">Políticas</span>
-        <a href="/pages/envios">Envíos</a>
-        <a href="/pages/devoluciones">Devoluciones</a>
-        <a href="/pages/privacidad">Privacidad</a>
-        <a href="/pages/terminos">Términos</a>
+        <span class="footer-col-title">{{ 'footer.col_policies' | t }}</span>
+        <a href="/pages/envios">{{ 'footer.col_shipping' | t }}</a>
+        <a href="/pages/devoluciones">{{ 'footer.col_returns' | t }}</a>
+        <a href="/pages/privacidad">{{ 'footer.col_privacy' | t }}</a>
+        <a href="/pages/terminos">{{ 'footer.col_terms' | t }}</a>
       </div>
       <div class="footer-col">
-        <span class="footer-col-title">Síguenos</span>
+        <span class="footer-col-title">{{ 'footer.col_follow_us' | t }}</span>
         <a href="https://www.instagram.com/nuvelshape/" target="_blank" rel="noreferrer">Instagram</a>
       </div>
       <div class="footer-col" style="width:240px;">
-        <span class="footer-col-title">Contacto</span>
+        <span class="footer-col-title">{{ 'footer.col_contact' | t }}</span>
         <a href="mailto:hola@nuvelshape.store">hola@nuvelshape.store</a>
       </div>
 
     </div>
   </div>
   <div class="footer-wordmark" aria-hidden="true">NUVEL</div>
-  <div class="footer-bottom">&copy; 2026 Nuvel. Todos los derechos reservados.</div>
+  <div class="footer-bottom">{{ 'footer.copyright' | t }}</div>
 </footer>
 <div class="cart-overlay" id="cart-overlay"></div>
 <aside class="cart-drawer" id="cart-drawer">
   <div class="cart-head">
-    <h3>Tu carrito</h3>
-    <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">
+    <h3>{{ 'cart.heading' | t }}</h3>
+    <button class="cart-close" id="cart-close" aria-label="{{ 'cart.close' | t }}">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
   <div class="cart-items" id="cart-items"></div>
   <div class="cart-foot" id="cart-foot" style="display:none;">
-    <div class="cart-subtotal"><span>Subtotal</span><span id="cart-subtotal-value">0,00 €</span></div>
-    <button class="btn btn-dark btn-block" id="checkout-btn">Pagar</button>
+    <div class="cart-subtotal"><span>{{ 'cart.subtotal' | t }}</span><span id="cart-subtotal-value">0,00 €</span></div>
+    <button class="btn btn-dark btn-block" id="checkout-btn">{{ 'cart.checkout' | t }}</button>
   </div>
 </aside>
 <div class="search-overlay" id="search-overlay">
   <div class="search-box">
     <form id="search-form">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="text" id="search-input" placeholder="Busca por producto, talla, envíos, devoluciones..." autocomplete="off">
-      <button type="button" class="icon-btn" id="search-close" aria-label="Cerrar búsqueda">
+      <input type="text" id="search-input" placeholder="{{ 'search.placeholder' | t }}" autocomplete="off">
+      <button type="button" class="icon-btn" id="search-close" aria-label="{{ 'search.close' | t }}">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </form>
@@ -56,28 +56,28 @@
 <div class="cart-overlay" id="account-overlay"></div>
 <aside class="cart-drawer" id="account-drawer">
   <div class="cart-head">
-    <h3>Mi cuenta</h3>
-    <button class="cart-close" id="account-close" aria-label="Cerrar">
+    <h3>{{ 'account.heading' | t }}</h3>
+    <button class="cart-close" id="account-close" aria-label="{{ 'general.close' | t }}">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
   <div style="padding:28px; display:flex; flex-direction:column; gap:16px;">
-    <p style="font-size:14px; line-height:1.6; color:var(--text-soft);">Todavía no tenemos cuentas de cliente activas en la tienda: estamos trabajando en ello.</p>
-    <p style="font-size:14px; line-height:1.6; color:var(--text-soft);">Mientras tanto, si necesitas ayuda con un pedido, una talla o una devolución, escríbenos directamente y te respondemos nosotras mismas:</p>
-    <a href="mailto:hola@nuvelshape.store" class="btn btn-outline" style="width:100%;">Escribe a hola@nuvelshape.store</a>
-    <a href="/pages/preguntas-frecuentes" class="btn btn-light" style="width:100%;">Ver preguntas frecuentes</a>
+    <p style="font-size:14px; line-height:1.6; color:var(--text-soft);">{{ 'account.no_accounts_yet' | t }}</p>
+    <p style="font-size:14px; line-height:1.6; color:var(--text-soft);">{{ 'account.help' | t }}</p>
+    <a href="mailto:hola@nuvelshape.store" class="btn btn-outline" style="width:100%;">{{ 'account.write_to_us' | t }}</a>
+    <a href="/pages/preguntas-frecuentes" class="btn btn-light" style="width:100%;">{{ 'account.view_faq' | t }}</a>
   </div>
 </aside>
 <div class="modal-overlay" id="zoom-overlay"></div>
-<div class="zoom-box" id="zoom-box" role="dialog" aria-modal="true" aria-label="Foto ampliada">
-  <button class="cart-close zoom-close" id="zoom-close" aria-label="Cerrar">
+<div class="zoom-box" id="zoom-box" role="dialog" aria-modal="true" aria-label="{{ 'zoom.label' | t }}">
+  <button class="cart-close zoom-close" id="zoom-close" aria-label="{{ 'general.close' | t }}">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
-  <button type="button" class="gallery-arrow gallery-arrow-left" id="zoom-prev" aria-label="Foto anterior">
+  <button type="button" class="gallery-arrow gallery-arrow-left" id="zoom-prev" aria-label="{{ 'gallery.prev' | t }}">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
   </button>
   <img id="zoom-img" src="" alt="">
-  <button type="button" class="gallery-arrow gallery-arrow-right" id="zoom-next" aria-label="Foto siguiente">
+  <button type="button" class="gallery-arrow gallery-arrow-right" id="zoom-next" aria-label="{{ 'gallery.next' | t }}">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
   </button>
 </div>

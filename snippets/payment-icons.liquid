@@ -1,5 +1,5 @@
 <div class="payment-icons-block">
-  <p class="payment-icons-block__label">Pago 100% seguro</p>
+  <p class="payment-icons-block__label">{{ 'payment.secure_label' | t }}</p>
   <div class="payment-icons-block__row">
     {%- for type in shop.enabled_payment_types -%}
       {{ type | payment_type_svg_tag: class: 'payment-icons-block__icon' }}
@@ -26,5 +26,5 @@
       <text x="19" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF">AMEX</text>
     </svg>
   </div>
-  <p class="payment-icons-block__note">Tarjetas procesadas de forma segura a través de PayPal</p>
+  <p class="payment-icons-block__note">{{ 'payment.note' | t }}</p>
 </div>

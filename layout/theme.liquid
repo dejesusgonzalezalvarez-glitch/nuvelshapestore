@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="{{ request.locale.iso_code }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if template.name == 'index' %}Nuvel · La faja que se nota en el espejo, no en la ropa{% else %}{{ page_title }} · Nuvel{% endif %}</title>
+<title>{% if template.name == 'index' %}{{ 'general.meta.title_home' | t }}{% else %}{{ page_title }} · Nuvel{% endif %}</title>
 {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
 <meta name="theme-color" content="#1A1A1A">
 <meta name="google-site-verification" content="kXgMIJ4KBeroAjBRLwbdak96GNKVTDOSPa7jUcVCl0Q" />
@@ -22,15 +22,15 @@
 {% render 'global-footer' %}
 <div class="welcome-overlay" id="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
   <div class="welcome-box">
-    <button type="button" class="cart-close welcome-close" id="welcome-close" aria-label="Cerrar">
+    <button type="button" class="cart-close welcome-close" id="welcome-close" aria-label="{{ 'general.close' | t }}">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
-    <p class="welcome-kicker">Bienvenida a Nuvel</p>
-    <h3 class="welcome-title" id="welcome-title">Llévate un 10&nbsp;% en tu primer pedido</h3>
-    <p class="welcome-text">Usa el código <strong>NUVEL10</strong> en el checkout y llévate un 10&nbsp;% de descuento en tu primer pedido.</p>
-    <button type="button" class="welcome-code" id="welcome-copy">NUVEL10 <span class="wc-copy">copiar</span></button>
-    <p class="welcome-hint">Escríbelo en el campo «Código de descuento» del checkout, antes de pagar.</p>
-    <button type="button" class="btn btn-dark btn-block" id="welcome-cta">Entendido</button>
+    <p class="welcome-kicker">{{ 'welcome.kicker' | t }}</p>
+    <h3 class="welcome-title" id="welcome-title">{{ 'welcome.title' | t }}</h3>
+    <p class="welcome-text">{{ 'welcome.text' | t }}</p>
+    <button type="button" class="welcome-code" id="welcome-copy" data-copy-label="{{ 'welcome.copy' | t }}" data-copied-label="{{ 'welcome.copied' | t }}">NUVEL10 <span class="wc-copy">{{ 'welcome.copy' | t }}</span></button>
+    <p class="welcome-hint">{{ 'welcome.hint' | t }}</p>
+    <button type="button" class="btn btn-dark btn-block" id="welcome-cta">{{ 'welcome.cta' | t }}</button>
   </div>
 </div>
 <script>
@@ -75,66 +75,15 @@
         if (!ok) { try { navigator.clipboard.writeText("NUVEL10"); } catch (e) {} }
         document.body.removeChild(ta);
         var span = copiar.querySelector(".wc-copy");
-        if (span) span.textContent = "¡Copiado!";
+        if (span) span.textContent = copiar.dataset.copiedLabel;
         copiar.classList.add("copied");
         setTimeout(function () {
-          if (span) span.textContent = "copiar";
+          if (span) span.textContent = copiar.dataset.copyLabel;
           copiar.classList.remove("copied");
         }, 1800);
       });
     }
     setTimeout(abrir, 1400);
-  })();
-</script>
-
-<script>
-  (function() {
-    var html = document.documentElement;
-    var lang = navigator.language || navigator.userLanguage || '';
-    var isHispanic = false;
-    var spanishCountries = ['es', 'mx', 'co', 'ar', 'pe', 'cl', 'ec', 've', 'do', 'cu', 'pa', 'py', 'uy', 'bo', 'gt', 'hn', 'sv', 'ni', 'cr'];
-    var spanishLanguages = ['es-', 'sp'];
-    
-    if (lang.toLowerCase().indexOf('es') === 0) {
-      isHispanic = true;
-    } else {
-      isHispanic = false;
-    }
-    
-    if (isHispanic) {
-      html.setAttribute('lang', 'es');
-    } else {
-      html.setAttribute('lang', 'en');
-    }
-  })();
-</script>
-
-<script>
-  (function() {
-    var htmlLang = document.documentElement.getAttribute('lang');
-    var isEnglish = htmlLang === 'en';
-    
-    function replaceText(elementId, enText, esText) {
-      var el = document.getElementById(elementId);
-      if (el) {
-        el.textContent = isEnglish ? enText : esText;
-      }
-    }
-    
-    replaceText('welcome-title', 'Get 10% on your first order', 'Llévate un 10 % en tu primer pedido');
-    replaceText('welcome-text', 'Use code NUVEL10 at checkout and get 10% off your first order.', 'Usa el código <strong>NUVEL10</strong> en el checkout y llévate un 10 % de descuento en tu primer pedido.');
-    replaceText('welcome-hint', 'Enter it in the \'Discount code\' field at checkout, before paying.', 'Escríbelo en el campo «Código de descuento» del checkout, antes de pagar.');
-    replaceText('welcome-cta', 'Understood', 'Entendido');
-    
-    var welcomeKicker = document.querySelector('.welcome-kicker');
-    if (welcomeKicker) {
-      welcomeKicker.textContent = isEnglish ? 'Welcome to Nuvel' : 'Bienvenida a Nuvel';
-    }
-    
-    var cartCountBadges = document.querySelectorAll('.cart-count-badge');
-    cartCountBadges.forEach(function(badge) {
-      badge.textContent = isEnglish ? '' : '';
-    });
   })();
 </script>
 </body>
