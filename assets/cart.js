@@ -1,7 +1,9 @@
 /* ===== Nuvel — carrito funcional (localStorage), sin backend real ===== */
 (function () {
+  var I18N = window.__NUVEL_I18N__ || {};
   function fmt(n) {
-    return n.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+    var numLocale = (I18N.lang || "es").indexOf("en") === 0 ? "en-US" : "es-ES";
+    return "€" + n.toLocaleString(numLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
   function renderCart() {
@@ -18,7 +20,7 @@
         if (!itemsEl) return cart;
 
         if (cart.item_count === 0) {
-          itemsEl.innerHTML = '<div class="cart-empty">Tu carrito está vacío.</div>';
+          itemsEl.innerHTML = '<div class="cart-empty">' + (I18N.cartEmpty || "Tu carrito está vacío.") + '</div>';
           if (footEl) footEl.style.display = "none";
           return cart;
         }
@@ -31,10 +33,10 @@
               <h5>${item.product_title}</h5>
               <div class="ci-meta">${item.variant_title ? item.variant_title + " · " : ""}${fmt(item.price / 100)}</div>
               <div class="qty-stepper">
-                <button data-qty-minus="${item.key}" aria-label="Restar">−</button>
+                <button data-qty-minus="${item.key}" aria-label="${I18N.decrease || 'Restar'}">−</button>
                 <span>${item.quantity}</span>
-                <button data-qty-plus="${item.key}" aria-label="Sumar">+</button>
-                <button class="remove-link" data-remove="${item.key}">Eliminar</button>
+                <button data-qty-plus="${item.key}" aria-label="${I18N.increase || 'Sumar'}">+</button>
+                <button class="remove-link" data-remove="${item.key}">${I18N.remove || 'Eliminar'}</button>
               </div>
             </div>
           </div>
@@ -160,17 +162,7 @@
     }
 
     // ===== Search overlay =====
-    const SITE_INDEX = [
-      { title: "Faja Moldeadora Invisible (producto)", url: "/pages/producto", keywords: "faja moldeadora producto comprar talla precio invisible cintura" },
-      { title: "Catálogo de fajas", url: "/pages/catalogo", keywords: "catalogo catálogo fajas moldeadoras tienda" },
-      { title: "Sobre Nuvel", url: "/pages/sobre-nosotros", keywords: "sobre nosotros historia marca quienes somos" },
-      { title: "Preguntas frecuentes", url: "/pages/preguntas-frecuentes", keywords: "faq preguntas frecuentes dudas ayuda" },
-      { title: "Guía de tallas", url: "/pages/preguntas-frecuentes#talla", keywords: "talla tallas guia guía medidas s m l xl" },
-      { title: "Envíos", url: "/pages/envios", keywords: "envio envío entrega tiempo plazo" },
-      { title: "Devoluciones", url: "/pages/devoluciones", keywords: "devolucion devolución cambio reembolso" },
-      { title: "Privacidad", url: "/pages/privacidad", keywords: "privacidad datos rgpd" },
-      { title: "Términos y condiciones", url: "/pages/terminos", keywords: "terminos términos condiciones legal" },
-    ];
+    const SITE_INDEX = I18N.searchIndex || [];
     const searchOverlay = document.getElementById("search-overlay");
     const searchInput = document.getElementById("search-input");
     const searchResults = document.getElementById("search-results");
@@ -180,7 +172,7 @@
       if (!query) { searchResults.innerHTML = ""; return; }
       const matches = SITE_INDEX.filter((it) => it.title.toLowerCase().includes(query) || it.keywords.includes(query));
       if (matches.length === 0) {
-        searchResults.innerHTML = `<div class="search-empty">No encontramos nada para "${q}". <a href="/pages/producto" style="text-decoration:underline;">Ver nuestra faja</a> o <a href="/pages/preguntas-frecuentes" style="text-decoration:underline;">revisa las preguntas frecuentes</a>.</div>`;
+        searchResults.innerHTML = `<div class="search-empty">${I18N.searchEmptyBefore || 'No encontramos nada para "'}${q}${I18N.searchEmptyAfter || '".'} <a href="/pages/producto" style="text-decoration:underline;">${I18N.searchLinkProduct || 'Ver nuestra faja'}</a> ${I18N.lang && I18N.lang.indexOf('en') === 0 ? 'or' : 'o'} <a href="/pages/preguntas-frecuentes" style="text-decoration:underline;">${I18N.searchLinkFaq || 'revisa las preguntas frecuentes'}</a>.</div>`;
         return;
       }
       searchResults.innerHTML = matches.map((it) => `<a href="${it.url}">${it.title}</a>`).join("");
@@ -498,7 +490,7 @@
           if (claves.length) idSocio = mapa[claves[0]];
         }
         if (!selectedVariantId || !idSocio) {
-          alert("El pack aún no está listo para añadirse. Cuando lo activemos lo anunciamos aquí mismo.");
+          alert(I18N.alertPackNotReady || "El pack aún no está listo para añadirse. Cuando lo activemos lo anunciamos aquí mismo.");
           return;
         }
         items = [
@@ -520,7 +512,7 @@
         .then(() => { boton.disabled = false; openCart(); })
         .catch(() => {
           boton.disabled = false;
-          alert("No se pudo añadir el producto al carrito. Intenta de nuevo.");
+          alert(I18N.alertAddFailed || "No se pudo añadir el producto al carrito. Intenta de nuevo.");
         });
     });
 
@@ -563,7 +555,7 @@
           .then(() => { boton.disabled = false; openCart(); })
           .catch(() => {
             boton.disabled = false;
-            alert("No se pudo añadir el pack. Intenta de nuevo.");
+            alert(I18N.alertAddPackFailed || "No se pudo añadir el pack. Intenta de nuevo.");
           });
       });
     });
@@ -637,6 +629,7 @@
   var anadir = barra.querySelector('[data-buy-bar-add]');
 
   // el texto de la barra refleja lo que hay elegido en la ficha
+  var i18n = window.__NUVEL_I18N__ || {};
   function refrescar() {
     if (!meta) return;
     var pack = document.querySelector('.qty-opt.selected[data-pack-offer]');
@@ -645,11 +638,11 @@
     var precio = document.querySelector('.price-now');
     if (pack) {
       var packPrecio = pack.querySelector('.qty-price');
-      meta.textContent = 'Pack ' + (pack.dataset.packName || '') + (packPrecio ? ' · ' + packPrecio.textContent.trim() : '');
+      meta.textContent = (i18n.packPrefix || 'Pack') + ' ' + (pack.dataset.packName || '') + (packPrecio ? ' · ' + packPrecio.textContent.trim() : '');
       return;
     }
     var partes = [];
-    if (talla) partes.push('Talla ' + talla.textContent.trim());
+    if (talla) partes.push((i18n.sizeLabel || 'Talla') + ' ' + talla.textContent.trim());
     if (color) partes.push(color.textContent.trim());
     if (precio) partes.push(precio.textContent.trim());
     meta.textContent = partes.join(' · ');

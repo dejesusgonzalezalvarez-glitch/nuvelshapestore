@@ -462,6 +462,38 @@
     "feature_text": "El negro es el que usarás casi siempre. El beige es el que salva un vestido blanco o de lino claro, donde cualquier prenda oscura debajo se transparenta. Si dudas, llévate los dos: el conjunto tiene mejor precio que pedirlos sueltos.",
     "pairs_text": "La faja te cubre abdomen y cintura. El short cubre cadera y muslo. Juntas hacen el trabajo completo, y las clientas que compran una acaban pidiendo la otra."
   },
+  "cart_js": {
+    "empty": "Tu carrito está vacío.",
+    "decrease": "Restar",
+    "increase": "Sumar",
+    "remove": "Eliminar",
+    "pack_prefix": "Pack",
+    "alert_pack_not_ready": "El pack aún no está listo para añadirse. Cuando lo activemos lo anunciamos aquí mismo.",
+    "alert_add_failed": "No se pudo añadir el producto al carrito. Intenta de nuevo.",
+    "alert_add_pack_failed": "No se pudo añadir el pack. Intenta de nuevo."
+  },
+  "search_js": {
+    "empty_before": "No encontramos nada para \"",
+    "empty_after": "\".",
+    "link_view_product": "Ver nuestra faja",
+    "link_check_faq": "revisa las preguntas frecuentes"
+  },
+  "search_index": {
+    "producto": { "title": "Faja Moldeadora Invisible (producto)", "keywords": "faja moldeadora producto comprar talla precio invisible cintura" },
+    "catalogo": { "title": "Catálogo de fajas", "keywords": "catalogo catálogo fajas moldeadoras tienda" },
+    "sobre_nosotros": { "title": "Sobre Nuvel", "keywords": "sobre nosotros historia marca quienes somos" },
+    "faq": { "title": "Preguntas frecuentes", "keywords": "faq preguntas frecuentes dudas ayuda" },
+    "size_guide": { "title": "Guía de tallas", "keywords": "talla tallas guia guía medidas s m l xl" },
+    "envios": { "title": "Envíos", "keywords": "envio envío entrega tiempo plazo" },
+    "devoluciones": { "title": "Devoluciones", "keywords": "devolucion devolución cambio reembolso" },
+    "privacidad": { "title": "Privacidad", "keywords": "privacidad datos rgpd" },
+    "terminos": { "title": "Términos y condiciones", "keywords": "terminos términos condiciones legal" }
+  },
+  "error_404": {
+    "title": "Página no encontrada",
+    "text": "El enlace que has seguido ya no existe.",
+    "cta": "Volver al inicio"
+  },
   "placeholders": {
     "article": "Artículo",
     "blog": "Blog - Nuvel Shapewear",

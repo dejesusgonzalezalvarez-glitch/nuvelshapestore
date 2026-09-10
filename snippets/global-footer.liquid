@@ -82,6 +82,38 @@
   </button>
 </div>
 <script>
+  // Textos que usa assets/cart.js (carrito, buscador, alertas). Viven aqui,
+  // traducidos por Shopify segun el idioma del visitante, porque un asset .js
+  // no puede pasar por el filtro "t" de Liquid.
+  window.__NUVEL_I18N__ = {
+    lang: {{ request.locale.iso_code | json }},
+    cartEmpty: {{ 'cart_js.empty' | t | json }},
+    decrease: {{ 'cart_js.decrease' | t | json }},
+    increase: {{ 'cart_js.increase' | t | json }},
+    remove: {{ 'cart_js.remove' | t | json }},
+    packPrefix: {{ 'cart_js.pack_prefix' | t | json }},
+    sizeLabel: {{ 'general.size_label' | t | json }},
+    alertPackNotReady: {{ 'cart_js.alert_pack_not_ready' | t | json }},
+    alertAddFailed: {{ 'cart_js.alert_add_failed' | t | json }},
+    alertAddPackFailed: {{ 'cart_js.alert_add_pack_failed' | t | json }},
+    searchEmptyBefore: {{ 'search_js.empty_before' | t | json }},
+    searchEmptyAfter: {{ 'search_js.empty_after' | t | json }},
+    searchLinkProduct: {{ 'search_js.link_view_product' | t | json }},
+    searchLinkFaq: {{ 'search_js.link_check_faq' | t | json }},
+    searchIndex: [
+      { title: {{ 'search_index.producto.title' | t | json }}, url: "/pages/producto", keywords: {{ 'search_index.producto.keywords' | t | json }} },
+      { title: {{ 'search_index.catalogo.title' | t | json }}, url: "/pages/catalogo", keywords: {{ 'search_index.catalogo.keywords' | t | json }} },
+      { title: {{ 'search_index.sobre_nosotros.title' | t | json }}, url: "/pages/sobre-nosotros", keywords: {{ 'search_index.sobre_nosotros.keywords' | t | json }} },
+      { title: {{ 'search_index.faq.title' | t | json }}, url: "/pages/preguntas-frecuentes", keywords: {{ 'search_index.faq.keywords' | t | json }} },
+      { title: {{ 'search_index.size_guide.title' | t | json }}, url: "/pages/preguntas-frecuentes#talla", keywords: {{ 'search_index.size_guide.keywords' | t | json }} },
+      { title: {{ 'search_index.envios.title' | t | json }}, url: "/pages/envios", keywords: {{ 'search_index.envios.keywords' | t | json }} },
+      { title: {{ 'search_index.devoluciones.title' | t | json }}, url: "/pages/devoluciones", keywords: {{ 'search_index.devoluciones.keywords' | t | json }} },
+      { title: {{ 'search_index.privacidad.title' | t | json }}, url: "/pages/privacidad", keywords: {{ 'search_index.privacidad.keywords' | t | json }} },
+      { title: {{ 'search_index.terminos.title' | t | json }}, url: "/pages/terminos", keywords: {{ 'search_index.terminos.keywords' | t | json }} }
+    ]
+  };
+</script>
+<script>
   // El carrito lee los data-producto-* del <body>. En las paginas que se
   // inyectan por JavaScript esos datos llegan despues, asi que ahi el arranque
   // lo dispara la plantilla; en el resto arranca solo. Nunca dos veces.

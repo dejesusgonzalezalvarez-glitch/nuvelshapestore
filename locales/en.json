@@ -462,6 +462,38 @@
     "feature_text": "Black is the one you'll wear almost always. Beige is the one that saves a white or light linen dress, where any dark garment underneath would show through. If you're not sure, get both: the set is cheaper than ordering them separately.",
     "pairs_text": "The girdle covers your abdomen and waist. The shorts cover your hip and thigh. Together they do the complete job, and customers who buy one end up ordering the other."
   },
+  "cart_js": {
+    "empty": "Your cart is empty.",
+    "decrease": "Decrease",
+    "increase": "Increase",
+    "remove": "Remove",
+    "pack_prefix": "Pack",
+    "alert_pack_not_ready": "This pack isn't ready to add yet. We'll announce it here as soon as it's live.",
+    "alert_add_failed": "We couldn't add the product to your cart. Please try again.",
+    "alert_add_pack_failed": "We couldn't add the pack. Please try again."
+  },
+  "search_js": {
+    "empty_before": "We couldn't find anything for \"",
+    "empty_after": "\".",
+    "link_view_product": "View our shaper",
+    "link_check_faq": "check the FAQ"
+  },
+  "search_index": {
+    "producto": { "title": "Invisible Shaping Girdle (product)", "keywords": "girdle shaper product buy size price invisible waist faja" },
+    "catalogo": { "title": "Shaping girdle catalog", "keywords": "catalog catalogue girdles shapewear store" },
+    "sobre_nosotros": { "title": "About Nuvel", "keywords": "about us story brand who we are" },
+    "faq": { "title": "Frequently asked questions", "keywords": "faq frequently asked questions doubts help" },
+    "size_guide": { "title": "Size guide", "keywords": "size sizes guide measurements s m l xl" },
+    "envios": { "title": "Shipping", "keywords": "shipping delivery time timeline" },
+    "devoluciones": { "title": "Returns", "keywords": "return returns exchange refund" },
+    "privacidad": { "title": "Privacy", "keywords": "privacy data gdpr" },
+    "terminos": { "title": "Terms and conditions", "keywords": "terms conditions legal" }
+  },
+  "error_404": {
+    "title": "Page not found",
+    "text": "The link you followed no longer exists.",
+    "cta": "Back to home"
+  },
   "placeholders": {
     "article": "Article",
     "blog": "Blog - Nuvel Shapewear",
