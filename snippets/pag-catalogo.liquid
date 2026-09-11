@@ -123,5 +123,52 @@
         </div>
       </div>
     </a>
+
+    {%- comment -%}
+      Productos nuevos: cualquier producto de la tienda que no sea uno de los
+      4 "buque insignia" de arriba (esos tienen su pagina propia hecha a mano
+      y no pasan por aqui). Etiqueta un producto en el panel de Shopify con
+      cintura-alta / posparto / sin-costuras / sets para que los circulos de
+      categoria de arriba tambien lo encuentren; sin esas etiquetas, el
+      producto sigue apareciendo, solo que los filtros de categoria no lo
+      van a marcar.
+    {%- endcomment -%}
+    {%- assign fichas_a_mano = "faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties" | split: "," -%}
+    {%- for product in collections.all.products -%}
+      {%- unless fichas_a_mano contains product.handle -%}
+        {%- assign tallas_producto = "" -%}
+        {%- assign colores_producto = "" -%}
+        {%- for opcion in product.options_with_values -%}
+          {%- assign nombre_opcion = opcion.name | downcase -%}
+          {%- if nombre_opcion contains "talla" or nombre_opcion contains "size" -%}
+            {%- assign tallas_producto = opcion.values | join: " " -%}
+          {%- endif -%}
+          {%- if nombre_opcion contains "color" -%}
+            {%- assign colores_producto = opcion.values | join: " " | downcase -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-cats="{{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="" data-compresion="">
+          <div class="shot">
+            {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy">
+            {%- endif -%}
+            {%- if product.images.size > 1 -%}
+            <img class="shot-hover" src="{{ product.images[1] | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="" loading="lazy" aria-hidden="true">
+            {%- endif -%}
+            <span class="badge">{{ 'general.badge_new' | t }}</span>
+          </div>
+          <div class="info">
+            <h4>{{ product.title }}</h4>
+            <p class="tile-why">{{ product.description | strip_html | truncate: 90 }}</p>
+            <div class="price-row" style="margin-top:6px;">
+              <span style="font-weight:600;">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+              <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">{{ product.compare_at_price | money }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
   </div>
 </main>

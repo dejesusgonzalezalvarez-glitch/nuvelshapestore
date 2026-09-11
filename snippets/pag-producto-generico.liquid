@@ -1,0 +1,174 @@
+{%- comment -%}
+  Página de producto genérica: se usa para cualquier producto que NO sea uno
+  de los 4 "buque insignia" con página propia (faja, corsé, short, vestido).
+  Todo sale del producto real de Shopify — nada escrito a mano — así que un
+  producto nuevo agregado en el panel aparece aquí solo, con su galería,
+  tallas/colores reales y el botón de compra ya conectado al carrito.
+{%- endcomment -%}
+<script>
+  window.__NUVEL_GENERICO__ = {
+    opciones: {{ product.options | json }},
+    variantes: {
+      {%- for variant in product.variants -%}
+      {{ variant.title | json }}: {{ variant.id }}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    }
+  };
+</script>
+
+<main class="wrap">
+  <nav class="breadcrumb">
+    <a href="/">{{ 'nav.home' | t }}</a> / <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ product.title }}</span>
+  </nav>
+
+  <div class="pdp-row">
+    <div class="gallery">
+      {%- if product.images.size > 1 -%}
+      <div class="thumbs">
+        {%- for image in product.images -%}
+        <div class="thumb{% if forloop.first %} active{% endif %}" data-thumb data-full="{{ image | image_url: width: 1200 }}">
+          <img src="{{ image | image_url: width: 400 }}" alt="{{ image.alt | default: product.title | escape }}" width="400" height="{{ 400 | divided_by: image.aspect_ratio | default: 400 }}" loading="lazy">
+        </div>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+      <div class="main-shot">
+        <img id="main-shot-img" src="{{ product.featured_image | image_url: width: 1200 }}" sizes="(max-width: 600px) 92vw, (max-width: 900px) 90vw, 640px" alt="{{ product.featured_image.alt | default: product.title | escape }}" fetchpriority="high">
+        <button type="button" class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="{{ 'gallery.prev' | t }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button type="button" class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="{{ 'gallery.next' | t }}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+        <button type="button" class="gallery-zoom-btn" id="gallery-zoom" aria-label="{{ 'gallery.zoom' | t }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M10.5 8v5M8 10.5h5"/><path d="M20 20l-4.8-4.8"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="pdp-info">
+      <h1>{{ product.title }}</h1>
+      <div class="price-row">
+        <span class="price-now">{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+        <span class="price-was">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- for option in product.options_with_values -%}
+      <div class="opt-group">
+        <div class="opt-head"><label>{{ option.name }}</label></div>
+        <div class="opt-choices">
+          {%- for value in option.values -%}
+          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ value }}</button>
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- endfor -%}
+
+      {%- render 'payment-icons' -%}
+
+      <button type="button" class="btn btn-dark btn-block" id="generic-add-to-cart-btn">{{ 'general.buy_now' | t }}</button>
+
+      <div class="trust-strip">
+        <div class="trust-compact">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/></svg>
+          <span>{{ 'trust.compact.shipping' | t }}</span>
+        </div>
+        <div class="trust-compact">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v6h6"/></svg>
+          <span>{{ 'trust.compact.trial' | t }}</span>
+        </div>
+        <div class="trust-compact">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+          <span>{{ 'trust.compact.secure_payment' | t }}</span>
+        </div>
+      </div>
+
+      <div class="pdp-desc">{{ product.description }}</div>
+    </div>
+  </div>
+
+  <section style="padding-bottom:96px;">
+    <h2 style="font-size:26px; margin-bottom:6px;">{{ 'general.suggestions_title' | t }}</h2>
+    <p style="font-size:14px; color:var(--text-mute); margin-bottom:0;">{{ 'general.suggestions_subtitle' | t }}</p>
+    <div class="suggestions-grid">
+      {%- assign sugeridos = 0 -%}
+      {%- for recomendado in collections.all.products -%}
+        {%- if recomendado.id != product.id and sugeridos < 3 -%}
+          {%- assign sugeridos = sugeridos | plus: 1 -%}
+          <a href="{{ recomendado.url }}" class="product-tile">
+            <div class="shot">
+              {%- if recomendado.featured_image -%}
+              <img src="{{ recomendado.featured_image | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ recomendado.featured_image.alt | default: recomendado.title | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+            <div class="info">
+              <h4>{{ recomendado.title }}</h4>
+              <div class="price-row" style="margin-top:6px;">
+                <span style="font-weight:600;">{{ recomendado.price | money }}</span>
+              </div>
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    var datos = window.__NUVEL_GENERICO__;
+    if (!datos) return;
+    var seleccion = {};
+    document.querySelectorAll(".opt-btn[data-opt-index].selected").forEach(function (b) {
+      seleccion[b.dataset.optIndex] = b.dataset.optValue;
+    });
+
+    function variantIdActual() {
+      var partes = [];
+      for (var i = 0; i < datos.opciones.length; i++) partes.push(seleccion[i] || "");
+      return datos.variantes[partes.join(" / ")] || null;
+    }
+
+    document.querySelectorAll(".opt-btn[data-opt-index]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var idx = b.dataset.optIndex;
+        document.querySelectorAll('.opt-btn[data-opt-index="' + idx + '"]').forEach(function (o) { o.classList.remove("selected"); });
+        b.classList.add("selected");
+        seleccion[idx] = b.dataset.optValue;
+      });
+    });
+
+    var boton = document.getElementById("generic-add-to-cart-btn");
+    if (boton) {
+      boton.addEventListener("click", function () {
+        var id = variantIdActual();
+        if (!id) return;
+        boton.disabled = true;
+        fetch("/cart/add.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: [{ id: Number(id), quantity: 1 }] }),
+        })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
+          .then(function () {
+            if (window.NuvelCart) {
+              window.NuvelCart.renderCart().then(function () {
+                boton.disabled = false;
+                window.NuvelCart.openCart();
+              });
+            } else {
+              boton.disabled = false;
+              document.getElementById("cart-drawer")?.classList.add("open");
+              document.getElementById("cart-overlay")?.classList.add("open");
+            }
+          })
+          .catch(function () {
+            boton.disabled = false;
+            alert((window.__NUVEL_I18N__ && window.__NUVEL_I18N__.alertAddFailed) || "No se pudo añadir el producto al carrito. Intenta de nuevo.");
+          });
+      });
+    }
+  })();
+</script>

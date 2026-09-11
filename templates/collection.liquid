@@ -1,1 +1,10 @@
-<main class="wrap" style="padding:80px 0;"><h1>{{ 'placeholders.collection' | t }}</h1></main>
+{%- comment -%}
+  El catálogo real de la tienda vive en /pages/catalogo (jala los productos
+  directo de Shopify). Cualquier /collections/<algo> que Shopify genere solo
+  redirige hacia allá, para no tener dos catálogos distintos.
+{%- endcomment -%}
+<meta http-equiv="refresh" content="0; url=/pages/catalogo">
+<script>window.location.replace("/pages/catalogo");</script>
+<main class="wrap" style="padding:80px 0; text-align:center;">
+  <p>Redirigiendo… <a href="/pages/catalogo">Haz clic aquí si no avanza automáticamente</a>.</p>
+</main>
