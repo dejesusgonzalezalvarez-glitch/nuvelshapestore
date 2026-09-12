@@ -1,0 +1,24 @@
+{%- comment -%}
+  Imprime el nicho de un producto según palabras clave de su título. Misma
+  lógica que usa tile-generico.liquid para decidir en qué subsección entra.
+
+  Uso:
+    {% capture nicho %}{% render 'producto-nicho', producto: product %}{% endcapture %}
+    {% assign nicho = nicho | strip %}
+
+  Devuelve: "cintura-alta", "posparto", "sin-costuras", "sets", "postura" o "".
+{%- endcomment -%}
+{%- assign _t = producto.title | downcase -%}
+{%- assign _nicho = "" -%}
+{%- if _t contains "cintura alta" or _t contains "cinturilla" or _t contains "corsé" or _t contains "corse" or _t contains "faja" -%}
+  {%- assign _nicho = "cintura-alta" -%}
+{%- elsif _t contains "postparto" or _t contains "posparto" -%}
+  {%- assign _nicho = "posparto" -%}
+{%- elsif _t contains "sin costuras" -%}
+  {%- assign _nicho = "sin-costuras" -%}
+{%- elsif _t contains "body" or _t contains "vestido" or _t contains "camisola" -%}
+  {%- assign _nicho = "sets" -%}
+{%- elsif _t contains "postura" or _t contains "corrector" -%}
+  {%- assign _nicho = "postura" -%}
+{%- endif -%}
+{{- _nicho -}}

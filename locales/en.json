@@ -545,5 +545,24 @@
     "headline": "THE DRESS AND THE SHAPER, IN ONE GARMENT",
     "details_text": "The Nuvel 2-in-1 Shaping Dress has the compression layer sewn in on the inside, so you skip the separate shaper and the edge that shows through the fabric. Soft compression at abdomen, waist and hip, thin straps and a midi length that works for everyday wear as much as for a dinner or an event. One garment, zero extra layers. Available in black and grey, from S to 3XL.",
     "video_image_alt": "Nuvel dress video clip"
+  },
+  "bundle": {
+    "total": "Bundle price",
+    "save": "Save",
+    "add_both": "Add both to cart",
+    "generic_title": "Complete your routine",
+    "generic_reason": "Add a garment from the same niche and get the bundle discount.",
+    "faja_corse_title": "The waist duo",
+    "faja_corse_reason": "Everyday compression with the girdle and firm shaping with the corset, in one fit.",
+    "faja_short_title": "No lines, waist to thigh",
+    "faja_short_reason": "The girdle shapes your abdomen and waist; the shorts cover hip and thigh.",
+    "corse_faja_title": "Complete waist",
+    "corse_faja_reason": "The corset defines your waist; the girdle covers abdomen and hips invisibly.",
+    "short_faja_title": "Waist-to-thigh shaping",
+    "short_faja_reason": "The girdle covers the top and the shorts the bottom: full, line-free coverage.",
+    "short_vestido_title": "The invisible set",
+    "short_vestido_reason": "The shorts prevent chafing and lines under the shaping dress.",
+    "vestido_short_title": "The invisible set",
+    "vestido_short_reason": "Your shaping dress, finished with shorts that won't show."
   }
 }

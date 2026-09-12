@@ -545,5 +545,24 @@
     "headline": "EL VESTIDO Y LA FAJA, EN UNA SOLA PRENDA",
     "details_text": "El Vestido Moldeador 2 en 1 de Nuvel lleva la capa de compresión cosida por dentro, así que te ahorras la faja aparte y el borde que se marca bajo la tela. Compresión suave en abdomen, cintura y cadera, tirantes finos y largo midi que sirve tanto para el día a día como para una cena o un evento. Una sola prenda, cero capas de más. Disponible en negro y gris, de la S a la 3XL.",
     "video_image_alt": "Videoclip del vestido Nuvel"
+  },
+  "bundle": {
+    "total": "Precio del conjunto",
+    "save": "Ahorras",
+    "add_both": "Añadir ambos al carrito",
+    "generic_title": "Completa tu rutina",
+    "generic_reason": "Suma una prenda del mismo nicho y consigue el descuento del conjunto.",
+    "faja_corse_title": "El dúo de cintura",
+    "faja_corse_reason": "Compresión diaria con la faja y moldeado firme con el corsé, en un solo ajuste.",
+    "faja_short_title": "Sin marcas de cintura a muslo",
+    "faja_short_reason": "La faja modela abdomen y cintura; el short cubre cadera y muslo.",
+    "corse_faja_title": "Cintura completa",
+    "corse_faja_reason": "El corsé marca la cintura; la faja cubre abdomen y cadera sin que se note nada.",
+    "short_faja_title": "Moldeado de cintura a muslo",
+    "short_faja_reason": "La faja cubre arriba y el short abajo: cobertura completa, sin marcas.",
+    "short_vestido_title": "El conjunto invisible",
+    "short_vestido_reason": "El short evita roces y marcas bajo el vestido moldeador.",
+    "vestido_short_title": "El conjunto invisible",
+    "vestido_short_reason": "Tu vestido moldeador, acabado con el short que no se nota."
   }
 }

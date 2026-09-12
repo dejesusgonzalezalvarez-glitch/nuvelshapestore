@@ -576,21 +576,39 @@
     });
 
     // ===== Comprados juntos habitualmente (bundle) =====
-    // El pack se cobra a precio real de cada prenda (Shopify no aplica un
-    // descuento aparte sin un codigo de verdad), asi que el total mostrado es
-    // la suma real, sin una rebaja que luego no se refleja en el cobro.
+    // El combo añade los dos productos al carrito a su precio real. El
+    // descuento del conjunto (data-discount, en %) lo aplica un descuento
+    // automatico configurado en Shopify Admin; aqui solo se muestra el total
+    // estimado con ese porcentaje y se añaden ambos al carrito.
     document.querySelectorAll(".bundle-box").forEach((box) => {
-      const mainPrice = parseFloat(box.dataset.mainPrice);
-      const partnerPrice = parseFloat(box.dataset.partnerPrice);
+      const mainPrice = parseFloat(box.dataset.mainPrice || "0");
+      const partnerPrice = parseFloat(box.dataset.partnerPrice || "0");
+      const discount = parseFloat(box.dataset.discount || "0");
       const checkbox = box.querySelector("[data-bundle-toggle]");
       const wasEl = box.querySelector(".bundle-total-was");
       const nowEl = box.querySelector(".bundle-total-now");
       const saveEl = box.querySelector(".bundle-save");
-      if (wasEl) wasEl.style.display = "none";
-      if (saveEl) saveEl.style.display = "none";
+
+      function partnerVariantId() {
+        let mapa = {};
+        try { mapa = JSON.parse(box.dataset.partnerVariants || "{}"); } catch (e) { mapa = {}; }
+        if (mapa[selectedSize]) return Number(mapa[selectedSize]);
+        const claves = Object.keys(mapa).filter((k) => k !== "_" && mapa[k]);
+        if (claves.length) return Number(mapa[claves[0]]);
+        return box.dataset.partnerVariantId ? Number(box.dataset.partnerVariantId) : null;
+      }
 
       function refresh() {
-        nowEl.textContent = fmt(checkbox.checked ? mainPrice + partnerPrice : mainPrice);
+        const incluir = !checkbox || checkbox.checked;
+        const total = incluir ? mainPrice + partnerPrice : mainPrice;
+        const dto = incluir ? discount : 0;
+        const ahora = Math.round(total * (1 - dto / 100) * 100) / 100;
+        if (wasEl) { wasEl.textContent = fmt(total); wasEl.style.display = ""; }
+        if (nowEl) nowEl.textContent = fmt(ahora);
+        if (saveEl) {
+          saveEl.textContent = dto > 0 ? (I18N.bundleSave || "Ahorras") + " " + dto + "%" : "";
+          saveEl.style.display = dto > 0 ? "" : "none";
+        }
       }
       checkbox?.addEventListener("change", refresh);
       refresh();
@@ -598,8 +616,9 @@
       box.querySelector(".bundle-add-btn")?.addEventListener("click", (e) => {
         const items = [];
         if (selectedVariantId) items.push({ id: Number(selectedVariantId), quantity: 1 });
-        if (checkbox.checked && box.dataset.partnerVariantId) {
-          items.push({ id: Number(box.dataset.partnerVariantId), quantity: 1 });
+        if (!checkbox || checkbox.checked) {
+          const idSocio = partnerVariantId();
+          if (idSocio) items.push({ id: idSocio, quantity: 1 });
         }
         if (!items.length) return;
         const boton = e.currentTarget;

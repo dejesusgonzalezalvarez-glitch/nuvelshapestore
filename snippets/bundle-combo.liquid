@@ -1,0 +1,104 @@
+{%- comment -%}
+  Tarjeta "Comprados juntos habitualmente" (bundle) para la página de producto.
+
+  Muestra dos productos del MISMO nicho lado a lado (foto real de ambos), un
+  checkbox para incluir la pareja y el total del conjunto con su descuento.
+
+  El descuento real (data-discount, en %) lo aplica un descuento automático
+  configurado en Shopify Admin; aquí solo se añaden ambos al carrito y se
+  muestra el total estimado con ese porcentaje. Si el descuento automático no
+  está activo, Shopify cobrará la suma real de los dos productos.
+
+  Parámetros:
+    main           (obligatorio) producto de la página
+    partner        (obligatorio) producto compañero del mismo nicho
+    descuento      (obligatorio) porcentaje sobre el conjunto (10-20)
+    titulo         copia corta del combo (ya traducida por la página)
+    frase          por qué se complementan (ya traducida)
+    nombre_main    nombre a mostrar (si se omite, usa product.title)
+    nombre_partner nombre a mostrar (si se omite, usa product.title)
+    imagen_main    asset de la foto (si se omite, usa product.featured_image)
+    imagen_partner asset de la foto (si se omite, usa product.featured_image)
+
+  Uso (buque insignia):
+    {% render 'bundle-combo', main: p, partner: socio, descuento: 15,
+              titulo: 'bundle.faja_corse_title' | t, frase: 'bundle.faja_corse_reason' | t,
+              nombre_main: 'tile.faja.title' | t, nombre_partner: 'tile.corse.title' | t,
+              imagen_main: 'producto-frente.jpg', imagen_partner: 'corse-negro-frente.jpg' %}
+  Uso (genérico):
+    {% render 'bundle-combo', main: product, partner: _socio, descuento: 15,
+              titulo: 'bundle.generic_title' | t, frase: 'bundle.generic_reason' | t %}
+{%- endcomment -%}
+{%- assign _m = main -%}
+{%- assign _p = partner -%}
+{%- if _m and _p -%}
+  {%- assign _titulo = titulo | default: 'bundle.generic_title' -%}
+  {%- assign _frase = frase | default: 'bundle.generic_reason' -%}
+  {%- assign _nombre_main = nombre_main | default: _m.title -%}
+  {%- assign _nombre_partner = nombre_partner | default: _p.title -%}
+  {%- assign _imagen_main = imagen_main -%}
+  {%- assign _imagen_partner = imagen_partner -%}
+
+  {%- capture _socio_map -%}
+    {%- for _v in _p.variants -%}
+      {%- if _v.available -%}
+        {%- assign _talla = _v.option2 -%}
+        {%- if _talla == blank -%}{%- assign _talla = _v.option1 -%}{%- endif -%}
+        "{{ _talla }}":{{ _v.id }},
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- assign _id_partner = _p.selected_or_first_available_variant.id | default: _p.variants.first.id -%}
+
+  <section class="bundle-box"
+    data-main-price="{{ _m.price | divided_by: 100.0 }}"
+    data-partner-price="{{ _p.price | divided_by: 100.0 }}"
+    data-discount="{{ descuento | default: 0 }}"
+    data-partner-variant-id="{{ _id_partner }}"
+    data-partner-variants='{ {{ _socio_map }} "_":0 }'>
+
+    <p class="bundle-title">{{ _titulo | t }}</p>
+    <p class="bundle-reason">{{ _frase | t }}</p>
+
+    <div class="bundle-items">
+      <span class="bundle-thumb">
+        {%- if _imagen_main -%}
+          <img src="{{ _imagen_main | asset_url }}" alt="{{ _nombre_main | t | escape }}" loading="lazy">
+        {%- elsif _m.featured_image -%}
+          <img src="{{ _m.featured_image | image_url: width: 240 }}" alt="{{ _nombre_main | t | escape }}" loading="lazy">
+        {%- endif -%}
+      </span>
+      <span class="bundle-plus">+</span>
+      <span class="bundle-thumb">
+        {%- if _imagen_partner -%}
+          <img src="{{ _imagen_partner | asset_url }}" alt="{{ _nombre_partner | t | escape }}" loading="lazy">
+        {%- elsif _p.featured_image -%}
+          <img src="{{ _p.featured_image | image_url: width: 240 }}" alt="{{ _nombre_partner | t | escape }}" loading="lazy">
+        {%- endif -%}
+      </span>
+    </div>
+
+    <div class="bundle-lines">
+      <label class="bundle-line">
+        <input type="checkbox" checked disabled>
+        <span>{{ _nombre_main | t }}</span>
+        <span class="bundle-line-price">{{ _m.price | money }}</span>
+      </label>
+      <label class="bundle-line">
+        <input type="checkbox" data-bundle-toggle checked>
+        <span>{{ _nombre_partner | t }}</span>
+        <span class="bundle-line-price">{{ _p.price | money }}</span>
+      </label>
+    </div>
+
+    <div class="bundle-summary">
+      <div class="bundle-total">
+        <span>{{ 'bundle.total' | t }}</span>
+        <span><span class="bundle-total-was"></span><span class="bundle-total-now"></span></span>
+      </div>
+      <p class="bundle-save"></p>
+    </div>
+
+    <button type="button" class="btn btn-dark bundle-add-btn">{{ 'bundle.add_both' | t }}</button>
+  </section>
+{%- endif -%}

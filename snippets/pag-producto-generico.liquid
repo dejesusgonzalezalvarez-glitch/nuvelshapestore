@@ -72,6 +72,28 @@
       </div>
       {%- endfor -%}
 
+      {%- capture _nicho_actual -%}{%- render 'producto-nicho', producto: product -%}{%- endcapture -%}
+      {%- assign _nicho_actual = _nicho_actual | strip -%}
+      {%- if _nicho_actual != blank -%}
+        {%- assign _socio_generico = nil -%}
+        {%- for _cand in collections.all.products -%}
+          {%- if _cand.id != product.id and _socio_generico == nil -%}
+            {%- capture _nicho_cand -%}{%- render 'producto-nicho', producto: _cand -%}{%- endcapture -%}
+            {%- assign _nicho_cand = _nicho_cand | strip -%}
+            {%- if _nicho_cand == _nicho_actual -%}
+              {%- assign _socio_generico = _cand -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if _socio_generico -%}
+          {%- capture _titulo_socio -%}{%- render 'titulo-limpio', product: _socio_generico, palabras: 6 -%}{%- endcapture -%}
+          {%- assign _titulo_socio = _titulo_socio | strip -%}
+          {%- render 'bundle-combo', main: product, partner: _socio_generico, descuento: 15,
+                     titulo: 'bundle.generic_title', frase: 'bundle.generic_reason',
+                     nombre_main: titulo_limpio, nombre_partner: _titulo_socio -%}
+        {%- endif -%}
+      {%- endif -%}
+
       <div class="qty-offer">
         <button type="button" class="qty-opt selected" data-generic-qty="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ product.price | money }}</div></button>
         <button type="button" class="qty-opt" data-generic-qty="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ product.price | times: 1.85 | round | money }}</div></button>
@@ -198,5 +220,72 @@
           });
       });
     }
+
+    // Bundle "comprados juntos": el socio del bundle es dinamico aqui, asi que
+    // se anade en su talla por defecto (la primera disponible); la clienta la
+    // ajusta en el carrito. El descuento del conjunto lo aplica un descuento
+    // automatico de Shopify, igual que en las paginas de los buque insignia.
+    var i18n = window.__NUVEL_I18N__ || {};
+    function fmtGen(n) {
+      var loc = (i18n.lang || "es").indexOf("en") === 0 ? "en-US" : "es-ES";
+      return "€" + n.toLocaleString(loc, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    document.querySelectorAll(".bundle-box").forEach(function (box) {
+      var mainPrice = parseFloat(box.dataset.mainPrice || "0");
+      var partnerPrice = parseFloat(box.dataset.partnerPrice || "0");
+      var discount = parseFloat(box.dataset.discount || "0");
+      var checkbox = box.querySelector("[data-bundle-toggle]");
+      var wasEl = box.querySelector(".bundle-total-was");
+      var nowEl = box.querySelector(".bundle-total-now");
+      var saveEl = box.querySelector(".bundle-save");
+      var idSocio = box.dataset.partnerVariantId ? Number(box.dataset.partnerVariantId) : null;
+
+      function refreshBundle() {
+        var incluir = !checkbox || checkbox.checked;
+        var total = incluir ? mainPrice + partnerPrice : mainPrice;
+        var dto = incluir ? discount : 0;
+        var ahora = Math.round(total * (1 - dto / 100) * 100) / 100;
+        if (wasEl) { wasEl.textContent = fmtGen(total); wasEl.style.display = ""; }
+        if (nowEl) nowEl.textContent = fmtGen(ahora);
+        if (saveEl) {
+          saveEl.textContent = dto > 0 ? (i18n.bundleSave || "Ahorras") + " " + dto + "%" : "";
+          saveEl.style.display = dto > 0 ? "" : "none";
+        }
+      }
+      if (checkbox) checkbox.addEventListener("change", refreshBundle);
+      refreshBundle();
+
+      box.querySelector(".bundle-add-btn").addEventListener("click", function (e) {
+        var items = [];
+        var idMain = variantIdActual();
+        if (idMain) items.push({ id: Number(idMain), quantity: 1 });
+        if ((!checkbox || checkbox.checked) && idSocio) items.push({ id: idSocio, quantity: 1 });
+        if (!items.length) return;
+        var boton = e.currentTarget;
+        boton.disabled = true;
+        fetch("/cart/add.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: items }),
+        })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
+          .then(function () {
+            if (window.NuvelCart) {
+              window.NuvelCart.renderCart().then(function () {
+                boton.disabled = false;
+                window.NuvelCart.openCart();
+              });
+            } else {
+              boton.disabled = false;
+              document.getElementById("cart-drawer")?.classList.add("open");
+              document.getElementById("cart-overlay")?.classList.add("open");
+            }
+          })
+          .catch(function () {
+            boton.disabled = false;
+            alert((i18n && i18n.alertAddPackFailed) || "No se pudo añadir el pack. Intenta de nuevo.");
+          });
+      });
+    });
   })();
 </script>

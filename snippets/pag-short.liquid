@@ -1,4 +1,5 @@
 {%- assign p = all_products['seamless-shapewear-panties'] -%}
+{%- assign vestido = all_products['womens-shapewear-dress-jumpsuit'] -%}
 {%- assign socio = all_products['faja-moldeadora-invisible-nuvel'] -%}{%- capture socio_map -%}{%- for v in socio.variants -%}{%- if v.available -%}"{{ v.option2 }}":{{ v.id }},{%- endif -%}{%- endfor -%}{%- endcapture -%}
 <script>
   window.__NUVEL_VARIANTES__ = {
@@ -84,6 +85,15 @@
         </table>
         <p class="guia-tallas__tip">{{ 'general.size_tip' | t }}</p>
       </div>
+
+      {%- render 'bundle-combo', main: p, partner: socio, descuento: 15,
+                 titulo: 'bundle.short_faja_title', frase: 'bundle.short_faja_reason',
+                 nombre_main: 'tile.short.title', nombre_partner: 'tile.faja.title',
+                 imagen_main: 'short-negro-frente.jpg', imagen_partner: 'producto-frente.jpg' -%}
+      {%- render 'bundle-combo', main: p, partner: vestido, descuento: 10,
+                 titulo: 'bundle.short_vestido_title', frase: 'bundle.short_vestido_reason',
+                 nombre_main: 'tile.short.title', nombre_partner: 'tile.vestido.title',
+                 imagen_main: 'short-negro-frente.jpg', imagen_partner: 'vestido-negro-frente.jpg' -%}
 
       <div class="qty-offer">
         <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ p.price | money }}</div></button>

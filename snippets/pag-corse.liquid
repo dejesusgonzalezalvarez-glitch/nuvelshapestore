@@ -88,6 +88,11 @@
         <p class="guia-tallas__tip">{{ 'product_corse.size_tip' | t }}</p>
       </div>
 
+      {%- render 'bundle-combo', main: p, partner: socio, descuento: 15,
+                 titulo: 'bundle.corse_faja_title', frase: 'bundle.corse_faja_reason',
+                 nombre_main: 'tile.corse.title', nombre_partner: 'tile.faja.title',
+                 imagen_main: 'corse-negro-frente.jpg', imagen_partner: 'producto-frente.jpg' -%}
+
       <div class="qty-offer">
         <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ p.price | money }}</div></button>
         <button class="qty-opt" data-qty-offer="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ p.price | times: 1.85 | round | money }}</div></button>
