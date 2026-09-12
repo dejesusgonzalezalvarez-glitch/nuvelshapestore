@@ -5,8 +5,8 @@
   <p style="max-width:640px; color:var(--text-soft); font-size:15px; line-height:1.7; margin-top:12px;">{{ 'catalog.intro' | t }}</p>
 
   <div class="cat-categories">
-    <button type="button" class="cat-circle" data-cat="cintura-alta"><div class="circle"></div><span>{{ 'catalog.category_high_waist' | t }}</span></button>
     <button type="button" class="cat-circle" data-cat="posparto"><div class="circle" style="background:linear-gradient(135deg,#D9BEA6,#C9A87C);"></div><span>{{ 'catalog.category_postpartum' | t }}</span></button>
+    <button type="button" class="cat-circle" data-cat="cintura-alta"><div class="circle"></div><span>{{ 'catalog.category_high_waist' | t }}</span></button>
     <button type="button" class="cat-circle" data-cat="sin-costuras"><div class="circle"></div><span>{{ 'catalog.category_seamless' | t }}</span></button>
     <button type="button" class="cat-circle" data-cat="sets"><div class="circle" style="background:linear-gradient(135deg,#D9BEA6,#C9A87C);"></div><span>{{ 'catalog.category_full_body' | t }}</span></button>
     <button type="button" class="cat-circle" data-cat="postura"><div class="circle"></div><span>{{ 'catalog.category_posture' | t }}</span></button>
@@ -79,6 +79,18 @@
   {%- endcomment -%}
   {%- assign fichas_a_mano = "faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties" | split: "," -%}
 
+  <section class="cat-section" data-cat-section="posparto">
+    <h2 class="cat-section-title">{{ 'catalog.category_postpartum' | t }}</h2>
+    <div class="product-grid" data-cat-grid="posparto">
+      {%- render 'tile-faja' -%}
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'posparto' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
   <section class="cat-section" data-cat-section="cintura-alta">
     <h2 class="cat-section-title">{{ 'catalog.category_high_waist' | t }}</h2>
     <div class="product-grid" data-cat-grid="cintura-alta">
@@ -87,18 +99,6 @@
       {%- for product in collections.all.products -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'cintura-alta' -%}
-        {%- endunless -%}
-      {%- endfor -%}
-    </div>
-  </section>
-
-  <section class="cat-section" data-cat-section="posparto">
-    <h2 class="cat-section-title">{{ 'catalog.category_postpartum' | t }}</h2>
-    <div class="product-grid" data-cat-grid="posparto">
-      {%- render 'tile-faja' -%}
-      {%- for product in collections.all.products -%}
-        {%- unless fichas_a_mano contains product.handle -%}
-          {%- render 'tile-generico', product: product, categoria: 'posparto' -%}
         {%- endunless -%}
       {%- endfor -%}
     </div>
