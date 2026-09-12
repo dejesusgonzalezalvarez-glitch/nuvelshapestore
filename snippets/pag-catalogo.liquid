@@ -147,10 +147,12 @@
             {%- assign colores_producto = opcion.values | join: " " | downcase -%}
           {%- endif -%}
         {%- endfor -%}
+        {%- capture titulo_limpio -%}{%- render 'titulo-limpio', product: product, palabras: 6 -%}{%- endcapture -%}
+        {%- assign titulo_limpio = titulo_limpio | strip -%}
         <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-cats="{{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="" data-compresion="">
           <div class="shot">
             {%- if product.featured_image -%}
-            <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy">
+            <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_limpio | escape }}" loading="lazy">
             {%- endif -%}
             {%- if product.images.size > 1 -%}
             <img class="shot-hover" src="{{ product.images[1] | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="" loading="lazy" aria-hidden="true">
@@ -158,8 +160,8 @@
             <span class="badge">{{ 'general.badge_new' | t }}</span>
           </div>
           <div class="info">
-            <h4>{{ product.title | split: " (" | first | truncatewords: 8 }}</h4>
-            <p class="tile-why">{{ product.description | strip_html | replace: '[', '' | replace: ']', '' | truncate: 90 }}</p>
+            <h4>{{ titulo_limpio }}</h4>
+            <p class="tile-why">{{ product.description | strip_html | replace: '[', '' | replace: ']', '' | replace: '"', '' | truncate: 80 }}</p>
             {%- render 'rating-stars', product: product, size: 'tile' -%}
             <div class="price-row" style="margin-top:6px;">
               <span style="font-weight:600;">{{ product.price | money }}</span>

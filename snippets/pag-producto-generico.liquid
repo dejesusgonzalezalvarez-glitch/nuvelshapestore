@@ -16,14 +16,8 @@
   };
 </script>
 
-{%- comment -%}
-  El título que trae el proveedor suele venir cargado de palabras clave
-  ("gagli Womens Seamless Bras Plus-Size Wireless Bra Push Up..."). Aquí se
-  recorta a algo legible: se quita el paréntesis final (normalmente repite
-  talla/color) y se limita a 8 palabras.
-{%- endcomment -%}
-{%- assign titulo_limpio = product.title | split: " (" | first | strip -%}
-{%- assign titulo_limpio = titulo_limpio | truncatewords: 8 -%}
+{%- capture titulo_limpio -%}{%- render 'titulo-limpio', product: product, palabras: 9 -%}{%- endcapture -%}
+{%- assign titulo_limpio = titulo_limpio | strip -%}
 
 <main class="wrap">
   <nav class="breadcrumb">
@@ -105,7 +99,7 @@
         sueltos de cuando las scrapean ("[Soft Comfort Bra is made of...").
         Se limpian esos caracteres antes de mostrarla.
       {%- endcomment -%}
-      <div class="pdp-desc">{{ product.description | replace: '[', '' | replace: ']', '' }}</div>
+      <div class="pdp-desc">{{ product.description | replace: '[', '' | replace: ']', '' | replace: '"', '' }}</div>
     </div>
   </div>
 
@@ -117,14 +111,16 @@
       {%- for recomendado in collections.all.products -%}
         {%- if recomendado.id != product.id and sugeridos < 3 -%}
           {%- assign sugeridos = sugeridos | plus: 1 -%}
+          {%- capture titulo_recomendado -%}{%- render 'titulo-limpio', product: recomendado, palabras: 6 -%}{%- endcapture -%}
+          {%- assign titulo_recomendado = titulo_recomendado | strip -%}
           <a href="{{ recomendado.url }}" class="product-tile">
             <div class="shot">
               {%- if recomendado.featured_image -%}
-              <img src="{{ recomendado.featured_image | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ recomendado.featured_image.alt | default: recomendado.title | escape }}" loading="lazy">
+              <img src="{{ recomendado.featured_image | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_recomendado | escape }}" loading="lazy">
               {%- endif -%}
             </div>
             <div class="info">
-              <h4>{{ recomendado.title | split: " (" | first | truncatewords: 6 }}</h4>
+              <h4>{{ titulo_recomendado }}</h4>
               {%- render 'rating-stars', product: recomendado, size: 'tile' -%}
               <div class="price-row" style="margin-top:6px;">
                 <span style="font-weight:600;">{{ recomendado.price | money }}</span>

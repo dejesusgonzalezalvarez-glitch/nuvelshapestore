@@ -1,0 +1,23 @@
+{%- comment -%}
+  Limpia el título que trae el proveedor para que se vea como el resto del
+  catálogo, no como una ficha de AliExpress:
+    1. Quita la "marca" inventada del proveedor si va pegada al inicio en
+       minúscula ("gagli Womens...", "habibee Bra...") — se detecta porque
+       esa primera palabra no empieza con mayúscula, a diferencia del resto
+       del título.
+    2. Quita el paréntesis final (normalmente repite color/talla).
+    3. Recorta a un número de palabras razonable.
+
+  Uso: {% capture titulo_limpio %}{% render 'titulo-limpio', product: product, palabras: 6 %}{% endcapture %}
+       {% assign titulo_limpio = titulo_limpio | strip %}
+{%- endcomment -%}
+{%- assign _primera = product.title | split: " " | first -%}
+{%- assign _inicial = _primera | slice: 0, 1 -%}
+{%- assign _inicial_mayus = _inicial | upcase -%}
+{%- assign _titulo = product.title -%}
+{%- if _inicial != _inicial_mayus -%}
+  {%- assign _titulo = _titulo | remove_first: _primera | strip -%}
+{%- endif -%}
+{%- assign _titulo = _titulo | split: " (" | first | strip -%}
+{%- assign _n = palabras | default: 8 -%}
+{{- _titulo | truncatewords: _n -}}

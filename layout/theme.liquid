@@ -10,7 +10,8 @@
 {%- endcomment -%}
 {%- assign titulo_pestana = page_title -%}
 {%- if template.name == 'product' -%}
-  {%- assign titulo_pestana = product.title | split: " (" | first | truncatewords: 8 -%}
+  {%- capture titulo_pestana -%}{%- render 'titulo-limpio', product: product, palabras: 8 -%}{%- endcapture -%}
+  {%- assign titulo_pestana = titulo_pestana | strip -%}
 {%- endif -%}
 <title>{% if template.name == 'index' %}{{ 'general.meta.title_home' | t }}{% else %}{{ titulo_pestana }} · Nuvel{% endif %}</title>
 {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
