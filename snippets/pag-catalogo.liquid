@@ -146,7 +146,19 @@
         {%- for opcion in product.options_with_values -%}
           {%- assign nombre_opcion = opcion.name | downcase -%}
           {%- if nombre_opcion contains "talla" or nombre_opcion contains "size" -%}
-            {%- assign tallas_producto = opcion.values | join: " " -%}
+            {%- comment -%}
+              Se normaliza cada talla (Small -> S, Medium -> M...) con el
+              mismo traductor de la ficha de producto, porque los botones
+              de filtro solo buscan "S", "M", "L", "XL" — si el proveedor
+              puso el nombre completo en inglés, el filtro nunca lo iba a
+              encontrar aunque el producto sí tuviera esa talla.
+            {%- endcomment -%}
+            {%- assign tallas_producto = "" -%}
+            {%- for val in opcion.values -%}
+              {%- capture val_talla -%}{%- render 'opcion-traducida', valor: val -%}{%- endcapture -%}
+              {%- assign tallas_producto = tallas_producto | append: val_talla | strip | append: " " -%}
+            {%- endfor -%}
+            {%- assign tallas_producto = tallas_producto | strip -%}
           {%- endif -%}
           {%- if nombre_opcion contains "color" -%}
             {%- assign colores_producto = opcion.values | join: " " | downcase -%}
