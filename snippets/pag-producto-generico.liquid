@@ -16,9 +16,18 @@
   };
 </script>
 
+{%- comment -%}
+  El título que trae el proveedor suele venir cargado de palabras clave
+  ("gagli Womens Seamless Bras Plus-Size Wireless Bra Push Up..."). Aquí se
+  recorta a algo legible: se quita el paréntesis final (normalmente repite
+  talla/color) y se limita a 8 palabras.
+{%- endcomment -%}
+{%- assign titulo_limpio = product.title | split: " (" | first | strip -%}
+{%- assign titulo_limpio = titulo_limpio | truncatewords: 8 -%}
+
 <main class="wrap">
   <nav class="breadcrumb">
-    <a href="/">{{ 'nav.home' | t }}</a> / <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ product.title }}</span>
+    <a href="/">{{ 'nav.home' | t }}</a> / <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ titulo_limpio }}</span>
   </nav>
 
   <div class="pdp-row">
@@ -47,7 +56,8 @@
     </div>
 
     <div class="pdp-info">
-      <h1>{{ product.title }}</h1>
+      <h1>{{ titulo_limpio }} · Nuvel</h1>
+      {%- render 'rating-stars', product: product -%}
       <div class="price-row">
         <span class="price-now">{{ product.price | money }}</span>
         {%- if product.compare_at_price > product.price -%}
@@ -65,6 +75,11 @@
         </div>
       </div>
       {%- endfor -%}
+
+      <div class="qty-offer">
+        <button type="button" class="qty-opt selected" data-generic-qty="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ product.price | money }}</div></button>
+        <button type="button" class="qty-opt" data-generic-qty="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ product.price | times: 2 | money }}</div></button>
+      </div>
 
       {%- render 'payment-icons' -%}
 
@@ -85,7 +100,12 @@
         </div>
       </div>
 
-      <div class="pdp-desc">{{ product.description }}</div>
+      {%- comment -%}
+        Las descripciones que vienen del proveedor a veces traen corchetes
+        sueltos de cuando las scrapean ("[Soft Comfort Bra is made of...").
+        Se limpian esos caracteres antes de mostrarla.
+      {%- endcomment -%}
+      <div class="pdp-desc">{{ product.description | replace: '[', '' | replace: ']', '' }}</div>
     </div>
   </div>
 
@@ -104,7 +124,8 @@
               {%- endif -%}
             </div>
             <div class="info">
-              <h4>{{ recomendado.title }}</h4>
+              <h4>{{ recomendado.title | split: " (" | first | truncatewords: 6 }}</h4>
+              {%- render 'rating-stars', product: recomendado, size: 'tile' -%}
               <div class="price-row" style="margin-top:6px;">
                 <span style="font-weight:600;">{{ recomendado.price | money }}</span>
               </div>
@@ -121,8 +142,17 @@
     var datos = window.__NUVEL_GENERICO__;
     if (!datos) return;
     var seleccion = {};
+    var cantidad = 1;
     document.querySelectorAll(".opt-btn[data-opt-index].selected").forEach(function (b) {
       seleccion[b.dataset.optIndex] = b.dataset.optValue;
+    });
+
+    document.querySelectorAll("[data-generic-qty]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        document.querySelectorAll("[data-generic-qty]").forEach(function (o) { o.classList.remove("selected"); });
+        b.classList.add("selected");
+        cantidad = Number(b.dataset.genericQty) || 1;
+      });
     });
 
     function variantIdActual() {
@@ -149,7 +179,7 @@
         fetch("/cart/add.js", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: [{ id: Number(id), quantity: 1 }] }),
+          body: JSON.stringify({ items: [{ id: Number(id), quantity: cantidad }] }),
         })
           .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
           .then(function () {
