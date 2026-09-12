@@ -3,7 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if template.name == 'index' %}{{ 'general.meta.title_home' | t }}{% else %}{{ page_title }} · Nuvel{% endif %}</title>
+{%- comment -%}
+  En una pagina de producto generico, page_title trae el titulo tal cual lo
+  puso el proveedor (largo, cargado de palabras clave). Se recorta igual que
+  en el resto de la pagina, para que la pestaña del navegador no desentone.
+{%- endcomment -%}
+{%- assign titulo_pestana = page_title -%}
+{%- if template.name == 'product' -%}
+  {%- assign titulo_pestana = product.title | split: " (" | first | truncatewords: 8 -%}
+{%- endif -%}
+<title>{% if template.name == 'index' %}{{ 'general.meta.title_home' | t }}{% else %}{{ titulo_pestana }} · Nuvel{% endif %}</title>
 {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
 <meta name="theme-color" content="#1A1A1A">
 <meta name="google-site-verification" content="kXgMIJ4KBeroAjBRLwbdak96GNKVTDOSPa7jUcVCl0Q" />
