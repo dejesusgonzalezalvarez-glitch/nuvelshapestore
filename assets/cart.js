@@ -599,15 +599,21 @@
       }
 
       function refresh() {
+        // El descuento real de Shopify ("15% en la 2da unidad") solo baja el
+        // precio del articulo mas barato del carrito, no el total del combo.
+        // Se calcula igual aqui para que el precio mostrado coincida exacto
+        // con lo que se cobra al pagar (antes se mostraba total*(1-dto), que
+        // no coincidia con el cobro real).
         const incluir = !checkbox || checkbox.checked;
         const total = incluir ? mainPrice + partnerPrice : mainPrice;
         const dto = incluir ? discount : 0;
-        const ahora = Math.round(total * (1 - dto / 100) * 100) / 100;
+        const ahorro = incluir ? Math.round(Math.min(mainPrice, partnerPrice) * (dto / 100) * 100) / 100 : 0;
+        const ahora = Math.round((total - ahorro) * 100) / 100;
         if (wasEl) { wasEl.textContent = fmt(total); wasEl.style.display = ""; }
         if (nowEl) nowEl.textContent = fmt(ahora);
         if (saveEl) {
-          saveEl.textContent = dto > 0 ? (I18N.bundleSave || "Ahorras") + " " + dto + "%" : "";
-          saveEl.style.display = dto > 0 ? "" : "none";
+          saveEl.textContent = ahorro > 0 ? (I18N.bundleSave || "Ahorras") + " " + fmt(ahorro) : "";
+          saveEl.style.display = ahorro > 0 ? "" : "none";
         }
       }
       checkbox?.addEventListener("change", refresh);
