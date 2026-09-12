@@ -34,14 +34,15 @@
         <div class="filter-dropdown" data-filter-panel="zona">
           <button type="button" data-filter-key="zona" data-filter-value="abdomen">{{ 'catalog.filter_zone_abdomen' | t }}</button>
           <button type="button" data-filter-key="zona" data-filter-value="piernas">{{ 'catalog.filter_zone_legs' | t }}</button>
-          <button type="button" data-filter-key="zona" data-filter-value="torso" disabled>{{ 'catalog.filter_zone_torso_soon' | t }}</button>
+          <button type="button" data-filter-key="zona" data-filter-value="torso">{{ 'catalog.filter_zone_torso_soon' | t }}</button>
+          <button type="button" data-filter-key="zona" data-filter-value="cuerpo">{{ 'catalog.filter_zone_full_body' | t }}</button>
         </div>
       </div>
       <div class="filter-chip-wrap">
         <button type="button" class="chip" data-filter-toggle="compresion">{{ 'catalog.filter_compression' | t }}</button>
         <div class="filter-dropdown" data-filter-panel="compresion">
           <button type="button" data-filter-key="compresion" data-filter-value="media">{{ 'catalog.filter_compression_medium' | t }}</button>
-          <button type="button" data-filter-key="compresion" data-filter-value="alta" disabled>{{ 'catalog.filter_compression_high_soon' | t }}</button>
+          <button type="button" data-filter-key="compresion" data-filter-value="alta">{{ 'catalog.filter_compression_high_soon' | t }}</button>
         </div>
       </div>
       <button type="button" class="chip" id="filters-clear" style="display:none; border-style:dashed;">{{ 'catalog.filter_clear' | t }} ✕</button>
@@ -151,7 +152,27 @@
         {%- endfor -%}
         {%- capture titulo_limpio -%}{%- render 'titulo-limpio', product: product, palabras: 6 -%}{%- endcapture -%}
         {%- assign titulo_limpio = titulo_limpio | strip -%}
-        <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="" data-compresion="">
+        {%- comment -%}
+          Zona y compresión no son campos reales de Shopify, así que se
+          adivinan por palabras clave del título. No es perfecto, pero deja
+          que los filtros funcionen con cualquier producto nuevo sin que haya
+          que etiquetar nada a mano. Si quieres que un producto quede en una
+          zona/compresión concreta, ajusta las palabras de su título.
+        {%- endcomment -%}
+        {%- assign titulo_buscar = titulo_limpio | downcase -%}
+        {%- assign zona_producto = "abdomen" -%}
+        {%- if titulo_buscar contains "legging" or titulo_buscar contains "pierna" -%}
+          {%- assign zona_producto = "piernas" -%}
+        {%- elsif titulo_buscar contains "sujetador" or titulo_buscar contains "bra" -%}
+          {%- assign zona_producto = "torso" -%}
+        {%- elsif titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
+          {%- assign zona_producto = "cuerpo" -%}
+        {%- endif -%}
+        {%- assign compresion_producto = "media" -%}
+        {%- if titulo_buscar contains "firme" or titulo_buscar contains "cinturilla" or titulo_buscar contains "chaleco" or titulo_buscar contains "sudo" -%}
+          {%- assign compresion_producto = "alta" -%}
+        {%- endif -%}
+        <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
           <div class="shot">
             {%- if product.featured_image -%}
             <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_limpio | escape }}" loading="lazy">
