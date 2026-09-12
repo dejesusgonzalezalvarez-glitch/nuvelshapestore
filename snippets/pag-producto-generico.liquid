@@ -72,8 +72,11 @@
       </div>
       {%- endfor -%}
 
+      {%- comment -%} Estos productos se venden solos, sin combo bundle. {%- endcomment -%}
+      {%- assign _sin_bundle = "smart-posture-corrector-for-kids-and-students" | split: "," -%}
       {%- capture _nicho_actual -%}{%- render 'producto-nicho', producto: product -%}{%- endcapture -%}
       {%- assign _nicho_actual = _nicho_actual | strip -%}
+      {%- unless _sin_bundle contains product.handle -%}
       {%- if _nicho_actual != blank -%}
         {%- assign _socio_generico = nil -%}
         {%- for _cand in collections.all.products -%}
@@ -93,6 +96,7 @@
                      nombre_main: titulo_limpio, nombre_partner: _titulo_socio -%}
         {%- endif -%}
       {%- endif -%}
+      {%- endunless -%}
 
       <div class="qty-offer">
         <button type="button" class="qty-opt selected" data-generic-qty="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ product.price | money }}</div></button>
