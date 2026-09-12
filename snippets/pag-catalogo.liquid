@@ -9,6 +9,7 @@
     <button type="button" class="cat-circle" data-cat="posparto"><div class="circle" style="background:linear-gradient(135deg,#D9BEA6,#C9A87C);"></div><span>{{ 'catalog.category_postpartum' | t }}</span></button>
     <button type="button" class="cat-circle" data-cat="sin-costuras"><div class="circle"></div><span>{{ 'catalog.category_seamless' | t }}</span></button>
     <button type="button" class="cat-circle" data-cat="sets"><div class="circle" style="background:linear-gradient(135deg,#D9BEA6,#C9A87C);"></div><span>{{ 'catalog.category_full_body' | t }}</span></button>
+    <button type="button" class="cat-circle" data-cat="postura"><div class="circle"></div><span>{{ 'catalog.category_posture' | t }}</span></button>
   </div>
 
   <div class="filter-row">
@@ -36,6 +37,7 @@
           <button type="button" data-filter-key="zona" data-filter-value="piernas">{{ 'catalog.filter_zone_legs' | t }}</button>
           <button type="button" data-filter-key="zona" data-filter-value="torso">{{ 'catalog.filter_zone_torso_soon' | t }}</button>
           <button type="button" data-filter-key="zona" data-filter-value="cuerpo">{{ 'catalog.filter_zone_full_body' | t }}</button>
+          <button type="button" data-filter-key="zona" data-filter-value="espalda">{{ 'catalog.filter_zone_back' | t }}</button>
         </div>
       </div>
       <div class="filter-chip-wrap">
@@ -179,9 +181,14 @@
         {%- if titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
           {%- assign categorias_producto = categorias_producto | append: "sets " -%}
         {%- endif -%}
+        {%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
+          {%- assign categorias_producto = categorias_producto | append: "postura " -%}
+        {%- endif -%}
         {%- assign categorias_producto = categorias_producto | strip -%}
         {%- assign zona_producto = "abdomen" -%}
-        {%- if titulo_buscar contains "legging" or titulo_buscar contains "pierna" -%}
+        {%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
+          {%- assign zona_producto = "espalda" -%}
+        {%- elsif titulo_buscar contains "legging" or titulo_buscar contains "pierna" -%}
           {%- assign zona_producto = "piernas" -%}
         {%- elsif titulo_buscar contains "sujetador" -%}
           {%- assign zona_producto = "torso" -%}
