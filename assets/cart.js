@@ -6,9 +6,49 @@
     return "€" + n.toLocaleString(numLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  // Regalo automático: al llegar a 2 o mas unidades (sin contar el propio
+  // regalo), se agrega solo esta variante gratis — el 100% de descuento lo
+  // aplica un descuento automatico ya configurado en Shopify, esto solo la
+  // mete al carrito para que ese descuento tenga algo sobre lo que actuar.
+  var REGALO_VARIANT_ID = 48676064329969; // Bragas Moldeadoras Sin Costuras, Negro M
+  var REGALO_RECHAZADO_KEY = "nuvel_regalo_rechazado";
+  function regaloFueRechazado() {
+    try { return localStorage.getItem(REGALO_RECHAZADO_KEY) === "1"; } catch (e) { return false; }
+  }
+  function marcarRegaloRechazado(valor) {
+    try {
+      if (valor) localStorage.setItem(REGALO_RECHAZADO_KEY, "1");
+      else localStorage.removeItem(REGALO_RECHAZADO_KEY);
+    } catch (e) {}
+  }
+  function sincronizarRegalo(cart) {
+    var regalo = cart.items.find((i) => i.variant_id === REGALO_VARIANT_ID);
+    var totalSinRegalo = cart.items.reduce((s, i) => s + (i.variant_id === REGALO_VARIANT_ID ? 0 : i.quantity), 0);
+    if (totalSinRegalo >= 2 && !regalo && !regaloFueRechazado()) {
+      return fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: [{ id: REGALO_VARIANT_ID, quantity: 1 }] }),
+      })
+        .then(() => fetch("/cart.js"))
+        .then((r) => r.json());
+    }
+    if (totalSinRegalo < 2 && regalo) {
+      return fetch("/cart/change.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: REGALO_VARIANT_ID, quantity: 0 }),
+      })
+        .then(() => fetch("/cart.js"))
+        .then((r) => r.json());
+    }
+    return Promise.resolve(cart);
+  }
+
   function renderCart() {
     return fetch("/cart.js")
       .then((r) => r.json())
+      .then((cart) => sincronizarRegalo(cart))
       .then((cart) => {
         document.querySelectorAll("[data-cart-count]").forEach((el) => {
           el.textContent = cart.item_count;
@@ -26,21 +66,26 @@
         }
         if (footEl) footEl.style.display = "block";
 
-        itemsEl.innerHTML = cart.items.map((item) => `
-          <div class="cart-item">
+        itemsEl.innerHTML = cart.items.map((item) => {
+          const esRegalo = item.variant_id === REGALO_VARIANT_ID;
+          return `
+          <div class="cart-item${esRegalo ? " cart-item--regalo" : ""}">
             <img src="${item.image}" alt="${item.product_title}">
             <div class="ci-info">
-              <h5>${item.product_title}</h5>
-              <div class="ci-meta">${item.variant_title ? item.variant_title + " · " : ""}${fmt(item.price / 100)}</div>
-              <div class="qty-stepper">
+              <h5>${item.product_title}${esRegalo ? " 🎁" : ""}</h5>
+              <div class="ci-meta">${esRegalo ? (I18N.giftLabel || "Regalo por tu compra") : (item.variant_title ? item.variant_title + " · " : "") + fmt(item.price / 100)}</div>
+              ${esRegalo
+                ? `<div class="qty-stepper"><button class="remove-link" data-remove-regalo="${item.key}">${I18N.giftRemove || "No, gracias"}</button></div>`
+                : `<div class="qty-stepper">
                 <button data-qty-minus="${item.key}" aria-label="${I18N.decrease || 'Restar'}">−</button>
                 <span>${item.quantity}</span>
                 <button data-qty-plus="${item.key}" aria-label="${I18N.increase || 'Sumar'}">+</button>
                 <button class="remove-link" data-remove="${item.key}">${I18N.remove || 'Eliminar'}</button>
-              </div>
+              </div>`}
             </div>
           </div>
-        `).join("");
+        `;
+        }).join("");
 
         const subEl = document.getElementById("cart-subtotal-value");
         if (subEl) subEl.textContent = fmt(cart.total_price / 100);
@@ -48,6 +93,10 @@
         itemsEl.querySelectorAll("[data-qty-plus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyPlus, 1)));
         itemsEl.querySelectorAll("[data-qty-minus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyMinus, -1)));
         itemsEl.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => removeItem(b.dataset.remove)));
+        itemsEl.querySelectorAll("[data-remove-regalo]").forEach((b) => b.addEventListener("click", () => {
+          marcarRegaloRechazado(true);
+          removeItem(b.dataset.removeRegalo);
+        }));
         return cart;
       });
   }

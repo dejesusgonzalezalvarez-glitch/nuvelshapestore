@@ -91,7 +91,7 @@
 
       <div class="qty-offer">
         <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ p.price | money }}</div></button>
-        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ p.price | times: 2 | money }}</div></button>
+        <button class="qty-opt" data-qty-offer="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ p.price | times: 1.85 | round | money }}</div></button>
         <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Short Moldeador Sin Costuras" data-pack-partner="seamless-shapewear-panties" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'product_vestido.pack_label' | t }}</div><div class="qty-price">84,80&nbsp;€</div></button>
       </div>
 

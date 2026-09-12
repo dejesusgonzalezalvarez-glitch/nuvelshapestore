@@ -32,7 +32,7 @@
   "qty": {
     "one_unit": "1 unidad",
     "two_units": "2 unidades",
-    "save_rotate": "La segunda, para rotar",
+    "save_rotate": "-15% en la 2ª unidad",
     "save_most_requested": "El que más piden"
   },
   "trust": {
@@ -471,6 +471,8 @@
     "increase": "Sumar",
     "remove": "Eliminar",
     "pack_prefix": "Pack",
+    "gift_label": "Regalo por tu compra",
+    "gift_remove": "No, gracias",
     "alert_pack_not_ready": "El pack aún no está listo para añadirse. Cuando lo activemos lo anunciamos aquí mismo.",
     "alert_add_failed": "No se pudo añadir el producto al carrito. Intenta de nuevo.",
     "alert_add_pack_failed": "No se pudo añadir el pack. Intenta de nuevo."

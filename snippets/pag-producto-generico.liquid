@@ -74,7 +74,7 @@
 
       <div class="qty-offer">
         <button type="button" class="qty-opt selected" data-generic-qty="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ product.price | money }}</div></button>
-        <button type="button" class="qty-opt" data-generic-qty="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ product.price | times: 2 | money }}</div></button>
+        <button type="button" class="qty-opt" data-generic-qty="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ product.price | times: 1.85 | round | money }}</div></button>
       </div>
 
       {%- render 'payment-icons' -%}

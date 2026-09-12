@@ -32,7 +32,7 @@
   "qty": {
     "one_unit": "1 unit",
     "two_units": "2 units",
-    "save_rotate": "The second one, to rotate",
+    "save_rotate": "-15% off the 2nd unit",
     "save_most_requested": "Most requested"
   },
   "trust": {
@@ -471,6 +471,8 @@
     "increase": "Increase",
     "remove": "Remove",
     "pack_prefix": "Pack",
+    "gift_label": "Free gift with your purchase",
+    "gift_remove": "No, thanks",
     "alert_pack_not_ready": "This pack isn't ready to add yet. We'll announce it here as soon as it's live.",
     "alert_add_failed": "We couldn't add the product to your cart. Please try again.",
     "alert_add_pack_failed": "We couldn't add the pack. Please try again."
