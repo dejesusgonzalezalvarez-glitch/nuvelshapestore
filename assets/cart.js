@@ -266,49 +266,55 @@
     document.getElementById("account-close")?.addEventListener("click", closeAccount);
     document.getElementById("account-overlay")?.addEventListener("click", closeAccount);
 
-    // ===== Catalog: category circles, filter dropdowns, sort =====
-    const grid = document.getElementById("product-grid");
-    if (grid) {
-      const tiles = Array.from(grid.querySelectorAll(".product-tile"));
+    // ===== Catalog: category sections, filter dropdowns, sort =====
+    const catSections = Array.from(document.querySelectorAll(".cat-section"));
+    if (catSections.length) {
       const activeFilters = {}; // key -> value
-      let activeCategory = null;
+
+      // Si alguna subseccion no tiene ninguna ficha (ej. una categoria nueva
+      // sin productos todavia), se oculta ella sola desde el principio.
+      catSections.forEach((sec) => {
+        if (!sec.querySelector(".product-tile")) sec.style.display = "none";
+      });
 
       function applyFilters() {
-        const hasFilters = activeCategory || Object.keys(activeFilters).length > 0;
+        const hasFilters = Object.keys(activeFilters).length > 0;
         document.getElementById("filters-clear").style.display = hasFilters ? "inline-block" : "none";
-        let anyVisible = false;
-        tiles.forEach((tile) => {
-          const cats = (tile.dataset.cats || "").split(" ").filter(Boolean);
-          let visible = true;
-          if (activeCategory && !cats.includes(activeCategory)) visible = false;
-          Object.entries(activeFilters).forEach(([key, val]) => {
-            if (key === "precio") {
-              // El precio se compara como número (data-price), no como etiqueta de texto:
-              // así el filtro sigue funcionando aunque cambien los precios de los productos.
-              const precio = parseFloat(tile.dataset.price);
-              if (val === "menos-50" && !(precio < 50)) visible = false;
-              if (val === "50-100" && !(precio >= 50 && precio <= 100)) visible = false;
-              return;
-            }
-            const vals = (tile.dataset[key] || "").split(" ").filter(Boolean);
-            if (!vals.includes(val)) visible = false;
+        let anyVisibleTotal = false;
+        catSections.forEach((sec) => {
+          const tilesSec = Array.from(sec.querySelectorAll(".product-tile"));
+          if (!tilesSec.length) return; // ya oculta arriba
+          let anyVisibleSec = false;
+          tilesSec.forEach((tile) => {
+            let visible = true;
+            Object.entries(activeFilters).forEach(([key, val]) => {
+              if (key === "precio") {
+                // El precio se compara como número (data-price), no como etiqueta de texto:
+                // así el filtro sigue funcionando aunque cambien los precios de los productos.
+                const precio = parseFloat(tile.dataset.price);
+                if (val === "menos-50" && !(precio < 50)) visible = false;
+                if (val === "50-100" && !(precio >= 50 && precio <= 100)) visible = false;
+                return;
+              }
+              const vals = (tile.dataset[key] || "").split(" ").filter(Boolean);
+              if (!vals.includes(val)) visible = false;
+            });
+            tile.style.display = visible ? "" : "none";
+            if (visible) anyVisibleSec = true;
           });
-          tile.style.display = visible ? "" : "none";
-          if (visible) anyVisible = true;
+          sec.style.display = anyVisibleSec ? "" : "none";
+          if (anyVisibleSec) anyVisibleTotal = true;
         });
-        document.getElementById("filters-empty").style.display = anyVisible ? "none" : "block";
+        document.getElementById("filters-empty").style.display = anyVisibleTotal ? "none" : "block";
       }
 
+      // Los círculos de categoría ya no ocultan/muestran nada — cada categoría
+      // es su propia subsección con encabezado, así que el círculo solo baja
+      // la página hasta ella.
       document.querySelectorAll(".cat-circle").forEach((btn) => {
         btn.addEventListener("click", () => {
-          const cat = btn.dataset.cat;
-          if (activeCategory === cat) { activeCategory = null; btn.classList.remove("active"); }
-          else {
-            document.querySelectorAll(".cat-circle").forEach((c) => c.classList.remove("active"));
-            activeCategory = cat;
-            btn.classList.add("active");
-          }
-          applyFilters();
+          const sec = document.querySelector('.cat-section[data-cat-section="' + btn.dataset.cat + '"]');
+          if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
 
@@ -350,26 +356,29 @@
       });
 
       document.getElementById("filters-clear")?.addEventListener("click", () => {
-        activeCategory = null;
         Object.keys(activeFilters).forEach((k) => delete activeFilters[k]);
-        document.querySelectorAll(".cat-circle, .chip, [data-filter-key]").forEach((el) => el.classList.remove("active"));
+        document.querySelectorAll(".chip, [data-filter-key]").forEach((el) => el.classList.remove("active"));
         applyFilters();
       });
 
-      // Sort
+      // Sort: cada subsección ordena sus propias fichas — no se mezclan
+      // productos entre categorías distintas al ordenar.
       document.querySelectorAll("[data-sort]").forEach((opt) => {
         opt.addEventListener("click", (e) => {
           e.stopPropagation();
           const mode = opt.dataset.sort;
-          const sorted = [...tiles].sort((a, b) => {
-            if (mode === "precio-asc") return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
-            if (mode === "precio-desc") return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
-            if (mode === "nuevo") return (Number(b.dataset.created) || 0) - (Number(a.dataset.created) || 0);
-            if (mode === "az") return (a.dataset.title || "").localeCompare(b.dataset.title || "", "es", { sensitivity: "base" });
-            return 0; // relevancia: original order
+          document.querySelectorAll("[data-cat-grid]").forEach((catGrid) => {
+            const tilesGrid = Array.from(catGrid.querySelectorAll(".product-tile"));
+            const sorted = [...tilesGrid].sort((a, b) => {
+              if (mode === "precio-asc") return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+              if (mode === "precio-desc") return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+              if (mode === "nuevo") return (Number(b.dataset.created) || 0) - (Number(a.dataset.created) || 0);
+              if (mode === "az") return (a.dataset.title || "").localeCompare(b.dataset.title || "", "es", { sensitivity: "base" });
+              return 0; // relevancia: orden original
+            });
+            const base = mode === "relevancia" ? tilesGrid : sorted;
+            base.forEach((t) => catGrid.appendChild(t));
           });
-          const base = mode === "relevancia" ? tiles : sorted;
-          base.forEach((t) => grid.appendChild(t));
           document.querySelectorAll('[data-filter-panel="sort"] [data-sort]').forEach((o) => o.classList.remove("active"));
           opt.classList.add("active");
           opt.closest(".filter-dropdown").classList.remove("open");

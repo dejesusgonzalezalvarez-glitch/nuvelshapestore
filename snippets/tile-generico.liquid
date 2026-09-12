@@ -1,0 +1,88 @@
+{%- comment -%}
+  Ficha de un producto que no es uno de los 4 "buque insignia". Solo se
+  imprime si pertenece a la categoría pedida (o, si categoria viene vacío,
+  solo si el producto no cayó en ninguna categoría — sección "Otros").
+
+  Uso: {% render 'tile-generico', product: product, categoria: 'cintura-alta' %}
+       {% render 'tile-generico', product: product, categoria: '' %}  (Otros)
+{%- endcomment -%}
+{%- assign tallas_producto = "" -%}
+{%- assign colores_producto = "" -%}
+{%- for opcion in product.options_with_values -%}
+  {%- assign nombre_opcion = opcion.name | downcase -%}
+  {%- if nombre_opcion contains "talla" or nombre_opcion contains "size" -%}
+    {%- assign tallas_producto = "" -%}
+    {%- for val in opcion.values -%}
+      {%- capture val_talla -%}{%- render 'opcion-traducida', valor: val -%}{%- endcapture -%}
+      {%- assign tallas_producto = tallas_producto | append: val_talla | strip | append: " " -%}
+    {%- endfor -%}
+    {%- assign tallas_producto = tallas_producto | strip -%}
+  {%- endif -%}
+  {%- if nombre_opcion contains "color" -%}
+    {%- assign colores_producto = opcion.values | join: " " | downcase -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- capture titulo_limpio -%}{%- render 'titulo-limpio', product: product, palabras: 6 -%}{%- endcapture -%}
+{%- assign titulo_limpio = titulo_limpio | strip -%}
+{%- assign titulo_buscar = titulo_limpio | downcase -%}
+{%- assign categorias_producto = "" -%}
+{%- if titulo_buscar contains "cintura alta" or titulo_buscar contains "cinturilla" or titulo_buscar contains "corsé" or titulo_buscar contains "corse" or titulo_buscar contains "faja" -%}
+  {%- assign categorias_producto = categorias_producto | append: "cintura-alta " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "postparto" or titulo_buscar contains "posparto" -%}
+  {%- assign categorias_producto = categorias_producto | append: "posparto " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "sin costuras" -%}
+  {%- assign categorias_producto = categorias_producto | append: "sin-costuras " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
+  {%- assign categorias_producto = categorias_producto | append: "sets " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
+  {%- assign categorias_producto = categorias_producto | append: "postura " -%}
+{%- endif -%}
+{%- assign categorias_producto = categorias_producto | strip -%}
+{%- assign zona_producto = "abdomen" -%}
+{%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
+  {%- assign zona_producto = "espalda" -%}
+{%- elsif titulo_buscar contains "legging" or titulo_buscar contains "pierna" -%}
+  {%- assign zona_producto = "piernas" -%}
+{%- elsif titulo_buscar contains "sujetador" -%}
+  {%- assign zona_producto = "torso" -%}
+{%- elsif titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
+  {%- assign zona_producto = "cuerpo" -%}
+{%- endif -%}
+{%- assign compresion_producto = "media" -%}
+{%- if titulo_buscar contains "firme" or titulo_buscar contains "cinturilla" or titulo_buscar contains "chaleco" or titulo_buscar contains "sudo" -%}
+  {%- assign compresion_producto = "alta" -%}
+{%- endif -%}
+{%- assign coincide = false -%}
+{%- if categoria == blank -%}
+  {%- if categorias_producto == "" -%}{%- assign coincide = true -%}{%- endif -%}
+{%- elsif categorias_producto contains categoria -%}
+  {%- assign coincide = true -%}
+{%- endif -%}
+{%- if coincide -%}
+<a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ categorias_producto }} {{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
+  <div class="shot">
+    {%- if product.featured_image -%}
+    <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_limpio | escape }}" loading="lazy">
+    {%- endif -%}
+    {%- if product.images.size > 1 -%}
+    <img class="shot-hover" src="{{ product.images[1] | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="" loading="lazy" aria-hidden="true">
+    {%- endif -%}
+    <span class="badge">{{ 'general.badge_new' | t }}</span>
+  </div>
+  <div class="info">
+    <h4>{{ titulo_limpio }}</h4>
+    <p class="tile-why">{{ product.description | strip_html | replace: '[', '' | replace: ']', '' | replace: '"', '' | truncate: 80 }}</p>
+    {%- render 'rating-stars', product: product, size: 'tile' -%}
+    <div class="price-row" style="margin-top:6px;">
+      <span style="font-weight:600;">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+      <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</a>
+{%- endif -%}

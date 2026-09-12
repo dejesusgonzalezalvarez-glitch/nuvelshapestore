@@ -63,177 +63,92 @@
 
   <p id="filters-empty" style="display:none; color:var(--text-mute); padding:40px 0; text-align:center;">{{ 'catalog.no_results' | t }}</p>
 
-  <div class="product-grid" id="product-grid">
-    <a href="/pages/producto" class="product-tile" data-price="39.90" data-created="1" data-title="{{ 'tile.faja.title' | t }}" data-cats="cintura-alta posparto sin-costuras" data-talla="S M L XL" data-color="negro" data-zona="abdomen" data-compresion="media">
-      <div class="shot">
-        <img src="{{ 'med-producto-frente.jpg' | asset_url }}" srcset="{{ 'mini-producto-frente.jpg' | asset_url }} 400w, {{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.image_alt' | t }}" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-faja-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-faja-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-faja-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.faja.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
-        <span class="badge">{{ 'general.badge_bestseller' | t }}</span>
-      </div>
-      <div class="info">
-        <h4>{{ 'tile.faja.title' | t }}</h4>
-        <p class="tile-why">{{ 'tile.faja.why' | t }}</p>
-        <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:69.1px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.8</span></div>
-        <div class="price-row" style="margin-top:6px;">
-          <span style="font-weight:600;">39,90&nbsp;€</span>
-          <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">54,90&nbsp;€</span>
-        </div>
-      </div>
-    </a>
-    <a class="product-tile" href="/pages/short" data-price="24.90" data-created="2" data-title="{{ 'tile.short.title' | t }}" data-cats="sin-costuras" data-talla="S M L XL 2XL" data-color="negro beige" data-zona="piernas" data-compresion="media">
-      <div class="shot">
-        <img src="{{ 'med-short-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-short-negro-frente.jpg' | asset_url }} 400w, {{ 'med-short-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-short-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.short.image_alt' | t }}" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-short-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-short-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-short-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.short.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
-        <span class="badge">{{ 'general.badge_new' | t }}</span>
-      </div>
-      <div class="info">
-        <h4>{{ 'tile.short.title' | t }}</h4>
-        <p class="tile-why">{{ 'tile.short.why' | t }}</p>
-        <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:69.1px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.6</span></div>
-        <div class="price-row" style="margin-top:6px;">
-          <span style="font-weight:600;">24,90&nbsp;€</span>
-          <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">34,90&nbsp;€</span>
-        </div>
-      </div>
-    </a>
-    <a class="product-tile" href="/pages/corse" data-price="34.90" data-created="3" data-title="{{ 'tile.corse.title' | t }}" data-cats="cintura-alta" data-talla="XS S M L XL 2XL" data-color="negro beige rosa" data-zona="torso" data-compresion="alta">
-      <div class="shot">
-        <img src="{{ 'med-corse-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-corse-negro-frente.jpg' | asset_url }} 400w, {{ 'med-corse-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-corse-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.corse.image_alt' | t }}" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-corse-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-corse-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-corse-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.corse.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
-        <span class="badge">{{ 'general.badge_new' | t }}</span>
-      </div>
-      <div class="info">
-        <h4>{{ 'tile.corse.title' | t }}</h4>
-        <p class="tile-why">{{ 'tile.corse.why' | t }}</p>
-        <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:70px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.9</span></div>
-        <div class="price-row" style="margin-top:6px;">
-          <span style="font-weight:600;">34,90&nbsp;€</span>
-          <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">49,90&nbsp;€</span>
-        </div>
-      </div>
-    </a>
-    <a class="product-tile" href="/pages/vestido" data-price="59.90" data-created="4" data-title="{{ 'tile.vestido.title' | t }}" data-cats="sin-costuras sets" data-talla="S M L XL 2XL 3XL" data-color="negro gris" data-zona="cuerpo" data-compresion="media">
-      <div class="shot">
-        <img src="{{ 'med-vestido-negro-frente.jpg' | asset_url }}" srcset="{{ 'mini-vestido-negro-frente.jpg' | asset_url }} 400w, {{ 'med-vestido-negro-frente.jpg' | asset_url }} 800w, {{ 'lg-vestido-negro-frente.jpg' | asset_url }} 1100w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.vestido.image_alt' | t }}" loading="lazy">
-        <img class="shot-hover" src="{{ 'med-vestido-modelo-blanco.jpg' | asset_url }}" srcset="{{ 'mini-vestido-modelo-blanco.jpg' | asset_url }} 400w, {{ 'med-vestido-modelo-blanco.jpg' | asset_url }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ 'tile.vestido.worn_image_alt' | t }}" loading="lazy" aria-hidden="true">
-        <span class="badge">{{ 'general.badge_new' | t }}</span>
-      </div>
-      <div class="info">
-        <h4>{{ 'tile.vestido.title' | t }}</h4>
-        <p class="tile-why">{{ 'tile.vestido.why' | t }}</p>
-        <div class="rating-row rating-row--tile"><div class="stars-wrap" style="width:72px;"><div class="stars-bg" style="gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#E4DACB"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div><div class="stars-fg" style="width:67px; gap:3px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></div></div><span class="rating-value">4.7</span></div>
-        <div class="price-row" style="margin-top:6px;">
-          <span style="font-weight:600;">59,90&nbsp;€</span>
-          <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">79,90&nbsp;€</span>
-        </div>
-      </div>
-    </a>
+  {%- comment -%}
+    El catálogo se divide en subsecciones por categoría, en vez de una sola
+    rejilla — más fácil de recorrer con 26+ productos. Un producto puede
+    aparecer en varias subsecciones a la vez (ej. una faja postparto sin
+    costuras sale en Cintura alta, Posparto y Sin costuras). Los 4 "buque
+    insignia" tienen su ficha ya escrita a mano (snippets/tile-*.liquid); el
+    resto sale de tile-generico.liquid, que decide solo en qué subsección(es)
+    entra según palabras clave de su título — nada de esto requiere etiquetar
+    productos a mano en Shopify.
 
-    {%- comment -%}
-      Productos nuevos: cualquier producto de la tienda que no sea uno de los
-      4 "buque insignia" de arriba (esos tienen su pagina propia hecha a mano
-      y no pasan por aqui). Etiqueta un producto en el panel de Shopify con
-      cintura-alta / posparto / sin-costuras / sets para que los circulos de
-      categoria de arriba tambien lo encuentren; sin esas etiquetas, el
-      producto sigue apareciendo, solo que los filtros de categoria no lo
-      van a marcar.
-    {%- endcomment -%}
-    {%- assign fichas_a_mano = "faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties" | split: "," -%}
-    {%- for product in collections.all.products -%}
-      {%- unless fichas_a_mano contains product.handle -%}
-        {%- assign tallas_producto = "" -%}
-        {%- assign colores_producto = "" -%}
-        {%- for opcion in product.options_with_values -%}
-          {%- assign nombre_opcion = opcion.name | downcase -%}
-          {%- if nombre_opcion contains "talla" or nombre_opcion contains "size" -%}
-            {%- comment -%}
-              Se normaliza cada talla (Small -> S, Medium -> M...) con el
-              mismo traductor de la ficha de producto, porque los botones
-              de filtro solo buscan "S", "M", "L", "XL" — si el proveedor
-              puso el nombre completo en inglés, el filtro nunca lo iba a
-              encontrar aunque el producto sí tuviera esa talla.
-            {%- endcomment -%}
-            {%- assign tallas_producto = "" -%}
-            {%- for val in opcion.values -%}
-              {%- capture val_talla -%}{%- render 'opcion-traducida', valor: val -%}{%- endcapture -%}
-              {%- assign tallas_producto = tallas_producto | append: val_talla | strip | append: " " -%}
-            {%- endfor -%}
-            {%- assign tallas_producto = tallas_producto | strip -%}
-          {%- endif -%}
-          {%- if nombre_opcion contains "color" -%}
-            {%- assign colores_producto = opcion.values | join: " " | downcase -%}
-          {%- endif -%}
-        {%- endfor -%}
-        {%- capture titulo_limpio -%}{%- render 'titulo-limpio', product: product, palabras: 6 -%}{%- endcapture -%}
-        {%- assign titulo_limpio = titulo_limpio | strip -%}
-        {%- comment -%}
-          Zona y compresión no son campos reales de Shopify, así que se
-          adivinan por palabras clave del título. No es perfecto, pero deja
-          que los filtros funcionen con cualquier producto nuevo sin que haya
-          que etiquetar nada a mano. Si quieres que un producto quede en una
-          zona/compresión concreta, ajusta las palabras de su título.
-        {%- endcomment -%}
-        {%- assign titulo_buscar = titulo_limpio | downcase -%}
-        {%- comment -%}
-          Los círculos de categoría de arriba (Cintura alta, Posparto, Sin
-          costuras, Cuerpo entero) también salen de palabras clave del
-          título — así funcionan solos con cualquier producto nuevo. Un
-          producto puede caer en varias a la vez.
-        {%- endcomment -%}
-        {%- assign categorias_producto = "" -%}
-        {%- if titulo_buscar contains "cintura alta" or titulo_buscar contains "cinturilla" or titulo_buscar contains "corsé" or titulo_buscar contains "corse" or titulo_buscar contains "faja" -%}
-          {%- assign categorias_producto = categorias_producto | append: "cintura-alta " -%}
-        {%- endif -%}
-        {%- if titulo_buscar contains "postparto" or titulo_buscar contains "posparto" -%}
-          {%- assign categorias_producto = categorias_producto | append: "posparto " -%}
-        {%- endif -%}
-        {%- if titulo_buscar contains "sin costuras" -%}
-          {%- assign categorias_producto = categorias_producto | append: "sin-costuras " -%}
-        {%- endif -%}
-        {%- if titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
-          {%- assign categorias_producto = categorias_producto | append: "sets " -%}
-        {%- endif -%}
-        {%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
-          {%- assign categorias_producto = categorias_producto | append: "postura " -%}
-        {%- endif -%}
-        {%- assign categorias_producto = categorias_producto | strip -%}
-        {%- assign zona_producto = "abdomen" -%}
-        {%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
-          {%- assign zona_producto = "espalda" -%}
-        {%- elsif titulo_buscar contains "legging" or titulo_buscar contains "pierna" -%}
-          {%- assign zona_producto = "piernas" -%}
-        {%- elsif titulo_buscar contains "sujetador" -%}
-          {%- assign zona_producto = "torso" -%}
-        {%- elsif titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
-          {%- assign zona_producto = "cuerpo" -%}
-        {%- endif -%}
-        {%- assign compresion_producto = "media" -%}
-        {%- if titulo_buscar contains "firme" or titulo_buscar contains "cinturilla" or titulo_buscar contains "chaleco" or titulo_buscar contains "sudo" -%}
-          {%- assign compresion_producto = "alta" -%}
-        {%- endif -%}
-        <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ categorias_producto }} {{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
-          <div class="shot">
-            {%- if product.featured_image -%}
-            <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_limpio | escape }}" loading="lazy">
-            {%- endif -%}
-            {%- if product.images.size > 1 -%}
-            <img class="shot-hover" src="{{ product.images[1] | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="" loading="lazy" aria-hidden="true">
-            {%- endif -%}
-            <span class="badge">{{ 'general.badge_new' | t }}</span>
-          </div>
-          <div class="info">
-            <h4>{{ titulo_limpio }}</h4>
-            <p class="tile-why">{{ product.description | strip_html | replace: '[', '' | replace: ']', '' | replace: '"', '' | truncate: 80 }}</p>
-            {%- render 'rating-stars', product: product, size: 'tile' -%}
-            <div class="price-row" style="margin-top:6px;">
-              <span style="font-weight:600;">{{ product.price | money }}</span>
-              {%- if product.compare_at_price > product.price -%}
-              <span style="text-decoration:line-through; color:var(--text-mute); font-size:13px;">{{ product.compare_at_price | money }}</span>
-              {%- endif -%}
-            </div>
-          </div>
-        </a>
-      {%- endunless -%}
-    {%- endfor -%}
-  </div>
+    Los filtros (Talla, Precio, Zona, Compresión) y el orden siguen
+    funcionando dentro de cada subsección; si una subsección se queda sin
+    productos visibles tras filtrar, se oculta ella sola (ver cart.js).
+  {%- endcomment -%}
+  {%- assign fichas_a_mano = "faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties" | split: "," -%}
+
+  <section class="cat-section" data-cat-section="cintura-alta">
+    <h2 class="cat-section-title">{{ 'catalog.category_high_waist' | t }}</h2>
+    <div class="product-grid" data-cat-grid="cintura-alta">
+      {%- render 'tile-faja' -%}
+      {%- render 'tile-corse' -%}
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'cintura-alta' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="cat-section" data-cat-section="posparto">
+    <h2 class="cat-section-title">{{ 'catalog.category_postpartum' | t }}</h2>
+    <div class="product-grid" data-cat-grid="posparto">
+      {%- render 'tile-faja' -%}
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'posparto' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="cat-section" data-cat-section="sin-costuras">
+    <h2 class="cat-section-title">{{ 'catalog.category_seamless' | t }}</h2>
+    <div class="product-grid" data-cat-grid="sin-costuras">
+      {%- render 'tile-faja' -%}
+      {%- render 'tile-short' -%}
+      {%- render 'tile-vestido' -%}
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'sin-costuras' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="cat-section" data-cat-section="sets">
+    <h2 class="cat-section-title">{{ 'catalog.category_full_body' | t }}</h2>
+    <div class="product-grid" data-cat-grid="sets">
+      {%- render 'tile-vestido' -%}
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'sets' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="cat-section" data-cat-section="postura">
+    <h2 class="cat-section-title">{{ 'catalog.category_posture' | t }}</h2>
+    <div class="product-grid" data-cat-grid="postura">
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'postura' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <section class="cat-section" data-cat-section="otros">
+    <h2 class="cat-section-title">{{ 'catalog.category_other' | t }}</h2>
+    <div class="product-grid" data-cat-grid="otros">
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: '' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
 </main>

@@ -352,7 +352,10 @@ section.pad { padding: 96px 64px; }
 .search-results a, .search-results .search-empty { display: block; padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--border); }
 .search-results a:hover { background: var(--bg-alt); }
 .search-results .search-empty { color: var(--text-mute); }
-.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 44px 0 100px; }
+.cat-section { border-top: 1px solid var(--bg-alt); padding-top: 8px; }
+.cat-section:first-of-type { border-top: none; }
+.cat-section-title { font-family: 'Lora', serif; font-size: 28px; font-weight: 500; margin: 40px 0 0; }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 24px 0 70px; }
 @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 .product-tile { display: block; }
 .product-tile .shot { height: 300px; position: relative; overflow: hidden; background: #fff; padding: 14px; }
