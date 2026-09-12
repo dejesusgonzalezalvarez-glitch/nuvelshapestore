@@ -160,6 +160,26 @@
           zona/compresión concreta, ajusta las palabras de su título.
         {%- endcomment -%}
         {%- assign titulo_buscar = titulo_limpio | downcase -%}
+        {%- comment -%}
+          Los círculos de categoría de arriba (Cintura alta, Posparto, Sin
+          costuras, Cuerpo entero) también salen de palabras clave del
+          título — así funcionan solos con cualquier producto nuevo. Un
+          producto puede caer en varias a la vez.
+        {%- endcomment -%}
+        {%- assign categorias_producto = "" -%}
+        {%- if titulo_buscar contains "cintura alta" or titulo_buscar contains "cinturilla" or titulo_buscar contains "corsé" or titulo_buscar contains "corse" or titulo_buscar contains "faja" -%}
+          {%- assign categorias_producto = categorias_producto | append: "cintura-alta " -%}
+        {%- endif -%}
+        {%- if titulo_buscar contains "postparto" or titulo_buscar contains "posparto" -%}
+          {%- assign categorias_producto = categorias_producto | append: "posparto " -%}
+        {%- endif -%}
+        {%- if titulo_buscar contains "sin costuras" -%}
+          {%- assign categorias_producto = categorias_producto | append: "sin-costuras " -%}
+        {%- endif -%}
+        {%- if titulo_buscar contains "body" or titulo_buscar contains "vestido" or titulo_buscar contains "camisola" -%}
+          {%- assign categorias_producto = categorias_producto | append: "sets " -%}
+        {%- endif -%}
+        {%- assign categorias_producto = categorias_producto | strip -%}
         {%- assign zona_producto = "abdomen" -%}
         {%- if titulo_buscar contains "legging" or titulo_buscar contains "pierna" -%}
           {%- assign zona_producto = "piernas" -%}
@@ -172,7 +192,7 @@
         {%- if titulo_buscar contains "firme" or titulo_buscar contains "cinturilla" or titulo_buscar contains "chaleco" or titulo_buscar contains "sudo" -%}
           {%- assign compresion_producto = "alta" -%}
         {%- endif -%}
-        <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
+        <a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ categorias_producto }} {{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
           <div class="shot">
             {%- if product.featured_image -%}
             <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_limpio | escape }}" loading="lazy">
