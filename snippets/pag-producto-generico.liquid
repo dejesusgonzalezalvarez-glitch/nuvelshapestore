@@ -60,11 +60,13 @@
       </div>
 
       {%- for option in product.options_with_values -%}
+      {%- capture nombre_opcion_es -%}{%- render 'opcion-traducida', valor: option.name -%}{%- endcapture -%}
       <div class="opt-group">
-        <div class="opt-head"><label>{{ option.name }}</label></div>
+        <div class="opt-head"><label>{{ nombre_opcion_es | strip }}</label></div>
         <div class="opt-choices">
           {%- for value in option.values -%}
-          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ value }}</button>
+          {%- capture valor_opcion_es -%}{%- render 'opcion-traducida', valor: value -%}{%- endcapture -%}
+          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ valor_opcion_es | strip }}</button>
           {%- endfor -%}
         </div>
       </div>

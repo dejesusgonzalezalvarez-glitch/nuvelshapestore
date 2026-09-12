@@ -1,0 +1,41 @@
+{%- comment -%}
+  Traduce nombres y valores de opciones comunes (Color, Size, Black, Small...)
+  SOLO para mostrarlos en español. El valor real que usa Shopify para
+  encontrar la variante (data-opt-value en pag-producto-generico.liquid) se
+  queda en inglés tal cual, así que el carrito sigue funcionando igual.
+  Si la palabra no está en la lista, se muestra tal cual llegó (ya en
+  español, o sin traducir si es un color raro que no contemplamos).
+
+  Uso: {% capture x %}{% render 'opcion-traducida', valor: option.name %}{% endcapture %}
+{%- endcomment -%}
+{%- assign _v = valor | downcase | strip -%}
+{%- case _v -%}
+  {%- when "size" -%}{{- 'Talla' -}}
+  {%- when "color" -%}{{- 'Color' -}}
+  {%- when "small" -%}{{- 'S' -}}
+  {%- when "medium" -%}{{- 'M' -}}
+  {%- when "large" -%}{{- 'L' -}}
+  {%- when "x-large", "xlarge", "extra large" -%}{{- 'XL' -}}
+  {%- when "xx-large", "xxlarge" -%}{{- 'XXL' -}}
+  {%- when "one size", "onesize", "free size" -%}{{- 'Talla única' -}}
+  {%- when "black" -%}{{- 'Negro' -}}
+  {%- when "white" -%}{{- 'Blanco' -}}
+  {%- when "beige" -%}{{- 'Beige' -}}
+  {%- when "nude" -%}{{- 'Piel' -}}
+  {%- when "khaki" -%}{{- 'Caqui' -}}
+  {%- when "grey", "gray" -%}{{- 'Gris' -}}
+  {%- when "pink" -%}{{- 'Rosa' -}}
+  {%- when "red" -%}{{- 'Rojo' -}}
+  {%- when "blue" -%}{{- 'Azul' -}}
+  {%- when "navy" -%}{{- 'Azul marino' -}}
+  {%- when "green" -%}{{- 'Verde' -}}
+  {%- when "brown" -%}{{- 'Marrón' -}}
+  {%- when "purple" -%}{{- 'Morado' -}}
+  {%- when "yellow" -%}{{- 'Amarillo' -}}
+  {%- when "orange" -%}{{- 'Naranja' -}}
+  {%- when "apricot" -%}{{- 'Albaricoque' -}}
+  {%- when "coffee" -%}{{- 'Café' -}}
+  {%- when "silver" -%}{{- 'Plateado' -}}
+  {%- when "skin", "skintone", "skin colour", "skin color" -%}{{- 'Beige' -}}
+  {%- else -%}{{- valor -}}
+{%- endcase -%}
