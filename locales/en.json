@@ -204,6 +204,8 @@
     "sort_relevance": "Relevance",
     "sort_price_asc": "Price: low to high",
     "sort_price_desc": "Price: high to low",
+    "sort_newest": "Newest first",
+    "sort_az": "Alphabetical A-Z",
     "no_results": "No product available right now matches those filters. Check back soon, we're still expanding the catalog."
   },
   "returns": {

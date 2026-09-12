@@ -313,9 +313,10 @@
           e.stopPropagation();
           const mode = opt.dataset.sort;
           const sorted = [...tiles].sort((a, b) => {
-            const pa = parseFloat(a.dataset.price), pb = parseFloat(b.dataset.price);
-            if (mode === "precio-asc") return pa - pb;
-            if (mode === "precio-desc") return pb - pa;
+            if (mode === "precio-asc") return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+            if (mode === "precio-desc") return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+            if (mode === "nuevo") return (Number(b.dataset.created) || 0) - (Number(a.dataset.created) || 0);
+            if (mode === "az") return (a.dataset.title || "").localeCompare(b.dataset.title || "", "es", { sensitivity: "base" });
             return 0; // relevancia: original order
           });
           const base = mode === "relevancia" ? tiles : sorted;
