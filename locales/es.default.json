@@ -5,6 +5,7 @@
     "badge_bestseller": "Más vendido",
     "badge_new": "Nuevo",
     "reviews": "reseñas",
+    "reviews_title": "Lo que dicen nuestras clientas",
     "buy_now": "Comprar ahora",
     "add_short": "Añadir",
     "size_label": "Talla",
@@ -408,7 +409,14 @@
     "faq_7_q": "¿Da calor en verano?",
     "faq_7_a": "El tejido es fino y transpirable, no es látex ni neopreno. No calienta como las fajas de gimnasio: comprime sin hacerte sudar por debajo de un vestido de verano.",
     "faq_8_q": "¿Cuánto tarda en llegar?",
-    "faq_8_a": "Entre 7 y 15 días laborables a España peninsular, con seguimiento por email. Baleares, Canarias, Ceuta y Melilla: entre 12 y 25 días. Lo decimos claro para que no haya sorpresas la semana de la boda."
+    "faq_8_a": "Entre 7 y 15 días laborables a España peninsular, con seguimiento por email. Baleares, Canarias, Ceuta y Melilla: entre 12 y 25 días. Lo decimos claro para que no haya sorpresas la semana de la boda.",
+    "review_1_quote": "Me la puse para la boda de mi hermana, con un vestido ceñido, y no se notaba nada. Mi madre me preguntó al final que cómo iba 'tan lisa'. No se la enseño ni a mi marido.",
+    "review_2_quote": "La compré con algo de miedo por la talla, seguí la tabla y acerté a la primera. Se nota el tejido de calidad, nada que ver con las baratas que se suben.",
+    "review_3_quote": "He aguantado con ella una jornada de doce horas en el trabajo, sentada casi todo el rato, y ni se ha enrollado ni me ha molestado. No me lo creía.",
+    "review_4_quote": "Me queda bien y no se marca, pero me costó un poco dar con mi talla entre dos medidas. Al final pedí la mayor y va perfecta. Atención por email de diez.",
+    "review_5_quote": "Tengo gorditos en la cadera y siempre se me notaba el borde con otras fajas. Con esta no. El vestido de invitada cae liso de arriba a abajo.",
+    "review_6_quote": "La lavé ya varias veces y sigue igual de firme, no ha perdido la forma ni se ha despeluchado. Para el verano bajo vestidos finos es lo mejor.",
+    "review_7_quote": "Pedí el conjunto con el short y me llegó en el plazo que decían. El pack compensa, y entre las dos prendas no se marca ni una línea. Repetiré en cuanto saquen más colores."
   },
   "product_corse": {
     "thumb_alt_1": "Corsé Moldeador Nuvel en negro, vista de frente",

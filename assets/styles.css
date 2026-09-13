@@ -333,6 +333,16 @@ section.pad { padding: 96px 64px; }
 .suggestions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 28px 0 0; }
 @media (max-width: 900px) { .suggestions-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 @media (max-width: 440px) { .suggestions-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Reseñas de clientas */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .reviews-grid { grid-template-columns: 1fr; } }
+.review-card { border: 1px solid var(--border); padding: 22px 20px; background: var(--bg); }
+.review-stars { color: #FFD700; letter-spacing: 2px; font-size: 15px; margin-bottom: 10px; }
+.review-star-empty { color: #E4DACB; }
+.review-quote { font-size: 14px; line-height: 1.65; color: var(--text-soft); margin-bottom: 14px; }
+.review-author { font-size: 13px; font-weight: 600; color: var(--dark); }
 .product-details-copy { max-width: 760px; }
 .product-details-copy .pd-headline { font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em; margin-bottom: 10px; color: var(--dark); }
 .product-details-copy p { font-size: 14.5px; line-height: 1.8; color: var(--text); margin: 0 0 12px; }
