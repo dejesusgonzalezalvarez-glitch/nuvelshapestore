@@ -119,13 +119,11 @@
   </section>
 
   <section class="pad" style="padding-left:0; padding-right:0;">
-    <h3 style="font-size:26px; margin-bottom:24px;">{{ 'general.video_soon_title' | t }}</h3>
+    <h3 style="font-size:26px; margin-bottom:24px;">{{ 'general.video_unboxing_title' | t }}</h3>
     <div class="video-box">
-      <img src="{{ 'hero-principal.jpg' | asset_url }}" srcset="{{ 'med-hero-principal.jpg' | asset_url }} 800w, {{ 'lg-hero-principal.jpg' | asset_url }} 1100w, {{ 'hero-principal.jpg' | asset_url }} 1600w" sizes="(max-width: 900px) 92vw, 1152px" alt="{{ 'product_faja.video_image_alt' | t }}" loading="lazy" decoding="async">
-      <div class="video-overlay">
-        <div class="play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M8 5v14l11-7z"/></svg></div>
-        <p style="font-size:14px; font-weight:500;">{{ 'general.video_placeholder_text' | t }}</p>
-      </div>
+      <video controls preload="metadata" playsinline poster="https://cdn.shopify.com/s/files/1/0814/1288/2673/files/preview_images/2aca2786852641e4be486749a9c9d3a7.thumbnail.0000000000.jpg?v=1789313405" aria-label="{{ 'product_faja.video_image_alt' | t }}">
+        <source src="https://cdn.shopify.com/videos/c/vp/2aca2786852641e4be486749a9c9d3a7/2aca2786852641e4be486749a9c9d3a7.HD-720p-1.6Mbps-94276534.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
