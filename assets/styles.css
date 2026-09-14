@@ -227,8 +227,7 @@ section.pad { padding: 96px 64px; }
 /* Product detail */
 .pdp-row { display: flex; gap: 56px; padding: 36px 0 60px; }
 @media (max-width: 900px) { .pdp-row { flex-direction: column; } }
-.gallery-col { display: flex; flex-direction: column; width: 640px; max-width: 100%; }
-.gallery { display: flex; gap: 16px; width: 100%; }
+.gallery { display: flex; gap: 16px; width: 640px; max-width: 100%; }
 @media (max-width: 900px) { .gallery { width: 100%; } }
 .thumbs { display: flex; flex-direction: column; gap: 12px; }
 @media (max-width: 600px) { .gallery { flex-direction: column-reverse; } .thumbs { flex-direction: row; overflow-x: auto; } }
@@ -336,7 +335,7 @@ section.pad { padding: 96px 64px; }
 @media (max-width: 440px) { .suggestions-grid { grid-template-columns: 1fr; gap: 24px; } }
 
 /* Reseñas de clientas, estilo comentario debajo de la galería */
-.reviews-comments { margin-top: 20px; }
+.reviews-comments { max-width: 640px; margin-top: 8px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
 .reviews-comments__title { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
 .comment-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
 .comment-item:last-child { border-bottom: none; }
