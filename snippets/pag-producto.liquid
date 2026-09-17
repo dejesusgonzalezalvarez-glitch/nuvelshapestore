@@ -67,13 +67,16 @@
         <p class="guia-tallas__tip">{{ 'general.size_tip' | t }}</p>
       </div>
 
+      {%- capture _n_faja -%}{{ 'tile.faja.title' | t }}{%- endcapture -%}
+      {%- capture _n_corse -%}{{ 'tile.corse.title' | t }}{%- endcapture -%}
+      {%- capture _n_short -%}{{ 'tile.short.title' | t }}{%- endcapture -%}
       {%- render 'bundle-combo', main: p, partner: corse, descuento: 15,
                  titulo: 'bundle.faja_corse_title', frase: 'bundle.faja_corse_reason',
-                 nombre_main: 'tile.faja.title' | t, nombre_partner: 'tile.corse.title' | t,
+                 nombre_main: _n_faja, nombre_partner: _n_corse,
                  imagen_main: 'producto-frente.jpg', imagen_partner: 'corse-negro-frente.jpg' -%}
       {%- render 'bundle-combo', main: p, partner: socio, descuento: 15,
                  titulo: 'bundle.faja_short_title', frase: 'bundle.faja_short_reason',
-                 nombre_main: 'tile.faja.title' | t, nombre_partner: 'tile.short.title' | t,
+                 nombre_main: _n_faja, nombre_partner: _n_short,
                  imagen_main: 'producto-frente.jpg', imagen_partner: 'short-negro-frente.jpg' -%}
 
       <div class="qty-offer">
