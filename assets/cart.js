@@ -183,14 +183,25 @@
       window.location.href = "/checkout";
     });
 
-    // Mobile menu toggle
+    // Mobile menu toggle (panel deslizante desde la izquierda)
     const menuBtn = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    function closeMobileMenu() {
+      mobileMenu?.classList.remove("open");
+      mobileMenuOverlay?.classList.remove("open");
+      menuBtn?.setAttribute("aria-expanded", "false");
+      unlockScroll();
+    }
     menuBtn?.addEventListener("click", () => {
       const open = mobileMenu?.classList.toggle("open");
+      mobileMenuOverlay?.classList.toggle("open", open);
       menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
       if (open) lockScroll(); else unlockScroll();
     });
+    mobileMenuOverlay?.addEventListener("click", closeMobileMenu);
+    mobileMenuClose?.addEventListener("click", closeMobileMenu);
 
     // FAQ accordion
     document.querySelectorAll(".accordion-item button").forEach((btn) => {
