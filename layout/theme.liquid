@@ -25,6 +25,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
 {{ content_for_header }}
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ84VDSPSE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MZ84VDSPSE');
+</script>
 </head>
 <body data-root="">
 {% render 'global-header' %}
