@@ -69,11 +69,11 @@
 
       {%- render 'bundle-combo', main: p, partner: corse, descuento: 15,
                  titulo: 'bundle.faja_corse_title', frase: 'bundle.faja_corse_reason',
-                 nombre_main: 'tile.faja.title', nombre_partner: 'tile.corse.title',
+                 nombre_main: 'tile.faja.title' | t, nombre_partner: 'tile.corse.title' | t,
                  imagen_main: 'producto-frente.jpg', imagen_partner: 'corse-negro-frente.jpg' -%}
       {%- render 'bundle-combo', main: p, partner: socio, descuento: 15,
                  titulo: 'bundle.faja_short_title', frase: 'bundle.faja_short_reason',
-                 nombre_main: 'tile.faja.title', nombre_partner: 'tile.short.title',
+                 nombre_main: 'tile.faja.title' | t, nombre_partner: 'tile.short.title' | t,
                  imagen_main: 'producto-frente.jpg', imagen_partner: 'short-negro-frente.jpg' -%}
 
       <div class="qty-offer">

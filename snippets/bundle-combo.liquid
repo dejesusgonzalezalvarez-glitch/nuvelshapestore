@@ -63,17 +63,17 @@
     <div class="bundle-items">
       <span class="bundle-thumb">
         {%- if _imagen_main -%}
-          <img src="{{ _imagen_main | asset_url }}" alt="{{ _nombre_main | t | escape }}" loading="lazy">
+          <img src="{{ _imagen_main | asset_url }}" alt="{{ _nombre_main | escape }}" loading="lazy">
         {%- elsif _m.featured_image -%}
-          <img src="{{ _m.featured_image | image_url: width: 240 }}" alt="{{ _nombre_main | t | escape }}" loading="lazy">
+          <img src="{{ _m.featured_image | image_url: width: 240 }}" alt="{{ _nombre_main | escape }}" loading="lazy">
         {%- endif -%}
       </span>
       <span class="bundle-plus">+</span>
       <span class="bundle-thumb">
         {%- if _imagen_partner -%}
-          <img src="{{ _imagen_partner | asset_url }}" alt="{{ _nombre_partner | t | escape }}" loading="lazy">
+          <img src="{{ _imagen_partner | asset_url }}" alt="{{ _nombre_partner | escape }}" loading="lazy">
         {%- elsif _p.featured_image -%}
-          <img src="{{ _p.featured_image | image_url: width: 240 }}" alt="{{ _nombre_partner | t | escape }}" loading="lazy">
+          <img src="{{ _p.featured_image | image_url: width: 240 }}" alt="{{ _nombre_partner | escape }}" loading="lazy">
         {%- endif -%}
       </span>
     </div>
@@ -81,12 +81,12 @@
     <div class="bundle-lines">
       <label class="bundle-line">
         <input type="checkbox" checked disabled>
-        <span>{{ _nombre_main | t }}</span>
+        <span>{{ _nombre_main }}</span>
         <span class="bundle-line-price">{{ _m.price | money }}</span>
       </label>
       <label class="bundle-line">
         <input type="checkbox" data-bundle-toggle checked>
-        <span>{{ _nombre_partner | t }}</span>
+        <span>{{ _nombre_partner }}</span>
         <span class="bundle-line-price">{{ _p.price | money }}</span>
       </label>
     </div>
