@@ -6,6 +6,15 @@
     return "€" + n.toLocaleString(numLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  // Avisa al Pixel de Meta cada vez que se añade algo de verdad al carrito
+  // (items: la lista de lineas que devolvio /cart/add.js, en centimos).
+  function trackAddToCart(items) {
+    if (!window.fbq || !items || !items.length) return;
+    var valor = items.reduce((s, i) => s + (i.line_price || i.price || 0), 0) / 100;
+    var ids = items.map((i) => i.variant_id || i.id);
+    fbq('track', 'AddToCart', { value: valor.toFixed(2), currency: 'EUR', content_ids: ids, content_type: 'product' });
+  }
+
   // Regalo automático: al llegar a 2 o mas unidades (sin contar el propio
   // regalo), se agrega solo esta variante gratis — el 100% de descuento lo
   // aplica un descuento automatico ya configurado en Shopify, esto solo la
@@ -203,8 +212,17 @@
 
     // El carrito ya es el real de Shopify, asi que "Pagar" va directo al
     // checkout real — ya no hace falta ningun modal de aviso.
-    document.getElementById("checkout-btn")?.addEventListener("click", () => {
-      window.location.href = "/checkout";
+    document.getElementById("checkout-btn")?.addEventListener("click", (e) => {
+      if (!window.fbq) return;
+      e.preventDefault();
+      fetch("/cart.js").then((r) => r.json()).then((cart) => {
+        fbq('track', 'InitiateCheckout', {
+          value: (cart.total_price / 100).toFixed(2),
+          currency: 'EUR',
+          content_ids: cart.items.map((i) => i.variant_id),
+          num_items: cart.item_count
+        });
+      }).catch(() => {}).then(() => { window.location.href = "/checkout"; });
     });
 
     // Mobile menu toggle (panel deslizante desde la izquierda)
@@ -619,8 +637,12 @@
         body: JSON.stringify({ items }),
       })
         .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-        .then(() => renderCart())
-        .then(() => { boton.disabled = false; openCart(); })
+        .then((added) => renderCart().then(() => added))
+        .then((added) => {
+          boton.disabled = false;
+          openCart();
+          trackAddToCart(added.items || [added]);
+        })
         .catch(() => {
           boton.disabled = false;
           alert(I18N.alertAddFailed || "No se pudo añadir el producto al carrito. Intenta de nuevo.");
@@ -694,8 +716,12 @@
           body: JSON.stringify({ items }),
         })
           .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-          .then(() => renderCart())
-          .then(() => { boton.disabled = false; openCart(); })
+          .then((added) => renderCart().then(() => added))
+          .then((added) => {
+            boton.disabled = false;
+            openCart();
+            trackAddToCart(added.items || [added]);
+          })
           .catch(() => {
             boton.disabled = false;
             alert(I18N.alertAddPackFailed || "No se pudo añadir el pack. Intenta de nuevo.");

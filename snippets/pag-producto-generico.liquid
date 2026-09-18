@@ -268,7 +268,12 @@
           body: JSON.stringify({ items: [{ id: Number(id), quantity: cantidad }] }),
         })
           .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
-          .then(function () {
+          .then(function (added) {
+            if (window.fbq) {
+              var items = added.items || [added];
+              var valor = items.reduce(function (s, i) { return s + (i.line_price || i.price || 0); }, 0) / 100;
+              fbq('track', 'AddToCart', { value: valor.toFixed(2), currency: 'EUR', content_ids: items.map(function (i) { return i.variant_id || i.id; }), content_type: 'product' });
+            }
             if (window.NuvelCart) {
               window.NuvelCart.renderCart().then(function () {
                 boton.disabled = false;
@@ -335,7 +340,12 @@
           body: JSON.stringify({ items: items }),
         })
           .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
-          .then(function () {
+          .then(function (added) {
+            if (window.fbq) {
+              var addedItems = added.items || [added];
+              var valor = addedItems.reduce(function (s, i) { return s + (i.line_price || i.price || 0); }, 0) / 100;
+              fbq('track', 'AddToCart', { value: valor.toFixed(2), currency: 'EUR', content_ids: addedItems.map(function (i) { return i.variant_id || i.id; }), content_type: 'product' });
+            }
             if (window.NuvelCart) {
               window.NuvelCart.renderCart().then(function () {
                 boton.disabled = false;
