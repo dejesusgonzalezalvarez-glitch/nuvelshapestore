@@ -53,14 +53,18 @@
   // vez de la de la variante.
   var _primeraFotoCache = {};
   function primerasFotosDe(handles) {
-    var faltan = handles.filter((h) => h && !(h in _primeraFotoCache));
+    var mapaFijo = window.__NUVEL_TILE_IMAGES__ || {};
+    var faltan = handles.filter((h) => h && !(h in _primeraFotoCache) && !mapaFijo[h]);
     var pendientes = faltan.map((h) =>
       fetch("/products/" + h + ".js")
         .then((r) => (r.ok ? r.json() : null))
         .then((p) => { _primeraFotoCache[h] = (p && p.images && p.images[0]) || null; })
         .catch(() => { _primeraFotoCache[h] = null; })
     );
-    return Promise.all(pendientes).then(() => _primeraFotoCache);
+    return Promise.all(pendientes).then(() => {
+      Object.keys(mapaFijo).forEach((h) => { _primeraFotoCache[h] = mapaFijo[h]; });
+      return _primeraFotoCache;
+    });
   }
 
   function renderCart() {
