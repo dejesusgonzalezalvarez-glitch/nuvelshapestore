@@ -30,13 +30,13 @@
       else localStorage.removeItem(REGALO_RECHAZADO_KEY);
     } catch (e) {}
   }
-  // DESACTIVADO (18/9/2026): el descuento automatico de Shopify que debia
-  // poner esta prenda a 0€ tiene el producto de "customerGets" vacio, asi
-  // que nunca se aplicaba — se estaba cobrando el precio normal por algo
-  // que la tienda anunciaba como regalo. Se apaga el "add" hasta arreglar
-  // el descuento en Shopify Admin; el "remove" se deja activo para poder
-  // seguir limpiando el regalo de carritos que ya lo tuvieran.
-  var REGALO_ACTIVO = false;
+  // Reactivado (18/9/2026) tras probarlo en vivo: con 2 unidades de otro
+  // producto + esta prenda en el carrito, el descuento automatico de
+  // Shopify SI la pone en 0€ correctamente (confirmado con una compra de
+  // prueba real). El cobro completo que se vio antes era un carrito que se
+  // habia quedado con el regalo solo, sin las 2 unidades que lo activan —
+  // ese caso ya se autolimpia en sincronizarRegalo() de abajo.
+  var REGALO_ACTIVO = true;
   function sincronizarRegalo(cart) {
     var regalo = cart.items.find((i) => i.variant_id === REGALO_VARIANT_ID);
     var totalSinRegalo = cart.items.reduce((s, i) => s + (i.variant_id === REGALO_VARIANT_ID ? 0 : i.quantity), 0);
