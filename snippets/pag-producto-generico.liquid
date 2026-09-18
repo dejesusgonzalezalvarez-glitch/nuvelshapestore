@@ -72,12 +72,30 @@
 
       {%- for option in product.options_with_values -%}
       {%- capture nombre_opcion_es -%}{%- render 'opcion-traducida', valor: option.name -%}{%- endcapture -%}
+      {%- assign nombre_opcion_es = nombre_opcion_es | strip -%}
+      {%- assign es_color = false -%}
+      {%- if option.name contains 'olor' -%}{%- assign es_color = true -%}{%- endif -%}
       <div class="opt-group">
-        <div class="opt-head"><label>{{ nombre_opcion_es | strip }}</label></div>
-        <div class="opt-choices">
+        <div class="opt-head"><label>{{ nombre_opcion_es }}</label></div>
+        <div class="opt-choices{% if es_color %} opt-choices--swatch{% endif %}">
           {%- for value in option.values -%}
           {%- capture valor_opcion_es -%}{%- render 'opcion-traducida', valor: value -%}{%- endcapture -%}
-          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ valor_opcion_es | strip }}</button>
+          {%- assign valor_opcion_es = valor_opcion_es | strip -%}
+          {%- if es_color -%}
+            {%- assign _swatch_img = product.featured_image -%}
+            {%- for v in product.variants -%}
+              {%- if v.option1 == value or v.option2 == value or v.option3 == value -%}
+                {%- if v.image -%}{%- assign _swatch_img = v.image -%}{%- endif -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          <button type="button" class="opt-btn opt-btn--swatch{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">
+            <span class="swatch-thumb">{%- if _swatch_img -%}<img src="{{ _swatch_img | image_url: width: 100 }}" alt="{{ valor_opcion_es | escape }}" loading="lazy">{%- endif -%}</span>
+            <span class="swatch-label">{{ valor_opcion_es }}</span>
+          </button>
+          {%- else -%}
+          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ valor_opcion_es }}</button>
+          {%- endif -%}
           {%- endfor -%}
         </div>
       </div>
