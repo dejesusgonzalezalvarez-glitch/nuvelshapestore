@@ -391,6 +391,10 @@ section.pad { padding: 96px 64px; }
 .cat-section { border-top: 1px solid var(--bg-alt); padding-top: 8px; }
 .cat-section:first-of-type { border-top: none; }
 .cat-section-title { font-family: 'Lora', serif; font-size: 28px; font-weight: 500; margin: 40px 0 0; }
+.cat-subsection-title { font-size: 17px; font-weight: 600; color: var(--text-soft); margin: 32px 0 4px; }
+.cat-section--featured { padding-bottom: 24px; margin-bottom: 8px; border-bottom: 1px solid var(--bg-alt); }
+.cat-section-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin: 36px 0 2px; }
+.cat-section-title--featured { font-size: 34px; margin-top: 0; }
 .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 24px 0 70px; }
 @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 .product-tile { display: block; }

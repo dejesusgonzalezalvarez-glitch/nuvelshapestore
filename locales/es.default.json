@@ -29,7 +29,16 @@
     "suggestions_title": "¿Buscas moldear otra zona?",
     "suggestions_subtitle": "El resto de la familia Nuvel, con lo que hace cada una.",
     "last_updated": "Última actualización: septiembre de 2026",
-    "write_to_email": "Escribe a hola@nuvelshape.store"
+    "write_to_email": "Escribe a hola@nuvelshape.store",
+    "generic_faq_title": "Preguntas frecuentes",
+    "generic_faq_1_q": "¿Cómo elijo mi talla?",
+    "generic_faq_1_a": "Guíate por la tabla de tallas en las fotos del producto (mide tu cintura y cadera en centímetros, no la talla de otra marca). Si estás entre dos, pide la mayor: comprime igual y no se sube. Y si aun así te equivocas, tienes 30 días de prueba para cambiarla o devolverla.",
+    "generic_faq_2_q": "¿Es cómodo usarlo todo el día?",
+    "generic_faq_2_a": "Sí. Está pensado para el uso diario, con materiales suaves y sin costuras marcadas que se notan bajo la ropa. La mayoría de nuestras clientas se lo ponen por la mañana y se olvidan de que lo llevan.",
+    "generic_faq_3_q": "¿Cómo lo lavo?",
+    "generic_faq_3_a": "A mano o en lavadora en ciclo suave, con agua fría, dentro de una bolsa de malla si la tienes. Evita la secadora y déjalo secar al aire para que conserve mejor la elasticidad y la forma.",
+    "generic_faq_4_q": "¿Cuánto tarda el envío y puedo devolverlo?",
+    "generic_faq_4_a": "Envío gratis a todo el mundo, con entrega en 7-15 días laborables y seguimiento por email. Si no te convence, tienes 30 días desde la recepción para devolverlo sin dar explicaciones: nos escribes a hola@nuvelshape.store y te ayudamos con la recogida."
   },
   "qty": {
     "one_unit": "1 unidad",
@@ -45,7 +54,7 @@
     }
   },
   "banner": {
-    "free_shipping": "Envío gratis a toda España · 10% de descuento con el código NUVEL10"
+    "free_shipping": "Envío gratis a todo el mundo · 10% de descuento con el código NUVEL10"
   },
   "nav": {
     "open_menu": "Abrir menú",
@@ -183,16 +192,22 @@
     }
   },
   "catalog": {
-    "crumb_current": "Fajas moldeadoras",
-    "title": "Fajas moldeadoras",
-    "intro": "Nuvel es una familia de shapewear pensada para un mismo objetivo: que no se note que la llevas puesta. Empezamos por la faja de cintura alta, nuestro producto ancla, y estamos ampliando la misma familia con más prendas moldeadoras (piernas, cintura y cuerpo entero) pensadas para completar la misma rutina, con la misma compresión suave y los mismos acabados sin costuras.",
+    "crumb_current": "Catálogo",
+    "title": "Catálogo",
+    "seamless_eyebrow": "Lo que más pide todo el mundo",
     "category_high_waist": "Cintura alta",
     "category_postpartum": "Posparto",
     "category_seamless": "Sin costuras",
     "category_full_body": "Cuerpo entero",
     "category_posture": "Postura",
     "category_other": "Más productos",
+    "category_other_bragas": "Bragas moldeadoras",
+    "category_other_sudoracion": "Fajas y chalecos de sudoración",
+    "category_other_monos": "Monos y piezas completas",
+    "category_other_sujetadores": "Sujetadores",
+    "category_other_resto": "Otras prendas",
     "filter_size": "Talla",
+    "filter_size_unique": "Talla única",
     "filter_price": "Precio",
     "filter_price_under_50": "Menos de 50 €",
     "filter_price_50_100": "50–100 €",

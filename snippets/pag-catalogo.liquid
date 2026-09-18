@@ -1,8 +1,7 @@
 
 <main class="wrap">
   <div class="breadcrumb">{{ 'nav.home' | t }} / <span class="current">{{ 'catalog.crumb_current' | t }}</span></div>
-  <h1 style="font-size:38px; margin-top:14px;">{{ 'catalog.title' | t }}</h1>
-  <p style="max-width:640px; color:var(--text-soft); font-size:15px; line-height:1.7; margin-top:12px;">{{ 'catalog.intro' | t }}</p>
+  <h1 style="font-size:28px; margin-top:10px; margin-bottom:20px;">{{ 'catalog.title' | t }}</h1>
 
   <div class="cat-categories">
     <button type="button" class="cat-circle" data-cat="sin-costuras"><div class="circle"></div><span>{{ 'catalog.category_seamless' | t }}</span></button>
@@ -17,10 +16,14 @@
       <div class="filter-chip-wrap">
         <button type="button" class="chip" data-filter-toggle="talla">{{ 'catalog.filter_size' | t }}</button>
         <div class="filter-dropdown" data-filter-panel="talla">
+          <button type="button" data-filter-key="talla" data-filter-value="XS">XS</button>
           <button type="button" data-filter-key="talla" data-filter-value="S">S</button>
           <button type="button" data-filter-key="talla" data-filter-value="M">M</button>
           <button type="button" data-filter-key="talla" data-filter-value="L">L</button>
           <button type="button" data-filter-key="talla" data-filter-value="XL">XL</button>
+          <button type="button" data-filter-key="talla" data-filter-value="XXL">XXL</button>
+          <button type="button" data-filter-key="talla" data-filter-value="XXXL">XXXL</button>
+          <button type="button" data-filter-key="talla" data-filter-value="Única">{{ 'catalog.filter_size_unique' | t }}</button>
         </div>
       </div>
       <div class="filter-chip-wrap">
@@ -80,8 +83,9 @@
   {%- assign fichas_a_mano = "faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties,sujetador-corrector-postura" | split: "," -%}
   {%- assign sujetador_postura = all_products['sujetador-corrector-postura'] -%}
 
-  <section class="cat-section" data-cat-section="sin-costuras">
-    <h2 class="cat-section-title">{{ 'catalog.category_seamless' | t }}</h2>
+  <section class="cat-section cat-section--featured" data-cat-section="sin-costuras">
+    <p class="cat-section-eyebrow">{{ 'catalog.seamless_eyebrow' | t }}</p>
+    <h2 class="cat-section-title cat-section-title--featured">{{ 'catalog.category_seamless' | t }}</h2>
     <div class="product-grid" data-cat-grid="sin-costuras">
       {%- render 'tile-faja' -%}
       {%- render 'tile-generico', product: sujetador_postura, categoria: 'sin-costuras' -%}
@@ -145,7 +149,45 @@
 
   <section class="cat-section" data-cat-section="otros">
     <h2 class="cat-section-title">{{ 'catalog.category_other' | t }}</h2>
-    <div class="product-grid" data-cat-grid="otros">
+
+    <h3 class="cat-subsection-title">{{ 'catalog.category_other_bragas' | t }}</h3>
+    <div class="product-grid" data-cat-grid="otros-bragas">
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'otros-bragas' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    <h3 class="cat-subsection-title">{{ 'catalog.category_other_sudoracion' | t }}</h3>
+    <div class="product-grid" data-cat-grid="otros-sudoracion">
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'otros-sudoracion' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    <h3 class="cat-subsection-title">{{ 'catalog.category_other_monos' | t }}</h3>
+    <div class="product-grid" data-cat-grid="otros-monos">
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'otros-monos' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    <h3 class="cat-subsection-title">{{ 'catalog.category_other_sujetadores' | t }}</h3>
+    <div class="product-grid" data-cat-grid="otros-sujetadores">
+      {%- for product in collections.all.products -%}
+        {%- unless fichas_a_mano contains product.handle -%}
+          {%- render 'tile-generico', product: product, categoria: 'otros-sujetadores' -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    <h3 class="cat-subsection-title">{{ 'catalog.category_other_resto' | t }}</h3>
+    <div class="product-grid" data-cat-grid="otros-resto">
       {%- for product in collections.all.products -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: '' -%}

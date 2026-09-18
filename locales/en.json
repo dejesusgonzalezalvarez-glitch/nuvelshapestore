@@ -28,7 +28,16 @@
     "suggestions_title": "Looking to shape another area?",
     "suggestions_subtitle": "The rest of the Nuvel family, and what each one does.",
     "last_updated": "Last updated: September 2026",
-    "write_to_email": "Email hola@nuvelshape.store"
+    "write_to_email": "Email hola@nuvelshape.store",
+    "generic_faq_title": "Frequently asked questions",
+    "generic_faq_1_q": "How do I choose my size?",
+    "generic_faq_1_a": "Use the size chart in the product photos (measure your own waist and hip in centimeters, not another brand's size). If you're between two sizes, go with the larger one: it compresses the same and won't ride up. And if you still get it wrong, you have 30 days to exchange or return it.",
+    "generic_faq_2_q": "Is it comfortable to wear all day?",
+    "generic_faq_2_a": "Yes. It's made for everyday wear, with soft materials and seams that don't show through clothing. Most of our customers put it on in the morning and forget they're wearing it.",
+    "generic_faq_3_q": "How do I wash it?",
+    "generic_faq_3_a": "By hand or on a gentle machine cycle, with cold water, inside a mesh bag if you have one. Avoid the dryer and let it air dry so it keeps its elasticity and shape.",
+    "generic_faq_4_q": "How long does shipping take, and can I return it?",
+    "generic_faq_4_a": "Free worldwide shipping, delivered in 7-15 business days with email tracking. If it's not for you, you have 30 days from delivery to return it, no questions asked: email hola@nuvelshape.store and we'll help arrange the pickup."
   },
   "qty": {
     "one_unit": "1 unit",
@@ -44,7 +53,7 @@
     }
   },
   "banner": {
-    "free_shipping": "Free shipping across Spain · 10% off with code NUVEL10"
+    "free_shipping": "Free shipping worldwide · 10% off with code NUVEL10"
   },
   "nav": {
     "open_menu": "Open menu",
@@ -182,16 +191,22 @@
     }
   },
   "catalog": {
-    "crumb_current": "Shaping girdles",
-    "title": "Shaping girdles",
-    "intro": "Nuvel is a shapewear family built around one goal: so no one can tell you're wearing it. We started with the high-waist girdle, our anchor product, and we're expanding the same family with more shaping garments (legs, waist and full body) designed to complete the same routine, with the same soft compression and the same seamless finish.",
+    "crumb_current": "Catalog",
+    "title": "Catalog",
+    "seamless_eyebrow": "What everyone's asking for",
     "category_high_waist": "High waist",
     "category_postpartum": "Postpartum",
     "category_seamless": "Seamless",
     "category_full_body": "Full body",
     "category_posture": "Posture",
     "category_other": "More products",
+    "category_other_bragas": "Shaping panties",
+    "category_other_sudoracion": "Sweat belts and vests",
+    "category_other_monos": "Jumpsuits and full-body pieces",
+    "category_other_sujetadores": "Bras",
+    "category_other_resto": "Other pieces",
     "filter_size": "Size",
+    "filter_size_unique": "One size",
     "filter_price": "Price",
     "filter_price_under_50": "Under €50",
     "filter_price_50_100": "€50–100",

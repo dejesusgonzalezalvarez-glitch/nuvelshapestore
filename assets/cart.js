@@ -288,6 +288,22 @@
         if (!sec.querySelector(".product-tile")) sec.style.display = "none";
       });
 
+      // Dentro de "Más productos" hay sub-grupos por tipo de prenda
+      // (data-cat-grid="otros-bragas", etc.) con su propio <h3> justo antes.
+      // Si un sub-grupo se queda sin fichas (de entrada, o tras filtrar), se
+      // oculta junto con su título para no dejar un encabezado vacío.
+      function actualizarSubgrupos() {
+        document.querySelectorAll('[data-cat-grid^="otros-"]').forEach((grid) => {
+          const haySeleccion = Array.from(grid.querySelectorAll(".product-tile")).some((t) => t.style.display !== "none");
+          const titulo = grid.previousElementSibling;
+          grid.style.display = haySeleccion ? "" : "none";
+          if (titulo && titulo.classList.contains("cat-subsection-title")) {
+            titulo.style.display = haySeleccion ? "" : "none";
+          }
+        });
+      }
+      actualizarSubgrupos();
+
       function applyFilters() {
         const hasFilters = Object.keys(activeFilters).length > 0;
         document.getElementById("filters-clear").style.display = hasFilters ? "inline-block" : "none";
@@ -316,6 +332,7 @@
           sec.style.display = anyVisibleSec ? "" : "none";
           if (anyVisibleSec) anyVisibleTotal = true;
         });
+        actualizarSubgrupos();
         document.getElementById("filters-empty").style.display = anyVisibleTotal ? "none" : "block";
       }
 

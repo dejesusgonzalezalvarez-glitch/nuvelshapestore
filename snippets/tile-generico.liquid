@@ -12,9 +12,42 @@
   {%- assign nombre_opcion = opcion.name | downcase -%}
   {%- if nombre_opcion contains "talla" or nombre_opcion contains "size" -%}
     {%- assign tallas_producto = "" -%}
+    {%- comment -%}
+      Los proveedores a veces meten valores de talla con texto suelto
+      ("XL(Fit waist 34.3-37.2in)", numeros de copa como "42A", etc.) que no
+      sirven para el filtro de Talla del catálogo. Aquí se saca solo la
+      talla estándar reconocible de cada valor; lo que no encaja en ninguna
+      no se añade (mejor que meter basura que rompe el filtro).
+    {%- endcomment -%}
     {%- for val in opcion.values -%}
-      {%- capture val_talla -%}{%- render 'opcion-traducida', valor: val -%}{%- endcapture -%}
-      {%- assign tallas_producto = tallas_producto | append: val_talla | strip | append: " " -%}
+      {%- assign _t = val | downcase -%}
+      {%- assign _tf = "" -%}
+      {%- if _t contains "xxxl" or _t contains "3xl" -%}
+        {%- assign _tf = "XXXL" -%}
+      {%- elsif _t contains "xxl" or _t contains "2xl" -%}
+        {%- assign _tf = "XXL" -%}
+      {%- elsif _t contains "xlarge" or _t contains "x-large" or _t contains "extra large" or _t contains "xl" -%}
+        {%- assign _tf = "XL" -%}
+      {%- elsif _t contains "extra small" or _t contains "xs" -%}
+        {%- assign _tf = "XS" -%}
+      {%- elsif _t contains "large" -%}
+        {%- assign _tf = "L" -%}
+      {%- elsif _t contains "medium" -%}
+        {%- assign _tf = "M" -%}
+      {%- elsif _t contains "small" -%}
+        {%- assign _tf = "S" -%}
+      {%- elsif _t contains "unica" or _t contains "única" or _t contains "one size" or _t contains "onesize" or _t contains "free size" -%}
+        {%- assign _tf = "Única" -%}
+      {%- elsif _t == "s" -%}
+        {%- assign _tf = "S" -%}
+      {%- elsif _t == "m" -%}
+        {%- assign _tf = "M" -%}
+      {%- elsif _t == "l" -%}
+        {%- assign _tf = "L" -%}
+      {%- endif -%}
+      {%- if _tf != "" -%}
+        {%- assign tallas_producto = tallas_producto | append: _tf | append: " " -%}
+      {%- endif -%}
     {%- endfor -%}
     {%- assign tallas_producto = tallas_producto | strip -%}
   {%- endif -%}
@@ -40,6 +73,23 @@
 {%- endif -%}
 {%- if titulo_buscar contains "postura" or titulo_buscar contains "corrector" -%}
   {%- assign categorias_producto = categorias_producto | append: "postura " -%}
+{%- endif -%}
+{%- comment -%}
+  Subcategorías dentro de "Más productos": lo que no cae en ninguna de las
+  categorías principales de arriba se agrupa aquí por tipo de prenda, en vez
+  de quedar todo mezclado sin orden.
+{%- endcomment -%}
+{%- if titulo_buscar contains "braga" or titulo_buscar contains "tanga" -%}
+  {%- assign categorias_producto = categorias_producto | append: "otros-bragas " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "chaleco" or titulo_buscar contains "sudo" or titulo_buscar contains "sauna" -%}
+  {%- assign categorias_producto = categorias_producto | append: "otros-sudoracion " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "mono" or titulo_buscar contains "jumpsuit" -%}
+  {%- assign categorias_producto = categorias_producto | append: "otros-monos " -%}
+{%- endif -%}
+{%- if titulo_buscar contains "sujetador" -%}
+  {%- assign categorias_producto = categorias_producto | append: "otros-sujetadores " -%}
 {%- endif -%}
 {%- assign categorias_producto = categorias_producto | strip -%}
 {%- assign zona_producto = "abdomen" -%}
@@ -71,7 +121,11 @@
     {%- if product.images.size > 1 -%}
     <img class="shot-hover" src="{{ product.images[1] | image_url: width: 800 }}" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="" loading="lazy" aria-hidden="true">
     {%- endif -%}
+    {%- if product.tags contains 'mas-vendido' -%}
+    <span class="badge">{{ 'general.badge_bestseller' | t }}</span>
+    {%- else -%}
     <span class="badge">{{ 'general.badge_new' | t }}</span>
+    {%- endif -%}
   </div>
   <div class="info">
     <h4>{{ titulo_limpio }}</h4>

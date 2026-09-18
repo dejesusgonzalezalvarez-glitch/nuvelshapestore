@@ -58,6 +58,46 @@
         vacío cuando la columna de compra es más alta que la galería.
       {%- endcomment -%}
       <div class="pdp-desc">{{ product.description | replace: '[', '' | replace: ']', '' | replace: '"', '' }}</div>
+
+      {%- comment -%}
+        Preguntas frecuentes genéricas (válidas para cualquier prenda de la
+        tienda): además de ser útiles, rellenan con contenido real el hueco
+        que queda en PC cuando la columna de compra (opciones + bundle +
+        precio) es más alta que la galería + descripción de esta columna.
+      {%- endcomment -%}
+      <section class="gallery-col-faq">
+        <h2 style="font-size:20px; margin:32px 0 16px;">{{ 'general.generic_faq_title' | t }}</h2>
+        <div class="faq-list">
+          <div class="accordion-item" id="gen-faq-1">
+            <button type="button" aria-expanded="false" aria-controls="gen-faq-1-a">
+              <span class="q">{{ 'general.generic_faq_1_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="gen-faq-1-a">{{ 'general.generic_faq_1_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="gen-faq-2">
+            <button type="button" aria-expanded="false" aria-controls="gen-faq-2-a">
+              <span class="q">{{ 'general.generic_faq_2_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="gen-faq-2-a">{{ 'general.generic_faq_2_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="gen-faq-3">
+            <button type="button" aria-expanded="false" aria-controls="gen-faq-3-a">
+              <span class="q">{{ 'general.generic_faq_3_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="gen-faq-3-a">{{ 'general.generic_faq_3_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="gen-faq-4">
+            <button type="button" aria-expanded="false" aria-controls="gen-faq-4-a">
+              <span class="q">{{ 'general.generic_faq_4_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="gen-faq-4-a">{{ 'general.generic_faq_4_a' | t }}</div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div class="pdp-info">
