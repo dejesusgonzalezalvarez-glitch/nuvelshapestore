@@ -45,10 +45,29 @@
     return Promise.resolve(cart);
   }
 
+  // El carrito de Shopify devuelve la imagen de la VARIANTE elegida, que en
+  // varios productos es una foto distinta a la primera foto del catálogo
+  // (ej. un color/estampado concreto en vez de la foto principal). Para que
+  // el carrito siempre muestre la misma foto que ve la clienta en el
+  // catálogo, se pide la primera imagen real del producto y se usa esa en
+  // vez de la de la variante.
+  var _primeraFotoCache = {};
+  function primerasFotosDe(handles) {
+    var faltan = handles.filter((h) => h && !(h in _primeraFotoCache));
+    var pendientes = faltan.map((h) =>
+      fetch("/products/" + h + ".js")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((p) => { _primeraFotoCache[h] = (p && p.images && p.images[0]) || null; })
+        .catch(() => { _primeraFotoCache[h] = null; })
+    );
+    return Promise.all(pendientes).then(() => _primeraFotoCache);
+  }
+
   function renderCart() {
     return fetch("/cart.js")
       .then((r) => r.json())
       .then((cart) => sincronizarRegalo(cart))
+      .then((cart) => primerasFotosDe(cart.items.map((i) => i.handle)).then(() => cart))
       .then((cart) => {
         document.querySelectorAll("[data-cart-count]").forEach((el) => {
           el.textContent = cart.item_count;
@@ -68,9 +87,10 @@
 
         itemsEl.innerHTML = cart.items.map((item) => {
           const esRegalo = item.variant_id === REGALO_VARIANT_ID;
+          const foto = _primeraFotoCache[item.handle] || item.image;
           return `
           <div class="cart-item${esRegalo ? " cart-item--regalo" : ""}">
-            <img src="${item.image}" alt="${item.product_title}">
+            <img src="${foto}" alt="${item.product_title}">
             <div class="ci-info">
               <h5>${item.product_title}${esRegalo ? " 🎁" : ""}</h5>
               <div class="ci-meta">${esRegalo ? (I18N.giftLabel || "Regalo por tu compra") : (item.variant_title ? item.variant_title + " · " : "") + fmt(item.price / 100)}</div>
