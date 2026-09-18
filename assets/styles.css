@@ -374,7 +374,7 @@ section.pad { padding: 96px 64px; }
 /* Product-tile hover: al pasar el ratón, se ve la prenda puesta en vez de sola */
 .product-tile .shot img { transition: transform .3s ease, opacity .3s ease; }
 .product-tile:hover .shot img { transform: scale(1.04); }
-.product-tile .shot .shot-hover { position: absolute; inset: 0; opacity: 0; }
+.product-tile .shot .shot-hover { position: absolute; top: 14px; left: 14px; width: calc(100% - 28px); height: calc(100% - 28px); opacity: 0; }
 .product-tile:hover .shot .shot-hover { opacity: 1; }
 
 /* Search overlay */
