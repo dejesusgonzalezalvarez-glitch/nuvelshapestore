@@ -30,10 +30,17 @@
       else localStorage.removeItem(REGALO_RECHAZADO_KEY);
     } catch (e) {}
   }
+  // DESACTIVADO (18/9/2026): el descuento automatico de Shopify que debia
+  // poner esta prenda a 0€ tiene el producto de "customerGets" vacio, asi
+  // que nunca se aplicaba — se estaba cobrando el precio normal por algo
+  // que la tienda anunciaba como regalo. Se apaga el "add" hasta arreglar
+  // el descuento en Shopify Admin; el "remove" se deja activo para poder
+  // seguir limpiando el regalo de carritos que ya lo tuvieran.
+  var REGALO_ACTIVO = false;
   function sincronizarRegalo(cart) {
     var regalo = cart.items.find((i) => i.variant_id === REGALO_VARIANT_ID);
     var totalSinRegalo = cart.items.reduce((s, i) => s + (i.variant_id === REGALO_VARIANT_ID ? 0 : i.quantity), 0);
-    if (totalSinRegalo >= 2 && !regalo && !regaloFueRechazado()) {
+    if (REGALO_ACTIVO && totalSinRegalo >= 2 && !regalo && !regaloFueRechazado()) {
       return fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
