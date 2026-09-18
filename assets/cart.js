@@ -591,6 +591,13 @@
     // descuento del conjunto (data-discount, en %) lo aplica un descuento
     // automatico configurado en Shopify Admin; aqui solo se muestra el total
     // estimado con ese porcentaje y se añaden ambos al carrito.
+    // En las paginas de producto genericas (pag-producto-generico.liquid) ya
+    // existe su propio manejador de bundle, que si sabe calcular la variante
+    // segun las opciones reales del producto. Si este bloque tambien se
+    // enganchara al mismo boton, se disparaban dos peticiones a la vez y la
+    // de aqui siempre fallaba (no conoce la variante), mostrando el error
+    // "No se pudo añadir el pack" aunque la otra peticion si funcionara.
+    if (window.__NUVEL_GENERICO__) return;
     document.querySelectorAll(".bundle-box").forEach((box) => {
       const mainPrice = parseFloat(box.dataset.mainPrice || "0");
       const partnerPrice = parseFloat(box.dataset.partnerPrice || "0");
