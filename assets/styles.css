@@ -237,6 +237,9 @@ section.pad { padding: 96px 64px; }
 @media (max-width: 900px) { .pdp-row { flex-direction: column; } }
 .gallery-col { display: flex; flex-direction: column; width: 640px; max-width: 100%; }
 .gallery-col .pdp-desc { margin-top: 20px; }
+.gallery-col-details, .gallery-col-faq { margin-top: 8px; }
+.gallery-col-details .product-details-copy p { font-size: 15px; line-height: 1.7; color: var(--text-soft); }
+.gallery-col-details .pd-headline { font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .gallery { display: flex; gap: 16px; width: 640px; max-width: 100%; }
 .gallery-col .gallery { width: 100%; }
 @media (max-width: 900px) { .gallery { width: 100%; } .gallery-col { width: 100%; } }
