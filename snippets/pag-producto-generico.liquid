@@ -140,7 +140,13 @@
       {%- if es_color -%}
         {%- for value in option.values -%}
           {%- assign _v_inicio = value | truncate: 2, '' -%}
-          {%- if _v_inicio == '1 ' and value contains '+' == false -%}
+          {%- assign _tiene_mas = false -%}
+          {%- if value contains '+' -%}{%- assign _tiene_mas = true -%}{%- endif -%}
+          {%- assign _es_individual_check = false -%}
+          {%- if _v_inicio == '1 ' -%}
+            {%- unless _tiene_mas -%}{%- assign _es_individual_check = true -%}{%- endunless -%}
+          {%- endif -%}
+          {%- if _es_individual_check -%}
             {%- assign _hay_individuales = true -%}
           {%- else -%}
             {%- assign _hay_packs = true -%}
@@ -155,8 +161,12 @@
           {%- for _fase in (1..2) -%}
           {%- for value in option.values -%}
           {%- assign _v_inicio = value | truncate: 2, '' -%}
+          {%- assign _tiene_mas = false -%}
+          {%- if value contains '+' -%}{%- assign _tiene_mas = true -%}{%- endif -%}
           {%- assign _es_individual = false -%}
-          {%- if _v_inicio == '1 ' and value contains '+' == false -%}{%- assign _es_individual = true -%}{%- endif -%}
+          {%- if _v_inicio == '1 ' -%}
+            {%- unless _tiene_mas -%}{%- assign _es_individual = true -%}{%- endunless -%}
+          {%- endif -%}
           {%- assign _mostrar = true -%}
           {%- if _separar_filas -%}
             {%- if _fase == 1 and _es_individual == false -%}{%- assign _mostrar = false -%}{%- endif -%}
