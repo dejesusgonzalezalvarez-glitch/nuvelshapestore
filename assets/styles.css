@@ -336,6 +336,7 @@ section.pad { padding: 96px 64px; }
 .opt-btn.selected { border: 1.5px solid var(--dark); }
 .opt-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
 .opt-choices--swatch { gap: 10px; }
+.opt-choices-break { flex-basis: 100%; height: 0; }
 .opt-btn--swatch { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 68px; padding: 8px; }
 .opt-btn--swatch .swatch-thumb { width: 52px; height: 66px; background: var(--bg-alt); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .opt-btn--swatch .swatch-thumb img { width: 100%; height: 100%; object-fit: contain; }
