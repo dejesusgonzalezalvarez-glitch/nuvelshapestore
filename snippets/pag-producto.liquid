@@ -48,6 +48,74 @@
         <img src="https://cdn.shopify.com/s/files/1/0814/1288/2673/files/faja-feature-costuras.jpg" alt="{{ 'product_faja.feature_costuras_alt' | t }}" loading="lazy">
         <img src="https://cdn.shopify.com/s/files/1/0814/1288/2673/files/faja-feature-lavado.jpg" alt="{{ 'product_faja.feature_lavado_alt' | t }}" loading="lazy">
       </div>
+
+      {%- comment -%}
+        El FAQ también se mueve aquí, debajo de las fotos y las imágenes de
+        característica, para terminar de llenar esta columna frente a la de
+        compra (que es más alta por los bundles y la guía de tallas). Sigue
+        siendo el mismo FAQ, solo cambia dónde vive en la página.
+      {%- endcomment -%}
+      <section class="gallery-col-faq">
+        <h2 style="font-size:20px; margin:32px 0 16px;">{{ 'product_faja.faq_title' | t }}</h2>
+        <div class="faq-list">
+          <div class="accordion-item" id="faja-se-nota">
+            <button type="button" aria-expanded="false" aria-controls="faja-se-nota-a">
+              <span class="q">{{ 'product_faja.faq_1_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-se-nota-a">{{ 'product_faja.faq_1_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-enrolla">
+            <button type="button" aria-expanded="false" aria-controls="faja-enrolla-a">
+              <span class="q">{{ 'product_faja.faq_2_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-enrolla-a">{{ 'product_faja.faq_2_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-gorditos">
+            <button type="button" aria-expanded="false" aria-controls="faja-gorditos-a">
+              <span class="q">{{ 'product_faja.faq_3_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-gorditos-a">{{ 'product_faja.faq_3_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-talla">
+            <button type="button" aria-expanded="false" aria-controls="faja-talla-a">
+              <span class="q">{{ 'product_faja.faq_4_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-talla-a">{{ 'product_faja.faq_4_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-bano">
+            <button type="button" aria-expanded="false" aria-controls="faja-bano-a">
+              <span class="q">{{ 'product_faja.faq_5_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-bano-a">{{ 'product_faja.faq_5_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-comer">
+            <button type="button" aria-expanded="false" aria-controls="faja-comer-a">
+              <span class="q">{{ 'product_faja.faq_6_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-comer-a">{{ 'product_faja.faq_6_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-calor">
+            <button type="button" aria-expanded="false" aria-controls="faja-calor-a">
+              <span class="q">{{ 'product_faja.faq_7_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-calor-a">{{ 'product_faja.faq_7_a' | t }}</div>
+          </div>
+          <div class="accordion-item" id="faja-envio">
+            <button type="button" aria-expanded="false" aria-controls="faja-envio-a">
+              <span class="q">{{ 'product_faja.faq_8_q' | t }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="a" id="faja-envio-a">{{ 'product_faja.faq_8_a' | t }}</div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div class="pdp-info">
@@ -197,68 +265,6 @@
   <section style="padding-bottom:64px;">
     <h2 style="font-size:26px; margin-bottom:6px;">{{ 'product_faja.testimonials_title' | t }}</h2>
     <p style="font-size:14px; color:var(--text-soft); margin-bottom:28px;"><span style="display:inline-flex; gap:3px; vertical-align:middle; margin-right:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#FFD700" clip-path="inset(0 20% 0 0)"><path d="M12 2l3 7h7l-5.5 4.2L18.5 21 12 16.8 5.5 21l2-7.8L2 9h7z"/></svg></span>{{ 'product_faja.testimonials_text' | t }}</p>
-  </section>
-
-  <section style="padding-bottom:96px;">
-    <h2 style="font-size:26px; margin-bottom:32px;">{{ 'product_faja.faq_title' | t }}</h2>
-    <div class="faq-list">
-      <div class="accordion-item" id="faja-se-nota">
-        <button type="button" aria-expanded="false" aria-controls="faja-se-nota-a">
-          <span class="q">{{ 'product_faja.faq_1_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-se-nota-a">{{ 'product_faja.faq_1_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-enrolla">
-        <button type="button" aria-expanded="false" aria-controls="faja-enrolla-a">
-          <span class="q">{{ 'product_faja.faq_2_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-enrolla-a">{{ 'product_faja.faq_2_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-gorditos">
-        <button type="button" aria-expanded="false" aria-controls="faja-gorditos-a">
-          <span class="q">{{ 'product_faja.faq_3_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-gorditos-a">{{ 'product_faja.faq_3_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-talla">
-        <button type="button" aria-expanded="false" aria-controls="faja-talla-a">
-          <span class="q">{{ 'product_faja.faq_4_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-talla-a">{{ 'product_faja.faq_4_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-bano">
-        <button type="button" aria-expanded="false" aria-controls="faja-bano-a">
-          <span class="q">{{ 'product_faja.faq_5_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-bano-a">{{ 'product_faja.faq_5_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-comer">
-        <button type="button" aria-expanded="false" aria-controls="faja-comer-a">
-          <span class="q">{{ 'product_faja.faq_6_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-comer-a">{{ 'product_faja.faq_6_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-calor">
-        <button type="button" aria-expanded="false" aria-controls="faja-calor-a">
-          <span class="q">{{ 'product_faja.faq_7_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-calor-a">{{ 'product_faja.faq_7_a' | t }}</div>
-      </div>
-      <div class="accordion-item" id="faja-envio">
-        <button type="button" aria-expanded="false" aria-controls="faja-envio-a">
-          <span class="q">{{ 'product_faja.faq_8_q' | t }}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="a" id="faja-envio-a">{{ 'product_faja.faq_8_a' | t }}</div>
-      </div>
-    </div>
   </section>
 
   <section style="padding-bottom:96px;">
