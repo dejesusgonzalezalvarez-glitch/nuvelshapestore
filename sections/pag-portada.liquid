@@ -46,10 +46,21 @@
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'home.anchor.bullet_3' | t }}</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ 'home.anchor.bullet_4' | t }}</li>
         </ul>
+        {%- comment -%}
+          Este bloque es solo una vista previa (enlaza a /pages/producto,
+          donde estan los botones reales); el precio del pack debe coincidir
+          con lo que cobra ahi el descuento automatico real de Shopify
+          ("15% en la 2da unidad", solo sobre el articulo mas barato).
+        {%- endcomment -%}
+        {%- assign _home_faja = all_products['faja-moldeadora-invisible-nuvel'] -%}
+        {%- assign _home_short = all_products['seamless-shapewear-panties'] -%}
+        {%- if _home_faja.price < _home_short.price -%}{%- assign _home_pack_min = _home_faja.price -%}{%- else -%}{%- assign _home_pack_min = _home_short.price -%}{%- endif -%}
+        {%- assign _home_pack_save = _home_pack_min | times: 0.15 | round -%}
+        {%- assign _home_pack_now = _home_faja.price | plus: _home_short.price | minus: _home_pack_save -%}
         <div class="qty-offer">
-          <div class="qty-opt"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">39,90&nbsp;€</div></div>
-          <div class="qty-opt selected"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">73,82&nbsp;€</div></div>
-          <div class="qty-opt qty-opt--pack"><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'home.anchor.pack_label' | t }}</div><div class="qty-price">64,80&nbsp;€</div></div>
+          <div class="qty-opt"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ _home_faja.price | money }}</div></div>
+          <div class="qty-opt selected"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ _home_faja.price | times: 1.85 | round | money }}</div></div>
+          <div class="qty-opt qty-opt--pack"><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'home.anchor.pack_label' | t }}</div><div class="qty-price">{{ _home_pack_now | money }}</div></div>
         </div>
         <a href="/pages/producto" class="btn btn-dark" style="width:100%;">{{ 'general.buy_now' | t }}</a>
       </div>

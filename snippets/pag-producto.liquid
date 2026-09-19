@@ -169,10 +169,20 @@
                  nombre_main: _n_faja, nombre_partner: _n_short,
                  imagen_main: 'producto-frente.jpg', imagen_partner: 'short-negro-frente.jpg' -%}
 
+      {%- comment -%}
+        El precio del pack debe coincidir con lo que realmente cobra el
+        descuento automático de Shopify ("15% en la 2da unidad", que solo
+        baja el 15% del articulo mas barato de los dos), no con la suma
+        completa de ambos productos.
+      {%- endcomment -%}
+      {%- if p.price < socio.price -%}{%- assign _pack_min = p.price -%}{%- else -%}{%- assign _pack_min = socio.price -%}{%- endif -%}
+      {%- assign _pack_save = _pack_min | times: 0.15 | round -%}
+      {%- assign _pack_now = p.price | plus: socio.price | minus: _pack_save -%}
+
       <div class="qty-offer">
         <button class="qty-opt selected" data-qty-offer="1"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ p.price | money }}<span class="qty-price-was">79,90&nbsp;€</span></div></button>
         <button class="qty-opt" data-qty-offer="2"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ p.price | times: 1.85 | round | money }}</div></button>
-        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Short Moldeador Sin Costuras" data-pack-partner="seamless-shapewear-panties" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'product_faja.pack_label' | t }}</div><div class="qty-price">64,80&nbsp;€</div></button>
+        <button class="qty-opt qty-opt--pack" data-pack-offer data-pack-name="Short Moldeador Sin Costuras" data-pack-partner="seamless-shapewear-panties" data-pack-partner-variants='{ {{ socio_map }} "_":0 }'><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'product_faja.pack_label' | t }}</div><div class="qty-price">{{ _pack_now | money }}</div></button>
       </div>
 
       {%- render 'payment-icons' -%}
