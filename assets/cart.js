@@ -114,6 +114,26 @@
         const subEl = document.getElementById("cart-subtotal-value");
         if (subEl) subEl.textContent = fmt(cart.total_price / 100);
 
+        // Si hay un código de descuento (ej. NUVEL10) aplicado a todo el
+        // pedido, el subtotal ya sale rebajado pero el precio de cada línea
+        // sigue mostrando el precio normal — sin esta fila, esa diferencia
+        // parece un error de cobro. La calculamos comparando la suma de las
+        // líneas (ya netas del 15% en la 2da unidad) contra el total final.
+        const discRow = document.getElementById("cart-discount-row");
+        if (discRow) {
+          const sumaLineas = cart.items.reduce((s, i) => s + i.line_price, 0);
+          const descuentoCodigo = sumaLineas - cart.total_price;
+          if (descuentoCodigo > 0) {
+            const codigos = (cart.discount_codes || []).filter((d) => d.applicable).map((d) => d.code);
+            document.getElementById("cart-discount-label").textContent =
+              (I18N.discount || "Descuento") + (codigos.length ? " (" + codigos.join(", ") + ")" : "");
+            document.getElementById("cart-discount-value").textContent = "−" + fmt(descuentoCodigo / 100);
+            discRow.style.display = "flex";
+          } else {
+            discRow.style.display = "none";
+          }
+        }
+
         itemsEl.querySelectorAll("[data-qty-plus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyPlus, 1)));
         itemsEl.querySelectorAll("[data-qty-minus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyMinus, -1)));
         itemsEl.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => removeItem(b.dataset.remove)));

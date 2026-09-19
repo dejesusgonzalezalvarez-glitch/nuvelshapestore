@@ -513,6 +513,7 @@
     "pack_prefix": "Pack",
     "gift_label": "Free gift with your purchase",
     "gift_remove": "No, thanks",
+    "discount": "Discount",
     "alert_pack_not_ready": "This pack isn't ready to add yet. We'll announce it here as soon as it's live.",
     "alert_add_failed": "We couldn't add the product to your cart. Please try again.",
     "alert_add_pack_failed": "We couldn't add the pack. Please try again."

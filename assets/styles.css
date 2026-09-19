@@ -498,6 +498,7 @@ img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contr
 .remove-link { font-size: 12px; color: var(--text-mute); text-decoration: underline; cursor: pointer; margin-left: 12px; background: none; border: none; }
 .cart-empty { padding: 60px 24px; text-align: center; color: var(--text-mute); font-size: 14px; }
 .cart-foot { border-top: 1px solid var(--border); padding: 20px 24px; }
+.cart-discount-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: #2e7d32; }
 .cart-subtotal { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 16px; font-weight: 600; }
 .cart-count-badge { position: absolute; top: -6px; right: -6px; background: var(--dark); color: var(--bg); font-size: 10px; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .icon-btn { position: relative; }

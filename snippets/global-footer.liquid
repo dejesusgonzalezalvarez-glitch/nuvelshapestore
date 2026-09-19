@@ -37,6 +37,7 @@
   </div>
   <div class="cart-items" id="cart-items"></div>
   <div class="cart-foot" id="cart-foot" style="display:none;">
+    <div class="cart-discount-row" id="cart-discount-row" style="display:none;"><span id="cart-discount-label"></span><span id="cart-discount-value"></span></div>
     <div class="cart-subtotal"><span>{{ 'cart.subtotal' | t }}</span><span id="cart-subtotal-value">0,00 €</span></div>
     <button class="btn btn-dark btn-block" id="checkout-btn">{{ 'cart.checkout' | t }}</button>
   </div>
@@ -94,6 +95,7 @@
     packPrefix: {{ 'cart_js.pack_prefix' | t | json }},
     giftLabel: {{ 'cart_js.gift_label' | t | json }},
     giftRemove: {{ 'cart_js.gift_remove' | t | json }},
+    discount: {{ 'cart_js.discount' | t | json }},
     sizeLabel: {{ 'general.size_label' | t | json }},
     alertPackNotReady: {{ 'cart_js.alert_pack_not_ready' | t | json }},
     alertAddFailed: {{ 'cart_js.alert_add_failed' | t | json }},
