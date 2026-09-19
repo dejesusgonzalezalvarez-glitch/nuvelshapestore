@@ -54,8 +54,14 @@
       "secure_payment": "Pago seguro"
     }
   },
+  "product_postura": {
+    "feature_sinaros_alt": "Sin aros, sin costuras, sin que se note nada bajo la ropa",
+    "feature_cierre_alt": "Cierre con 3 posiciones de ajuste para tu talla exacta",
+    "feature_tirantes_alt": "Tirantes cruzados que reparten la presión entre ambos hombros"
+  },
   "banner": {
-    "free_shipping": "Envío gratis a todo el mundo · 10% de descuento con el código NUVEL10"
+    "free_shipping": "Envío gratis a todo el mundo · 10% de descuento con el código NUVEL10",
+    "guarantee": "30 días de prueba · Si no te convence, te devolvemos el dinero"
   },
   "nav": {
     "open_menu": "Abrir menú",

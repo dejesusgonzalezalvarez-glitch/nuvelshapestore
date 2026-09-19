@@ -53,8 +53,14 @@
       "secure_payment": "Secure payment"
     }
   },
+  "product_postura": {
+    "feature_sinaros_alt": "No underwire, no seams, nothing shows under clothing",
+    "feature_cierre_alt": "3-position closure for your exact size",
+    "feature_tirantes_alt": "Crossed straps that spread pressure across both shoulders"
+  },
   "banner": {
-    "free_shipping": "Free shipping worldwide · 10% off with code NUVEL10"
+    "free_shipping": "Free shipping worldwide · 10% off with code NUVEL10",
+    "guarantee": "30-day trial · Not convinced? We refund you"
   },
   "nav": {
     "open_menu": "Open menu",

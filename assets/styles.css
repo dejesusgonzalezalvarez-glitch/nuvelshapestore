@@ -39,7 +39,22 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Top banner */
 .top-banner {
   background: var(--dark); color: var(--bg);
-  text-align: center; padding: 10px 12px; font-size: 13px; letter-spacing: 0.04em;
+  padding: 10px 0; font-size: 13px; letter-spacing: 0.04em;
+  overflow: hidden; white-space: nowrap;
+}
+.top-banner-track {
+  display: inline-flex; width: max-content;
+  animation: nuvel-banner-marquee 22s linear infinite;
+}
+.top-banner-track span { padding: 0 48px; }
+@keyframes nuvel-banner-marquee {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .top-banner-track { animation: none; }
+  .top-banner { text-align: center; }
+  .top-banner-track span:nth-child(n+3) { display: none; }
 }
 
 /* Header */

@@ -60,6 +60,19 @@
       <div class="pdp-desc">{{ product.description | replace: '[', '' | replace: ']', '' | replace: '"', '' }}</div>
 
       {%- comment -%}
+        Imágenes técnicas del Sujetador Corrector de Postura: solo se
+        muestran en esta ficha (comprobando el handle), igual que se hizo a
+        mano en la página de la Faja.
+      {%- endcomment -%}
+      {%- if product.handle == 'sujetador-corrector-postura' -%}
+      <div class="gallery-col-features">
+        <img src="https://cdn.shopify.com/s/files/1/0814/1288/2673/files/postura-feature-sinaros.jpg" alt="{{ 'product_postura.feature_sinaros_alt' | t }}" loading="lazy">
+        <img src="https://cdn.shopify.com/s/files/1/0814/1288/2673/files/postura-feature-cierre.jpg" alt="{{ 'product_postura.feature_cierre_alt' | t }}" loading="lazy">
+        <img src="https://cdn.shopify.com/s/files/1/0814/1288/2673/files/postura-feature-tirantes.jpg" alt="{{ 'product_postura.feature_tirantes_alt' | t }}" loading="lazy">
+      </div>
+      {%- endif -%}
+
+      {%- comment -%}
         Preguntas frecuentes genéricas (válidas para cualquier prenda de la
         tienda): además de ser útiles, rellenan con contenido real el hueco
         que queda en PC cuando la columna de compra (opciones + bundle +
