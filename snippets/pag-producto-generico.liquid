@@ -190,7 +190,7 @@
             <span class="swatch-label">{{ valor_opcion_es }}</span>
           </button>
           {%- else -%}
-          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ valor_opcion_es }}</button>
+          <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ valor_opcion_es }}</button>
           {%- endif -%}
           {%- endif -%}
           {%- endfor -%}
