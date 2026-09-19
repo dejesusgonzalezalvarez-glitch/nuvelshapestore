@@ -371,15 +371,21 @@
       var idSocio = box.dataset.partnerVariantId ? Number(box.dataset.partnerVariantId) : null;
 
       function refreshBundle() {
+        // El descuento real de Shopify ("15% en la 2da unidad") solo baja el
+        // precio del articulo mas barato del carrito, no el total del combo.
+        // Se calcula igual aqui para que el precio mostrado coincida exacto
+        // con lo que se cobra al pagar (antes se mostraba total*(1-dto), que
+        // no coincidia con el cobro real).
         var incluir = !checkbox || checkbox.checked;
         var total = incluir ? mainPrice + partnerPrice : mainPrice;
         var dto = incluir ? discount : 0;
-        var ahora = Math.round(total * (1 - dto / 100) * 100) / 100;
+        var ahorro = incluir ? Math.round(Math.min(mainPrice, partnerPrice) * (dto / 100) * 100) / 100 : 0;
+        var ahora = Math.round((total - ahorro) * 100) / 100;
         if (wasEl) { wasEl.textContent = fmtGen(total); wasEl.style.display = ""; }
         if (nowEl) nowEl.textContent = fmtGen(ahora);
         if (saveEl) {
-          saveEl.textContent = dto > 0 ? (i18n.bundleSave || "Ahorras") + " " + dto + "%" : "";
-          saveEl.style.display = dto > 0 ? "" : "none";
+          saveEl.textContent = ahorro > 0 ? (i18n.bundleSave || "Ahorras") + " " + fmtGen(ahorro) : "";
+          saveEl.style.display = ahorro > 0 ? "" : "none";
         }
       }
       if (checkbox) checkbox.addEventListener("change", refreshBundle);
