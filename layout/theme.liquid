@@ -24,22 +24,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
-<script>
-  {%- comment -%}
-    Los 4 productos "buque insignia" tienen su ficha de catálogo escrita a
-    mano (snippets/tile-*.liquid) con fotos del tema, no con las imágenes
-    reales del producto en Shopify — por eso el carrito no puede sacar su
-    foto de portada de product.images. Este mapa le dice al carrito qué
-    foto exacta usar para que coincida con lo que la clienta vio en el
-    catálogo, sin importar qué variante de color haya elegido.
-  {%- endcomment -%}
-  window.__NUVEL_TILE_IMAGES__ = {
-    "faja-moldeadora-invisible-nuvel": "{{ 'med-producto-frente.jpg' | asset_url }}",
-    "retro-shapewear-top-with-zipper": "{{ 'med-corse-negro-frente.jpg' | asset_url }}",
-    "seamless-shapewear-panties": "{{ 'med-short-negro-frente.jpg' | asset_url }}",
-    "womens-shapewear-dress-jumpsuit": "{{ 'med-vestido-negro-frente.jpg' | asset_url }}"
-  };
-</script>
 {{ content_for_header }}
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ84VDSPSE"></script>

@@ -61,15 +61,11 @@
     return Promise.resolve(cart);
   }
 
-  // Los 4 productos "buque insignia" tienen su ficha de catálogo escrita a
-  // mano (snippets/tile-*.liquid) con fotos del tema, no con las imágenes
-  // reales del producto en Shopify — por eso, solo para esos 4, se fuerza
-  // esa foto fija en el carrito. Para TODOS los demás productos se usa
-  // item.image tal cual la devuelve Shopify: es la foto exacta de la
-  // variante (color/talla) que la clienta eligió y añadió al carrito.
+  // El carrito siempre debe mostrar la misma foto que la clienta vio y
+  // eligió en la página del producto: la de la variante (color/talla)
+  // que realmente se añadió, tal cual la devuelve Shopify en item.image.
   function fotoDe(item) {
-    var mapaFijo = window.__NUVEL_TILE_IMAGES__ || {};
-    return mapaFijo[item.handle] || item.image;
+    return item.image;
   }
 
   function renderCart() {
