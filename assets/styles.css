@@ -44,12 +44,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .top-banner-track {
   display: inline-flex; width: max-content;
-  animation: nuvel-banner-marquee 22s linear infinite;
+  animation: nuvel-banner-marquee 14s ease-in-out infinite alternate;
 }
 .top-banner-track span { padding: 0 48px; }
 @keyframes nuvel-banner-marquee {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0%); }
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .top-banner-track { animation: none; }

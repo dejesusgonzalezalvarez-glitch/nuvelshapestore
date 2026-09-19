@@ -61,7 +61,9 @@
   },
   "banner": {
     "free_shipping": "Envío gratis a todo el mundo · 10% de descuento con el código NUVEL10",
-    "guarantee": "30 días de prueba · Si no te convence, te devolvemos el dinero"
+    "guarantee": "30 días de prueba · Si no te convence, te devolvemos el dinero",
+    "seamless": "Sin aros. Sin costuras. Sin que se note nada.",
+    "secure_payment": "Pago 100% seguro con tarjeta y PayPal"
   },
   "nav": {
     "open_menu": "Abrir menú",
