@@ -61,33 +61,21 @@
     return Promise.resolve(cart);
   }
 
-  // El carrito de Shopify devuelve la imagen de la VARIANTE elegida, que en
-  // varios productos es una foto distinta a la primera foto del catálogo
-  // (ej. un color/estampado concreto en vez de la foto principal). Para que
-  // el carrito siempre muestre la misma foto que ve la clienta en el
-  // catálogo, se pide la primera imagen real del producto y se usa esa en
-  // vez de la de la variante.
-  var _primeraFotoCache = {};
-  function primerasFotosDe(handles) {
+  // Los 4 productos "buque insignia" tienen su ficha de catálogo escrita a
+  // mano (snippets/tile-*.liquid) con fotos del tema, no con las imágenes
+  // reales del producto en Shopify — por eso, solo para esos 4, se fuerza
+  // esa foto fija en el carrito. Para TODOS los demás productos se usa
+  // item.image tal cual la devuelve Shopify: es la foto exacta de la
+  // variante (color/talla) que la clienta eligió y añadió al carrito.
+  function fotoDe(item) {
     var mapaFijo = window.__NUVEL_TILE_IMAGES__ || {};
-    var faltan = handles.filter((h) => h && !(h in _primeraFotoCache) && !mapaFijo[h]);
-    var pendientes = faltan.map((h) =>
-      fetch("/products/" + h + ".js")
-        .then((r) => (r.ok ? r.json() : null))
-        .then((p) => { _primeraFotoCache[h] = (p && p.images && p.images[0]) || null; })
-        .catch(() => { _primeraFotoCache[h] = null; })
-    );
-    return Promise.all(pendientes).then(() => {
-      Object.keys(mapaFijo).forEach((h) => { _primeraFotoCache[h] = mapaFijo[h]; });
-      return _primeraFotoCache;
-    });
+    return mapaFijo[item.handle] || item.image;
   }
 
   function renderCart() {
     return fetch("/cart.js")
       .then((r) => r.json())
       .then((cart) => sincronizarRegalo(cart))
-      .then((cart) => primerasFotosDe(cart.items.map((i) => i.handle)).then(() => cart))
       .then((cart) => {
         document.querySelectorAll("[data-cart-count]").forEach((el) => {
           el.textContent = cart.item_count;
@@ -107,7 +95,7 @@
 
         itemsEl.innerHTML = cart.items.map((item) => {
           const esRegalo = item.variant_id === REGALO_VARIANT_ID;
-          const foto = _primeraFotoCache[item.handle] || item.image;
+          const foto = fotoDe(item);
           return `
           <div class="cart-item${esRegalo ? " cart-item--regalo" : ""}">
             <img src="${foto}" alt="${item.product_title}">
