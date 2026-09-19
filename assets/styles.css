@@ -238,8 +238,8 @@ section.pad { padding: 96px 64px; }
 .gallery-col { display: flex; flex-direction: column; width: 640px; max-width: 100%; }
 .gallery-col .pdp-desc { margin-top: 20px; }
 .gallery-col-details, .gallery-col-faq { margin-top: 8px; }
-.gallery-col-features { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
-.gallery-col-features img { width: 100%; border-radius: 4px; display: block; }
+.gallery-col-features { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 32px; }
+.gallery-col-features img { width: 60%; max-width: 320px; border-radius: 4px; display: block; }
 .gallery-col-details .product-details-copy p { font-size: 15px; line-height: 1.7; color: var(--text-soft); }
 .gallery-col-details .pd-headline { font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .gallery { display: flex; gap: 16px; width: 640px; max-width: 100%; }
