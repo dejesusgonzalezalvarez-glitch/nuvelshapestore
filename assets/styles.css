@@ -382,10 +382,11 @@ section.pad { padding: 96px 64px; }
 .reviews-comments__title { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
 .reviews-with-video { display: flex; gap: 48px; align-items: flex-start; }
 .reviews-with-video .reviews-comments { flex: 1 1 640px; }
-.reviews-video-col { flex: 0 0 260px; margin: 8px 0 32px; position: sticky; top: 24px; }
+.reviews-video-col { flex: 0 0 320px; margin: 8px 0 32px; }
+.reviews-video-col .video-box--reel { max-width: 320px; }
 @media (max-width: 900px) {
   .reviews-with-video { flex-direction: column; gap: 0; }
-  .reviews-video-col { flex-basis: auto; width: 100%; position: static; margin-top: 24px; }
+  .reviews-video-col { flex-basis: auto; width: 100%; margin-top: 24px; }
 }
 .comment-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
 .comment-item:last-child { border-bottom: none; }

@@ -128,10 +128,43 @@
       {%- assign nombre_opcion_es = nombre_opcion_es | strip -%}
       {%- assign es_color = false -%}
       {%- if option.name contains 'olor' -%}{%- assign es_color = true -%}{%- endif -%}
+      {%- comment -%}
+        Si el Color mezcla valores "individuales" (empiezan con "1 ", sin
+        "+") con "packs" (empiezan con "2 " o combinan dos colores con
+        "+"), se separan en dos filas: individuales arriba, packs abajo —
+        para productos con un solo tipo de valor (la mayoría del catálogo)
+        esto no cambia nada, siguen en una sola fila.
+      {%- endcomment -%}
+      {%- assign _hay_individuales = false -%}
+      {%- assign _hay_packs = false -%}
+      {%- if es_color -%}
+        {%- for value in option.values -%}
+          {%- assign _v_inicio = value | truncate: 2, '' -%}
+          {%- if _v_inicio == '1 ' and value contains '+' == false -%}
+            {%- assign _hay_individuales = true -%}
+          {%- else -%}
+            {%- assign _hay_packs = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- assign _separar_filas = false -%}
+      {%- if _hay_individuales and _hay_packs -%}{%- assign _separar_filas = true -%}{%- endif -%}
       <div class="opt-group">
         <div class="opt-head"><label>{{ nombre_opcion_es }}</label></div>
         <div class="opt-choices{% if es_color %} opt-choices--swatch{% endif %}">
+          {%- for _fase in (1..2) -%}
           {%- for value in option.values -%}
+          {%- assign _v_inicio = value | truncate: 2, '' -%}
+          {%- assign _es_individual = false -%}
+          {%- if _v_inicio == '1 ' and value contains '+' == false -%}{%- assign _es_individual = true -%}{%- endif -%}
+          {%- assign _mostrar = true -%}
+          {%- if _separar_filas -%}
+            {%- if _fase == 1 and _es_individual == false -%}{%- assign _mostrar = false -%}{%- endif -%}
+            {%- if _fase == 2 and _es_individual -%}{%- assign _mostrar = false -%}{%- endif -%}
+          {%- elsif _fase == 2 -%}
+            {%- assign _mostrar = false -%}
+          {%- endif -%}
+          {%- if _mostrar -%}
           {%- capture valor_opcion_es -%}{%- render 'opcion-traducida', valor: value -%}{%- endcapture -%}
           {%- assign valor_opcion_es = valor_opcion_es | strip -%}
           {%- if es_color -%}
@@ -142,13 +175,16 @@
                 {%- break -%}
               {%- endif -%}
             {%- endfor -%}
-          <button type="button" class="opt-btn opt-btn--swatch{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">
+          <button type="button" class="opt-btn opt-btn--swatch{% if forloop.first and _fase == 1 %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">
             <span class="swatch-thumb">{%- if _swatch_img -%}<img src="{{ _swatch_img | image_url: width: 100 }}" alt="{{ valor_opcion_es | escape }}" loading="lazy">{%- endif -%}</span>
             <span class="swatch-label">{{ valor_opcion_es }}</span>
           </button>
           {%- else -%}
           <button type="button" class="opt-btn{% if forloop.first %} selected{% endif %}" data-opt-index="{{ forloop.parentloop.index0 }}" data-opt-value="{{ value | escape }}">{{ valor_opcion_es }}</button>
           {%- endif -%}
+          {%- endif -%}
+          {%- endfor -%}
+          {%- if _separar_filas and _fase == 1 -%}<div class="opt-choices-break"></div>{%- endif -%}
           {%- endfor -%}
         </div>
       </div>
