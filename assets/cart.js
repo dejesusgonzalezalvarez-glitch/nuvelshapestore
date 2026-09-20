@@ -45,18 +45,14 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: [{ id: REGALO_VARIANT_ID, quantity: 1 }] }),
-      })
-        .then(() => fetch("/cart.js"))
-        .then((r) => r.json());
+      }).then((r) => r.json());
     }
     if (totalSinRegalo < 2 && regalo) {
       return fetch("/cart/change.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: REGALO_VARIANT_ID, quantity: 0 }),
-      })
-        .then(() => fetch("/cart.js"))
-        .then((r) => r.json());
+      }).then((r) => r.json());
     }
     return Promise.resolve(cart);
   }
@@ -68,9 +64,13 @@
     return item.image;
   }
 
-  function renderCart() {
-    return fetch("/cart.js")
-      .then((r) => r.json())
+  // Acepta un carrito ya obtenido (ej. lo que devuelve /cart/change.js) para
+  // no tener que pedirlo de nuevo con otro fetch a /cart.js — quitar o
+  // cambiar la cantidad de un item ya venia con el carrito actualizado en
+  // esa misma respuesta, y pedirlo otra vez solo sumaba una vuelta de red
+  // completa (se sentia lento sin necesidad).
+  function renderCart(cartYaObtenido) {
+    return Promise.resolve(cartYaObtenido || fetch("/cart.js").then((r) => r.json()))
       .then((cart) => sincronizarRegalo(cart))
       .then((cart) => {
         document.querySelectorAll("[data-cart-count]").forEach((el) => {
@@ -134,8 +134,14 @@
           }
         }
 
-        itemsEl.querySelectorAll("[data-qty-plus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyPlus, 1)));
-        itemsEl.querySelectorAll("[data-qty-minus]").forEach((b) => b.addEventListener("click", () => changeQty(b.dataset.qtyMinus, -1)));
+        itemsEl.querySelectorAll("[data-qty-plus]").forEach((b) => b.addEventListener("click", () => {
+          const actual = Number(b.closest(".qty-stepper")?.querySelector("span")?.textContent || 0);
+          changeQty(b.dataset.qtyPlus, actual + 1);
+        }));
+        itemsEl.querySelectorAll("[data-qty-minus]").forEach((b) => b.addEventListener("click", () => {
+          const actual = Number(b.closest(".qty-stepper")?.querySelector("span")?.textContent || 0);
+          changeQty(b.dataset.qtyMinus, Math.max(0, actual - 1));
+        }));
         itemsEl.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => removeItem(b.dataset.remove)));
         itemsEl.querySelectorAll("[data-remove-regalo]").forEach((b) => b.addEventListener("click", () => {
           marcarRegaloRechazado(true);
@@ -145,28 +151,29 @@
       });
   }
 
-  function changeQty(key, delta) {
-    fetch("/cart.js")
+  function changeQty(key, nuevaCantidad) {
+    fetch("/cart/change.js", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: key, quantity: nuevaCantidad }),
+    })
       .then((r) => r.json())
-      .then((cart) => {
-        const item = cart.items.find((i) => i.key === key);
-        if (!item) return null;
-        const nuevaCantidad = Math.max(0, item.quantity + delta);
-        return fetch("/cart/change.js", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: key, quantity: nuevaCantidad }),
-        });
-      })
-      .then(() => renderCart());
+      .then((cart) => renderCart(cart));
   }
 
   function removeItem(key) {
+    // Se quita la fila del carrito al instante (antes de que responda el
+    // servidor) para que se sienta inmediato; si algo falla, renderCart()
+    // la vuelve a poner al refrescar con el estado real.
+    const fila = document.querySelector('[data-remove="' + key + '"], [data-remove-regalo="' + key + '"]')?.closest(".cart-item");
+    if (fila) fila.style.opacity = "0.3";
     fetch("/cart/change.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: key, quantity: 0 }),
-    }).then(() => renderCart());
+    })
+      .then((r) => r.json())
+      .then((cart) => renderCart(cart));
   }
 
   // Evita que la página de fondo haga scroll mientras hay un panel/modal abierto encima
