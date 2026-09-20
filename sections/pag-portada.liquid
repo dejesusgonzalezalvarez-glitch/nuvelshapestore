@@ -55,7 +55,7 @@
         {%- assign _home_faja = all_products['faja-moldeadora-invisible-nuvel'] -%}
         {%- assign _home_short = all_products['seamless-shapewear-panties'] -%}
         {%- if _home_faja.price < _home_short.price -%}{%- assign _home_pack_min = _home_faja.price -%}{%- else -%}{%- assign _home_pack_min = _home_short.price -%}{%- endif -%}
-        {%- assign _home_pack_save = _home_pack_min | times: 0.15 | round -%}
+        {%- assign _home_pack_save = _home_pack_min | times: 0.15 | floor -%}
         {%- assign _home_pack_now = _home_faja.price | plus: _home_short.price | minus: _home_pack_save -%}
         <div class="qty-offer">
           <div class="qty-opt"><div class="qty-label">{{ 'qty.one_unit' | t }}</div><div class="qty-price">{{ _home_faja.price | money }}</div></div>

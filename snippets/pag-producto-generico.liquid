@@ -379,7 +379,10 @@
         var incluir = !checkbox || checkbox.checked;
         var total = incluir ? mainPrice + partnerPrice : mainPrice;
         var dto = incluir ? discount : 0;
-        var ahorro = incluir ? Math.round(Math.min(mainPrice, partnerPrice) * (dto / 100) * 100) / 100 : 0;
+        // Shopify trunca el centimo hacia abajo (34,90*15% => 523, no 524),
+        // asi que aqui tambien se usa floor y no round para que coincida
+        // exacto con el descuento real, sin diferencia de 1 centimo.
+        var ahorro = incluir ? Math.floor(Math.min(mainPrice, partnerPrice) * (dto / 100) * 100) / 100 : 0;
         var ahora = Math.round((total - ahorro) * 100) / 100;
         if (wasEl) { wasEl.textContent = fmtGen(total); wasEl.style.display = ""; }
         if (nowEl) nowEl.textContent = fmtGen(ahora);

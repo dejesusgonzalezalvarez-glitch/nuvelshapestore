@@ -113,7 +113,7 @@
         completa de ambos productos.
       {%- endcomment -%}
       {%- if p.price < socio.price -%}{%- assign _pack_min = p.price -%}{%- else -%}{%- assign _pack_min = socio.price -%}{%- endif -%}
-      {%- assign _pack_save = _pack_min | times: 0.15 | round -%}
+      {%- assign _pack_save = _pack_min | times: 0.15 | floor -%}
       {%- assign _pack_now = p.price | plus: socio.price | minus: _pack_save -%}
 
       <div class="qty-offer">
