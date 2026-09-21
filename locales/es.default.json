@@ -607,7 +607,14 @@
     "short_faja_reason": "La faja cubre arriba y el short abajo: cobertura completa, sin marcas.",
     "short_vestido_title": "El conjunto invisible",
     "short_vestido_reason": "El short evita roces y marcas bajo el vestido moldeador.",
-    "vestido_short_title": "El conjunto invisible",
-    "vestido_short_reason": "Tu vestido moldeador, acabado con el short que no se nota."
+"vestido_short_title": "El conjunto invisible",
+      "vestido_short_reason": "Tu vestido moldeador, acabado con el short que no se nota."
+  },
+  "consent": {
+    "title": "Tu privacidad y las cookies",
+    "text": "Usamos cookies técnicas imprescindibles para que la tienda funcione. Antes de activar las de análisis y publicidad (Google Analytics y Meta Pixel), te pedimos permiso.",
+    "link": "Leer la política de privacidad",
+    "accept": "Aceptar todas",
+    "decline": "Rechazar"
   }
 }

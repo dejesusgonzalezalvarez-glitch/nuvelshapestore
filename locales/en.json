@@ -14,6 +14,7 @@
     "badge_bestseller": "Bestseller",
     "badge_new": "New",
     "reviews": "reviews",
+    "reviews_title": "What our customers say",
     "buy_now": "Buy now",
     "add_short": "Add",
     "size_label": "Size",
@@ -599,7 +600,14 @@
     "short_faja_reason": "The girdle covers the top and the shorts the bottom: full, line-free coverage.",
     "short_vestido_title": "The invisible set",
     "short_vestido_reason": "The shorts prevent chafing and lines under the shaping dress.",
-    "vestido_short_title": "The invisible set",
-    "vestido_short_reason": "Your shaping dress, finished with shorts that won't show."
+"vestido_short_title": "The invisible set",
+      "vestido_short_reason": "Your shaping dress, finished with shorts that won't show."
+  },
+  "consent": {
+    "title": "Your privacy and cookies",
+    "text": "We use technical cookies essential for the store to work. Before enabling analytics and advertising cookies (Google Analytics and Meta Pixel), we ask for your permission.",
+    "link": "Read the privacy policy",
+    "accept": "Accept all",
+    "decline": "Decline"
   }
 }

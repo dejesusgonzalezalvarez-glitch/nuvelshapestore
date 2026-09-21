@@ -926,3 +926,27 @@ select.chip { appearance: none; -webkit-appearance: none; padding-right: 34px; b
   .welcome-code { font-size: 18px; padding: 12px 22px; }
 }
 
+/* ===== Banner de consentimiento de cookies (GDPR) ===== */
+.consent-banner {
+  position: fixed; left: 16px; right: 16px; bottom: 16px;
+  z-index: 340;
+  max-width: 480px;
+  background: var(--dark); color: var(--bg);
+  padding: 18px 20px;
+  box-shadow: 0 18px 50px -18px rgba(0,0,0,.5);
+  display: none;
+}
+.consent-banner.open { display: block; animation: nuvel-consent-in .25s ease; }
+@keyframes nuvel-consent-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.consent-text { margin: 0 0 14px; font-size: 13px; line-height: 1.6; color: var(--bg); }
+.consent-text a { color: var(--accent); text-decoration: underline; }
+.consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.consent-actions .btn { padding: 11px 20px; font-size: 13px; }
+.consent-actions .btn-outline { border-color: rgba(255,255,255,.35); color: var(--bg); }
+@media (min-width: 601px) {
+  .consent-banner { left: auto; }
+}
+

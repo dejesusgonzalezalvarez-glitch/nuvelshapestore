@@ -25,37 +25,48 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="{{ 'styles.css' | asset_url }}">
 {{ content_for_header }}
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ84VDSPSE"></script>
+<!-- Seguimiento bajo consentimiento (GDPR): GA4 y Meta Pixel solo se cargan
+     si el visitante acepta el aviso de cookies. Si rechaza o no responde,
+     no se carga ni se dispara nada. -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-MZ84VDSPSE');
+  window.nuvelConsentKey = "nuvel_consent";
+  window.nuvelConsentPendiente = false;
+  window.nuvelCargarTracking = function () {
+    if (window.nuvelTrackingCargado) return;
+    window.nuvelTrackingCargado = true;
+    var g = document.createElement("script");
+    g.async = true;
+    g.src = "https://www.googletagmanager.com/gtag/js?id=G-MZ84VDSPSE";
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = window.gtag || gtag;
+    gtag("js", new Date());
+    gtag("config", "G-MZ84VDSPSE");
+    var p = document.createElement("script");
+    p.type = "text/javascript";
+    p.text = "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1403521171928958');fbq('track','PageView');";
+    document.head.appendChild(p);
+    {%- if template.name == 'product' -%}
+    if (window.fbq) fbq("track", "ViewContent", {
+      content_name: {{ product.title | json }},
+      content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
+      content_type: "product",
+      value: {{ product.price | divided_by: 100.0 | json }},
+      currency: "EUR"
+    });
+    {%- endif -%}
+  };
+  (function () {
+    var estado = null;
+    try { estado = localStorage.getItem(window.nuvelConsentKey); } catch (e) {}
+    if (estado === "accepted") {
+      window.nuvelCargarTracking();
+    } else if (estado !== "declined") {
+      window.nuvelConsentPendiente = true;
+    }
+  })();
 </script>
-<!-- Meta Pixel -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1403521171928958');
-  fbq('track', 'PageView');
-  {%- if template.name == 'product' -%}
-  fbq('track', 'ViewContent', {
-    content_name: {{ product.title | json }},
-    content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
-    content_type: 'product',
-    value: {{ product.price | divided_by: 100.0 | json }},
-    currency: 'EUR'
-  });
-  {%- endif -%}
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1403521171928958&ev=PageView&noscript=1" /></noscript>
 </head>
 <body data-root="">
 {% render 'global-header' %}
@@ -125,6 +136,35 @@
       });
     }
     setTimeout(abrir, 1400);
+  })();
+</script>
+<div class="consent-banner" id="consent-banner" role="region" aria-label="{{ 'consent.title' | t }}">
+  <div class="consent-inner">
+    <p class="consent-text">{{ 'consent.text' | t }} <a href="/pages/privacidad">{{ 'consent.link' | t }}</a></p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-outline" id="consent-decline">{{ 'consent.decline' | t }}</button>
+      <button type="button" class="btn btn-dark" id="consent-accept">{{ 'consent.accept' | t }}</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var key = window.nuvelConsentKey || "nuvel_consent";
+    var decidido = false;
+    try { decidido = localStorage.getItem(key) === "accepted" || localStorage.getItem(key) === "declined"; } catch (e) {}
+    if (decidido) return;
+    var banner = document.getElementById("consent-banner");
+    if (!banner) return;
+    var btnAceptar = document.getElementById("consent-accept");
+    var btnRechazar = document.getElementById("consent-decline");
+    function elegir(valor) {
+      try { localStorage.setItem(key, valor); } catch (e) {}
+      banner.classList.remove("open");
+      if (valor === "accepted" && window.nuvelCargarTracking) window.nuvelCargarTracking();
+    }
+    if (btnAceptar) btnAceptar.addEventListener("click", function () { elegir("accepted"); });
+    if (btnRechazar) btnRechazar.addEventListener("click", function () { elegir("declined"); });
+    setTimeout(function () { banner.classList.add("open"); }, 900);
   })();
 </script>
 </body>
