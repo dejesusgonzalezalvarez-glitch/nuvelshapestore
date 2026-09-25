@@ -12,6 +12,7 @@
         <a href="/pages/devoluciones">{{ 'footer.col_returns' | t }}</a>
         <a href="/pages/privacidad">{{ 'footer.col_privacy' | t }}</a>
         <a href="/pages/terminos">{{ 'footer.col_terms' | t }}</a>
+        <button type="button" id="consent-reopen" class="footer-link-btn">{{ 'consent.manage' | t }}</button>
       </div>
       <div class="footer-col">
         <span class="footer-col-title">{{ 'footer.col_follow_us' | t }}</span>
@@ -28,14 +29,14 @@
   <div class="footer-bottom">{{ 'footer.copyright' | t }}</div>
 </footer>
 <div class="cart-overlay" id="cart-overlay"></div>
-<aside class="cart-drawer" id="cart-drawer">
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="{{ 'cart.heading' | t }}">
   <div class="cart-head">
     <h3>{{ 'cart.heading' | t }}</h3>
     <button class="cart-close" id="cart-close" aria-label="{{ 'cart.close' | t }}">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
-  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-items" id="cart-items" aria-live="polite"></div>
   <div class="cart-foot" id="cart-foot" style="display:none;">
     <div class="cart-discount-row" id="cart-discount-row" style="display:none;"><span id="cart-discount-label"></span><span id="cart-discount-value"></span></div>
     <div class="cart-subtotal"><span>{{ 'cart.subtotal' | t }}</span><span id="cart-subtotal-value">0,00 €</span></div>
@@ -43,19 +44,19 @@
   </div>
 </aside>
 <div class="search-overlay" id="search-overlay">
-  <div class="search-box">
-    <form id="search-form">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input type="text" id="search-input" placeholder="{{ 'search.placeholder' | t }}" autocomplete="off">
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="{{ 'search.placeholder' | t }}">
+    <form id="search-form" role="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="search" id="search-input" placeholder="{{ 'search.placeholder' | t }}" aria-label="{{ 'search.placeholder' | t }}" autocomplete="off">
       <button type="button" class="icon-btn" id="search-close" aria-label="{{ 'search.close' | t }}">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </form>
-    <div id="search-results" class="search-results"></div>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
   </div>
 </div>
 <div class="cart-overlay" id="account-overlay"></div>
-<aside class="cart-drawer" id="account-drawer">
+<aside class="cart-drawer" id="account-drawer" role="dialog" aria-modal="true" aria-label="{{ 'account.heading' | t }}">
   <div class="cart-head">
     <h3>{{ 'account.heading' | t }}</h3>
     <button class="cart-close" id="account-close" aria-label="{{ 'general.close' | t }}">

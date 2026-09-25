@@ -189,18 +189,46 @@
     if (openOverlays === 0) document.documentElement.classList.remove("no-scroll");
   }
 
-  function openCart() {
-    document.getElementById("cart-drawer")?.classList.add("open");
-    document.getElementById("cart-overlay")?.classList.add("open");
-    lockScroll();
+  // ===== Gestion de foco en paneles (drawer / overlay tipo dialogo) =====
+  // Cuando un panel se abre: el foco entra a su primer control y el tabulador
+  // queda atrapado dentro (Tab en el ultimo vuelve al primero, y al reves con
+  // Shift). Al cerrar, el foco vuelve al boton que lo abrio. Asi un usuario
+  // de teclado puede usar carrito, buscador, cuenta y menu sin perderse.
+  let ultimoFoco = null;
+  const FOCUSABLES = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  function trapTab(panel, e) {
+    if (e.key !== "Tab") return;
+    const lista = Array.from(panel.querySelectorAll(FOCUSABLES)).filter((el) => el.offsetParent !== null);
+    if (!lista.length) return;
+    const primero = lista[0];
+    const ultimo = lista[lista.length - 1];
+    if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
   }
-  function closeCart() {
-    const drawer = document.getElementById("cart-drawer");
-    const overlay = document.getElementById("cart-overlay");
-    if (!drawer?.classList.contains("open")) return;
-    drawer.classList.remove("open");
+  function activarPanel(panel) {
+    if (!panel || panel.classList.contains("open")) return;
+    ultimoFoco = document.activeElement;
+    panel.classList.add("open");
+    panel.addEventListener("keydown", panel.__trapTab || (panel.__trapTab = (e) => trapTab(panel, e)));
+    lockScroll();
+    const primero = panel.querySelector(".cart-close, input, button, a[href]");
+    if (primero) setTimeout(() => primero.focus(), 60);
+  }
+  function cerrarPanel(panel, overlay) {
+    if (!panel || !panel.classList.contains("open")) return false;
+    panel.classList.remove("open");
     overlay?.classList.remove("open");
     unlockScroll();
+    if (ultimoFoco && typeof ultimoFoco.focus === "function") { ultimoFoco.focus(); ultimoFoco = null; }
+    return true;
+  }
+
+  function openCart() {
+    activarPanel(document.getElementById("cart-drawer"));
+    document.getElementById("cart-overlay")?.classList.add("open");
+  }
+  function closeCart() {
+    cerrarPanel(document.getElementById("cart-drawer"), document.getElementById("cart-overlay"));
   }
 
   window.NuvelCart = { openCart, closeCart, renderCart };
@@ -249,16 +277,18 @@
     const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
     const mobileMenuClose = document.getElementById("mobile-menu-close");
     function closeMobileMenu() {
-      mobileMenu?.classList.remove("open");
-      mobileMenuOverlay?.classList.remove("open");
+      if (!cerrarPanel(mobileMenu, mobileMenuOverlay)) return;
       menuBtn?.setAttribute("aria-expanded", "false");
-      unlockScroll();
     }
     menuBtn?.addEventListener("click", () => {
-      const open = mobileMenu?.classList.toggle("open");
-      mobileMenuOverlay?.classList.toggle("open", open);
-      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      if (open) lockScroll(); else unlockScroll();
+      const vaAAbrir = !mobileMenu?.classList.contains("open");
+      if (vaAAbrir) {
+        activarPanel(mobileMenu);
+        mobileMenuOverlay?.classList.add("open");
+        menuBtn.setAttribute("aria-expanded", "true");
+      } else {
+        closeMobileMenu();
+      }
     });
     mobileMenuOverlay?.addEventListener("click", closeMobileMenu);
     mobileMenuClose?.addEventListener("click", closeMobileMenu);
@@ -322,14 +352,11 @@
       });
     }
     function closeSearch() {
-      if (!searchOverlay?.classList.contains("open")) return;
-      searchOverlay.classList.remove("open");
-      unlockScroll();
+      cerrarPanel(searchOverlay, null);
     }
     document.querySelectorAll("[data-search-open]").forEach((b) => b.addEventListener("click", () => {
-      searchOverlay?.classList.add("open");
-      lockScroll();
-      setTimeout(() => searchInput?.focus(), 50);
+      activarPanel(searchOverlay);
+      setTimeout(() => searchInput?.focus(), 60);
     }));
     document.getElementById("search-close")?.addEventListener("click", closeSearch);
     searchOverlay?.addEventListener("click", (e) => { if (e.target === searchOverlay) closeSearch(); });
@@ -341,21 +368,16 @@
       if (match) window.location.href = match.url;
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") { closeSearch(); closeCart(); closeAccount(); closeZoom(); }
+      if (e.key === "Escape") { closeSearch(); closeCart(); closeAccount(); closeZoom(); closeMobileMenu(); }
     });
 
     // ===== Account panel (honest "no accounts yet" info panel) =====
     function openAccount() {
-      document.getElementById("account-drawer")?.classList.add("open");
+      activarPanel(document.getElementById("account-drawer"));
       document.getElementById("account-overlay")?.classList.add("open");
-      lockScroll();
     }
     function closeAccount() {
-      const drawer = document.getElementById("account-drawer");
-      if (!drawer?.classList.contains("open")) return;
-      drawer.classList.remove("open");
-      document.getElementById("account-overlay")?.classList.remove("open");
-      unlockScroll();
+      cerrarPanel(document.getElementById("account-drawer"), document.getElementById("account-overlay"));
     }
     document.querySelectorAll("[data-account-open]").forEach((b) => b.addEventListener("click", openAccount));
     document.getElementById("account-close")?.addEventListener("click", closeAccount);
@@ -417,7 +439,8 @@
           if (anyVisibleSec) anyVisibleTotal = true;
         });
         actualizarSubgrupos();
-        document.getElementById("filters-empty").style.display = anyVisibleTotal ? "none" : "block";
+        const emptyEl = document.getElementById("filters-empty");
+        if (emptyEl) emptyEl.style.display = anyVisibleTotal ? "none" : "block";
       }
 
       // Los círculos de categoría ya no ocultan/muestran nada — cada categoría
@@ -432,16 +455,21 @@
 
       // Dropdown toggles (filters + sort)
       document.querySelectorAll("[data-filter-toggle]").forEach((chip) => {
+        chip.setAttribute("aria-expanded", "false");
         chip.addEventListener("click", (e) => {
           e.stopPropagation();
           const key = chip.dataset.filterToggle;
           const panel = document.querySelector(`[data-filter-panel="${key}"]`);
           const wasOpen = panel.classList.contains("open");
           document.querySelectorAll(".filter-dropdown").forEach((p) => p.classList.remove("open"));
-          if (!wasOpen) panel.classList.add("open");
+          document.querySelectorAll("[data-filter-toggle]").forEach((c) => c.setAttribute("aria-expanded", "false"));
+          if (!wasOpen) { panel.classList.add("open"); chip.setAttribute("aria-expanded", "true"); }
         });
       });
-      document.addEventListener("click", () => document.querySelectorAll(".filter-dropdown").forEach((p) => p.classList.remove("open")));
+      document.addEventListener("click", () => {
+        document.querySelectorAll(".filter-dropdown").forEach((p) => p.classList.remove("open"));
+        document.querySelectorAll("[data-filter-toggle]").forEach((c) => c.setAttribute("aria-expanded", "false"));
+      });
 
       // Filter option selection
       document.querySelectorAll("[data-filter-key]").forEach((opt) => {
@@ -549,14 +577,10 @@
       if (!document.getElementById("main-shot-img")) return;
       setZoomImage();
       zoomOverlay?.classList.add("open");
-      zoomBox?.classList.add("open");
-      lockScroll();
+      activarPanel(zoomBox);
     }
     function closeZoom() {
-      if (!zoomBox?.classList.contains("open")) return;
-      zoomOverlay?.classList.remove("open");
-      zoomBox?.classList.remove("open");
-      unlockScroll();
+      cerrarPanel(zoomBox, zoomOverlay);
     }
     document.getElementById("gallery-zoom")?.addEventListener("click", openZoom);
     document.getElementById("zoom-close")?.addEventListener("click", closeZoom);

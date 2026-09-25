@@ -182,7 +182,6 @@
     var key = window.nuvelConsentKey || "nuvel_consent";
     var decidido = false;
     try { decidido = localStorage.getItem(key) === "accepted" || localStorage.getItem(key) === "declined"; } catch (e) {}
-    if (decidido) return;
     var banner = document.getElementById("consent-banner");
     if (!banner) return;
     var btnAceptar = document.getElementById("consent-accept");
@@ -194,6 +193,16 @@
     }
     if (btnAceptar) btnAceptar.addEventListener("click", function () { elegir("accepted"); });
     if (btnRechazar) btnRechazar.addEventListener("click", function () { elegir("declined"); });
+    // "Gestionar cookies" en el pie: reabre el banner para cambiar de
+    // decision en cualquier momento (revocar el consentimiento). Este
+    // listener se engancha SIEMPRE, incluso para quien ya habia decidido.
+    var reabrir = document.getElementById("consent-reopen");
+    if (reabrir) reabrir.addEventListener("click", function () {
+      try { localStorage.removeItem(key); } catch (e) {}
+      banner.classList.add("open");
+    });
+    // Si el visitante ya habia decidido, no le abrimos el banner otra vez.
+    if (decidido) return;
     setTimeout(function () { banner.classList.add("open"); }, 900);
   })();
 </script>

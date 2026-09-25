@@ -13,7 +13,7 @@
   <div class="filter-row">
     <div style="display:flex; gap:12px; flex-wrap:wrap; position:relative;">
       <div class="filter-chip-wrap">
-        <button type="button" class="chip" data-filter-toggle="talla">{{ 'catalog.filter_size' | t }}</button>
+        <button type="button" class="chip" data-filter-toggle="talla" aria-expanded="false" aria-haspopup="true">{{ 'catalog.filter_size' | t }}</button>
         <div class="filter-dropdown" data-filter-panel="talla">
           <button type="button" data-filter-key="talla" data-filter-value="XS">XS</button>
           <button type="button" data-filter-key="talla" data-filter-value="S">S</button>
@@ -26,14 +26,14 @@
         </div>
       </div>
       <div class="filter-chip-wrap">
-        <button type="button" class="chip" data-filter-toggle="precio">{{ 'catalog.filter_price' | t }}</button>
+        <button type="button" class="chip" data-filter-toggle="precio" aria-expanded="false" aria-haspopup="true">{{ 'catalog.filter_price' | t }}</button>
         <div class="filter-dropdown" data-filter-panel="precio">
           <button type="button" data-filter-key="precio" data-filter-value="menos-50">{{ 'catalog.filter_price_under_50' | t }}</button>
           <button type="button" data-filter-key="precio" data-filter-value="50-100">{{ 'catalog.filter_price_50_100' | t }}</button>
         </div>
       </div>
       <div class="filter-chip-wrap">
-        <button type="button" class="chip" data-filter-toggle="zona">{{ 'catalog.filter_zone' | t }}</button>
+        <button type="button" class="chip" data-filter-toggle="zona" aria-expanded="false" aria-haspopup="true">{{ 'catalog.filter_zone' | t }}</button>
         <div class="filter-dropdown" data-filter-panel="zona">
           <button type="button" data-filter-key="zona" data-filter-value="abdomen">{{ 'catalog.filter_zone_abdomen' | t }}</button>
           <button type="button" data-filter-key="zona" data-filter-value="piernas">{{ 'catalog.filter_zone_legs' | t }}</button>
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="filter-chip-wrap">
-        <button type="button" class="chip" data-filter-toggle="compresion">{{ 'catalog.filter_compression' | t }}</button>
+        <button type="button" class="chip" data-filter-toggle="compresion" aria-expanded="false" aria-haspopup="true">{{ 'catalog.filter_compression' | t }}</button>
         <div class="filter-dropdown" data-filter-panel="compresion">
           <button type="button" data-filter-key="compresion" data-filter-value="media">{{ 'catalog.filter_compression_medium' | t }}</button>
           <button type="button" data-filter-key="compresion" data-filter-value="alta">{{ 'catalog.filter_compression_high_soon' | t }}</button>
@@ -52,7 +52,7 @@
       <button type="button" class="chip" id="filters-clear" style="display:none; border-style:dashed;">{{ 'catalog.filter_clear' | t }} ✕</button>
     </div>
     <div class="filter-chip-wrap">
-      <button type="button" class="chip" data-filter-toggle="sort">{{ 'catalog.sort_by' | t }}</button>
+      <button type="button" class="chip" data-filter-toggle="sort" aria-expanded="false" aria-haspopup="true">{{ 'catalog.sort_by' | t }}</button>
       <div class="filter-dropdown" data-filter-panel="sort">
         <button type="button" class="active" data-sort="relevancia">{{ 'catalog.sort_relevance' | t }}</button>
         <button type="button" data-sort="precio-asc">{{ 'catalog.sort_price_asc' | t }}</button>
@@ -63,7 +63,7 @@
     </div>
   </div>
 
-  <p id="filters-empty" style="display:none; color:var(--text-mute); padding:40px 0; text-align:center;">{{ 'catalog.no_results' | t }}</p>
+  <p id="filters-empty" style="display:none; color:var(--text-mute); padding:40px 0; text-align:center;" role="status" aria-live="polite">{{ 'catalog.no_results' | t }}</p>
 
   {%- comment -%}
     El catálogo se divide en subsecciones por categoría, en vez de una sola

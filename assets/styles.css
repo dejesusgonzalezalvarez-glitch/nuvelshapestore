@@ -1,6 +1,29 @@
 /* ===== Nuvel — hoja de estilos global ===== */
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { -webkit-text-size-adjust: 100%; }
+
+/* Indicador de foco por teclado: el theme antes suprimia el anillo nativo en
+   varios inputs y no daba alternativa en botones custom (tallas, swatches,
+   acordeon, galeria). focus-visible solo se activa al navegar con teclado,
+   asi que el raton no ve cambios. El anillo usa el tono oscuro del accent
+   para cumplir contraste y seguir siendo de marca. */
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Ya no solo el marquee: recortamos TODAS las transiciones/animaciones
+     decorativas del theme para quien pide movimiento reducido. */
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 /* Bloquea el scroll de fondo mientras hay un panel/modal abierto encima (carrito, buscador, cuenta, checkout, zoom) */
 html.no-scroll, html.no-scroll body { overflow: hidden; height: 100%; }
 :root {
@@ -10,8 +33,16 @@ html.no-scroll, html.no-scroll body { overflow: hidden; height: 100%; }
   --accent: #C9A87C;
   --text: #3A2E26;
   --text-soft: #4a3f34;
-  --text-mute: #8a7a68;
+  --text-mute: #7a6c5a;
   --border: #E7E5E2;
+  /* #C9A87C sobre blanco da 2.2:1 de contraste (falla WCAG AA en texto).
+     Para donde el dorado se usa COMO TEXTO — o como fondo bajo texto blanco,
+     donde "Ahorras" salia 2.2:1 — se usa esta version mas oscura: 4.7:1.
+     Bordes y detalles decorativos siguen usando --accent tal cual. */
+  --accent-strong: #8a6f4a;
+  /* Mute sobre fondo oscuro (footer, legal-hero). #7a6c5a sobre #1A1A1A da
+     3.4:1, asi que sobre oscuro se usa este mas claro (7.1:1). */
+  --text-mute-on-dark: #a89c90;
 }
 html, body { margin: 0; padding: 0; }
 body {
@@ -138,7 +169,7 @@ section.pad { padding: 96px 64px; }
 @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
 .card { background: var(--bg); padding: 32px; text-align: center; border-radius: 2px; box-shadow: 0 18px 40px -18px rgba(26,20,15,.18); display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .card svg { color: var(--dark); }
-.card h4 { font-size: 17px; }
+.card h4, .card h3 { font-size: 17px; }
 .card p { font-size: 13.5px; color: var(--text-soft); line-height: 1.5; margin: 0; }
 
 /* Featured product */
@@ -206,7 +237,7 @@ section.pad { padding: 96px 64px; }
 .guia-tallas__tabla th, .guia-tallas__tabla td { border-bottom: 1px solid var(--border); padding: 7px 6px; text-align: left; }
 .guia-tallas__tabla th { font-weight: 500; color: var(--text-mute); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; }
 .guia-tallas__tabla td:first-child { font-weight: 600; }
-.guia-tallas__tip { font-size: 12.5px; color: var(--accent); margin: 10px 0 0; }
+.guia-tallas__tip { font-size: 12.5px; color: var(--accent-strong); margin: 10px 0 0; }
 
 /* Opcion de pack dentro del qty-offer (producto + compañero) */
 .qty-opt--pack { background: var(--bg-alt); }
@@ -224,7 +255,7 @@ section.pad { padding: 96px 64px; }
 .trust-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1000px; margin: 56px auto 0; text-align: center; }
 @media (max-width: 700px) { .trust-row { grid-template-columns: 1fr; } }
 .trust-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.trust-item h4 { font-size: 16px; }
+.trust-item h4, .trust-item h3 { font-size: 16px; }
 .trust-item p { font-size: 13.5px; color: var(--text-soft); margin: 0; }
 .trust-compact { display: flex; align-items: center; gap: 10px; }
 .trust-compact span { font-size: 12.5px; color: var(--text-soft); white-space: nowrap; }
@@ -238,7 +269,7 @@ section.pad { padding: 96px 64px; }
 .footer-brand p { font-size: 13.5px; line-height: 1.5; margin: 0; }
 .footer-cols { display: flex; gap: 56px; flex-wrap: wrap; }
 .footer-col { display: flex; flex-direction: column; gap: 10px; }
-.footer-col-title { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 6px; }
+.footer-col-title { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mute-on-dark); margin-bottom: 6px; }
 .footer-col a { font-size: 14px; color: #D9CFC2; }
 .footer-wordmark { font-family: 'Lora', serif; font-weight: 700; color: var(--bg); text-align: center; line-height: 1; letter-spacing: 0.01em; font-size: clamp(3.2rem, 14vw, 11rem); padding: 48px 0 24px; user-select: none; }
 .footer-bottom { padding-top: 20px; font-size: 12.5px; color: #7a6f61; text-align: center; }
@@ -369,7 +400,7 @@ section.pad { padding: 96px 64px; }
 .filter-dropdown.open { display: flex; }
 .filter-dropdown button { text-align: left; background: none; border: none; padding: 10px 12px; font-size: 13.5px; cursor: pointer; border-radius: 2px; font-family: inherit; }
 .filter-dropdown button:hover:not(:disabled) { background: var(--bg-alt); }
-.filter-dropdown button.active { color: var(--accent); font-weight: 600; }
+.filter-dropdown button.active { color: var(--accent-strong); font-weight: 600; }
 .filter-dropdown button:disabled { color: var(--text-mute); cursor: not-allowed; opacity: 0.6; }
 .filter-dropdown { max-width: calc(100vw - 32px); }
 
@@ -424,6 +455,7 @@ section.pad { padding: 96px 64px; }
 .search-box { background: var(--bg); width: 100%; max-width: 620px; margin: 0 20px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.4); }
 .search-box form { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
 .search-box input { flex: 1; border: none; background: none; font-size: 16px; font-family: inherit; color: var(--text); outline: none; }
+.search-box input:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: -2px; }
 .search-results { max-height: 50vh; overflow-y: auto; }
 .search-results a, .search-results .search-empty { display: block; padding: 14px 20px; font-size: 14px; border-bottom: 1px solid var(--border); }
 .search-results a:hover { background: var(--bg-alt); }
@@ -433,7 +465,7 @@ section.pad { padding: 96px 64px; }
 .cat-section-title { font-family: 'Lora', serif; font-size: 28px; font-weight: 500; margin: 40px 0 0; }
 .cat-subsection-title { font-size: 17px; font-weight: 600; color: var(--text-soft); margin: 32px 0 4px; }
 .cat-section--featured { padding-bottom: 24px; margin-bottom: 8px; border-bottom: 1px solid var(--bg-alt); }
-.cat-section-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin: 36px 0 2px; }
+.cat-section-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-strong); margin: 36px 0 2px; }
 .cat-section-title--featured { font-size: 34px; margin-top: 0; }
 .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 24px 0 70px; }
 @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -474,12 +506,12 @@ img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contr
 .legal-callout-dark { background: var(--dark); color: var(--bg); padding: 32px 36px; text-align: center; margin-bottom: 56px; border-radius: 4px; }
 .legal-callout-dark p:first-child { font-family: 'Lora', serif; font-size: clamp(1.2rem,2.5vw,1.6rem); margin-bottom: 10px; }
 .legal-callout-dark p:last-child { font-size: 14px; color: #a89c90; margin: 0; }
-.legal-quote { font-family: 'Lora', serif; font-size: clamp(1.1rem,2.5vw,1.5rem); font-style: italic; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 28px; margin: 40px 0; line-height: 1.6; }
+.legal-quote { font-family: 'Lora', serif; font-size: clamp(1.1rem,2.5vw,1.5rem); font-style: italic; color: var(--accent-strong); border-left: 3px solid var(--accent); padding-left: 28px; margin: 40px 0; line-height: 1.6; }
 
 /* FAQ accordion */
 .accordion-item { border-bottom: 1px solid rgba(201,168,124,.3); }
 .accordion-item button { width: 100%; background: none; border: none; cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; text-align: left; }
-.accordion-item button:hover { color: var(--accent); }
+.accordion-item button:hover { color: var(--accent-strong); }
 .accordion-item button svg { transition: transform .22s ease; }
 .accordion-item.open button svg { transform: rotate(180deg); }
 .accordion-item .q { font-family: 'Lora', serif; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--dark); }
@@ -793,7 +825,7 @@ img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contr
 .bundle-total span:first-child { font-size: 11px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.04em; }
 .bundle-total-was { text-decoration: line-through; color: var(--text-mute); font-size: 12px; margin-right: 6px; }
 .bundle-total-now { font-weight: 700; font-size: 19px; }
-.bundle-save { font-size: 11.5px; font-weight: 600; color: #fff; background: var(--accent); padding: 5px 10px; border-radius: 20px; margin: 0; white-space: nowrap; }
+.bundle-save { font-size: 11.5px; font-weight: 600; color: #fff; background: var(--accent-strong); padding: 5px 10px; border-radius: 20px; margin: 0; white-space: nowrap; }
 .bundle-add-btn { font-size: 13.5px; padding: 13px 20px; border-radius: 4px; }
 /* ===== Añadidos para Shopify ===== */
 .feature-row--reverse { flex-direction: row-reverse; }
@@ -834,7 +866,8 @@ select.chip { appearance: none; -webkit-appearance: none; padding-right: 34px; b
 .pw-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; }
 .pw-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .pw-input { flex: 1; min-width: 200px; padding: 14px 16px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 15px; color: var(--text); border-radius: 2px; }
-.pw-input:focus { outline: none; border-color: var(--accent); }
+.pw-input:focus { outline: none; border-color: var(--accent-strong); }
+.pw-input:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
 .pw-success { font-size: 15px; color: var(--text); background: var(--bg-alt); border-left: 3px solid var(--accent); padding: 16px 18px; margin: 0; }
 .pw-error { font-size: 13px; color: #a3402f; margin: 10px 0 0; }
 .pw-enter { border-top: 1px solid var(--border); padding-top: 24px; }
@@ -856,14 +889,16 @@ select.chip { appearance: none; -webkit-appearance: none; padding-right: 34px; b
 .cart-discount-title { font-size: 14px; font-weight: 600; margin: 0 0 12px; }
 .cart-discount-form { display: flex; gap: 10px; flex-wrap: wrap; }
 .cart-discount-form input { flex: 1; min-width: 200px; max-width: 320px; padding: 13px 15px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 14px; color: var(--text); border-radius: 2px; }
-.cart-discount-form input:focus { outline: none; border-color: var(--accent); }
+.cart-discount-form input:focus { outline: none; border-color: var(--accent-strong); }
+.cart-discount-form input:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
 .cart-discount-help { font-size: 12.5px; color: var(--text-mute); margin: 12px 0 0; }
 .cart-discount-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--accent); margin-bottom: 8px; }
 .ci-discount { font-size: 12.5px; color: var(--accent); margin-bottom: 6px; }
 .cart-note { margin-bottom: 24px; }
 .cart-note label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
 .cart-note textarea { width: 100%; max-width: 520px; padding: 12px 14px; border: 1px solid var(--border); background: #fff; font-family: inherit; font-size: 14px; color: var(--text); border-radius: 2px; resize: vertical; }
-.cart-note textarea:focus { outline: none; border-color: var(--accent); }
+.cart-note textarea:focus { outline: none; border-color: var(--accent-strong); }
+.cart-note textarea:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
 
 /* El boton "Eliminar" vive dentro de .qty-stepper: hay que ganarle en
    especificidad a la regla de los botones - / + o hereda su caja. */
@@ -959,4 +994,14 @@ select.chip { appearance: none; -webkit-appearance: none; padding-right: 34px; b
 @media (min-width: 601px) {
   .consent-banner { left: auto; }
 }
+
+/* Enlace discreto en el pie para reabrir el banner y cambiar de opinion
+   (revocar/aceptar el consentimiento). Es un <button> con pinta de enlace. */
+.footer-link-btn {
+  background: none; border: none; padding: 0; font-family: inherit;
+  font-size: 14px; color: #D9CFC2; text-align: left; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.footer-link-btn:hover { color: var(--accent); }
+@media (max-width: 900px) { .footer-link-btn { padding: 9px 0; font-size: 15px; } }
 
