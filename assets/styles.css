@@ -974,3 +974,80 @@ img[src*="short-negro-frente"], img[src*="vestido-negro-frente"] { filter: contr
 .footer-link-btn:hover { color: var(--accent); }
 @media (max-width: 900px) { .footer-link-btn { padding: 9px 0; font-size: 15px; } }
 
+/* =====================================================================
+   MOBILE FIRST — pasada final. El 95% del trafico es movil; estas reglas
+   asumen pantalla pequena y solo escalan a escritorio.
+   ===================================================================== */
+
+/* --- 1. Legales: heros y callouts no aplastan el contenido en 375px --- */
+@media (max-width: 768px) {
+  .legal-hero { padding: 48px 20px; }
+  .legal-callout-dark { padding: 24px 20px; margin-bottom: 40px; }
+}
+
+/* --- 2. Tarjetas "Por que Nuvel": una columna de verdad en movil ---
+   4 col -> 2 a 900px, pero a 375px dos columnas dejaban ~150px de tarjeta
+   con 32px de padding: ilegible. Una columna respira mejor. */
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .card { padding: 28px 24px; }
+}
+
+/* --- 3. Hero: nunca mas alto que el viewport disponible ---
+   En landscape (altura ~375px) el hero de 520px comia toda la pantalla y
+   empujaba el contenido fuera. min() con vh lo acota. */
+.hero { height: min(640px, 88vh); }
+@media (max-width: 768px) { .hero { height: min(520px, 82vh); } }
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero { height: 78vh; }
+  .hero-content { gap: 12px; }
+}
+
+/* --- 4. Filtros del catalogo: siempre a mano (sticky bajo la cabecera) ---
+   Antes desaparecian al hacer scroll en una pagina de 3000px. Se pegan bajo
+   el header, midiendo su alto real (--header-h lo calcula cart.js). */
+@media (max-width: 900px) {
+  .filter-row {
+    position: sticky;
+    top: var(--header-h, 56px);
+    z-index: 58;
+    background: var(--bg);
+    margin: 0 -16px;
+    padding: 12px 16px 14px;
+    box-shadow: 0 1px 0 var(--border);
+  }
+  .filter-dropdown { top: calc(100% + 6px); }
+}
+
+/* --- 5. Galeria: miniaturas accesibles con el pulgar --- */
+@media (max-width: 600px) {
+  .thumb { width: 72px; height: 92px; }
+}
+
+/* --- 6. Selector de cantidad y bundle: objetivos de 44px en movil --- */
+@media (max-width: 900px) {
+  .bundle-line { min-height: 44px; }
+  .qty-opt { padding-top: 26px; padding-bottom: 16px; }
+}
+
+/* --- 7. Product-tile: imagenes con aire en dos columnas --- */
+@media (max-width: 900px) {
+  .product-tile .shot { height: 220px; padding: 12px; }
+}
+
+/* --- 8. Carrito: toda la pantalla en moviles muy estrechos --- */
+@media (max-width: 380px) {
+  .cart-drawer { width: 100vw; max-width: 100vw; }
+}
+
+/* --- 9. Buscador: el teclado del movil no tapa el input --- */
+@media (max-width: 600px) {
+  .search-overlay { padding-top: 4vh; }
+}
+
+/* --- 10. Consentimiento: texto sin rocear bordes en movil --- */
+@media (max-width: 600px) {
+  .consent-banner { left: 12px; right: 12px; bottom: 12px; }
+  .consent-actions .btn { flex: 1; text-align: center; }
+}
+

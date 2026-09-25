@@ -1,0 +1,22 @@
+{
+  "shopifyStoreDomain": "31cyvt-0z.myshopify.com",
+  "currency": "EUR",
+  "thresholds": {
+    "minMarginPct": 45,
+    "minBundleMarginPct": 38,
+    "bundleDiscountPct": 15,
+    "paymentFeePct": 0,
+    "paymentFeeFixed": 0
+  },
+  "columns": {
+    "supplierSku": ["SKU", "Variant SKU", "Item SKU", "Supplier SKU", "Product SKU", "SP SKU"],
+    "supplierTitle": ["Title", "Product Name", "Product Title", "Name", "Item Name"],
+    "supplierPrice": ["Price", "Cost", "Product Price", "Supplier Price", "Item Price", "Product Cost"],
+    "supplierShipping": ["Shipping", "Shipping Cost", "Delivery", "Freight", "Shipping Fee"],
+    "supplierLandedCost": ["Landed Cost", "Total Cost", "Cost Total", "Total Item Cost"],
+    "supplierBarcode": ["Barcode", "UPC", "EAN", "GTIN"],
+    "supplierUrl": ["URL", "Product URL", "Link", "Zendrop URL"],
+    "supplierImage": ["Image", "Image URL", "Main Image"]
+  },
+  "links": []
+}

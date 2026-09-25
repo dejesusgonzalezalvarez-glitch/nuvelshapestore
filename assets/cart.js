@@ -241,6 +241,21 @@
   function nuvelInitCart() {
     renderCart();
 
+    // La fila de filtros del catalogo se pega justo bajo la cabecera en
+    // movil; para eso hace falta saber cuanto mide de alto la cabecera
+    // (banner + header, que cambia con el idioma y el ancho). --header-h se
+    // publica en :root y el CSS la usa como "top" del sticky. Se recalcula
+    // al rotar/redimensionar y al cargar la pagina entera (imagenes/fuentes
+    // pueden cambiar el alto final).
+    function medirHeader() {
+      var h = document.querySelector(".site-header-sticky");
+      if (!h) return;
+      document.documentElement.style.setProperty("--header-h", h.getBoundingClientRect().height + "px");
+    }
+    medirHeader();
+    window.addEventListener("resize", medirHeader);
+    window.addEventListener("load", medirHeader);
+
     // Resalta en el menu la seccion en la que se esta, y solo esa. Se lee
     // location.pathname (la URL real del navegador) en vez de comparar contra
     // Liquid: las paginas que aun no existen en Shopify se sirven desde el
