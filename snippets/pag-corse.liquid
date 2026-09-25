@@ -268,7 +268,9 @@
       </div>
     </a></div>
   </section>
-</main><div class="buy-bar" id="buy-bar">
+</main>
+{%- render 'seo-product', product: p -%}
+<div class="buy-bar" id="buy-bar">
   <div class="buy-bar-info">
     <span class="buy-bar-name">{{ 'tile.corse.title' | t }}</span>
     <span class="buy-bar-meta" data-buy-bar-meta>{{ 'general.size_label' | t }} M · {{ 'general.color_black' | t }} · {{ p.price | money }}</span>

@@ -1,0 +1,43 @@
+{%- comment -%}
+  Product JSON-LD (rich results: precio, disponibilidad, imagen en Google).
+
+  Sale SIEMPRE del objeto product real de Shopify — nunca del texto a mano —
+  porque esos datos son los que Google contrasta con lo que ve la clienta. Si
+  el precio del admin cambia, el schema cambia solo.
+
+  Sin "aggregateRating": las valoraciones visibles vienen de reseñas reales
+  del equipo, pero no existe todavia una fuente verificable (app de reviews)
+  que Google pueda contrastar. Decir "4.8 de 123" en el schema sin esa fuente
+  es exactamente lo que el spam de valoraciones falsas sanciona. Cuando se
+  instale una app de reseñas con datos reales, anadir aqui.
+
+  Uso: {% render 'seo-product', product: product %}
+        {% render 'seo-product', product: all_products['faja-moldeadora-invisible-nuvel'] %}
+{%- endcomment -%}
+{%- if product -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  {%- if product.featured_image -%}
+  "image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+  {%- endif -%}
+  "description": {{ product.description | strip_html | strip_newlines | truncate: 300 | json }},
+  "brand": { "@type": "Brand", "name": "Nuvel" },
+  "url": {{ product.url | prepend: shop.url | json }},
+  {%- assign _v = product.selected_or_first_available_variant -%}
+  {%- if _v -%}
+  "offers": {
+    "@type": "Offer",
+    "url": {{ product.url | prepend: shop.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | default: shop.currency | json }},
+    "price": {{ _v.price | divided_by: 100.0 | json }},
+    "availability": "{% if _v.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "itemCondition": "https://schema.org/NewCondition"
+  },
+  {%- endif -%}
+  "sku": {{ product.id | json }}
+}
+</script>
+{%- endif -%}

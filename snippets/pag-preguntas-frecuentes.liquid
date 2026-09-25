@@ -59,7 +59,31 @@
   <div class="a" id="devolucion-a">{{ 'faq.return.a' | t }}</div>
 </div>
   <div style="margin-top:60px; text-align:center;">
-    <p style="font-size:14px; color:#8a7e76; margin-bottom:20px;">{{ 'faq.more_questions' | t }}</p>
+    <p>{{ 'faq.more_questions' | t }}</p>
     <a href="mailto:hola@nuvelshape.store" class="btn btn-outline">{{ 'general.write_to_email' | t }}</a>
   </div>
 </div>
+
+{%- comment -%}
+  FAQPage JSON-LD: las mismas 9 preguntas visibles arriba, declaradas a los
+  buscadores. Reutiliza las claves de locale, asi si cambia el texto visible
+  el schema cambia solo. Solo en esta plantilla (ver regla del README).
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign faq_keys = "rolls,size,visible,bathroom,washing,curvy,heat,itchy,return" | split: "," -%}
+    {%- for key in faq_keys -%}
+    {%- capture q_key -%}faq.{{ key }}.q{%- endcapture -%}
+    {%- capture a_key -%}faq.{{ key }}.a{%- endcapture -%}
+    {
+      "@type": "Question",
+      "name": {{ q_key | t | json }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ a_key | t | json }} }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>

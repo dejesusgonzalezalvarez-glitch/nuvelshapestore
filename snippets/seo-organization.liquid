@@ -1,0 +1,23 @@
+{%- comment -%}
+  Datos estructurados JSON-LD globales (Organization). Se renderiza una sola
+  vez desde theme.liquid en TODAS las paginas. Los datos especificos de
+  pagina (Product, FAQPage) van en su propio snippet, segun la regla del
+  README: "los datos estructurados de una pagina concreta van en su archivo".
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | default: 'Nuvel' | json }},
+  "url": {{ shop.url | default: request.origin | json }},
+  "logo": {{ 'og-nuvel.jpg' | asset_url | prepend: 'https:' | json }},
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hola@nuvelshape.store",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://www.instagram.com/nuvelshape/"
+  ]
+}
+</script>
