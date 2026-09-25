@@ -41,13 +41,16 @@
     var regalo = cart.items.find((i) => i.variant_id === REGALO_VARIANT_ID);
     var totalSinRegalo = cart.items.reduce((s, i) => s + (i.variant_id === REGALO_VARIANT_ID ? 0 : i.quantity), 0);
     if (REGALO_ACTIVO && totalSinRegalo >= 2 && !regalo && !regaloFueRechazado()) {
+      // /cart/add.js devuelve solo las lineas anadidas, NO el carrito entero:
+      // hay que releer /cart.js o renderCart pintaria solo el regalo y ya.
       return fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: [{ id: REGALO_VARIANT_ID, quantity: 1 }] }),
-      }).then((r) => r.json());
+      }).then(() => fetch("/cart.js").then((r) => r.json()));
     }
     if (totalSinRegalo < 2 && regalo) {
+      // /cart/change.js SI devuelve el carrito completo; no hace falta releer.
       return fetch("/cart/change.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

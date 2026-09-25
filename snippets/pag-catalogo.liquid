@@ -83,16 +83,20 @@
   {%- assign sujetador_postura = all_products['sujetador-corrector-postura'] -%}
 
   {%- comment -%}
-    Sin {% paginate %}, collections.all.products solo entrega los primeros
-    50 productos (limitacion de Liquid) y el resto jamas apareceria en
-    ninguna subseccion. Dentro de un bloque paginate, cada `for` sobre la
-    coleccion recibe solo la ventana de la pagina actual: mismo layout, pero
-    con navegacion al final. Las 4 fichas hechas a mano + sujetador van
-    solo en la pagina 1 para no repetirlas en cada pagina.
+    La paginacion vive en templates/page.catalogo.liquid (paginate no esta
+    permitido dentro de un snippet). Esta del lado de la plantilla nos llega
+    `productos` (la ventana de esta pagina, max. 50) y `pag` (para el nav y
+    para saber si esta es la pagina 1, donde SI salen las 4 fichas a mano).
   {%- endcomment -%}
-  {%- paginate collections.all.products by 50 -%}
+  {%- if productos -%}
+    {%- assign _catalogo_fuente = productos -%}
+  {%- else -%}
+    {%- comment -%} Red de seguridad si alguien renderiza este snippet sin
+      paginacion (ej. preview): usa la coleccion entera, cortada a 50. {%- endcomment -%}
+    {%- assign _catalogo_fuente = collections["all"].products -%}
+  {%- endif -%}
 
-  {%- if paginate.current_page == 1 -%}
+  {%- if pag == blank or pag.current_page == 1 -%}
   <section class="cat-section cat-section--featured" data-cat-section="sin-costuras">
     <p class="cat-section-eyebrow">{{ 'catalog.seamless_eyebrow' | t }}</p>
     <h2 class="cat-section-title cat-section-title--featured">{{ 'catalog.category_seamless' | t }}</h2>
@@ -101,7 +105,7 @@
       {%- render 'tile-generico', product: sujetador_postura, categoria: 'sin-costuras' -%}
       {%- render 'tile-short' -%}
       {%- render 'tile-vestido' -%}
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'sin-costuras' -%}
         {%- endunless -%}
@@ -114,7 +118,7 @@
     <div class="product-grid" data-cat-grid="cintura-alta">
       {%- render 'tile-faja' -%}
       {%- render 'tile-corse' -%}
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'cintura-alta' -%}
         {%- endunless -%}
@@ -126,7 +130,7 @@
     <h2 class="cat-section-title">{{ 'catalog.category_postpartum' | t }}</h2>
     <div class="product-grid" data-cat-grid="posparto">
       {%- render 'tile-faja' -%}
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'posparto' -%}
         {%- endunless -%}
@@ -138,7 +142,7 @@
     <h2 class="cat-section-title">{{ 'catalog.category_full_body' | t }}</h2>
     <div class="product-grid" data-cat-grid="sets">
       {%- render 'tile-vestido' -%}
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'sets' -%}
         {%- endunless -%}
@@ -150,7 +154,7 @@
   <section class="cat-section" data-cat-section="postura">
     <h2 class="cat-section-title">{{ 'catalog.category_posture' | t }}</h2>
     <div class="product-grid" data-cat-grid="postura">
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'postura' -%}
         {%- endunless -%}
@@ -163,7 +167,7 @@
 
     <h3 class="cat-subsection-title">{{ 'catalog.category_other_bragas' | t }}</h3>
     <div class="product-grid" data-cat-grid="otros-bragas">
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'otros-bragas' -%}
         {%- endunless -%}
@@ -172,7 +176,7 @@
 
     <h3 class="cat-subsection-title">{{ 'catalog.category_other_sudoracion' | t }}</h3>
     <div class="product-grid" data-cat-grid="otros-sudoracion">
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'otros-sudoracion' -%}
         {%- endunless -%}
@@ -181,7 +185,7 @@
 
     <h3 class="cat-subsection-title">{{ 'catalog.category_other_monos' | t }}</h3>
     <div class="product-grid" data-cat-grid="otros-monos">
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'otros-monos' -%}
         {%- endunless -%}
@@ -190,7 +194,7 @@
 
     <h3 class="cat-subsection-title">{{ 'catalog.category_other_sujetadores' | t }}</h3>
     <div class="product-grid" data-cat-grid="otros-sujetadores">
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: 'otros-sujetadores' -%}
         {%- endunless -%}
@@ -199,7 +203,7 @@
 
     <h3 class="cat-subsection-title">{{ 'catalog.category_other_resto' | t }}</h3>
     <div class="product-grid" data-cat-grid="otros-resto">
-      {%- for product in collections.all.products -%}
+      {%- for product in _catalogo_fuente -%}
         {%- unless fichas_a_mano contains product.handle -%}
           {%- render 'tile-generico', product: product, categoria: '' -%}
         {%- endunless -%}
@@ -212,15 +216,15 @@
     (caso actual) el HTML generado es identico al de ayer. Los filtros/orden
     de cart.js operan sobre la pagina visible, que es lo que la clienta ve.
   {%- endcomment -%}
-  {%- if paginate.pages > 1 -%}
+  {%- if pag and pag.pages > 1 -%}
   <nav class="pagination" role="navigation" aria-label="{{ 'catalog.title' | t }}">
-    {%- if paginate.previous -%}
-      <a class="pagination__link" href="{{ paginate.previous.url }}">&larr; {{ 'catalog.pagination_previous' | t }}</a>
+    {%- if pag.previous -%}
+      <a class="pagination__link" href="{{ pag.previous.url }}">&larr; {{ 'catalog.pagination_previous' | t }}</a>
     {%- else -%}
       <span class="pagination__link pagination__link--disabled" aria-hidden="true">&larr; {{ 'catalog.pagination_previous' | t }}</span>
     {%- endif -%}
     <span class="pagination__pages">
-      {%- for part in paginate.parts -%}
+      {%- for part in pag.parts -%}
         {%- if part.is_link -%}
           <a class="pagination__num" href="{{ part.url }}">{{ part.title }}</a>
         {%- elsif part.title contains "…" or part.title contains "..." -%}
@@ -230,12 +234,11 @@
         {%- endif -%}
       {%- endfor -%}
     </span>
-    {%- if paginate.next -%}
-      <a class="pagination__link" href="{{ paginate.next.url }}">{{ 'catalog.pagination_next' | t }} &rarr;</a>
+    {%- if pag.next -%}
+      <a class="pagination__link" href="{{ pag.next.url }}">{{ 'catalog.pagination_next' | t }} &rarr;</a>
     {%- else -%}
       <span class="pagination__link pagination__link--disabled" aria-hidden="true">{{ 'catalog.pagination_next' | t }} &rarr;</span>
     {%- endif -%}
   </nav>
   {%- endif -%}
-  {%- endpaginate -%}
 </main>

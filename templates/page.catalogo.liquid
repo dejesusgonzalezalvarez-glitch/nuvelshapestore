@@ -1,1 +1,9 @@
-{% render 'pag-catalogo' %}
+{%- comment -%}
+  Shopify PROHIBE {% paginate %} dentro de snippets: tiene que vivir en la
+  plantilla. Aqui se corta la coleccion en paginas de 50 productos y se le
+  pasa al snippet como "productos" (la ventana de la pagina actual), junto
+  con el objeto "pag" de paginacion, para el nav del final.
+{%- endcomment -%}
+{%- paginate collections.all.products by 50 -%}
+  {%- render 'pag-catalogo', productos: collections.all.products, pag: paginate -%}
+{%- endpaginate -%}
