@@ -7,7 +7,6 @@
        {% render 'tile-generico', product: product, categoria: '' %}  (Otros)
 {%- endcomment -%}
 {%- assign tallas_producto = "" -%}
-{%- assign colores_producto = "" -%}
 {%- for opcion in product.options_with_values -%}
   {%- assign nombre_opcion = opcion.name | downcase -%}
   {%- if nombre_opcion contains "talla" or nombre_opcion contains "size" -%}
@@ -50,9 +49,6 @@
       {%- endif -%}
     {%- endfor -%}
     {%- assign tallas_producto = tallas_producto | strip -%}
-  {%- endif -%}
-  {%- if nombre_opcion contains "color" -%}
-    {%- assign colores_producto = opcion.values | join: " " | downcase -%}
   {%- endif -%}
 {%- endfor -%}
 {%- capture titulo_limpio -%}{%- render 'titulo-limpio', product: product, palabras: 6 -%}{%- endcapture -%}
@@ -113,7 +109,7 @@
   {%- assign coincide = true -%}
 {%- endif -%}
 {%- if coincide -%}
-<a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-cats="{{ categorias_producto }} {{ product.tags | join: ' ' | downcase }}" data-talla="{{ tallas_producto }}" data-color="{{ colores_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
+<a href="{{ product.url }}" class="product-tile" data-price="{{ product.price | divided_by: 100.0 }}" data-created="{{ product.created_at | date: '%s' }}" data-title="{{ titulo_limpio | escape }}" data-talla="{{ tallas_producto }}" data-zona="{{ zona_producto }}" data-compresion="{{ compresion_producto }}">
   <div class="shot">
     {%- if product.featured_image -%}
     <img src="{{ product.featured_image | image_url: width: 800 }}" srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 800 }} 800w" sizes="(max-width: 600px) 46vw, (max-width: 900px) 30vw, 22vw" alt="{{ titulo_limpio | escape }}" loading="lazy">
