@@ -9,7 +9,7 @@
  */
 {
   "general": {
-    "meta": { "title_home": "Nuvel · The shaper that shows in the mirror, not through your clothes", "description_default": "Invisible shapewear by Nuvel: seamless, no visible lines under clothes. Free worldwide shipping and 30-day trial." },
+    "meta": { "title_home": "Nuvel · Shapewear you can't see — not even in the mirror", "description_default": "Invisible shapewear by Nuvel: seamless, no visible lines under clothes. Free worldwide shipping and 30-day trial." },
     "close": "Close",
     "badge_bestseller": "Bestseller",
     "badge_new": "New",
@@ -135,8 +135,8 @@
     "hero": {
       "image_alt": "Woman wearing a Nuvel shaping girdle",
       "eyebrow": "Invisible Shaping Girdle",
-      "title_line1": "Invisible Shaping Girdles: the shaper that shows in the mirror,",
-      "title_line2": "not through your clothes.",
+      "title_line1": "Shapewear you can't see —",
+      "title_line2": "not even in the mirror.",
       "subtitle": "Because the perfect shaper is the one nobody knows you're wearing: it slips under any dress, never rolls up, and its edge never shows.",
       "cta": "Discover the Invisible Shaping Girdle"
     },

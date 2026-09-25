@@ -9,7 +9,7 @@
  */
 {
   "general": {
-    "meta": { "title_home": "Nuvel · La faja que se nota en el espejo, no en la ropa", "description_default": "Fajas y prendas moldeadoras invisibles Nuvel: sin costuras, sin marcas bajo la ropa. Envío gratis a todo el mundo y 30 días de prueba." },
+    "meta": { "title_home": "Nuvel · Fajas moldeadoras que no se notan ni en el espejo", "description_default": "Fajas y prendas moldeadoras invisibles Nuvel: sin costuras, sin marcas bajo la ropa. Envío gratis a todo el mundo y 30 días de prueba." },
     "close": "Cerrar",
     "badge_bestseller": "Más vendido",
     "badge_new": "Nuevo",
@@ -135,8 +135,8 @@
     "hero": {
       "image_alt": "Mujer con faja moldeadora Nuvel",
       "eyebrow": "Faja Moldeadora Invisible",
-      "title_line1": "Fajas Moldeadoras Invisibles: la faja que se nota en el espejo,",
-      "title_line2": "no en la ropa.",
+      "title_line1": "Fajas moldeadoras que no se notan",
+      "title_line2": "ni en el espejo.",
       "subtitle": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
       "cta": "Descubre la Faja Moldeadora Invisible"
     },
