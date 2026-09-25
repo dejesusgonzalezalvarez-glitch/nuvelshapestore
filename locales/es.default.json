@@ -244,7 +244,9 @@
     "sort_price_desc": "Precio: mayor a menor",
     "sort_newest": "Más nuevo primero",
     "sort_az": "Alfabético A-Z",
-    "no_results": "Ningún producto disponible ahora mismo coincide con esos filtros. Vuelve pronto, seguimos ampliando el catálogo."
+    "no_results": "Ningún producto disponible ahora mismo coincide con esos filtros. Vuelve pronto, seguimos ampliando el catálogo.",
+    "pagination_previous": "Anterior",
+    "pagination_next": "Siguiente"
   },
   "returns": {
     "hero_eyebrow": "Devolución sin riesgo",
@@ -615,6 +617,7 @@
     "text": "Usamos cookies técnicas imprescindibles para que la tienda funcione. Antes de activar las de análisis y publicidad (Google Analytics y Meta Pixel), te pedimos permiso.",
     "link": "Leer la política de privacidad",
     "accept": "Aceptar todas",
-    "decline": "Rechazar"
+    "decline": "Rechazar",
+    "manage": "Gestionar cookies"
   }
 }

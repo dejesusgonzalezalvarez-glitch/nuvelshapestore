@@ -373,6 +373,16 @@ section.pad { padding: 96px 64px; }
 .filter-dropdown button:disabled { color: var(--text-mute); cursor: not-allowed; opacity: 0.6; }
 .filter-dropdown { max-width: calc(100vw - 32px); }
 
+/* Paginacion del catalogo: solo se renderiza cuando hay mas de 50 productos */
+.pagination { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 12px 0 40px; flex-wrap: wrap; }
+.pagination__link, .pagination__num { font-size: 13.5px; color: var(--text); }
+.pagination__num { min-width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border-bottom: 1px solid transparent; }
+.pagination__link { padding: 9px 4px; }
+.pagination__link:hover, a.pagination__num:hover { color: var(--accent); }
+.pagination__link--disabled, .pagination__num--gap { color: var(--text-mute); }
+.pagination__num--current { border-bottom-color: var(--dark); font-weight: 600; color: var(--dark); }
+.pagination__pages { display: inline-flex; align-items: center; gap: 6px; }
+
 /* "También te puede interesar" y "Detalles del producto" */
 .suggestions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 28px 0 0; }
 @media (max-width: 900px) { .suggestions-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }

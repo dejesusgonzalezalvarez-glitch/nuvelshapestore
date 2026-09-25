@@ -1,84 +1,18 @@
 {%- comment -%}
-  Shopify entrega siempre "/404" en request.path, asi que la ruta real la lee
-  el navegador. El contenido se inyecta en #nuvel-contenido, entre la cabecera
-  y el pie globales, para no destruirlos.
-
-  Las URL de abajo salen de asset_url, que incluye el hash del archivo. Si se
-  pidiera "pagina-x.js" a pelo (sin el hash), Shopify/Cloudflare la cachean
-  hasta un año y un visitante puede seguir viendo la version vieja despues de
-  un despliegue nuevo. Con el hash en la URL, un cambio de contenido cambia la
-  URL y la cache vieja deja de usarse sola.
+  Red de seguridad generica. Las 11 paginas (catalogo, producto, short,
+  corse, vestido, sobre-nosotros, preguntas-frecuentes, envios, devoluciones,
+  privacidad, terminos) existen como Pages reales en Shopify y responden 200,
+  asi que esta plantilla solo se ejecuta cuando una URL no corresponde a NADA
+  (typo, enlace viejo...). Antiguamente aqui se recreaba en cliente el
+  contenido completo de la pagina si la Page no existiera en Shopify, pero
+  hacer eso exigia 11 assets "pagina-*.js" que se eliminaron y hoy romperia:
+  el intento de carga fallaba siempre con onerror -> rendirse(), dejando esta
+  misma caja oculta tras el fallo. Asi que ahora el 404 se resuelve entero en
+  Liquid, sin JS, mostrando el aviso traducido. Si el js de bootstrap
+  (global-footer) no tuviera cart.js esperando, el carrito arranca igual.
 {%- endcomment -%}
-
-{%- assign nuvel_paginas = "producto,short,vestido,corse,catalogo,sobre-nosotros,preguntas-frecuentes,envios,devoluciones,privacidad,terminos" | split: "," -%}
-<script>
-  window.__NUVEL_ASSETS__ = {
-    {%- for nombre in nuvel_paginas -%}
-    "{{ nombre }}": {{ 'pagina-' | append: nombre | append: '.js' | asset_url | json }}{% unless forloop.last %},{% endunless %}
-    {%- endfor -%}
-  };
-  window.__NUVEL_ESPERA_CONTENIDO__ = true;
-</script>
-
-<div id="nuvel-contenido"></div>
-
-<div id="nuvel-404" hidden>
-  <main class="wrap" style="padding:120px 0; text-align:center;">
-    <h1 style="font-size:32px; margin-bottom:14px;">{{ 'error_404.title' | t }}</h1>
-    <p style="color:#7a6f61; margin-bottom:26px;">{{ 'error_404.text' | t }}</p>
-    <a href="/" class="btn btn-dark">{{ 'error_404.cta' | t }}</a>
-  </main>
-</div>
-
-<script>
-(function () {
-  var aviso = document.getElementById("nuvel-404");
-  var caja  = document.getElementById("nuvel-contenido");
-
-  function rendirse() {
-    if (aviso) aviso.hidden = false;
-    if (window.__nuvelArrancarCarrito) window.__nuvelArrancarCarrito();
-  }
-
-  var BASE = "{{ 'cart.js' | asset_url }}".split("cart.js")[0];
-  var CONOCIDAS = ["producto","short","vestido","corse","catalogo","sobre-nosotros",
-                   "preguntas-frecuentes","faq","envios","devoluciones","privacidad","terminos"];
-
-  var ruta = location.pathname.toLowerCase().replace(/\/+$/, "");
-  ruta = ruta.replace(/^\/pages\//, "").replace(/^\//, "");
-  if (ruta === "faq") ruta = "preguntas-frecuentes";
-
-  if (CONOCIDAS.indexOf(ruta) === -1) { rendirse(); return; }
-
-  var s = document.createElement("script");
-  s.src = (window.__NUVEL_ASSETS__ && window.__NUVEL_ASSETS__[ruta]) || (BASE + "pagina-" + ruta + ".js");
-  s.onload = function () {
-    var p = window.__NUVEL_PAGINA__;
-    if (!p || !caja) { rendirse(); return; }
-
-    document.title = p.titulo;
-
-    // los data-producto-* que necesita el carrito para saber que producto es
-    var attrs = p.attrs.match(/([a-z\-]+)="([^"]*)"/g) || [];
-    attrs.forEach(function (a) {
-      var i = a.indexOf("=");
-      document.body.setAttribute(a.slice(0, i), a.slice(i + 2, -1));
-    });
-
-    caja.innerHTML = p.html.split("__ASSET__").join(BASE);
-
-    // los scripts insertados con innerHTML no se ejecutan: hay que recrearlos
-    var viejos = Array.prototype.slice.call(caja.querySelectorAll("script"));
-    viejos.forEach(function (v) {
-      var n = document.createElement("script");
-      if (v.src) { n.src = v.src; } else { n.textContent = v.textContent; }
-      v.parentNode.replaceChild(n, v);
-    });
-
-    // ahora si: el carrito arranca una sola vez, con el producto ya declarado
-    if (window.__nuvelArrancarCarrito) window.__nuvelArrancarCarrito();
-  };
-  s.onerror = rendirse;
-  document.head.appendChild(s);
-})();
-</script>
+<main class="wrap" style="padding:120px 0; text-align:center;">
+  <h1 style="font-size:32px; margin-bottom:14px;">{{ 'error_404.title' | t }}</h1>
+  <p style="color:var(--text-mute); margin-bottom:26px;">{{ 'error_404.text' | t }}</p>
+  <a href="/" class="btn btn-dark">{{ 'error_404.cta' | t }}</a>
+</main>

@@ -289,13 +289,37 @@
     function renderSearch(q) {
       if (!searchResults) return;
       const query = q.trim().toLowerCase();
-      if (!query) { searchResults.innerHTML = ""; return; }
+      // Nada de innerHTML con lo que teclea la visitante: el texto se inserta
+      // con textContent para que caracteres como < > no se interpreten como
+      // HTML en cuanto alguien escriba una etiqueta en el buscador (XSS).
+      searchResults.textContent = "";
+      if (!query) return;
       const matches = SITE_INDEX.filter((it) => it.title.toLowerCase().includes(query) || it.keywords.includes(query));
       if (matches.length === 0) {
-        searchResults.innerHTML = `<div class="search-empty">${I18N.searchEmptyBefore || 'No encontramos nada para "'}${q}${I18N.searchEmptyAfter || '".'} <a href="/pages/producto" style="text-decoration:underline;">${I18N.searchLinkProduct || 'Ver nuestra faja'}</a> ${I18N.lang && I18N.lang.indexOf('en') === 0 ? 'or' : 'o'} <a href="/pages/preguntas-frecuentes" style="text-decoration:underline;">${I18N.searchLinkFaq || 'revisa las preguntas frecuentes'}</a>.</div>`;
+        const box = document.createElement("div");
+        box.className = "search-empty";
+        box.textContent = (I18N.searchEmptyBefore || 'No encontramos nada para "') + q + (I18N.searchEmptyAfter || '".') + " ";
+        const a1 = document.createElement("a");
+        a1.href = "/pages/producto";
+        a1.style.textDecoration = "underline";
+        a1.textContent = I18N.searchLinkProduct || 'Ver nuestra faja';
+        const a2 = document.createElement("a");
+        a2.href = "/pages/preguntas-frecuentes";
+        a2.style.textDecoration = "underline";
+        a2.textContent = I18N.searchLinkFaq || 'revisa las preguntas frecuentes';
+        box.appendChild(a1);
+        box.appendChild(document.createTextNode((I18N.lang && I18N.lang.indexOf('en') === 0 ? ' or ' : ' o ')));
+        box.appendChild(a2);
+        box.appendChild(document.createTextNode("."));
+        searchResults.appendChild(box);
         return;
       }
-      searchResults.innerHTML = matches.map((it) => `<a href="${it.url}">${it.title}</a>`).join("");
+      matches.forEach((it) => {
+        const a = document.createElement("a");
+        a.href = it.url;
+        a.textContent = it.title;
+        searchResults.appendChild(a);
+      });
     }
     function closeSearch() {
       if (!searchOverlay?.classList.contains("open")) return;

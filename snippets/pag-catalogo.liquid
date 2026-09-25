@@ -82,6 +82,17 @@
   {%- assign fichas_a_mano = "faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties,sujetador-corrector-postura" | split: "," -%}
   {%- assign sujetador_postura = all_products['sujetador-corrector-postura'] -%}
 
+  {%- comment -%}
+    Sin {% paginate %}, collections.all.products solo entrega los primeros
+    50 productos (limitacion de Liquid) y el resto jamas apareceria en
+    ninguna subseccion. Dentro de un bloque paginate, cada `for` sobre la
+    coleccion recibe solo la ventana de la pagina actual: mismo layout, pero
+    con navegacion al final. Las 4 fichas hechas a mano + sujetador van
+    solo en la pagina 1 para no repetirlas en cada pagina.
+  {%- endcomment -%}
+  {%- paginate collections.all.products by 50 -%}
+
+  {%- if paginate.current_page == 1 -%}
   <section class="cat-section cat-section--featured" data-cat-section="sin-costuras">
     <p class="cat-section-eyebrow">{{ 'catalog.seamless_eyebrow' | t }}</p>
     <h2 class="cat-section-title cat-section-title--featured">{{ 'catalog.category_seamless' | t }}</h2>
@@ -134,6 +145,7 @@
       {%- endfor -%}
     </div>
   </section>
+  {%- endif -%}
 
   <section class="cat-section" data-cat-section="postura">
     <h2 class="cat-section-title">{{ 'catalog.category_posture' | t }}</h2>
@@ -194,4 +206,36 @@
       {%- endfor -%}
     </div>
   </section>
+
+  {%- comment -%}
+    La paginacion solo aparece si hay mas de 50 productos; con menos de 50
+    (caso actual) el HTML generado es identico al de ayer. Los filtros/orden
+    de cart.js operan sobre la pagina visible, que es lo que la clienta ve.
+  {%- endcomment -%}
+  {%- if paginate.pages > 1 -%}
+  <nav class="pagination" role="navigation" aria-label="{{ 'catalog.title' | t }}">
+    {%- if paginate.previous -%}
+      <a class="pagination__link" href="{{ paginate.previous.url }}">&larr; {{ 'catalog.pagination_previous' | t }}</a>
+    {%- else -%}
+      <span class="pagination__link pagination__link--disabled" aria-hidden="true">&larr; {{ 'catalog.pagination_previous' | t }}</span>
+    {%- endif -%}
+    <span class="pagination__pages">
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}
+          <a class="pagination__num" href="{{ part.url }}">{{ part.title }}</a>
+        {%- elsif part.title contains "…" or part.title contains "..." -%}
+          <span class="pagination__num pagination__num--gap" aria-hidden="true">…</span>
+        {%- else -%}
+          <span class="pagination__num pagination__num--current" aria-current="page">{{ part.title }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    </span>
+    {%- if paginate.next -%}
+      <a class="pagination__link" href="{{ paginate.next.url }}">{{ 'catalog.pagination_next' | t }} &rarr;</a>
+    {%- else -%}
+      <span class="pagination__link pagination__link--disabled" aria-hidden="true">{{ 'catalog.pagination_next' | t }} &rarr;</span>
+    {%- endif -%}
+  </nav>
+  {%- endif -%}
+  {%- endpaginate -%}
 </main>
