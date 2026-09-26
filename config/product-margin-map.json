@@ -9,14 +9,548 @@
     "paymentFeeFixed": 0
   },
   "columns": {
-    "supplierSku": ["SKU", "Variant SKU", "Item SKU", "Supplier SKU", "Product SKU", "SP SKU"],
-    "supplierTitle": ["Title", "Product Name", "Product Title", "Name", "Item Name"],
-    "supplierPrice": ["Price", "Cost", "Product Price", "Supplier Price", "Item Price", "Product Cost"],
-    "supplierShipping": ["Shipping", "Shipping Cost", "Delivery", "Freight", "Shipping Fee"],
-    "supplierLandedCost": ["Landed Cost", "Total Cost", "Cost Total", "Total Item Cost"],
-    "supplierBarcode": ["Barcode", "UPC", "EAN", "GTIN"],
-    "supplierUrl": ["URL", "Product URL", "Link", "Zendrop URL"],
-    "supplierImage": ["Image", "Image URL", "Main Image"]
+    "supplierSku": [
+      "SKU",
+      "Variant SKU",
+      "Item SKU",
+      "Supplier SKU",
+      "Product SKU",
+      "SP SKU"
+    ],
+    "supplierTitle": [
+      "Title",
+      "Product Name",
+      "Product Title",
+      "Name",
+      "Item Name"
+    ],
+    "supplierPrice": [
+      "Price",
+      "Cost",
+      "Product Price",
+      "Supplier Price",
+      "Item Price",
+      "Product Cost"
+    ],
+    "supplierShipping": [
+      "Shipping",
+      "Shipping Cost",
+      "Delivery",
+      "Freight",
+      "Shipping Fee"
+    ],
+    "supplierLandedCost": [
+      "Landed Cost",
+      "Total Cost",
+      "Cost Total",
+      "Total Item Cost"
+    ],
+    "supplierBarcode": [
+      "Barcode",
+      "UPC",
+      "EAN",
+      "GTIN"
+    ],
+    "supplierUrl": [
+      "URL",
+      "Product URL",
+      "Link",
+      "Zendrop URL"
+    ],
+    "supplierImage": [
+      "Image",
+      "Image URL",
+      "Main Image"
+    ]
   },
-  "links": []
+  "fx": {
+    "usdToEur": 0.92
+  },
+  "estimation": {
+    "wholesaleFactor": 0.3,
+    "range": [0.2, 0.4]
+  },
+  "estimationNote": "Coste estimado = referencia retail pública de Amazon x 0.3 (factor mayorista calibrado con muestra real de AliExpress). Rango de sensibilidad 0.2x-0.4x. Solo producto, sin envío. No son los costes reales de la cuenta Zendrop. scripts/estimar-costes.js",
+  "links": [
+    {
+      "handle": "sujetador-invisible-nube",
+      "supplierTitle": "seamless wireless bra no underwire women",
+      "supplierCost": 5.1,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 16.99,
+      "factor": 0.3,
+      "costRange": [
+        3.4,
+        6.8
+      ],
+      "source": "https://www.amazon.com/s?k=seamless%20wireless%20bra%20no%20underwire%20women"
+    },
+    {
+      "handle": "sujetador-corrector-postura",
+      "supplierTitle": "posture corrector bra women",
+      "supplierCost": 7.02,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 23.39,
+      "factor": 0.3,
+      "costRange": [
+        4.68,
+        9.36
+      ],
+      "source": "https://www.amazon.com/s?k=posture%20corrector%20bra%20women"
+    },
+    {
+      "handle": "womens-sexy-unitard-one-piece-jumpsuit-spaghetti-strap-tummy-control-rompers-sleeveless-bodysuits-outfits-1",
+      "supplierTitle": "unitard bodysuit tummy control spaghetti strap",
+      "supplierCost": 6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 19.99,
+      "factor": 0.3,
+      "costRange": [
+        4,
+        8
+      ],
+      "source": "https://www.amazon.com/s?k=unitard%20bodysuit%20tummy%20control%20spaghetti%20strap"
+    },
+    {
+      "handle": "womens-sexy-unitard-one-piece-jumpsuit-spaghetti-strap-tummy-control-rompers-sleeveless-bodysuits-outfits",
+      "supplierTitle": "long leg unitard jumpsuit women shapewear",
+      "supplierCost": 8.88,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 29.59,
+      "factor": 0.3,
+      "costRange": [
+        5.92,
+        11.84
+      ],
+      "source": "https://www.amazon.com/s?k=long%20leg%20unitard%20jumpsuit%20women%20shapewear"
+    },
+    {
+      "handle": "dyuai-sauna-shirt-for-women-sauna-suit-for-women-waist-trainer-sauna-sweat-vest-workout-body-shaper-zipper6005-07-xl",
+      "sku": "B097D9JB8S",
+      "supplierTitle": "sauna sweat vest women zipper waist trainer",
+      "supplierCost": 5.1,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 16.99,
+      "factor": 0.3,
+      "costRange": [
+        3.4,
+        6.8
+      ],
+      "source": "https://www.amazon.com/dp/B097D9JB8S"
+    },
+    {
+      "handle": "posture-corrector-adjustable-back-brace-shoulder-support-clavicle-belt-men-women",
+      "supplierTitle": "posture corrector back brace clavicle",
+      "supplierCost": 8.4,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 27.99,
+      "factor": 0.3,
+      "costRange": [
+        5.6,
+        11.2
+      ],
+      "source": "https://www.amazon.com/s?k=posture%20corrector%20back%20brace%20clavicle"
+    },
+    {
+      "handle": "smart-posture-corrector-for-kids-and-students",
+      "supplierTitle": "smart posture corrector kids sensor vibration",
+      "supplierCost": 7.37,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 24.57,
+      "factor": 0.3,
+      "costRange": [
+        4.91,
+        9.83
+      ],
+      "source": "https://www.amazon.com/s?k=smart%20posture%20corrector%20kids%20sensor%20vibration"
+    },
+    {
+      "handle": "smart-posture-corrector-belt",
+      "supplierTitle": "smart posture corrector vibration",
+      "supplierCost": 8.31,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 27.71,
+      "factor": 0.3,
+      "costRange": [
+        5.54,
+        11.08
+      ],
+      "source": "https://www.amazon.com/s?k=smart%20posture%20corrector%20vibration"
+    },
+    {
+      "handle": "breathable-adjustable-posture-corrector-for-back-support",
+      "supplierTitle": "breathable posture corrector back brace",
+      "supplierCost": 7.5,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 24.99,
+      "factor": 0.3,
+      "costRange": [
+        5,
+        10
+      ],
+      "source": "https://www.amazon.com/s?k=breathable%20posture%20corrector%20back%20brace"
+    },
+    {
+      "handle": "invisible-posture-corrector",
+      "supplierTitle": "invisible posture corrector under clothes",
+      "supplierCost": 7.5,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 24.99,
+      "factor": 0.3,
+      "costRange": [
+        5,
+        10
+      ],
+      "source": "https://www.amazon.com/s?k=invisible%20posture%20corrector%20under%20clothes"
+    },
+    {
+      "handle": "habibee-bra-for-women-no-underwire-comfort-seamless-bras-push-up-wireless-bras-full-coverage-bralettes-bra-extender",
+      "sku": "B0D62N1XYK",
+      "supplierTitle": "habibee seamless bra full coverage",
+      "supplierCost": 8.83,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 29.44,
+      "factor": 0.3,
+      "costRange": [
+        5.89,
+        11.78
+      ],
+      "source": "https://www.amazon.com/dp/B0D62N1XYK"
+    },
+    {
+      "handle": "zen-chic-bra-ultimate-lift-full-figure-fashion-deep-cup-bra-wireless-seamless-mesh-bras-padded-push-up-back-fat-bras-blue-m",
+      "sku": "B0BCWV4J27",
+      "supplierTitle": "zen chic bra deep cup wireless",
+      "supplierCost": 6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 19.99,
+      "factor": 0.3,
+      "costRange": [
+        4,
+        8
+      ],
+      "source": "https://www.amazon.com/dp/B0BCWV4J27"
+    },
+    {
+      "handle": "olikefit-women-filifit-sculpting-uplift-bra-fashion-deep-cup-bra-hide-back-fat-full-back-coverage-bra-with-shapewear-incorporated-black-42a",
+      "sku": "B09RWQD1HY",
+      "supplierTitle": "filifit sculpting uplift bra deep cup",
+      "supplierCost": 6.9,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 22.99,
+      "factor": 0.3,
+      "costRange": [
+        4.6,
+        9.2
+      ],
+      "source": "https://www.amazon.com/dp/B09RWQD1HY"
+    },
+    {
+      "handle": "lidlit-womens-slim-fit-camisole-round-neck-sleeveless-blackless-shapewear-adjustable-strap-bodysuit-double-lined-stretchy-shirt-khaki-m",
+      "sku": "B0CTMGDF21",
+      "supplierTitle": "shapewear camisole built in bra tummy control",
+      "supplierCost": 6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 19.99,
+      "factor": 0.3,
+      "costRange": [
+        4,
+        8
+      ],
+      "source": "https://www.amazon.com/dp/B0CTMGDF21"
+    },
+    {
+      "handle": "fut-womens-waist-trainer-shapewear-tummy-control-waist-cincher-slim-body-shaper-postpartum-belly-band-wrap-black-beige",
+      "sku": "B0D7RVMCNP",
+      "supplierTitle": "postpartum belly wrap waist trainer",
+      "supplierCost": 6.9,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 22.99,
+      "factor": 0.3,
+      "costRange": [
+        4.6,
+        9.2
+      ],
+      "source": "https://www.amazon.com/s?k=postpartum%20belly%20wrap%20waist%20trainer"
+    },
+    {
+      "handle": "fvacpj-shapewear-tummy-control-panties-womens-shaping-underwear-compression-briefs-low-rise-cincher-bodyshaper-girdle-panty-black-nude",
+      "sku": "B0D8J1VXZ8",
+      "supplierTitle": "tummy control shapewear panties butt lifter",
+      "supplierCost": 2.55,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 8.49,
+      "factor": 0.3,
+      "costRange": [
+        1.7,
+        3.4
+      ],
+      "source": "https://www.amazon.com/dp/B0D8J1VXZ8"
+    },
+    {
+      "handle": "atbuty-strapless-shapewear-bodysuit-tummy-control-thong-body-shaper-for-women-under-dress-with-removable-straps",
+      "sku": "B0D6YP3SZG",
+      "supplierTitle": "strapless shapewear bodysuit removable straps",
+      "supplierCost": 4.5,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 14.99,
+      "factor": 0.3,
+      "costRange": [
+        3,
+        6
+      ],
+      "source": "https://www.amazon.com/dp/B0D6YP3SZG"
+    },
+    {
+      "handle": "anygirl-tummy-control-shapewear-underwear-for-women-shaping-underwear-slimming-seamless-body-shaper-panties-beige",
+      "sku": "B0BRXJ2GBC",
+      "supplierTitle": "seamless tummy control shaping panties",
+      "supplierCost": 2.55,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 8.49,
+      "factor": 0.3,
+      "costRange": [
+        1.7,
+        3.4
+      ],
+      "source": "https://www.amazon.com/dp/B0BRXJ2GBC"
+    },
+    {
+      "handle": "nebility-2-pack-thong-shapewear-tummy-control-thong-girdle-for-women-tummy-control-body-shaper",
+      "sku": "B0DFW3GYJ2",
+      "supplierTitle": "shapewear thong tummy control 2 pack",
+      "supplierCost": 3,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 9.99,
+      "factor": 0.3,
+      "costRange": [
+        2,
+        4
+      ],
+      "source": "https://www.amazon.com/dp/B0DFW3GYJ2"
+    },
+    {
+      "handle": "gleelucky-womens-shapewear-bodysuits-long-sleeve-ribbed-ladies-shapewear-bodysuit-thong-sexy-one-piece-black",
+      "sku": "B0CZ726S9M",
+      "supplierTitle": "long sleeve shapewear bodysuit ribbed thong",
+      "supplierCost": 3.39,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 11.3,
+      "factor": 0.3,
+      "costRange": [
+        2.26,
+        4.52
+      ],
+      "source": "https://www.amazon.com/dp/B0CZ726S9M"
+    },
+    {
+      "handle": "postpartum-seamless-shapewear",
+      "supplierTitle": "postpartum seamless shapewear faja belly",
+      "supplierCost": 7.8,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 25.99,
+      "factor": 0.3,
+      "costRange": [
+        5.2,
+        10.4
+      ],
+      "source": "https://www.amazon.com/s?k=postpartum%20seamless%20shapewear%20faja%20belly"
+    },
+    {
+      "handle": "nonecho-women-neoprene-sweat-vest-for-women-sauna-suit-hot-sweat-waist-trainer-vest-slimming-body-shaper-black",
+      "sku": "B07PHBCSXQ",
+      "supplierTitle": "neoprene sauna sweat vest women",
+      "supplierCost": 6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 19.99,
+      "factor": 0.3,
+      "costRange": [
+        4,
+        8
+      ],
+      "source": "https://www.amazon.com/dp/B07PHBCSXQ"
+    },
+    {
+      "handle": "zopeusi-waist-trainer-for-women-sauna-sweat-vest-hot-neoprene-sauna-suit-workout-top-sports-girdle-body-shaper-black",
+      "sku": "B09C1HWLBC",
+      "supplierTitle": "sauna suit vest neoprene workout women",
+      "supplierCost": 6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 19.99,
+      "factor": 0.3,
+      "costRange": [
+        4,
+        8
+      ],
+      "source": "https://www.amazon.com/dp/B09C1HWLBC"
+    },
+    {
+      "handle": "jbt-waist-trainer-for-womensauna-suit-waist-trimmerwaist-sauna-belt-for-womensnow-flake-zipper-waist-trimmer-silvery-l",
+      "sku": "B0DGG9Z54S",
+      "supplierTitle": "sauna waist trainer vest silver ion zipper",
+      "supplierCost": 2.99,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 9.98,
+      "factor": 0.3,
+      "costRange": [
+        2,
+        3.99
+      ],
+      "source": "https://www.amazon.com/dp/B0DGG9Z54S"
+    },
+    {
+      "handle": "feelingirl-shapewear-bodysuit-for-women-shapewear-tummy-control-seamless-colombianas-moldeadoras-strapless-body-shaper-s",
+      "sku": "B0DDB611S7",
+      "supplierTitle": "feelingirl shapewear bodysuit strapless",
+      "supplierCost": 9,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": true,
+      "retailReference": 29.99,
+      "factor": 0.3,
+      "costRange": [
+        6,
+        12
+      ],
+      "source": "https://www.amazon.com/dp/B0DDB611S7"
+    },
+    {
+      "handle": "high-waist-body-shaping-workout-leggings",
+      "supplierTitle": "high waist shaping leggings tummy control",
+      "supplierCost": 6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 19.99,
+      "factor": 0.3,
+      "costRange": [
+        4,
+        8
+      ],
+      "source": "https://www.amazon.com/s?k=high%20waist%20shaping%20leggings%20tummy%20control"
+    },
+    {
+      "handle": "girdle-waist-trimmer",
+      "supplierTitle": "neoprene waist trimmer belt sweat",
+      "supplierCost": 4.35,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 14.49,
+      "factor": 0.3,
+      "costRange": [
+        2.9,
+        5.8
+      ],
+      "source": "https://www.amazon.com/s?k=neoprene%20waist%20trimmer%20belt%20sweat"
+    },
+    {
+      "handle": "retro-shapewear-top-with-zipper",
+      "supplierTitle": "shapewear tank top zipper waist trainer corset",
+      "supplierCost": 7.8,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 25.99,
+      "factor": 0.3,
+      "costRange": [
+        5.2,
+        10.4
+      ],
+      "source": "https://www.amazon.com/s?k=shapewear%20tank%20top%20zipper%20waist%20trainer%20corset"
+    },
+    {
+      "handle": "womens-shapewear-dress-jumpsuit",
+      "supplierTitle": "shapewear dress built in shapewear women",
+      "supplierCost": 15.6,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 51.99,
+      "factor": 0.3,
+      "costRange": [
+        10.4,
+        20.8
+      ],
+      "source": "https://www.amazon.com/s?k=shapewear%20dress%20built%20in%20shapewear%20women"
+    },
+    {
+      "handle": "seamless-shapewear-panties",
+      "supplierTitle": "seamless shapewear panties high waist",
+      "supplierCost": 5.1,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 16.99,
+      "factor": 0.3,
+      "costRange": [
+        3.4,
+        6.8
+      ],
+      "source": "https://www.amazon.com/s?k=seamless%20shapewear%20panties%20high%20waist"
+    },
+    {
+      "handle": "faja-moldeadora-invisible-nuvel",
+      "supplierTitle": "invisible thong shapewear waist cincher",
+      "supplierCost": 5.1,
+      "currency": "USD",
+      "estimated": true,
+      "reliable": false,
+      "retailReference": 16.99,
+      "factor": 0.3,
+      "costRange": [
+        3.4,
+        6.8
+      ],
+      "source": "https://www.amazon.com/s?k=invisible%20thong%20shapewear%20waist%20cincher"
+    }
+  ]
 }

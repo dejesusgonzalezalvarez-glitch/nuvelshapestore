@@ -3,6 +3,10 @@ refactor.js
 check-images.js
 check-js-images.js
 
+# Herramienta de margenes (scripts de Node, CSV de Zendrop e informes internos)
+scripts/
+data/
+
 # Basura del sistema
 .DS_Store
 Thumbs.db
