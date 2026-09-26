@@ -52,4 +52,3 @@ traducido, nada más.
 
 - Publicar inglés como segundo idioma en Shopify (Configuración → Idiomas) y
   activar la redirección automática por navegador/país en Configuración → Mercados
-- Conectar Google Search Console / SEO ahora que las 11 páginas responden 200
