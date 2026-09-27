@@ -9,7 +9,10 @@
  */
 {
   "general": {
-    "meta": { "title_home": "Nuvel · Shapewear you can't see — not even in the mirror", "description_default": "Invisible shapewear by Nuvel: seamless, no visible lines under clothes. Free worldwide shipping and 30-day trial." },
+    "meta": {
+      "title_home": "Nuvel · Shapewear you can't see — not even in the mirror",
+      "description_default": "Invisible shapewear by Nuvel: seamless, no visible lines under clothes. Free worldwide shipping and 30-day trial."
+    },
     "close": "Close",
     "badge_bestseller": "Bestseller",
     "badge_new": "New",
@@ -335,15 +338,42 @@
   "faq": {
     "hero_eyebrow": "Frequently asked questions",
     "hero_title": "The questions I had before buying, answered honestly",
-    "rolls": { "q": "Does it roll up when walking or sitting?", "a": "No. That's exactly why Nuvel exists. The girdle has a silicone band on the inner top edge that anchors it to your skin and keeps it in place even when you sit, bend, climb stairs or dance at a wedding. We tested different patterns and band heights for months until we found the combination that works on real bodies, not mannequins." },
-    "size": { "q": "How do I choose the right size?", "a": "We use a guide based on your waist and hip measurements, not your usual clothing size (which varies a lot by brand). On the product page you'll find the full chart in centimeters. If you're between two sizes, choose the larger one: Nuvel compresses without squeezing, so it never rides up." },
-    "visible": { "q": "Does it show under dresses and tight pants?", "a": "No. The edges are laser-cut, with no raised seam and no fabric step. They're so thin they disappear under silk, crepe or any fitted fabric. It was the first requirement of the pattern: that a woman could put on a fitted dress without having to check it doesn't show before heading out." },
-    "bathroom": { "q": "Can I use the bathroom without taking it off?", "a": "The girdle has an opening where it's needed, designed so you can use the bathroom without undressing and putting it back on. That said, we always recommend checking it's sitting right when you're done." },
-    "washing": { "q": "How many times can I wash it?", "a": "No limit. The fabric is designed to keep its structure and compression after many washes. We recommend hand washing or a delicate cycle at 30°C, no spin, and air drying. Following this, the girdle keeps its shape." },
-    "curvy": { "q": "Does it work if I have love handles?", "a": "Yes. We use progressive compression: layered, from softer to firmer, instead of squeezing everything equally and creating the classic bulge at the back and hips. The result is a smooth finish, not a roll marked at the fabric's edge." },
-    "heat": { "q": "Is it too warm? Does it breathe?", "a": "The microfiber breathes and doesn't trap heat like girdles made from cheap synthetic fabrics. You can wear it in summer, even at 30°C at a wedding, without ending up drenched. That said, it's still a compression garment, not a dress." },
-    "itchy": { "q": "Does it itch? Can I wear it all day?", "a": "The microfiber we use is certified and has no raised seams or stiff fabrics that chafe the skin. Designed for eight hours of continuous wear. The structure keeps its shape after dozens of washes." },
-    "return": { "q": "What if I'm not convinced? Can I return it?", "a": "Yes. You have 30 days from receiving your order to return it, no explanation needed. Email us at hola@nuvelshape.store and we'll arrange a home pickup, at no cost to you. Buying underwear online requires trust, and that trust has to go both ways." },
+    "rolls": {
+      "q": "Does it roll up when walking or sitting?",
+      "a": "No. That's exactly why Nuvel exists. The girdle has a silicone band on the inner top edge that anchors it to your skin and keeps it in place even when you sit, bend, climb stairs or dance at a wedding. We tested different patterns and band heights for months until we found the combination that works on real bodies, not mannequins."
+    },
+    "size": {
+      "q": "How do I choose the right size?",
+      "a": "We use a guide based on your waist and hip measurements, not your usual clothing size (which varies a lot by brand). On the product page you'll find the full chart in centimeters. If you're between two sizes, choose the larger one: Nuvel compresses without squeezing, so it never rides up."
+    },
+    "visible": {
+      "q": "Does it show under dresses and tight pants?",
+      "a": "No. The edges are laser-cut, with no raised seam and no fabric step. They're so thin they disappear under silk, crepe or any fitted fabric. It was the first requirement of the pattern: that a woman could put on a fitted dress without having to check it doesn't show before heading out."
+    },
+    "bathroom": {
+      "q": "Can I use the bathroom without taking it off?",
+      "a": "The girdle has an opening where it's needed, designed so you can use the bathroom without undressing and putting it back on. That said, we always recommend checking it's sitting right when you're done."
+    },
+    "washing": {
+      "q": "How many times can I wash it?",
+      "a": "No limit. The fabric is designed to keep its structure and compression after many washes. We recommend hand washing or a delicate cycle at 30°C, no spin, and air drying. Following this, the girdle keeps its shape."
+    },
+    "curvy": {
+      "q": "Does it work if I have love handles?",
+      "a": "Yes. We use progressive compression: layered, from softer to firmer, instead of squeezing everything equally and creating the classic bulge at the back and hips. The result is a smooth finish, not a roll marked at the fabric's edge."
+    },
+    "heat": {
+      "q": "Is it too warm? Does it breathe?",
+      "a": "The microfiber breathes and doesn't trap heat like girdles made from cheap synthetic fabrics. You can wear it in summer, even at 30°C at a wedding, without ending up drenched. That said, it's still a compression garment, not a dress."
+    },
+    "itchy": {
+      "q": "Does it itch? Can I wear it all day?",
+      "a": "The microfiber we use is certified and has no raised seams or stiff fabrics that chafe the skin. Designed for eight hours of continuous wear. The structure keeps its shape after dozens of washes."
+    },
+    "return": {
+      "q": "What if I'm not convinced? Can I return it?",
+      "a": "Yes. You have 30 days from receiving your order to return it, no explanation needed. Email us at hola@nuvelshape.store and we'll arrange a home pickup, at no cost to you. Buying underwear online requires trust, and that trust has to go both ways."
+    },
     "more_questions": "Can't find what you're looking for?"
   },
   "privacy": {
@@ -358,15 +388,42 @@
       "platform_label": "Platform:",
       "platform_text": "the store runs on Shopify, which acts as the data processor."
     },
-    "s1": { "title": "1. Data controller", "text": "Nuvel (hereinafter, \"the company\"). Contact for privacy matters: hola@nuvelshape.store." },
-    "s2": { "title": "2. Data we collect", "text": "We collect the data you provide when placing an order (first and last name, delivery address, email address and phone number), as well as anonymous browsing data needed for the store to function (technical cookies)." },
-    "s3": { "title": "3. Purpose of processing", "text": "The data is used exclusively to: (a) process and manage your order; (b) communications related to that order (confirmation, tracking, issues); (c) handle inquiries and return or exchange requests." },
-    "s4": { "title": "4. Legal basis", "text": "Processing is based on the performance of the sales contract (GDPR, art. 6.1.b). For marketing communications, the basis is explicit consent (art. 6.1.a)." },
-    "s5": { "title": "5. Data retention", "text": "Order data is kept for the legally required period (5 years for tax purposes). Once that period ends, the data is securely deleted." },
-    "s6": { "title": "6. Sharing with third parties", "text": "We don't sell or share your data with third parties for commercial purposes. We only share it with the logistics provider needed to deliver your order and with the payment platform to process the transaction, both bound by confidentiality agreements." },
-    "s7": { "title": "7. Your rights", "text": "You have the right to access, rectify, erase, restrict or object to the processing of your data, as well as to data portability. To exercise these rights, email hola@nuvelshape.store identifying yourself as a customer and specifying the right you wish to exercise. We will respond within a maximum of 30 days." },
-    "s8": { "title": "8. Cookies", "text": "We only use technical cookies necessary for the store to function (cart session, preferences). We don't use third-party tracking or advertising cookies without your consent." },
-    "s9": { "title": "9. Changes to this policy", "text": "We reserve the right to update this policy. Significant changes will be communicated by email or through a visible notice in the store." }
+    "s1": {
+      "title": "1. Data controller",
+      "text": "Nuvel (hereinafter, \"the company\"). Contact for privacy matters: hola@nuvelshape.store."
+    },
+    "s2": {
+      "title": "2. Data we collect",
+      "text": "We collect the data you provide when placing an order (first and last name, delivery address, email address and phone number), as well as anonymous browsing data needed for the store to function (technical cookies)."
+    },
+    "s3": {
+      "title": "3. Purpose of processing",
+      "text": "The data is used exclusively to: (a) process and manage your order; (b) communications related to that order (confirmation, tracking, issues); (c) handle inquiries and return or exchange requests."
+    },
+    "s4": {
+      "title": "4. Legal basis",
+      "text": "Processing is based on the performance of the sales contract (GDPR, art. 6.1.b). For marketing communications, the basis is explicit consent (art. 6.1.a)."
+    },
+    "s5": {
+      "title": "5. Data retention",
+      "text": "Order data is kept for the legally required period (5 years for tax purposes). Once that period ends, the data is securely deleted."
+    },
+    "s6": {
+      "title": "6. Sharing with third parties",
+      "text": "We don't sell or share your data with third parties for commercial purposes. We only share it with the logistics provider needed to deliver your order and with the payment platform to process the transaction, both bound by confidentiality agreements."
+    },
+    "s7": {
+      "title": "7. Your rights",
+      "text": "You have the right to access, rectify, erase, restrict or object to the processing of your data, as well as to data portability. To exercise these rights, email hola@nuvelshape.store identifying yourself as a customer and specifying the right you wish to exercise. We will respond within a maximum of 30 days."
+    },
+    "s8": {
+      "title": "8. Cookies",
+      "text": "We only use technical cookies necessary for the store to function (cart session, preferences). We don't use third-party tracking or advertising cookies without your consent."
+    },
+    "s9": {
+      "title": "9. Changes to this policy",
+      "text": "We reserve the right to update this policy. Significant changes will be communicated by email or through a visible notice in the store."
+    }
   },
   "terms": {
     "hero_eyebrow": "Legal",
@@ -376,16 +433,46 @@
       "text": "The owner of this store and seller of the products offered here is:",
       "jurisdiction_note": "We sell to customers in any country in the world from outside the European Union. Products ship from our international supplier's warehouse. If you buy from Spain or another European Union country, you keep the rights granted to you under European consumer law, including the right of withdrawal and the legal guarantee of conformity, under the terms detailed below. If you buy from outside the European Union, we apply these same terms as a minimum standard, without prejudice to any additional rights granted to you under your country's laws."
     },
-    "s1": { "title": "1. Purpose", "text": "These terms govern the purchase of products through the Nuvel online store. By placing an order, the customer accepts these terms." },
-    "s2": { "title": "2. Products and prices", "text": "Prices shown include VAT. We reserve the right to change prices at any time, but your order will be invoiced at the price in effect when it was confirmed. Products are subject to stock availability." },
-    "s3": { "title": "3. Order process", "text": "The sales contract is formed when the customer receives the order confirmation by email. That confirmation includes the item details, total price and shipping information." },
-    "s4": { "title": "4. Payment methods", "text": "We accept credit/debit cards (Visa, Mastercard, American Express) and the payment methods available at checkout. All transactions are processed through PCI-DSS certified payment gateways. We don't store card data." },
-    "s5": { "title": "5. Shipping and delivery", "text": "See the Shipping Policy for detailed information on timelines and costs. Risk in the product passes to the buyer upon delivery." },
-    "s6": { "title": "6. Returns and withdrawal", "text": "The customer has the right to withdraw from the contract within 14 calendar days of receiving the order (statutory right of withdrawal, Directive 2011/83/EU). Nuvel voluntarily extends this period to 30 days. See the Returns Policy for the process." },
-    "s7": { "title": "7. Warranty", "text": "Products carry the 2-year legal guarantee of conformity, the minimum required under European consumer law (EU Directive 2019/771). If the item arrives defective or stops working as it should within that period, write to us and we'll replace it or refund you." },
-    "s8": { "title": "8. Intellectual property", "text": "All content on this store (text, images, brand, logos) is the property of Nuvel or its licensors. Reproduction without express authorization is prohibited." },
-    "s9": { "title": "9. Governing law and jurisdiction", "text": "If you buy from Spain or another European Union country, these terms are governed by Spanish law, and for any dispute the parties submit to the courts of the consumer's domicile, as established under European consumer protection law. For buyers outside the European Union, these terms are governed by Venezuelan law, without prejudice to any mandatory rights granted to you under the consumer law of your country of residence." },
-    "s10": { "title": "10. Contact", "text": "For any question related to these terms: hola@nuvelshape.store." }
+    "s1": {
+      "title": "1. Purpose",
+      "text": "These terms govern the purchase of products through the Nuvel online store. By placing an order, the customer accepts these terms."
+    },
+    "s2": {
+      "title": "2. Products and prices",
+      "text": "Prices shown include VAT. We reserve the right to change prices at any time, but your order will be invoiced at the price in effect when it was confirmed. Products are subject to stock availability."
+    },
+    "s3": {
+      "title": "3. Order process",
+      "text": "The sales contract is formed when the customer receives the order confirmation by email. That confirmation includes the item details, total price and shipping information."
+    },
+    "s4": {
+      "title": "4. Payment methods",
+      "text": "We accept credit/debit cards (Visa, Mastercard, American Express) and the payment methods available at checkout. All transactions are processed through PCI-DSS certified payment gateways. We don't store card data."
+    },
+    "s5": {
+      "title": "5. Shipping and delivery",
+      "text": "See the Shipping Policy for detailed information on timelines and costs. Risk in the product passes to the buyer upon delivery."
+    },
+    "s6": {
+      "title": "6. Returns and withdrawal",
+      "text": "The customer has the right to withdraw from the contract within 14 calendar days of receiving the order (statutory right of withdrawal, Directive 2011/83/EU). Nuvel voluntarily extends this period to 30 days. See the Returns Policy for the process."
+    },
+    "s7": {
+      "title": "7. Warranty",
+      "text": "Products carry the 2-year legal guarantee of conformity, the minimum required under European consumer law (EU Directive 2019/771). If the item arrives defective or stops working as it should within that period, write to us and we'll replace it or refund you."
+    },
+    "s8": {
+      "title": "8. Intellectual property",
+      "text": "All content on this store (text, images, brand, logos) is the property of Nuvel or its licensors. Reproduction without express authorization is prohibited."
+    },
+    "s9": {
+      "title": "9. Governing law and jurisdiction",
+      "text": "If you buy from Spain or another European Union country, these terms are governed by Spanish law, and for any dispute the parties submit to the courts of the consumer's domicile, as established under European consumer protection law. For buyers outside the European Union, these terms are governed by Venezuelan law, without prejudice to any mandatory rights granted to you under the consumer law of your country of residence."
+    },
+    "s10": {
+      "title": "10. Contact",
+      "text": "For any question related to these terms: hola@nuvelshape.store."
+    }
   },
   "about": {
     "hero_eyebrow": "About us",
@@ -527,15 +614,42 @@
     "link_check_faq": "check the FAQ"
   },
   "search_index": {
-    "producto": { "title": "Invisible Shaping Girdle (product)", "keywords": "girdle shaper product buy size price invisible waist faja" },
-    "catalogo": { "title": "Shaping girdle catalog", "keywords": "catalog catalogue girdles shapewear store" },
-    "sobre_nosotros": { "title": "About Nuvel", "keywords": "about us story brand who we are" },
-    "faq": { "title": "Frequently asked questions", "keywords": "faq frequently asked questions doubts help" },
-    "size_guide": { "title": "Size guide", "keywords": "size sizes guide measurements s m l xl" },
-    "envios": { "title": "Shipping", "keywords": "shipping delivery time timeline" },
-    "devoluciones": { "title": "Returns", "keywords": "return returns exchange refund" },
-    "privacidad": { "title": "Privacy", "keywords": "privacy data gdpr" },
-    "terminos": { "title": "Terms and conditions", "keywords": "terms conditions legal" }
+    "producto": {
+      "title": "Invisible Shaping Girdle (product)",
+      "keywords": "girdle shaper product buy size price invisible waist faja"
+    },
+    "catalogo": {
+      "title": "Shaping girdle catalog",
+      "keywords": "catalog catalogue girdles shapewear store"
+    },
+    "sobre_nosotros": {
+      "title": "About Nuvel",
+      "keywords": "about us story brand who we are"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "keywords": "faq frequently asked questions doubts help"
+    },
+    "size_guide": {
+      "title": "Size guide",
+      "keywords": "size sizes guide measurements s m l xl"
+    },
+    "envios": {
+      "title": "Shipping",
+      "keywords": "shipping delivery time timeline"
+    },
+    "devoluciones": {
+      "title": "Returns",
+      "keywords": "return returns exchange refund"
+    },
+    "privacidad": {
+      "title": "Privacy",
+      "keywords": "privacy data gdpr"
+    },
+    "terminos": {
+      "title": "Terms and conditions",
+      "keywords": "terms conditions legal"
+    }
   },
   "error_404": {
     "title": "Page not found",
@@ -602,8 +716,8 @@
     "short_faja_reason": "The girdle covers the top and the shorts the bottom: full, line-free coverage.",
     "short_vestido_title": "The invisible set",
     "short_vestido_reason": "The shorts prevent chafing and lines under the shaping dress.",
-"vestido_short_title": "The invisible set",
-      "vestido_short_reason": "Your shaping dress, finished with shorts that won't show."
+    "vestido_short_title": "The invisible set",
+    "vestido_short_reason": "Your shaping dress, finished with shorts that won't show."
   },
   "consent": {
     "title": "Your privacy and cookies",
@@ -612,5 +726,395 @@
     "accept": "Accept all",
     "decline": "Decline",
     "manage": "Manage cookies"
+  },
+  "shopify": {
+    "checkout": {
+      "general": {
+        "map": {
+          "cluster_title": {
+            "many": "Group of {{number}} bookmarks"
+          }
+        }
+      },
+      "customer_account": {
+        "saved_address_option_description": {
+          "many": "You have {{count}} saved addresses."
+        }
+      },
+      "stock": {
+        "unshippable_product": {
+          "header": {
+            "many": "Delivery is not available for %{count} items"
+          },
+          "message": {
+            "many": "These items will be removed from your cart because there are no delivery methods available for your address."
+          }
+        },
+        "item_label": {
+          "many": "{{count}} items"
+        },
+        "out_of_stock": {
+          "missing_items": {
+            "title": {
+              "many": "{{count}} items are no longer available"
+            },
+            "some_available_notice": {
+              "many": "The remaining items are still available for purchase. Unavailable items will be removed from the cart."
+            },
+            "none_available_notice": {
+              "many": "These items are no longer available and have been removed from the cart."
+            }
+          }
+        },
+        "unfulfillable_product": {
+          "message": {
+            "many": "%{delivery_method} is no longer available for these items."
+          },
+          "default_message": {
+            "many": "The selected delivery method is no longer available for these items."
+          }
+        }
+      },
+      "order_summary": {
+        "unit_price": {
+          "per_item": {
+            "many": "%{price} for %{count} items"
+          }
+        },
+        "expand_component_information": {
+          "many": "Show %{count} items"
+        },
+        "collapse_component_information": {
+          "many": "Hide %{count} items"
+        },
+        "discount_discovery": {
+          "merchandise_quantity_label": {
+            "many": "%{count} items"
+          }
+        },
+        "discount_title_stacking": {
+          "many": "Discounts"
+        },
+        "discount_order_stacking": {
+          "many": "Discounts on orders"
+        },
+        "subtotal_label_with_quantity": {
+          "many": "Subtotal · %{count} items"
+        },
+        "number_items": {
+          "many": "%{count} items"
+        },
+        "view_all_items": {
+          "many": "View the %{count} items"
+        },
+        "pickup_unavailable_banner_title": {
+          "many": "There are no stores available with your items"
+        },
+        "pickup_unavailable_banner_title_with_country": {
+          "many": "There are no stores available in %{country} with your items"
+        },
+        "discount_code_applied_count": {
+          "many": "Show %{count} discounts"
+        }
+      },
+      "shipping": {
+        "estimated_delivery_date": {
+          "many": "%{count} business days"
+        },
+        "other_method": {
+          "many": "%{count} other shipping methods available starting at"
+        },
+        "subscription_delivery_description": {
+          "prepaid_delivery_frequency": {
+            "many": "for %{count} deliveries"
+          },
+          "subscription_delivery_frequency": {
+            "day": {
+              "many": "every %{count} days"
+            },
+            "week": {
+              "many": "every %{count} weeks"
+            },
+            "month": {
+              "many": "every %{count} months"
+            },
+            "year": {
+              "many": "every %{count} years"
+            }
+          },
+          "first_n_order_free": {
+            "many": "First %{count} orders free"
+          },
+          "free_for_first_n_order": {
+            "many": "For the first %{count} orders"
+          },
+          "free_shipping_cycles": {
+            "many": "Free shipping for %{count} more deliveries"
+          },
+          "free_shipping_cycles_delivery_not_included": {
+            "many": "Free shipping for %{count} deliveries"
+          },
+          "first_n_order_free_with_cycle": {
+            "many": "Free shipping for %{count} more deliveries and then for %{recurring_order_shipping_price}"
+          },
+          "first_n_order_free_with_cycle_delivery_not_included": {
+            "many": "Free shipping for %{count} deliveries, and then %{recurring_order_shipping_price} thereafter."
+          },
+          "max_cycles_base_shipping": {
+            "many": "%{count} more deliveries for %{shipping_price} each"
+          },
+          "max_cycles_base_shipping_delivery_not_included": {
+            "many": "%{count} more deliveries for %{shipping_price} each"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "many": "Free shipping for the first %{cycle} and then for %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_one_cycle": {
+            "many": "%{shipping_price} for %{count} more deliveries (%{per_delivery_cost})"
+          },
+          "prepaid_order_one_cycle_delivery_not_included": {
+            "many": "%{shipping_price} for %{count} deliveries (%{per_delivery_cost})"
+          },
+          "prepaid_order_no_cycle": {
+            "many": "%{shipping_price} for %{count} more deliveries (%{per_delivery_cost}) and then for %{recurring_order_shipping_price}"
+          },
+          "prepaid_order_no_cycle_delivery_not_included": {
+            "many": "%{shipping_price} for %{count} deliveries (%{per_delivery_cost}) and then for %{recurring_order_shipping_price}"
+          }
+        },
+        "shipping_method_first_shipment_group_title": {
+          "many": "First shipments"
+        },
+        "shipping_method_recurring_shipments_group_title": {
+          "many": "Recurring shipments"
+        },
+        "unbranded_description_with_fulfillment_days": {
+          "many": "Ships in %{count} business days"
+        },
+        "unbranded_description_with_fulfillment_weeks": {
+          "many": "Ships in %{count} weeks"
+        },
+        "split_shipping_shipment_count_notice_one_time_purchase": {
+          "many": "Your order will arrive in %{count} shipments"
+        }
+      },
+      "payment": {
+        "order_covered_by_gift_cards_notice": {
+          "many": "The cost of your order is covered by your gift cards."
+        },
+        "card_fields_unavailable_html": {
+          "many": "Debit and credit card payments are currently unavailable.<br><a href=\"%{current_url}\">Refresh this page</a> or try using a different payment method."
+        },
+        "pending_payment": {
+          "oxxo": {
+            "days_left": {
+              "many": "%{count} days"
+            }
+          }
+        },
+        "expired_cards_info": {
+          "many": "There are %{count} expired cards that you can view and edit in your account."
+        },
+        "order_edit_banner_items_added": {
+          "many": "%{count} added."
+        },
+        "crypto_payment_method": {
+          "cashback_descriptor": {
+            "many": "You will receive your refund after %{count} days"
+          }
+        },
+        "discount_show_more_warnings": {
+          "many": "Show %{count} more"
+        },
+        "discount_codes_removed_summary": {
+          "many": "%{count} discount codes were deleted"
+        },
+        "discount_codes_modified_summary": {
+          "many": "%{count} discount codes were modified"
+        },
+        "discount_codes_removed_or_modified_summary": {
+          "many": "%{count} discount codes were removed or modified"
+        }
+      },
+      "shipping_errors": {
+        "shipping_method_not_available_generic": {
+          "many": "Some items in your cart cannot be shipped to the address you provided. Please check that your address is correct and try again, or select a different one."
+        },
+        "shipping_method_not_available_updated": {
+          "many": "One or more items you added cannot be shipped to your location. Please remove them to complete your purchase, or contact the store."
+        }
+      },
+      "processing": {
+        "wait": {
+          "medium": {
+            "many": "Your order is being processed. The estimated waiting time is %{count} minutes."
+          }
+        }
+      },
+      "thank_you": {
+        "login_reorder_link_text": {
+          "many": "buy these products too"
+        },
+        "gift_card_confirmation_by_text_typ": {
+          "many": "In a few minutes, you will receive a text message with your gift cards."
+        },
+        "gift_card_confirmation_by_email_typ": {
+          "many": "In a few minutes you will receive an email with your gift cards."
+        },
+        "gift_card_email_title": {
+          "many": "Gift cards sent by email"
+        },
+        "gift_card_text_title": {
+          "many": "Gift cards sent by text message"
+        },
+        "gift_card_resent_confirmation": {
+          "many": "The gift cards were forwarded."
+        },
+        "gift_card_resend_failure": {
+          "many": "An error occurred while forwarding your gift cards. Please try again or contact us."
+        },
+        "thank_you_unconfirmed_items_heading": {
+          "many": "Some items are not confirmed"
+        },
+        "thank_you_unconfirmed_items_description": {
+          "many": "You were not charged for the items."
+        },
+        "thank_you_item_label": {
+          "many": "%{count} items"
+        },
+        "items_fulfilled_by_store": {
+          "many": "The items you purchased will come from other stores."
+        }
+      },
+      "review": {
+        "blocks": {
+          "pickup_items_at": {
+            "many": "Withdrawal of %{count} items in"
+          },
+          "ship_items_to": {
+            "many": "Send %{count} items to"
+          }
+        }
+      },
+      "order_payment_collection": {
+        "changes_summary": {
+          "added": {
+            "many": "%{count} added."
+          }
+        }
+      },
+      "open_graph_meta_tag": {
+        "title_with_products": {
+          "many": "Buy %{product_name} and %{count} more items"
+        }
+      },
+      "subscriptions": {
+        "recurring_totals_with_policies": {
+          "first_cycles": {
+            "many": "First %{count} payments of %{total_price} each"
+          }
+        },
+        "recurring_total_intervals": {
+          "day": {
+            "many": "%{count} days"
+          },
+          "week": {
+            "many": "%{count} weeks"
+          },
+          "month": {
+            "many": "%{count} months"
+          },
+          "year": {
+            "many": "%{count} years"
+          }
+        },
+        "recurring_totals_with_initial_order_shipping_discount_with_policies": {
+          "first_cycles": {
+            "many": ", followed by %{count} payments of %{total_price} each"
+          }
+        }
+      },
+      "contextual_availability": {
+        "title": {
+          "many": "Products not available"
+        },
+        "products_not_available": {
+          "many": "These products will be removed from your cart because they are not available in your country or region."
+        },
+        "all_products_in_cart_unavailable": {
+          "many": "These products are not available in your country or region."
+        }
+      },
+      "throttle": {
+        "estimated_wait_time": {
+          "many": "Estimated wait time: {{count}} minutes"
+        }
+      },
+      "deliverability": {
+        "not_deliverable": {
+          "title": {
+            "many": "Delivery is not available for %{count} items"
+          },
+          "message": {
+            "many": "These items will be removed from your cart because there are no delivery methods available for your address."
+          }
+        }
+      },
+      "pickup_point": {
+        "paginator": {
+          "header": {
+            "many": "Showing %{first} - %{last} of %{count} points"
+          },
+          "selected_pickup_point_label": {
+            "many": "%{pickup_point_index} of %{count} points"
+          },
+          "selected_page": {
+            "many": "%{first} - %{last} of %{count} points"
+          }
+        },
+        "number_of_pickup_points_near_location": {
+          "many": "%{count} pickup points near your location"
+        },
+        "pickup_unavailable_banner_title": {
+          "many": "There are no pickup points available for your items"
+        }
+      },
+      "notice_banner": {
+        "validation_errors_banner": {
+          "heading": {
+            "many": "There are {{count}} errors:"
+          }
+        }
+      },
+      "review_address_modal": {
+        "subtitle": {
+          "many": "This order will be shipped to an address provided by {{merchant}}. Please select a shipping address."
+        }
+      },
+      "local_pickup": {
+        "location_information": {
+          "many": "There are %{count} branches with stock near you"
+        },
+        "paginator": {
+          "label": {
+            "many": "%{first} - %{last} of %{count} stores"
+          }
+        },
+        "reveal_more_label": {
+          "many": "Show %{count} more branches"
+        },
+        "all_stores_far_away": {
+          "title_with_item": {
+            "many": "The nearest branch with your items available is more than %{distance} from %{location}"
+          }
+        },
+        "location_information_far_away": {
+          "many": "%{count} branches have your item"
+        },
+        "location_nearby": {
+          "many": "There are %{count} nearby branches with your item available"
+        }
+      }
+    }
   }
 }
