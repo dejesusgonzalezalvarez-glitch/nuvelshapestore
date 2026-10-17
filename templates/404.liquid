@@ -14,5 +14,5 @@
 <main class="wrap" style="padding:120px 0; text-align:center;">
   <h1 style="font-size:32px; margin-bottom:14px;">{{ 'error_404.title' | t }}</h1>
   <p style="color:var(--text-mute); margin-bottom:26px;">{{ 'error_404.text' | t }}</p>
-  <a href="/" class="btn btn-dark">{{ 'error_404.cta' | t }}</a>
+  <a href="{{ request.locale.root_url }}/" class="btn btn-dark">{{ 'error_404.cta' | t }}</a>
 </main>

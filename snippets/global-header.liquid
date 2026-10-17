@@ -18,19 +18,19 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <a href="/" class="logo mobile-only">NUVEL</a>
+    <a href="{{ request.locale.root_url }}/" class="logo mobile-only">NUVEL</a>
     <div class="nav-group desktop-only">
       <button class="icon-btn" data-search-open aria-label="{{ 'nav.search' | t }}">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       </button>
-      <a href="/" class="nav-link">{{ 'nav.home' | t }}</a>
-      <a href="/pages/producto" class="nav-link">{{ 'nav.featured_product' | t }}</a>
+      <a href="{{ request.locale.root_url }}/" class="nav-link">{{ 'nav.home' | t }}</a>
+      <a href="{{ request.locale.root_url }}/pages/producto" class="nav-link">{{ 'nav.featured_product' | t }}</a>
     </div>
-    <a href="/" class="logo desktop-only">NUVEL</a>
+    <a href="{{ request.locale.root_url }}/" class="logo desktop-only">NUVEL</a>
     <div class="nav-group right desktop-only">
-      <a href="/pages/catalogo" class="nav-link">{{ 'nav.catalog' | t }}</a>
-      <a href="/pages/sobre-nosotros" class="nav-link">{{ 'nav.about' | t }}</a>
-      <a href="/pages/preguntas-frecuentes" class="nav-link">{{ 'nav.faq' | t }}</a>
+      <a href="{{ request.locale.root_url }}/pages/catalogo" class="nav-link">{{ 'nav.catalog' | t }}</a>
+      <a href="{{ request.locale.root_url }}/pages/sobre-nosotros" class="nav-link">{{ 'nav.about' | t }}</a>
+      <a href="{{ request.locale.root_url }}/pages/preguntas-frecuentes" class="nav-link">{{ 'nav.faq' | t }}</a>
       <button class="icon-btn" data-account-open aria-label="{{ 'nav.account' | t }}">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </button>
@@ -57,11 +57,11 @@
     <button class="icon-btn mobile-menu-close" id="mobile-menu-close" aria-label="{{ 'general.close' | t }}">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <a href="/">{{ 'nav.home' | t }}</a>
-    <a href="/pages/producto">{{ 'nav.featured_product' | t }}</a>
-    <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a>
-    <a href="/pages/sobre-nosotros">{{ 'nav.about' | t }}</a>
-    <a href="/pages/preguntas-frecuentes">{{ 'nav.faq' | t }}</a>
+    <a href="{{ request.locale.root_url }}/">{{ 'nav.home' | t }}</a>
+    <a href="{{ request.locale.root_url }}/pages/producto">{{ 'nav.featured_product' | t }}</a>
+    <a href="{{ request.locale.root_url }}/pages/catalogo">{{ 'nav.catalog' | t }}</a>
+    <a href="{{ request.locale.root_url }}/pages/sobre-nosotros">{{ 'nav.about' | t }}</a>
+    <a href="{{ request.locale.root_url }}/pages/preguntas-frecuentes">{{ 'nav.faq' | t }}</a>
   </div>
 </header>
 </div>

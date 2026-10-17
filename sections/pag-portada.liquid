@@ -7,7 +7,7 @@
       <span class="eyebrow" style="color:#D9CFC2;">{{ 'home.hero.eyebrow' | t }}</span>
       <h1>{{ 'home.hero.title_line1' | t }}<br>{{ 'home.hero.title_line2' | t }}</h1>
       <p>{{ 'home.hero.subtitle' | t }}</p>
-      <div><a href="/pages/producto" class="btn btn-light">{{ 'home.hero.cta' | t }}</a></div>
+      <div><a href="{{ request.locale.root_url }}/pages/producto" class="btn btn-light">{{ 'home.hero.cta' | t }}</a></div>
     </div>
   </section>
 
@@ -62,7 +62,7 @@
           <div class="qty-opt selected"><span class="qty-save">{{ 'qty.save_rotate' | t }}</span><div class="qty-label">{{ 'qty.two_units' | t }}</div><div class="qty-price">{{ _home_faja.price | times: 1.85 | round | money }}</div></div>
           <div class="qty-opt qty-opt--pack"><span class="qty-save">{{ 'qty.save_most_requested' | t }}</span><div class="qty-label">{{ 'home.anchor.pack_label' | t }}</div><div class="qty-price">{{ _home_pack_now | money }}</div></div>
         </div>
-        <a href="/pages/producto" class="btn btn-dark" style="width:100%;">{{ 'general.buy_now' | t }}</a>
+        <a href="{{ request.locale.root_url }}/pages/producto" class="btn btn-dark" style="width:100%;">{{ 'general.buy_now' | t }}</a>
       </div>
     </div>
   </section>

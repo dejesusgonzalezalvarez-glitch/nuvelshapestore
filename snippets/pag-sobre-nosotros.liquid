@@ -1,4 +1,4 @@
-﻿<main>
+<main>
 <div class="legal-hero">
   <p class="eyebrow" style="color:var(--accent);">{{ 'about.hero_eyebrow' | t }}</p>
   <h1>{{ 'about.hero_title' | t }}</h1>
@@ -14,7 +14,7 @@
   <div class="center">
     <p style="font-family:'Lora',serif; font-size:clamp(1.2rem,2.5vw,1.6rem); margin-bottom:12px;">{{ 'about.closing_line' | t }}</p>
     <p style="font-size:14px; color:var(--text-mute); margin-bottom:28px;">{{ 'footer.guarantee' | t }}</p>
-    <a href="/pages/producto" class="btn btn-dark">{{ 'about.closing_cta' | t }}</a>
+    <a href="{{ request.locale.root_url }}/pages/producto" class="btn btn-dark">{{ 'about.closing_cta' | t }}</a>
   </div>
 </div>
 </main>

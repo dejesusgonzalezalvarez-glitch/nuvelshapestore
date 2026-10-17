@@ -83,7 +83,7 @@
       content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
       content_type: "product",
       value: {{ product.price | divided_by: 100.0 | json }},
-      currency: "EUR"
+      currency: {{ shop.currency | json }}
     });
     {%- endif -%}
   };
@@ -170,7 +170,7 @@
 </script>
 <div class="consent-banner" id="consent-banner" role="region" aria-label="{{ 'consent.title' | t }}">
   <div class="consent-inner">
-    <p class="consent-text">{{ 'consent.text' | t }} <a href="/pages/privacidad">{{ 'consent.link' | t }}</a></p>
+    <p class="consent-text">{{ 'consent.text' | t }} <a href="{{ request.locale.root_url }}/pages/privacidad">{{ 'consent.link' | t }}</a></p>
     <div class="consent-actions">
       <button type="button" class="btn btn-outline" id="consent-decline">{{ 'consent.decline' | t }}</button>
       <button type="button" class="btn btn-dark" id="consent-accept">{{ 'consent.accept' | t }}</button>

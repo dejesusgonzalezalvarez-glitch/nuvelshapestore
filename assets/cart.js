@@ -12,7 +12,7 @@
     if (!window.fbq || !items || !items.length) return;
     var valor = items.reduce((s, i) => s + (i.line_price || i.price || 0), 0) / 100;
     var ids = items.map((i) => i.variant_id || i.id);
-    fbq('track', 'AddToCart', { value: valor.toFixed(2), currency: 'EUR', content_ids: ids, content_type: 'product' });
+    fbq('track', 'AddToCart', { value: valor.toFixed(2), currency: I18N.shopCurrency || 'EUR', content_ids: ids, content_type: 'product' });
   }
 
   // Regalo automático: al llegar a 2 o mas unidades (sin contar el propio
@@ -282,11 +282,11 @@
       fetch("/cart.js").then((r) => r.json()).then((cart) => {
         fbq('track', 'InitiateCheckout', {
           value: (cart.total_price / 100).toFixed(2),
-          currency: 'EUR',
+          currency: I18N.shopCurrency || 'EUR',
           content_ids: cart.items.map((i) => i.variant_id),
           num_items: cart.item_count
         });
-      }).catch(() => {}).then(() => { window.location.href = "/checkout"; });
+      }).catch(() => {}).then(() => { window.location.href = (I18N.root || "") + "/checkout"; });
     });
 
     // Mobile menu toggle (panel deslizante desde la izquierda)
@@ -348,11 +348,11 @@
         box.className = "search-empty";
         box.textContent = (I18N.searchEmptyBefore || 'No encontramos nada para "') + q + (I18N.searchEmptyAfter || '".') + " ";
         const a1 = document.createElement("a");
-        a1.href = "/pages/producto";
+        a1.href = (I18N.root || "") + "/pages/producto";
         a1.style.textDecoration = "underline";
         a1.textContent = I18N.searchLinkProduct || 'Ver nuestra faja';
         const a2 = document.createElement("a");
-        a2.href = "/pages/preguntas-frecuentes";
+        a2.href = (I18N.root || "") + "/pages/preguntas-frecuentes";
         a2.style.textDecoration = "underline";
         a2.textContent = I18N.searchLinkFaq || 'revisa las preguntas frecuentes';
         box.appendChild(a1);

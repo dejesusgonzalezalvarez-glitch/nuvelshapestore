@@ -18,10 +18,10 @@
     {%- when "seamless-shapewear-panties" -%}
       {%- assign destino = "short" -%}
   {%- endcase -%}
-  <meta http-equiv="refresh" content="0; url=/pages/{{ destino }}">
-  <script>window.location.replace("/pages/{{ destino }}");</script>
+  <meta http-equiv="refresh" content="0; url={{ request.locale.root_url }}/pages/{{ destino }}">
+  <script>window.location.replace("{{ request.locale.root_url }}/pages/{{ destino }}");</script>
   <main class="wrap" style="padding:80px 0; text-align:center;">
-    <p>Redirigiendo… <a href="/pages/{{ destino }}">Haz clic aquí si no avanza automáticamente</a>.</p>
+    <p>Redirigiendo… <a href="{{ request.locale.root_url }}/pages/{{ destino }}">Haz clic aquí si no avanza automáticamente</a>.</p>
   </main>
 {%- else -%}
   {%- render 'pag-producto-generico' -%}

@@ -8,10 +8,10 @@
     <div class="footer-cols">
       <div class="footer-col">
         <span class="footer-col-title">{{ 'footer.col_policies' | t }}</span>
-        <a href="/pages/envios">{{ 'footer.col_shipping' | t }}</a>
-        <a href="/pages/devoluciones">{{ 'footer.col_returns' | t }}</a>
-        <a href="/pages/privacidad">{{ 'footer.col_privacy' | t }}</a>
-        <a href="/pages/terminos">{{ 'footer.col_terms' | t }}</a>
+        <a href="{{ request.locale.root_url }}/pages/envios">{{ 'footer.col_shipping' | t }}</a>
+        <a href="{{ request.locale.root_url }}/pages/devoluciones">{{ 'footer.col_returns' | t }}</a>
+        <a href="{{ request.locale.root_url }}/pages/privacidad">{{ 'footer.col_privacy' | t }}</a>
+        <a href="{{ request.locale.root_url }}/pages/terminos">{{ 'footer.col_terms' | t }}</a>
         <button type="button" id="consent-reopen" class="footer-link-btn">{{ 'consent.manage' | t }}</button>
       </div>
       <div class="footer-col">
@@ -67,7 +67,7 @@
     <p style="font-size:14px; line-height:1.6; color:var(--text-soft);">{{ 'account.no_accounts_yet' | t }}</p>
     <p style="font-size:14px; line-height:1.6; color:var(--text-soft);">{{ 'account.help' | t }}</p>
     <a href="mailto:hola@nuvelshape.store" class="btn btn-outline" style="width:100%;">{{ 'account.write_to_us' | t }}</a>
-    <a href="/pages/preguntas-frecuentes" class="btn btn-light" style="width:100%;">{{ 'account.view_faq' | t }}</a>
+    <a href="{{ request.locale.root_url }}/pages/preguntas-frecuentes" class="btn btn-light" style="width:100%;">{{ 'account.view_faq' | t }}</a>
   </div>
 </aside>
 <div class="modal-overlay" id="zoom-overlay"></div>
@@ -89,6 +89,8 @@
   // no puede pasar por el filtro "t" de Liquid.
   window.__NUVEL_I18N__ = {
     lang: {{ request.locale.iso_code | json }},
+    root: {{ request.locale.root_url | json }},
+    shopCurrency: {{ shop.currency | json }},
     cartEmpty: {{ 'cart_js.empty' | t | json }},
     decrease: {{ 'cart_js.decrease' | t | json }},
     increase: {{ 'cart_js.increase' | t | json }},
@@ -107,15 +109,15 @@
     searchLinkProduct: {{ 'search_js.link_view_product' | t | json }},
     searchLinkFaq: {{ 'search_js.link_check_faq' | t | json }},
     searchIndex: [
-      { title: {{ 'search_index.producto.title' | t | json }}, url: "/pages/producto", keywords: {{ 'search_index.producto.keywords' | t | json }} },
-      { title: {{ 'search_index.catalogo.title' | t | json }}, url: "/pages/catalogo", keywords: {{ 'search_index.catalogo.keywords' | t | json }} },
-      { title: {{ 'search_index.sobre_nosotros.title' | t | json }}, url: "/pages/sobre-nosotros", keywords: {{ 'search_index.sobre_nosotros.keywords' | t | json }} },
-      { title: {{ 'search_index.faq.title' | t | json }}, url: "/pages/preguntas-frecuentes", keywords: {{ 'search_index.faq.keywords' | t | json }} },
-      { title: {{ 'search_index.size_guide.title' | t | json }}, url: "/pages/preguntas-frecuentes#talla", keywords: {{ 'search_index.size_guide.keywords' | t | json }} },
-      { title: {{ 'search_index.envios.title' | t | json }}, url: "/pages/envios", keywords: {{ 'search_index.envios.keywords' | t | json }} },
-      { title: {{ 'search_index.devoluciones.title' | t | json }}, url: "/pages/devoluciones", keywords: {{ 'search_index.devoluciones.keywords' | t | json }} },
-      { title: {{ 'search_index.privacidad.title' | t | json }}, url: "/pages/privacidad", keywords: {{ 'search_index.privacidad.keywords' | t | json }} },
-      { title: {{ 'search_index.terminos.title' | t | json }}, url: "/pages/terminos", keywords: {{ 'search_index.terminos.keywords' | t | json }} }
+      { title: {{ 'search_index.producto.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/producto", keywords: {{ 'search_index.producto.keywords' | t | json }} },
+      { title: {{ 'search_index.catalogo.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/catalogo", keywords: {{ 'search_index.catalogo.keywords' | t | json }} },
+      { title: {{ 'search_index.sobre_nosotros.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/sobre-nosotros", keywords: {{ 'search_index.sobre_nosotros.keywords' | t | json }} },
+      { title: {{ 'search_index.faq.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/preguntas-frecuentes", keywords: {{ 'search_index.faq.keywords' | t | json }} },
+      { title: {{ 'search_index.size_guide.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/preguntas-frecuentes#talla", keywords: {{ 'search_index.size_guide.keywords' | t | json }} },
+      { title: {{ 'search_index.envios.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/envios", keywords: {{ 'search_index.envios.keywords' | t | json }} },
+      { title: {{ 'search_index.devoluciones.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/devoluciones", keywords: {{ 'search_index.devoluciones.keywords' | t | json }} },
+      { title: {{ 'search_index.privacidad.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/privacidad", keywords: {{ 'search_index.privacidad.keywords' | t | json }} },
+      { title: {{ 'search_index.terminos.title' | t | json }}, url: "{{ request.locale.root_url }}/pages/terminos", keywords: {{ 'search_index.terminos.keywords' | t | json }} }
     ]
   };
 </script>

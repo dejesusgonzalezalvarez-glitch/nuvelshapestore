@@ -47,8 +47,57 @@ traducido, nada más.
    mismo objeto, no lo escribas fijo en el `.js`.
 4. Los datos estructurados de una página concreta (breadcrumbs, producto) van en
    su propio archivo, nunca en el pie global.
+5. **Todo enlace interno lleva `{{ request.locale.root_url }}` delante**
+   (`href="{{ request.locale.root_url }}/pages/catalogo"`): sin eso, al navegar
+   en `/en` cada clic devuelve al español. En `cart.js` el prefijo llega como
+   `I18N.root` (definido en `global-footer.liquid` junto a `__NUVEL_I18N__`).
 
 ## Pendiente
 
-- Publicar inglés como segundo idioma en Shopify (Configuración → Idiomas) y
-  activar la redirección automática por navegador/país en Configuración → Mercados
+- Pushear el tema con estos arreglos (`shopify theme push`): enlaces internos
+  con prefijo de idioma, redirects de `product.liquid`/`collection.liquid`,
+  checkout e índice del buscador, y las 7 reseñas de la faja ya traducidas a
+  mano en `en.json` (532/532 claves — empujar sobreescribe las auto-traducciones
+  del panel con texto de mejor calidad).
+
+## Activar el inglés (prompt para Sidekick)
+
+> Ya ejecutado: el inglés está visible en `/en`. El prompt queda aquí por si
+> hay que re-verificar algo en el panel (notificaciones en inglés, avisos de
+> traducciones robóticas, etc.).
+
+Pega este prompt en el chat de Sidekick del admin de Shopify y él hace los clics:
+
+```text
+Contexto: Mi tienda Nuvel vende fajas y prendas moldeadoras. Mi mercado
+principal es España (idioma español, moneda EUR), pero últimamente recibo
+mucho tráfico internacional y de EE.UU. Las traducciones al inglés ya están
+hechas (Translate & Adapt dice "tu tienda está lista en inglés"), pero el
+idioma no es visible para los clientes porque no pertenece a ningún mercado.
+
+Haz lo siguiente, en este orden:
+
+1. En Configuración → Mercados, abre el mercado "Internacional" y añade el
+   idioma Inglés, de forma que quede visible para los clientes. Publica el
+   cambio.
+2. Activa la sugerencia o redirección automática de idioma según el navegador
+   del visitante: quien entre con el navegador en inglés debe ver la tienda en
+   inglés (/en/) y quien entre en español, en español. España sigue siendo el
+   mercado principal y el español el idioma por defecto.
+3. Revisa que las notificaciones transaccionales (confirmación de pedido,
+   confirmación de envío, etc.) estén traducidas al inglés. Si falta alguna,
+   tradúcela manteniendo el tono cercano y honesto de la marca.
+4. NO crees todavía un mercado específico para EE.UU. y NO cambies monedas ni
+   precios: todo sigue en EUR por ahora.
+5. NO modifiques productos, colecciones, páginas ni el código del tema.
+
+Al terminar, confírmame:
+a) Que la tienda ya responde en la URL /en/ y se ve en inglés.
+b) Que el aviso "Inglés: no es visible para los clientes porque no pertenece
+   a ningún mercado" ya no aparece.
+c) Si encontraste traducciones automáticas con tono robótico o raro en
+   productos o páginas, listámelas para revisarlas a mano.
+
+Si algún paso no lo puedes hacer tú, dime exactamente cuál y en qué pantalla
+lo encuentro.
+```

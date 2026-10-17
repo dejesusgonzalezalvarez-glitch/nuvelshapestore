@@ -21,7 +21,7 @@
 
 <main class="wrap">
   <nav class="breadcrumb">
-    <a href="/">{{ 'nav.home' | t }}</a> / <a href="/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ titulo_limpio }}</span>
+    <a href="{{ request.locale.root_url }}/">{{ 'nav.home' | t }}</a> / <a href="{{ request.locale.root_url }}/pages/catalogo">{{ 'nav.catalog' | t }}</a> / <span class="current">{{ titulo_limpio }}</span>
   </nav>
 
   <div class="pdp-row">
