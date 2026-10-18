@@ -1,10 +1,376 @@
 {
   "sections": {
-    "cuerpo": {
-      "type": "pag-portada"
+    "hero": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-0": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://assets/hero-principal.jpg",
+            "image_overlay_opacity": 40,
+            "heading": "Fajas moldeadoras que no se notan ni en el espejo.",
+            "heading_size": "h1",
+            "subheading": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
+            "button_label": "Descubre la Faja Moldeadora Invisible",
+            "link": "shopify://products/faja-moldeadora-invisible-nuvel",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-3"
+          }
+        }
+      },
+      "block_order": [
+        "slide-0"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true
+      }
+    },
+    "vida-real": {
+      "type": "multicolumn",
+      "blocks": {
+        "column-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://assets/producto-frente.jpg",
+            "title": "El producto",
+            "text": "<p>La prenda por sí sola.</p>"
+          }
+        },
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://assets/avatar-vestida.jpg",
+            "title": "Puesta, invisible",
+            "text": "<p>Cómo se ve puesta bajo la ropa de calle, sin que se note.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "column-1"
+      ],
+      "settings": {
+        "title": "El producto en la vida real",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 64,
+        "padding_bottom": 36
+      }
+    },
+    "producto-ancla": {
+      "type": "featured-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "Faja Moldeadora Invisible",
+            "text_style": "uppercase"
+          }
+        },
+        "titulo": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "precio": {
+          "type": "price"
+        },
+        "tallas": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "cantidad": {
+          "type": "quantity_selector"
+        },
+        "comprar": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "beneficios": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "eye",
+            "heading_1": "Sin costuras: invisible bajo cualquier prenda",
+            "icon_2": "silhouette",
+            "heading_2": "Compresión suave y cómoda todo el día",
+            "icon_3": "washing",
+            "heading_3": "Resiste lavados sin perder la forma"
+          }
+        },
+        "guia-tallas": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "ruler",
+            "heading_1": "Tabla de tallas incluida",
+            "icon_2": "none",
+            "icon_3": "none"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "titulo",
+        "precio",
+        "tallas",
+        "cantidad",
+        "comprar",
+        "beneficios",
+        "guia-tallas"
+      ],
+      "settings": {
+        "product": "faja-moldeadora-invisible-nuvel",
+        "color_scheme": "scheme-2",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "catalogo": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Nuestro catálogo",
+        "heading_size": "h1",
+        "show_description": false,
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "por-que": {
+      "type": "multicolumn",
+      "blocks": {
+        "column-0": {
+          "type": "column",
+          "settings": {
+            "title": "Sin costuras, invisible",
+            "text": "<p>No se marca bajo la ropa ni se adivina que la llevas.</p>"
+          }
+        },
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "title": "No se enrolla ni pica",
+            "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>"
+          }
+        },
+        "column-2": {
+          "type": "column",
+          "settings": {
+            "title": "Resiste lavados",
+            "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>"
+          }
+        },
+        "column-3": {
+          "type": "column",
+          "settings": {
+            "title": "Tabla de tallas clara",
+            "text": "<p>Guía sencilla para elegir tu talla sin miedo a equivocarte.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "column-1",
+        "column-2",
+        "column-3"
+      ],
+      "settings": {
+        "title": "Por qué Nuvel",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "testimonios": {
+      "type": "rich-text",
+      "blocks": {
+        "titulo": {
+          "type": "heading",
+          "settings": {
+            "heading": "Clientas reales, mensajes reales",
+            "heading_size": "h1"
+          }
+        },
+        "texto-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Cada semana publicamos capturas de los WhatsApp de nuestras clientas: dudas de talla, qué talla pidieron y la foto de la prenda puesta. Sin poses, tal cual llegan.</p>"
+          }
+        },
+        "texto-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "texto-1",
+        "texto-2"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "confianza": {
+      "type": "multicolumn",
+      "blocks": {
+        "column-0": {
+          "type": "column",
+          "settings": {
+            "title": "Envío gratis a todo el mundo",
+            "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>"
+          }
+        },
+        "column-1": {
+          "type": "column",
+          "settings": {
+            "title": "30 días de prueba",
+            "text": "<p>Si no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.</p>"
+          }
+        },
+        "column-2": {
+          "type": "column",
+          "settings": {
+            "title": "Pago 100% seguro",
+            "text": "<p>Tus datos protegidos en cada compra.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column-0",
+        "column-1",
+        "column-2"
+      ],
+      "settings": {
+        "title": "Compra con tranquilidad",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "cta-final": {
+      "type": "image-banner",
+      "blocks": {
+        "titulo": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sin aros. Sin costuras. Sin que se note nada.",
+            "heading_size": "h1"
+          }
+        },
+        "texto": {
+          "type": "text",
+          "settings": {
+            "text": "<p>30 días de prueba: si no te convence, te devolvemos el dinero.</p>",
+            "text_style": "body"
+          }
+        },
+        "botones": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Ver el catálogo",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "texto",
+        "botones"
+      ],
+      "settings": {
+        "image": "shopify://assets/avatar-athleisure.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     }
   },
   "order": [
-    "cuerpo"
+    "hero",
+    "vida-real",
+    "producto-ancla",
+    "catalogo",
+    "por-que",
+    "testimonios",
+    "confianza",
+    "cta-final"
   ]
 }
