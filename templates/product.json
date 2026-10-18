@@ -79,38 +79,48 @@
     "collapsible-content": {
       "type": "collapsible-content",
       "blocks": {
-        "collapsible-row-0": {
+        "envio": {
           "type": "collapsible_row",
           "settings": {
-            "icon": "none",
-            "row_content": "",
-            "page": ""
+            "icon": "truck",
+            "heading": "Envío y entrega",
+            "row_content": "<p>Envío gratis a todo el mundo. La entrega tarda de 7 a 15 días laborables y recibes el número de seguimiento por email en cuanto tu pedido sale del almacén.</p>"
           }
         },
-        "collapsible-row-1": {
+        "tallas": {
           "type": "collapsible_row",
           "settings": {
-            "icon": "none",
-            "row_content": "",
-            "page": ""
+            "icon": "ruler",
+            "heading": "¿Qué talla elijo?",
+            "row_content": "<p>Cada producto incluye su propia tabla de tallas. Mide tu cintura y compárala con la tabla antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
           }
         },
-        "collapsible-row-2": {
+        "cuidados": {
           "type": "collapsible_row",
           "settings": {
-            "icon": "none",
-            "row_content": "",
-            "page": ""
+            "icon": "washing",
+            "heading": "Cuidado y lavado",
+            "row_content": "<p>Lava a mano o en ciclo frío con jabón neutro, sin secadora ni plancha. Así mantiene la compresión y la forma lavado tras lavado.</p>"
+          }
+        },
+        "devoluciones": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "return",
+            "heading": "Cambios y devoluciones",
+            "row_content": "<p>Tienes 30 días desde la entrega para probar la prenda. Si no te convence, escríbenos y gestionamos la devolución sin complicaciones.</p>"
           }
         }
       },
       "block_order": [
-        "collapsible-row-0",
-        "collapsible-row-1",
-        "collapsible-row-2"
+        "envio",
+        "tallas",
+        "cuidados",
+        "devoluciones"
       ],
       "settings": {
         "caption": "",
+        "heading": "Antes de comprar",
         "heading_size": "h1",
         "heading_alignment": "center",
         "layout": "section",
@@ -150,8 +160,8 @@
   },
   "order": [
     "main",
-    "disclosures",
     "collapsible-content",
-    "related-products"
+    "related-products",
+    "disclosures"
   ]
 }

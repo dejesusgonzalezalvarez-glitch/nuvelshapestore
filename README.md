@@ -87,9 +87,11 @@ y tomarán el control automáticamente.
 
 2. **Traducir los textos de sección al inglés** (Translate & Adapt):
    anuncios (4), "Nuestro catálogo", "Por qué Nuvel" (4 tarjetas),
-   "Compra con tranquilidad" (3), testimonios (3) y los ajustes del
-   producto ancla ("Faja Moldeadora Invisible", beneficios). Los textos
-   del hero/comparativa/CTA/navegación ya son bilingües vía `locales`.
+   "Compra con tranquilidad" (3), testimonios (3), el acordeón de la
+   página de producto ("Antes de comprar": envío, tallas, cuidados,
+   devoluciones) y los ajustes del producto ancla ("Faja Moldeadora
+   Invisible", beneficios). Los textos del hero/comparativa/CTA/navegación
+   ya son bilingües vía `locales`.
 3. **Previsualizar** antes de dar por bueno el diseño: si algo no cuadra,
    el sync tarda ~1 minuto en aplicar cada push.
 
