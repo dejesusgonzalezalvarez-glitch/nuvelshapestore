@@ -72,17 +72,56 @@ y tomarán el control automáticamente.
   el sync de GitHub lo rechaza y la plantilla no se aplica.
 - El `config/settings_data.json` debe llevar SIEMPRE `current` **y**
   `presets` (Shopify lo exige); sin `presets` el archivo no sincroniza.
+- **Traducciones, dos capas**: `locales/es.json` / `en.default.json`
+  llevan los textos de *storefront* (`| t` en liquid); los labels y
+  defaults de *schemas de sección* viven en `locales/es.schema.json` /
+  `en.default.schema.json` (refs `t:` dentro de `{% schema %}`). No los
+  mezcles: si un label del editor sale raro, revisa el `.schema.json`.
+
+## Incidente de sincronización (18-oct-2026, RESUELTO)
+
+Tras la migración, el tema publicado divergió del repo: la integración
+de GitHub eliminó del tema 11 archivos que chocaban con restos del tema
+custom viejo (`product.json`↔`product.liquid`, `es.json`↔`es.default.json`,
+`collection.json`, `cart.json`, `404.json`, `search.json`, etc.).
+Resultado: 110+ "Translation missing" en la portada, la página de
+producto redirigía a `/pages/producto` (plantilla vieja) y luego 404,
+`/cart` y `/collections/all` caían con 404.
+
+**Arreglo aplicado** (ya en producción):
+
+1. `shopify theme push` del estado completo del repo al tema live
+   (sube TODO y borra los archivos huérfanos del tema viejo).
+2. Re-push puntual de los 11 archivos en conflicto una vez que los
+   gemelos viejos desaparecieron del tema.
+3. Verificado: 0 "Translation missing" en ES y EN, producto nativo con
+   acordeón "Antes de comprar", `/cart` y `/collections/all` OK.
+
+**Si el sync de GitHub vuelve a comerse archivos** (páginas con
+"Translation missing", 404 raros, plantillas que no aplican):
+
+```powershell
+shopify theme push --store 31cyvt-0z.myshopify.com --theme 162315960561 --allow-live --no-input
+```
+
+Eso fuerza el estado exacto del repo (subida + borrado de sobrantes).
+Verifica después con `shopify theme pull` a un directorio temporal y
+comparando. La causa raíz fue el conflicto con archivos del tema
+custom anterior; ya no hay gemelos, así que no debería repetirse.
 
 ## Pendiente en el admin de Shopify
 
-1. **Redirects** (Marketing → URL redirects) para no perder SEO:
+1. **Redirects** (Marketing → URL redirects) para no perder SEO — las
+   landing pages viejas siguen existiendo como páginas del admin y ya no
+   tienen su plantilla custom (el tema hace fallback a la plantilla de
+   página por defecto). Redirige o elimina:
 
    | Antigua | Nueva |
    |---|---|
    | `/pages/producto` | `/products/faja-moldeadora-invisible-nuvel` |
    | `/pages/corse` | `/products/retro-shapewear-top-with-zipper` |
-   | `/pages/short` | `/products/seamless-shapewear-panties` |
    | `/pages/vestido` | `/products/womens-shapewear-dress-jumpsuit` |
+   | `/pages/short` | `/products/seamless-shapewear-panties` |
    | `/pages/catalogo` | `/collections/all` |
 
 2. **Traducir los textos de sección al inglés** (Translate & Adapt):
