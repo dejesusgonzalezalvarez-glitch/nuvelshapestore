@@ -168,6 +168,7 @@
       ],
       "settings": {
         "title": "Por qué Nuvel",
+        "button_label": "",
         "heading_size": "h1",
         "columns_desktop": 4,
         "column_alignment": "center",
@@ -248,6 +249,7 @@
       ],
       "settings": {
         "title": "Compra con tranquilidad",
+        "button_label": "",
         "heading_size": "h1",
         "columns_desktop": 3,
         "column_alignment": "center",
