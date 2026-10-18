@@ -9,6 +9,7 @@
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
+    {%- if section.settings.menu != blank -%}
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
@@ -101,5 +102,8 @@
         {%- endif -%}
       </li>
     {%- endfor -%}
+    {%- else -%}
+      {%- render 'nuvel-nav-links', mode: 'dropdown' -%}
+    {%- endif -%}
   </ul>
 </nav>

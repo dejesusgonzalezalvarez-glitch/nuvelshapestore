@@ -1,76 +1,21 @@
 {
   "sections": {
     "hero": {
-      "type": "slideshow",
-      "blocks": {
-        "slide-0": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://assets/hero-principal.jpg",
-            "image_overlay_opacity": 40,
-            "heading": "Fajas moldeadoras que no se notan ni en el espejo.",
-            "heading_size": "h1",
-            "subheading": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
-            "button_label": "Descubre la Faja Moldeadora Invisible",
-            "link": "shopify://products/faja-moldeadora-invisible-nuvel",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-3"
-          }
-        }
-      },
-      "block_order": [
-        "slide-0"
-      ],
+      "type": "custom-liquid",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "small",
-        "slider_visual": "dots",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true
+        "custom_liquid": "<style>\n  .nuvel-hero { position: relative; height: min(640px, 88vh); overflow: hidden; background: #1A1A1A; }\n  .nuvel-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }\n  .nuvel-hero__overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,20,15,.62) 0%, rgba(26,20,15,.22) 48%, rgba(26,20,15,0) 68%); }\n  .nuvel-hero__content { position: relative; max-width: 1280px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px; padding: 0 64px; }\n  .nuvel-hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #D9CFC2; }\n  .nuvel-hero__title { margin: 0; color: #FFFFFF; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; max-width: 640px; }\n  .nuvel-hero__subtitle { margin: 0; color: #F1E9DF; font-size: 17px; line-height: 1.55; max-width: 440px; }\n  .nuvel-hero__cta { display: inline-flex; align-items: center; background: #FFFFFF; color: #1A1A1A; padding: 15px 32px; font-size: 15px; font-weight: 500; border-radius: 2px; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }\n  .nuvel-hero__cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(26,20,15,.5); }\n  @media (max-width: 768px) { .nuvel-hero { height: min(560px, 82vh); } .nuvel-hero__content { padding: 0 20px; } .nuvel-hero__subtitle { font-size: 15.5px; } }\n</style>\n<div class=\"nuvel-hero\">\n  <img class=\"nuvel-hero__img\" src=\"{{ 'hero-principal.jpg' | asset_url }}\" srcset=\"{{ 'med-hero-principal.jpg' | asset_url }} 800w, {{ 'lg-hero-principal.jpg' | asset_url }} 1100w, {{ 'hero-principal.jpg' | asset_url }} 1600w\" sizes=\"100vw\" alt=\"{{ 'nuvel.hero.image_alt' | t }}\" fetchpriority=\"high\">\n  <div class=\"nuvel-hero__overlay\"></div>\n  <div class=\"nuvel-hero__content\">\n    <span class=\"nuvel-hero__eyebrow\">{{ 'nuvel.hero.eyebrow' | t }}</span>\n    <h1 class=\"nuvel-hero__title\">{{ 'nuvel.hero.title_line1' | t }}<br>{{ 'nuvel.hero.title_line2' | t }}</h1>\n    <p class=\"nuvel-hero__subtitle\">{{ 'nuvel.hero.subtitle' | t }}</p>\n    <a class=\"nuvel-hero__cta\" href=\"{{ request.locale.root_url }}/products/faja-moldeadora-invisible-nuvel\">{{ 'nuvel.hero.cta' | t }}</a>\n  </div>\n</div>",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "vida-real": {
-      "type": "multicolumn",
-      "blocks": {
-        "column-0": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://assets/producto-frente.jpg",
-            "title": "El producto",
-            "text": "<p>La prenda por sí sola.</p>"
-          }
-        },
-        "column-1": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://assets/avatar-vestida.jpg",
-            "title": "Puesta, invisible",
-            "text": "<p>Cómo se ve puesta bajo la ropa de calle, sin que se note.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "column-0",
-        "column-1"
-      ],
+      "type": "custom-liquid",
       "settings": {
-        "title": "El producto en la vida real",
-        "heading_size": "h1",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "center",
-        "background_style": "primary",
+        "custom_liquid": "<style>\n  .nuvel-compare { text-align: center; }\n  .nuvel-compare__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #7a6c5a; }\n  .nuvel-compare__title { margin: 10px 0 0; font-size: 34px; line-height: 1.2; }\n  .nuvel-compare__sub { max-width: 480px; margin: 14px auto 0; color: #4a3f34; font-size: 15px; line-height: 1.6; }\n  .nuvel-compare__row { display: flex; justify-content: center; align-items: flex-end; max-width: 960px; margin: 48px auto 0; }\n  .nuvel-compare__card { position: relative; overflow: hidden; border-radius: 2px; box-shadow: 0 18px 40px -18px rgba(26,20,15,.22); }\n  .nuvel-compare__card img { display: block; width: 100%; height: 100%; object-fit: cover; }\n  .nuvel-compare__card--product { width: 420px; height: 480px; background: #FFFFFF; z-index: 1; }\n  .nuvel-compare__card--product img { object-fit: contain; padding: 24px; }\n  .nuvel-compare__card--worn { width: 480px; height: 520px; margin-left: -8px; }\n  .nuvel-compare__tag { position: absolute; top: 16px; left: 16px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; }\n  .nuvel-compare__tag--product { color: #FFFFFF; background: rgba(26,20,15,.55); }\n  .nuvel-compare__tag--worn { color: #2A2019; background: rgba(245,241,236,.85); }\n  @media (max-width: 900px) {\n    .nuvel-compare__row { flex-direction: column; align-items: center; gap: 18px; margin-top: 32px; }\n    .nuvel-compare__card--product, .nuvel-compare__card--worn { width: 92vw; max-width: 520px; height: auto; aspect-ratio: 4/5; margin-left: 0; }\n  }\n</style>\n<div class=\"nuvel-compare\">\n  <span class=\"nuvel-compare__eyebrow\">{{ 'nuvel.compare.eyebrow' | t }}</span>\n  <h2 class=\"nuvel-compare__title\">{{ 'nuvel.compare.title' | t }}</h2>\n  <p class=\"nuvel-compare__sub\">{{ 'nuvel.compare.subtitle' | t }}</p>\n  <div class=\"nuvel-compare__row\">\n    <div class=\"nuvel-compare__card nuvel-compare__card--product\">\n      <img src=\"{{ 'producto-frente.jpg' | asset_url }}\" srcset=\"{{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w, {{ 'producto-frente.jpg' | asset_url }} 1400w\" sizes=\"(max-width: 900px) 92vw, 420px\" alt=\"{{ 'nuvel.compare.image_alt' | t }}\" loading=\"lazy\" decoding=\"async\">\n      <span class=\"nuvel-compare__tag nuvel-compare__tag--product\">{{ 'nuvel.compare.tag_product' | t }}</span>\n    </div>\n    <div class=\"nuvel-compare__card nuvel-compare__card--worn\">\n      <img src=\"{{ 'avatar-vestida.jpg' | asset_url }}\" srcset=\"{{ 'med-avatar-vestida.jpg' | asset_url }} 800w, {{ 'lg-avatar-vestida.jpg' | asset_url }} 1000w, {{ 'avatar-vestida.jpg' | asset_url }} 1400w\" sizes=\"(max-width: 900px) 92vw, 480px\" alt=\"{{ 'nuvel.compare.worn_image_alt' | t }}\" loading=\"lazy\" decoding=\"async\">\n      <span class=\"nuvel-compare__tag nuvel-compare__tag--worn\">{{ 'nuvel.compare.tag_worn' | t }}</span>\n    </div>\n  </div>\n</div>",
         "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
         "padding_top": 64,
-        "padding_bottom": 36
+        "padding_bottom": 48
       }
     },
     "producto-ancla": {
@@ -226,7 +171,7 @@
         "heading_size": "h1",
         "columns_desktop": 4,
         "column_alignment": "center",
-        "background_style": "primary",
+        "background_style": "secondary",
         "color_scheme": "scheme-1",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
@@ -306,7 +251,7 @@
         "heading_size": "h1",
         "columns_desktop": 3,
         "column_alignment": "center",
-        "background_style": "primary",
+        "background_style": "secondary",
         "color_scheme": "scheme-1",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
@@ -315,51 +260,12 @@
       }
     },
     "cta-final": {
-      "type": "image-banner",
-      "blocks": {
-        "titulo": {
-          "type": "heading",
-          "settings": {
-            "heading": "Sin aros. Sin costuras. Sin que se note nada.",
-            "heading_size": "h1"
-          }
-        },
-        "texto": {
-          "type": "text",
-          "settings": {
-            "text": "<p>30 días de prueba: si no te convence, te devolvemos el dinero.</p>",
-            "text_style": "body"
-          }
-        },
-        "botones": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Ver el catálogo",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "titulo",
-        "texto",
-        "botones"
-      ],
+      "type": "custom-liquid",
       "settings": {
-        "image": "shopify://assets/avatar-athleisure.jpg",
-        "image_overlay_opacity": 40,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "custom_liquid": "<style>\n  .nuvel-cta { position: relative; min-height: 460px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #1A1A1A; }\n  .nuvel-cta__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }\n  .nuvel-cta__overlay { position: absolute; inset: 0; background: rgba(26,20,15,.5); }\n  .nuvel-cta__content { position: relative; text-align: center; padding: 64px 20px; max-width: 760px; }\n  .nuvel-cta__title { margin: 0; color: #FFFFFF; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; }\n  .nuvel-cta__text { margin: 14px 0 28px; color: #F1E9DF; font-size: 16px; line-height: 1.6; }\n  .nuvel-cta__btn { display: inline-flex; align-items: center; background: #FFFFFF; color: #1A1A1A; padding: 15px 32px; font-size: 15px; font-weight: 500; border-radius: 2px; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }\n  .nuvel-cta__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(0,0,0,.5); }\n  @media (max-width: 768px) { .nuvel-cta { min-height: 380px; } }\n</style>\n<div class=\"nuvel-cta\">\n  <img class=\"nuvel-cta__img\" src=\"{{ 'avatar-athleisure.jpg' | asset_url }}\" srcset=\"{{ 'med-avatar-athleisure.jpg' | asset_url }} 800w, {{ 'lg-avatar-athleisure.jpg' | asset_url }} 1100w, {{ 'avatar-athleisure.jpg' | asset_url }} 1600w\" sizes=\"100vw\" alt=\"{{ 'nuvel.cta.image_alt' | t }}\" loading=\"lazy\" decoding=\"async\">\n  <div class=\"nuvel-cta__overlay\"></div>\n  <div class=\"nuvel-cta__content\">\n    <h2 class=\"nuvel-cta__title\">{{ 'nuvel.cta.title' | t }}</h2>\n    <p class=\"nuvel-cta__text\">{{ 'nuvel.cta.text' | t }}</p>\n    <a class=\"nuvel-cta__btn\" href=\"{{ request.locale.root_url }}/collections/all\">{{ 'nuvel.cta.button' | t }}</a>\n  </div>\n</div>",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },

@@ -31,6 +31,7 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- if section.settings.menu != blank -%}
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
@@ -143,6 +144,9 @@
                   {%- endif -%}
                 </li>
               {%- endfor -%}
+              {%- else -%}
+                {%- render 'nuvel-nav-links', mode: 'drawer' -%}
+              {%- endif -%}
             </ul>
           </nav>
           <div class="menu-drawer__utility-links">

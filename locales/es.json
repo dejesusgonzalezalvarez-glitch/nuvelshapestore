@@ -221,6 +221,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "No se encontraron resultados para “{{ terms }}” Revisa la ortografía o usa una palabra o frase diferente.",
       "results_with_count": {
@@ -269,10 +273,6 @@
         "error_heading": "Por favor, ajusta lo siguiente:",
         "title": "Formulario de contacto"
       }
-    },
-    "404": {
-      "title": "Página no encontrada",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -538,6 +538,44 @@
       "send_on_label": "Enviar el (opcional)",
       "expanded": "Formulario del destinatario de la tarjeta de regalo expandido",
       "collapsed": "Formulario del destinatario de tarjeta de regalo contraído"
+    }
+  },
+  "nuvel": {
+    "nav": {
+      "home": "Inicio",
+      "featured_product": "Producto Destacado",
+      "catalog": "Catálogo",
+      "about": "Sobre nosotros",
+      "faq": "Preguntas frecuentes"
+    },
+    "hero": {
+      "image_alt": "Mujer con faja moldeadora Nuvel",
+      "eyebrow": "Faja Moldeadora Invisible",
+      "title_line1": "Fajas moldeadoras que no se notan",
+      "title_line2": "ni en el espejo.",
+      "subtitle": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
+      "cta": "Descubre la Faja Moldeadora Invisible"
+    },
+    "compare": {
+      "eyebrow": "Así se ve puesta",
+      "title": "El producto en la vida real",
+      "subtitle": "La prenda por sí sola, y cómo se ve puesta bajo la ropa de calle, sin que se note.",
+      "tag_product": "El producto",
+      "tag_worn": "Puesta, invisible",
+      "image_alt": "Faja moldeadora Nuvel",
+      "worn_image_alt": "Faja Nuvel puesta, invisible bajo la ropa"
+    },
+    "cta": {
+      "image_alt": "Mujer con ropa deportiva Nuvel",
+      "title": "Sin aros. Sin costuras. Sin que se note nada.",
+      "text": "30 días de prueba: si no te convence, te devolvemos el dinero.",
+      "button": "Ver el catálogo"
+    },
+    "footer": {
+      "shipping": "Envíos",
+      "returns": "Devoluciones",
+      "privacy": "Privacidad",
+      "terms": "Términos"
     }
   }
 }

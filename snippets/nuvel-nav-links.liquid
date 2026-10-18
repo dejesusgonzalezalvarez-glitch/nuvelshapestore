@@ -1,0 +1,77 @@
+{%- liquid
+  assign root = request.locale.root_url
+-%}
+{%- if mode == 'drawer' -%}
+  <li>
+    <a href="{{ root }}/" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if request.path == '/' %} menu-drawer__menu-item--active{% endif %}">
+      {{ 'nuvel.nav.home' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/products/faja-moldeadora-invisible-nuvel" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+      {{ 'nuvel.nav.featured_product' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/collections/all" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if request.path == '/collections/all' %} menu-drawer__menu-item--active{% endif %}">
+      {{ 'nuvel.nav.catalog' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/sobre-nosotros" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if request.path == '/pages/sobre-nosotros' %} menu-drawer__menu-item--active{% endif %}">
+      {{ 'nuvel.nav.about' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/preguntas-frecuentes" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if request.path == '/pages/preguntas-frecuentes' %} menu-drawer__menu-item--active{% endif %}">
+      {{ 'nuvel.nav.faq' | t }}
+    </a>
+  </li>
+{%- elsif mode == 'dropdown' -%}
+  <li>
+    <a href="{{ root }}/" class="header__menu-item list-menu__item link link--text focus-inset">
+      <span{% if request.path == '/' %} class="header__active-menu-item"{% endif %}>{{ 'nuvel.nav.home' | t }}</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/products/faja-moldeadora-invisible-nuvel" class="header__menu-item list-menu__item link link--text focus-inset">
+      <span>{{ 'nuvel.nav.featured_product' | t }}</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/collections/all" class="header__menu-item list-menu__item link link--text focus-inset">
+      <span{% if request.path == '/collections/all' %} class="header__active-menu-item"{% endif %}>{{ 'nuvel.nav.catalog' | t }}</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/sobre-nosotros" class="header__menu-item list-menu__item link link--text focus-inset">
+      <span{% if request.path == '/pages/sobre-nosotros' %} class="header__active-menu-item"{% endif %}>{{ 'nuvel.nav.about' | t }}</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/preguntas-frecuentes" class="header__menu-item list-menu__item link link--text focus-inset">
+      <span{% if request.path == '/pages/preguntas-frecuentes' %} class="header__active-menu-item"{% endif %}>{{ 'nuvel.nav.faq' | t }}</span>
+    </a>
+  </li>
+{%- else -%}
+  <li>
+    <a href="{{ root }}/pages/envios" class="link link--text list-menu__item list-menu__item--link{% if request.path == '/pages/envios' %} list-menu__item--active{% endif %}">
+      {{ 'nuvel.footer.shipping' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/devoluciones" class="link link--text list-menu__item list-menu__item--link{% if request.path == '/pages/devoluciones' %} list-menu__item--active{% endif %}">
+      {{ 'nuvel.footer.returns' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/privacidad" class="link link--text list-menu__item list-menu__item--link{% if request.path == '/pages/privacidad' %} list-menu__item--active{% endif %}">
+      {{ 'nuvel.footer.privacy' | t }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ root }}/pages/terminos" class="link link--text list-menu__item list-menu__item--link{% if request.path == '/pages/terminos' %} list-menu__item--active{% endif %}">
+      {{ 'nuvel.footer.terms' | t }}
+    </a>
+  </li>
+{%- endif -%}

@@ -15,7 +15,7 @@
           "type": "link_list",
           "settings": {
             "heading": "Información",
-            "menu": "footer"
+            "menu": "nuvel-footer"
           }
         },
         "contacto": {
