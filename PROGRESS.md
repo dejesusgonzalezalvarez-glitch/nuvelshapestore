@@ -7,11 +7,11 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 
 ## FASE ACTUAL
 
-**FASE 2: SISTEMA VISUAL** (en curso)
+**FASE 3: PÁGINA DE PRODUCTO** (en curso)
 
 - Fase 1 (Auditoría): COMPLETADA — hallazgos abajo, commit `Fase 1: auditoría`.
-- Fase 2 (Sistema visual): EN CURSO.
-- Fases 3–6: pendientes.
+- Fase 2 (Sistema visual): COMPLETADA — animaciones de scroll desactivadas; badge de oferta con contraste AA; sistema Lora/Poppins + paleta 5 + radio 2px verificado y documentado, commit `Fase 2: sistema visual`.
+- Fases 3–6: 3 en curso; 4–6 pendientes.
 
 ---
 
@@ -129,6 +129,9 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 
 ### Fase 2 (sistema visual)
 - `config/settings_data.json`: `animations_reveal_on_scroll: false` (current + presets).
+
+### Fase 2 (sistema visual)
+- `config/settings_data.json`: `animations_reveal_on_scroll: false` (current + presets); scheme-4 (badge oferta) `#8A6F4A` → `#6E5838` para contraste AA con texto blanco (current + presets).
 
 ## IMÁGENES
 

@@ -37,7 +37,7 @@
       },
       "scheme-4": {
         "settings": {
-          "background": "#8A6F4A",
+          "background": "#6E5838",
           "background_gradient": "",
           "text": "#FFFFFF",
           "button": "#FFFFFF",
@@ -66,7 +66,7 @@
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
-    "animations_reveal_on_scroll": true,
+    "animations_reveal_on_scroll": false,
     "animations_hover_elements": "none",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
@@ -257,7 +257,7 @@
       "spacing_sections": 0,
       "spacing_grid_horizontal": 8,
       "spacing_grid_vertical": 8,
-      "animations_reveal_on_scroll": true,
+      "animations_reveal_on_scroll": false,
       "animations_hover_elements": "none",
       "buttons_border_thickness": 1,
       "buttons_border_opacity": 100,
