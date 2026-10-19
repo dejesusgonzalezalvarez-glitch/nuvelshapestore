@@ -539,5 +539,43 @@
       "expanded": "Modulo destinatario del buono regalo espanso",
       "collapsed": "Modulo destinatario del buono regalo compresso"
     }
+  },
+  "nuvel": {
+    "nav": {
+      "home": "Home",
+      "featured_product": "Featured Product",
+      "catalog": "Catalog",
+      "about": "About us",
+      "faq": "FAQ"
+    },
+    "hero": {
+      "image_alt": "Woman wearing a Nuvel shaping girdle",
+      "eyebrow": "Invisible Shaping Girdle",
+      "title_line1": "Shapewear you can't see —",
+      "title_line2": "not even in the mirror.",
+      "subtitle": "Because the perfect shaper is the one nobody knows you're wearing: it slips under any dress, never rolls up, and its edge never shows.",
+      "cta": "Discover the Invisible Shaping Girdle"
+    },
+    "compare": {
+      "eyebrow": "How it looks on",
+      "title": "The product in real life",
+      "subtitle": "The garment on its own, and how it looks worn under everyday clothes, without showing.",
+      "tag_product": "The product",
+      "tag_worn": "Worn, invisible",
+      "image_alt": "Nuvel shaping girdle",
+      "worn_image_alt": "Nuvel shaper worn, invisible under clothing"
+    },
+    "cta": {
+      "image_alt": "Woman wearing Nuvel athleisure",
+      "title": "No underwire. No seams. Nothing shows.",
+      "text": "30-day trial: not convinced? We refund you.",
+      "button": "View the catalog"
+    },
+    "footer": {
+      "shipping": "Shipping",
+      "returns": "Returns",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
   }
 }
