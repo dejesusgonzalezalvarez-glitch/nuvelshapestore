@@ -165,11 +165,9 @@
                 class: 'nuvel-demo__media'
             }}
           {%- else -%}
-            {%- assign worn_poster = 'avatar-vestida.jpg' | asset_url -%}
             {{
               section.settings.video
               | video_tag:
-                image: worn_poster,
                 controls: true,
                 preload: 'none',
                 class: 'nuvel-demo__media'

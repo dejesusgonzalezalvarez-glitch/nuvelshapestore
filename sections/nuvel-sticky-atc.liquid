@@ -41,6 +41,12 @@
       min-height: 4.4rem;
     }
 
+    @media screen and (max-width: 749px) {
+      body:has(.nuvel-sticky-atc) {
+        padding-bottom: 7.6rem;
+      }
+    }
+
     @media screen and (min-width: 750px) {
       .nuvel-sticky-atc {
         display: none !important;
@@ -70,9 +76,13 @@
       bar.dataset.init = '1';
 
       var submitButton = bar.querySelector('[data-nuvel-sticky-submit]');
+      if (!submitButton) return;
+
+      var mainButton = form.querySelector('[type="submit"]') || form;
+      var observer = null;
 
       if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(
+        observer = new IntersectionObserver(
           function (entries) {
             entries.forEach(function (entry) {
               bar.classList.toggle('is-visible', !entry.isIntersecting);
@@ -80,23 +90,32 @@
           },
           { threshold: 0 }
         );
-        observer.observe(form);
+        observer.observe(mainButton);
       } else {
         bar.classList.add('is-visible');
       }
 
-      submitButton.addEventListener('click', function () {
-        var mainButton = form.querySelector('[type="submit"]');
-        if (mainButton && mainButton.disabled) {
-          mainButton.scrollIntoView({ block: 'center' });
+      function onClick() {
+        if (mainButton.disabled) {
+          mainButton.scrollIntoView({ block: 'center', behavior: 'smooth' });
           return;
         }
         if (typeof form.requestSubmit === 'function') {
           form.requestSubmit();
-        } else if (mainButton) {
+        } else {
           mainButton.click();
         }
-      });
+      }
+      submitButton.addEventListener('click', onClick);
+
+      function onSectionUnload(event) {
+        if (event.target && event.target.contains(bar)) {
+          if (observer) observer.disconnect();
+          submitButton.removeEventListener('click', onClick);
+          document.removeEventListener('shopify:section:unload', onSectionUnload);
+        }
+      }
+      document.addEventListener('shopify:section:unload', onSectionUnload);
     })();
   </script>
 {%- endif -%}
