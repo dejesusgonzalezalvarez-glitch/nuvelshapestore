@@ -1,0 +1,140 @@
+{%- comment -%}
+  Barra de compra fija para móvil (plantilla de producto).
+  No duplica la lógica de Rise: el botón delega en el formulario nativo
+  (requestSubmit), por lo que variante, cantidad, estados de carga y
+  apertura del drawer los gestiona product-form.js de Rise.
+{%- endcomment -%}
+
+{%- if section.settings.enabled and product != blank -%}
+  {%- style -%}
+    .nuvel-sticky-atc {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 90;
+      display: none;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1rem 1.6rem 1.2rem;
+      border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
+      box-shadow: 0 -0.4rem 1.2rem rgba(var(--color-shadow), 0.12);
+    }
+
+    .nuvel-sticky-atc.is-visible {
+      display: flex;
+    }
+
+    .nuvel-sticky-atc__title {
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .nuvel-sticky-atc__button {
+      margin-left: auto;
+      flex-shrink: 0;
+      min-height: 4.4rem;
+    }
+
+    @media screen and (min-width: 750px) {
+      .nuvel-sticky-atc {
+        display: none !important;
+      }
+    }
+  {%- endstyle -%}
+
+  <div
+    class="nuvel-sticky-atc color-{{ section.settings.color_scheme }} gradient"
+    data-nuvel-sticky-atc
+  >
+    <p class="nuvel-sticky-atc__title">{{ product.title | escape }}</p>
+    <button
+      type="button"
+      class="button button--primary nuvel-sticky-atc__button"
+      data-nuvel-sticky-submit
+    >
+      {{ section.settings.button_label }}
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      var bar = document.querySelector('[data-nuvel-sticky-atc]');
+      var form = document.querySelector('form[data-type="add-to-cart-form"]');
+      if (!bar || !form || bar.dataset.init) return;
+      bar.dataset.init = '1';
+
+      var submitButton = bar.querySelector('[data-nuvel-sticky-submit]');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              bar.classList.toggle('is-visible', !entry.isIntersecting);
+            });
+          },
+          { threshold: 0 }
+        );
+        observer.observe(form);
+      } else {
+        bar.classList.add('is-visible');
+      }
+
+      submitButton.addEventListener('click', function () {
+        var mainButton = form.querySelector('[type="submit"]');
+        if (mainButton && mainButton.disabled) {
+          mainButton.scrollIntoView({ block: 'center' });
+          return;
+        }
+        if (typeof form.requestSubmit === 'function') {
+          form.requestSubmit();
+        } else if (mainButton) {
+          mainButton.click();
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Compra fija móvil (Nuvel)",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Barra fija inferior en móvil con acceso directo a la compra. El botón usa el formulario nativo del producto (sin duplicar el carrito)."
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "default": true,
+      "label": "Mostrar la barra de compra fija"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Comprar ahora",
+      "label": "Texto del botón"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Compra fija móvil (Nuvel)"
+    }
+  ]
+}
+{% endschema %}

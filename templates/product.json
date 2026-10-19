@@ -19,10 +19,6 @@
           "type": "price",
           "settings": {}
         },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
         "variant-picker": {
           "type": "variant_picker",
           "settings": {
@@ -30,35 +26,70 @@
             "swatch_shape": "circle"
           }
         },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
         "quantity-selector": {
           "type": "quantity_selector",
           "settings": {}
         },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "product-inventory": {
+        "inventory": {
           "type": "inventory",
           "settings": {
             "text_style": "body",
             "inventory_threshold": 10,
-            "show_inventory_quantity": true
+            "show_inventory_quantity": false
           }
+        },
+        "beneficios": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "eye",
+            "heading_1": "Sin costuras — invisible bajo cualquier prenda",
+            "icon_2": "silhouette",
+            "heading_2": "Compresión suave y cómoda todo el día",
+            "icon_3": "shirt",
+            "heading_3": "Tejido flexible que se adapta a tu figura"
+          }
+        },
+        "tallas": {
+          "type": "collapsible_tab",
+          "settings": {
+            "icon": "ruler",
+            "heading": "Guía de tallas",
+            "content": "<p>Disponible de la S a la 3XL. Mide tu cintura y compárala con la tabla de tallas antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
+          }
+        },
+        "envio-devoluciones": {
+          "type": "collapsible_tab",
+          "settings": {
+            "icon": "truck",
+            "heading": "Envío y devoluciones",
+            "content": "<p>El coste y el plazo de envío se calculan y se muestran en el checkout antes de pagar. Consulta las condiciones completas en nuestras páginas de <a href=\"/pages/envios\">envíos</a> y <a href=\"/pages/devoluciones\">devoluciones</a>.</p>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
         }
       },
       "block_order": [
         "vendor",
         "title",
         "price",
-        "description",
         "variant-picker",
-        "quantity-selector",
         "buy_buttons",
-        "product-inventory"
+        "quantity-selector",
+        "inventory",
+        "beneficios",
+        "tallas",
+        "envio-devoluciones",
+        "description"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -72,35 +103,65 @@
         "mobile_thumbnails": "show",
         "hide_variants": true,
         "enable_video_looping": false,
+        "padding_top": 20,
+        "padding_bottom": 36
+      }
+    },
+    "sticky-atc": {
+      "type": "nuvel-sticky-atc",
+      "settings": {
+        "enabled": true,
+        "button_label": "Comprar ahora",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "demo": {
+      "type": "nuvel-demo",
+      "settings": {
+        "heading": "Así se ve puesta",
+        "subtitle": "La prenda por sí sola, y cómo se queda bajo la ropa de calle.",
+        "image_product_alt": "Faja moldeadora invisible de Nuvel, vista frontal de la prenda",
+        "tag_product": "El producto",
+        "image_worn_alt": "Faja moldeadora invisible de Nuvel puesta bajo ropa de calle, sin marcarse",
+        "tag_worn": "Puesta, invisible",
+        "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "collapsible-content": {
+    "faq": {
       "type": "collapsible-content",
       "blocks": {
+        "talla": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "ruler",
+            "heading": "¿Qué talla elijo?",
+            "row_content": "<p>Disponible de la S a la 3XL. Mide tu cintura y compárala con la tabla de tallas antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
+          }
+        },
+        "uso": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "eye",
+            "heading": "¿Se nota bajo la ropa?",
+            "row_content": "<p>Está diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal para ponértela con comodidad y un tejido flexible que se adapta a tu figura.</p>"
+          }
+        },
+        "cuidado": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "washing",
+            "heading": "Cuidado y lavado",
+            "row_content": "<p>Lava a mano o en ciclo frío con jabón neutro, sin secadora ni plancha.</p>"
+          }
+        },
         "envio": {
           "type": "collapsible_row",
           "settings": {
             "icon": "truck",
             "heading": "Envío y entrega",
-            "row_content": "<p>Envío gratis a todo el mundo. La entrega tarda de 7 a 15 días laborables y recibes el número de seguimiento por email en cuanto tu pedido sale del almacén.</p>"
-          }
-        },
-        "tallas": {
-          "type": "collapsible_row",
-          "settings": {
-            "icon": "ruler",
-            "heading": "¿Qué talla elijo?",
-            "row_content": "<p>Cada producto incluye su propia tabla de tallas. Mide tu cintura y compárala con la tabla antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
-          }
-        },
-        "cuidados": {
-          "type": "collapsible_row",
-          "settings": {
-            "icon": "washing",
-            "heading": "Cuidado y lavado",
-            "row_content": "<p>Lava a mano o en ciclo frío con jabón neutro, sin secadora ni plancha. Así mantiene la compresión y la forma lavado tras lavado.</p>"
+            "row_content": "<p>El coste y el plazo de envío se calculan y se muestran en el checkout antes de pagar. Consulta las condiciones completas en nuestra página de <a href=\"/pages/envios\">envíos</a>.</p>"
           }
         },
         "devoluciones": {
@@ -108,25 +169,35 @@
           "settings": {
             "icon": "return",
             "heading": "Cambios y devoluciones",
-            "row_content": "<p>Tienes 30 días desde la entrega para probar la prenda. Si no te convence, escríbenos y gestionamos la devolución sin complicaciones.</p>"
+            "row_content": "<p>Si quieres cambiar o devolver tu compra, consulta los detalles en nuestra página de <a href=\"/pages/devoluciones\">devoluciones</a> o escríbenos a hola@nuvelshape.store.</p>"
+          }
+        },
+        "pago": {
+          "type": "collapsible_row",
+          "settings": {
+            "icon": "lock",
+            "heading": "¿Es seguro el pago?",
+            "row_content": "<p>El pago se procesa con el checkout de Shopify, con conexión cifrada. Puedes pagar con tarjeta o PayPal.</p>"
           }
         }
       },
       "block_order": [
+        "talla",
+        "uso",
+        "cuidado",
         "envio",
-        "tallas",
-        "cuidados",
-        "devoluciones"
+        "devoluciones",
+        "pago"
       ],
       "settings": {
         "caption": "",
-        "heading": "Antes de comprar",
-        "heading_size": "h1",
-        "heading_alignment": "center",
+        "heading": "Preguntas frecuentes",
+        "heading_size": "h2",
+        "heading_alignment": "left",
         "layout": "section",
         "color_scheme": "scheme-1",
         "container_color_scheme": "scheme-1",
-        "open_first_collapsible_row": true,
+        "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
         "padding_top": 36,
@@ -160,7 +231,9 @@
   },
   "order": [
     "main",
-    "collapsible-content",
+    "sticky-atc",
+    "demo",
+    "faq",
     "related-products",
     "disclosures"
   ]

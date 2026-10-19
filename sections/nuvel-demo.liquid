@@ -1,0 +1,322 @@
+{%- comment -%}
+  Demostración: imagen/vídeo del producto + imagen "puesta bajo la ropa".
+  Imágenes editables desde el personalizador; si están vacías, usa los
+  assets de marca del propietario como fallback (compatible con el sync
+  de GitHub: nunca se referencia shopify://assets en settings JSON).
+{%- endcomment -%}
+
+{%- liquid
+  assign has_product_image = false
+  if section.settings.image_product != blank
+    assign has_product_image = true
+  endif
+
+  assign has_worn_image = false
+  if section.settings.image_worn != blank
+    assign has_worn_image = true
+  endif
+
+  assign has_video = false
+  if section.settings.video != blank
+    assign has_video = true
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .nuvel-demo__header {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 3.2rem;
+  }
+
+  .nuvel-demo__title {
+    margin: 0 0 0.8rem;
+  }
+
+  .nuvel-demo__subtitle {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .nuvel-demo__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    max-width: 96rem;
+    margin: 0 auto;
+  }
+
+  .nuvel-demo__card {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--media-radius, 2px);
+    background: rgb(var(--color-background));
+    aspect-ratio: 4 / 5;
+  }
+
+  .nuvel-demo__media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .nuvel-demo__card--product .nuvel-demo__media {
+    object-fit: contain;
+    padding: 1.6rem;
+  }
+
+  .nuvel-demo__tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    margin: 0;
+    padding: 0.4rem 0.9rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--badge-corner-radius, 40px);
+    background: rgba(var(--color-background), 0.9);
+    color: rgb(var(--color-foreground));
+  }
+
+  @media screen and (min-width: 750px) {
+    .nuvel-demo__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.4rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding page-width">
+    {%- if section.settings.heading != blank or section.settings.subtitle != blank -%}
+      <div class="nuvel-demo__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="nuvel-demo__title">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="nuvel-demo__subtitle">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="nuvel-demo__grid">
+      <figure class="nuvel-demo__card nuvel-demo__card--product">
+        {%- if has_product_image -%}
+          <img
+            class="nuvel-demo__media"
+            src="{{ section.settings.image_product | image_url: width: 1100 }}"
+            srcset="
+              {{ section.settings.image_product | image_url: width: 550 }} 550w,
+              {{ section.settings.image_product | image_url: width: 1100 }} 1100w
+            "
+            sizes="(min-width: 750px) 460px, 92vw"
+            width="1100"
+            height="{{ 1100 | divided_by: section.settings.image_product.aspect_ratio | ceil }}"
+            alt="{{ section.settings.image_product_alt | escape }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {%- else -%}
+          <img
+            class="nuvel-demo__media"
+            src="{{ 'producto-frente.jpg' | asset_url }}"
+            srcset="
+              {{ 'med-producto-frente.jpg' | asset_url }} 800w,
+              {{ 'lg-producto-frente.jpg' | asset_url }} 1100w,
+              {{ 'producto-frente.jpg' | asset_url }} 1400w
+            "
+            sizes="(min-width: 750px) 460px, 92vw"
+            width="1400"
+            height="1435"
+            alt="{{ section.settings.image_product_alt | escape }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {%- endif -%}
+        {%- if section.settings.tag_product != blank -%}
+          <figcaption class="nuvel-demo__tag">{{ section.settings.tag_product | escape }}</figcaption>
+        {%- endif -%}
+      </figure>
+
+      <figure class="nuvel-demo__card nuvel-demo__card--worn">
+        {%- if has_video -%}
+          {%- if has_worn_image -%}
+            {{
+              section.settings.video
+              | video_tag:
+                image: section.settings.image_worn,
+                controls: true,
+                preload: 'none',
+                class: 'nuvel-demo__media'
+            }}
+          {%- else -%}
+            {%- assign worn_poster = 'avatar-vestida.jpg' | asset_url -%}
+            {{
+              section.settings.video
+              | video_tag:
+                image: worn_poster,
+                controls: true,
+                preload: 'none',
+                class: 'nuvel-demo__media'
+            }}
+          {%- endif -%}
+        {%- elsif has_worn_image -%}
+          <img
+            class="nuvel-demo__media"
+            src="{{ section.settings.image_worn | image_url: width: 1100 }}"
+            srcset="
+              {{ section.settings.image_worn | image_url: width: 550 }} 550w,
+              {{ section.settings.image_worn | image_url: width: 1100 }} 1100w
+            "
+            sizes="(min-width: 750px) 460px, 92vw"
+            width="1100"
+            height="{{ 1100 | divided_by: section.settings.image_worn.aspect_ratio | ceil }}"
+            alt="{{ section.settings.image_worn_alt | escape }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {%- else -%}
+          <img
+            class="nuvel-demo__media"
+            src="{{ 'avatar-vestida.jpg' | asset_url }}"
+            srcset="
+              {{ 'med-avatar-vestida.jpg' | asset_url }} 800w,
+              {{ 'lg-avatar-vestida.jpg' | asset_url }} 1000w,
+              {{ 'avatar-vestida.jpg' | asset_url }} 1400w
+            "
+            sizes="(min-width: 750px) 460px, 92vw"
+            width="1000"
+            height="1791"
+            alt="{{ section.settings.image_worn_alt | escape }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {%- endif -%}
+        {%- if section.settings.tag_worn != blank -%}
+          <figcaption class="nuvel-demo__tag">{{ section.settings.tag_worn | escape }}</figcaption>
+        {%- endif -%}
+      </figure>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Demostración (Nuvel)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Así se ve puesta",
+      "label": "Título"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "La prenda por sí sola, y cómo se queda bajo la ropa de calle.",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "header",
+      "content": "Imagen del producto"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_product",
+      "label": "Imagen de la prenda"
+    },
+    {
+      "type": "text",
+      "id": "image_product_alt",
+      "default": "Faja moldeadora invisible de Nuvel, vista frontal de la prenda",
+      "label": "Texto alternativo de la prenda"
+    },
+    {
+      "type": "text",
+      "id": "tag_product",
+      "default": "El producto",
+      "label": "Etiqueta sobre la prenda"
+    },
+    {
+      "type": "header",
+      "content": "Imagen o vídeo \"puesta\""
+    },
+    {
+      "type": "image_picker",
+      "id": "image_worn",
+      "label": "Imagen puesta bajo la ropa"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Vídeo de uso (opcional, sustituye a la imagen puesta)"
+    },
+    {
+      "type": "text",
+      "id": "image_worn_alt",
+      "default": "Faja moldeadora invisible de Nuvel puesta bajo ropa de calle, sin marcarse",
+      "label": "Texto alternativo de la imagen puesta"
+    },
+    {
+      "type": "text",
+      "id": "tag_worn",
+      "default": "Puesta, invisible",
+      "label": "Etiqueta sobre la imagen puesta"
+    },
+    {
+      "type": "paragraph",
+      "content": "Si dejas las imágenes vacías, se muestran las fotos de marca incluidas en el tema. Añade tus propios vídeos UGC con el selector de vídeo."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Demostración (Nuvel)"
+    }
+  ]
+}
+{% endschema %}
