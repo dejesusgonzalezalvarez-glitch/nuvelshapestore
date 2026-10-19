@@ -1,5 +1,5 @@
 {%- liquid
-  assign root = request.locale.root_url
+  assign root = request.locale.root_url | remove_last: '/'
 -%}
 {%- if mode == 'drawer' -%}
   <li>
