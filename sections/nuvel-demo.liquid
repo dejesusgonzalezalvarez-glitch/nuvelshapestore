@@ -189,21 +189,15 @@
             decoding="async"
           >
         {%- else -%}
-          <img
+          <video
             class="nuvel-demo__media"
-            src="{{ 'avatar-vestida.jpg' | asset_url }}"
-            srcset="
-              {{ 'med-avatar-vestida.jpg' | asset_url }} 800w,
-              {{ 'lg-avatar-vestida.jpg' | asset_url }} 1000w,
-              {{ 'avatar-vestida.jpg' | asset_url }} 1400w
-            "
-            sizes="(min-width: 750px) 460px, 92vw"
-            width="1000"
-            height="1791"
-            alt="{{ section.settings.image_worn_alt | escape }}"
-            loading="lazy"
-            decoding="async"
-          >
+            src="{{ 'nuvel-ugc-ropa-ajustada.mp4' | asset_url }}"
+            controls
+            preload="metadata"
+            playsinline
+            poster="{{ 'avatar-vestida.jpg' | asset_url }}"
+            aria-label="{{ section.settings.image_worn_alt | escape }}"
+          ></video>
         {%- endif -%}
         {%- if section.settings.tag_worn != blank -%}
           <figcaption class="nuvel-demo__tag">{{ section.settings.tag_worn | escape }}</figcaption>
@@ -278,7 +272,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Si dejas las imágenes vacías, se muestran las fotos de marca incluidas en el tema. Añade tus propios vídeos UGC con el selector de vídeo."
+      "content": "Si dejas los campos vacíos, se muestran los vídeos y fotos de marca incluidos en el tema: la faja frontal, y un UGC propio de la prenda bajo ropa ajustada. Añade tus propios vídeos UGC con el selector de vídeo."
     },
     {
       "type": "color_scheme",

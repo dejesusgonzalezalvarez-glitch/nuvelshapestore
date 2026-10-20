@@ -190,9 +190,11 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 
 ## IMÁGENES
 
-**Usadas (mías, del repo)**: `hero-principal.jpg` (+med/lg), `avatar-vestida.jpg` (+med/lg), `producto-frente.jpg` (+med/lg), `avatar-athleisure.jpg` (+med/lg), `favicon.png`.
+**Usadas (mías, del repo)**: `hero-principal.jpg` (+med/lg), `avatar-vestida.jpg` (+med/lg), `producto-frente.jpg` (+med/lg), `avatar-athleisure.jpg` (+med/lg), `favicon.png`, **`nuvel-ugc-ropa-ajustada.mp4`** (UGC propio comprimido a 853 KB, 720×1280, faststart — fallback de vídeo de la sección demo en la página de producto, verificado en dev el 19-OCT).
 
-**Del proveedor reemplazadas**: ninguna todavía — **las imágenes de producto viven en el admin de Shopify y no puedo reemplazarlas desde el tema** (bloqueo).
+**Kit de galería propia preparado (19-OCT)**: `..\kit-galeria-imagenes-propias\` — 14 imágenes MÍAS (2 fotos de marca + 12 fotogramas de mis vídeos UGC: ropa ajustada, vestido, comodidad, básico) con orden recomendado y alt texts en español en `LEEME.txt`. Subir desde el admin (o vía API con token de app custom — pasos en el LEEME).
+
+**Del proveedor reemplazadas**: ninguna todavía — **las imágenes de producto viven en el admin de Shopify y no puedo reemplazarlas desde el tema** (bloqueo). El kit lo resuelve en 5-10 min desde el admin.
 
 **Pendientes / por confirmar**:
 - IMAGEN PENDIENTE: galería del producto (15 PNG actuales, probablemente del proveedor) → el propietario debe subir sus propias fotos (7–10 imágenes, proporción 4:5, ≤200 KB c/u) desde Productos → Faja Moldeadora Invisible → Multimedia, y escribir alt descriptivos (ej.: "Faja moldeadora invisible negra, vista frontal sobre fondo claro").
