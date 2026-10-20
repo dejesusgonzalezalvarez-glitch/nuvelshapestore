@@ -1,0 +1,133 @@
+{%- comment -%}
+  Galería propia de Nuvel: imágenes de marca del tema (assets) en lugar de
+  la multimedia del producto del admin (imágenes del proveedor).
+  Se activa desde la plantilla de producto (main-product → own_gallery).
+  Marcado y clases propios; JS mínimo de sustitución de imagen principal.
+{%- endcomment -%}
+
+{%- liquid
+  assign gallery_handles = 'avatar-vestida,detalle-tela,producto-frente,producto-espalda,producto-detalle,avatar-athleisure' | split: ','
+-%}
+
+{%- style -%}
+  .nuvel-gallery {
+    display: block;
+  }
+
+  .nuvel-gallery__main {
+    margin: 0;
+  }
+
+  .nuvel-gallery__main img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--media-radius, 2px);
+  }
+
+  .nuvel-gallery__thumbs {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    padding-bottom: 0.4rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nuvel-gallery__thumb {
+    flex: 0 0 auto;
+    width: 6.4rem;
+    padding: 0;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: var(--media-radius, 2px);
+    background: rgb(var(--color-background));
+    cursor: pointer;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+
+  .nuvel-gallery__thumb.is-active {
+    border-color: rgba(var(--color-foreground), 0.55);
+  }
+
+  .nuvel-gallery__thumb img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .nuvel-gallery__thumb:focus-visible {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+    outline-offset: 0.2rem;
+  }
+{%- endstyle -%}
+
+<div class="nuvel-gallery" data-nuvel-gallery-{{ section.id }}>
+  <figure class="nuvel-gallery__main">
+    <img
+      data-nuvel-gallery-main
+      src="{{ 'avatar-vestida.jpg' | asset_url }}"
+      srcset="{{ 'med-avatar-vestida.jpg' | asset_url }} 800w, {{ 'lg-avatar-vestida.jpg' | asset_url }} 1100w"
+      sizes="(min-width: 990px) 550px, (min-width: 750px) 420px, 100vw"
+      width="1100"
+      height="1467"
+      alt="{{ 'nuvel.gallery.main_alt' | t }}"
+      fetchpriority="high"
+    >
+  </figure>
+
+  <div class="nuvel-gallery__thumbs">
+    {%- for handle in gallery_handles -%}
+      {%- capture alt_key %}nuvel.gallery.alt_{{ forloop.index }}{% endcapture -%}
+      {%- capture mini_src %}mini-{{ handle }}.jpg{% endcapture -%}
+      {%- capture full_src %}lg-{{ handle }}.jpg{% endcapture -%}
+      <button
+        type="button"
+        class="nuvel-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+        data-nuvel-gallery-thumb
+        data-full="{{ full_src | asset_url }}"
+        aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+        aria-label="{{ alt_key | t }}"
+      >
+        <img
+          src="{{ mini_src | asset_url }}"
+          width="400"
+          height="400"
+          alt="{{ alt_key | t }}"
+          loading="lazy"
+          decoding="async"
+        >
+      </button>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var gallery = document.querySelector('[data-nuvel-gallery-{{ section.id }}]');
+    if (!gallery || gallery.dataset.init) return;
+    gallery.dataset.init = '1';
+
+    var main = gallery.querySelector('[data-nuvel-gallery-main]');
+    if (!main) return;
+
+    gallery.addEventListener('click', function (event) {
+      var thumb = event.target.closest('[data-nuvel-gallery-thumb]');
+      if (!thumb) return;
+
+      main.src = thumb.dataset.full;
+      main.removeAttribute('srcset');
+      var thumbImg = thumb.querySelector('img');
+      if (thumbImg) main.alt = thumbImg.alt;
+
+      var thumbs = gallery.querySelectorAll('[data-nuvel-gallery-thumb]');
+      for (var i = 0; i < thumbs.length; i++) {
+        thumbs[i].classList.toggle('is-active', thumbs[i] === thumb);
+        thumbs[i].setAttribute('aria-current', thumbs[i] === thumb ? 'true' : 'false');
+      }
+    });
+  })();
+</script>
