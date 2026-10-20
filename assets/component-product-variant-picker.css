@@ -115,7 +115,7 @@ variant-selects {
 .product-form__input--pill input[type='radio']:disabled + label,
 .product-form__input--pill input[type='radio'].disabled + label {
   border-color: rgba(var(--color-foreground), 0.1);
-  color: rgba(var(--color-foreground), 0.6);
+  color: rgba(var(--color-foreground), 0.65);
   text-decoration: line-through;
 }
 
