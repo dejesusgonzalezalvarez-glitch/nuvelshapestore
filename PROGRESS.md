@@ -222,6 +222,7 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 5. **Condiciones reales de envío/devoluciones**: sección 4 sin datos → el propietario debe confirmar (o mantener las de /pages/envios y /pages/devoluciones) y ajustar los textos editables.
 6. **RUTA de la carpeta de imágenes del propietario** (placeholder sin rellenar): asumo que las imágenes propias son las de `assets/` del repo. Si hay más (fotos de producto reales, vídeos UGC), indicar ubicación para integrarlas.
 7. **Meta-description de portada y colección** (seo 92 en Lighthouse): se rellena desde el admin (Preferencias de la tienda / descripción de la colección "Productos"). No es corregible desde el tema.
+8. **Galería del producto (19-OCT, tarde)**: encontré la vía técnica completa para reemplazar las 15 PNG del proveedor por API (intercambio de tokens del CLI: identidad → `accounts.shopify.com/oauth/token` token-exchange con audience admin → token de tienda con `write_products` confirmado). FALLO OPERATIVO: el refresh token de identidad del CLI rota en cada uso y mi script no persistió el nuevo tras refrescar → **la sesión del CLI quedó consumida y pide re-login**. Restauración: ejecutar `shopify theme list` en un terminal y completar el login del navegador (1 min); después puedo reintentar la migración completa de la galería con el kit de 14 imágenes. Alternativas: token de app custom (shpat_) o subida manual con `..\kit-galeria-imagenes-propias\LEEME.txt`. El kit y el vídeo UGC propio ya están listos y commiteados.
 
 ## PRUEBAS
 
