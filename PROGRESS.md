@@ -7,11 +7,12 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 
 ## FASE ACTUAL
 
-**FASE 3: PÁGINA DE PRODUCTO** (en curso)
+**AUDITORÍA Y CORRECCIÓN DE CÓDIGO (NIVEL PRODUCCIÓN): COMPLETADA** — detalle en su sección abajo.
 
 - Fase 1 (Auditoría): COMPLETADA — hallazgos abajo, commit `Fase 1: auditoría`.
 - Fase 2 (Sistema visual): COMPLETADA — animaciones de scroll desactivadas; badge de oferta con contraste AA; sistema Lora/Poppins + paleta 5 + radio 2px verificado y documentado, commit `Fase 2: sistema visual`.
-- Fases 3–6: 3 en curso; 4–6 pendientes.
+- Fase 3 (Página de producto): COMPLETADA — plantilla con prioridad de compra, barra sticky móvil y sección demo (commits `88d35bb` + `a3e8e3e`).
+- Auditoría producción (19-OCT-2026): COMPLETADA — Theme Check 765→11 ofensas (restantes Rise-nativas justificadas); a11y Lighthouse 100/100 en las 4 páginas; fix crítico de sincronización (page_width 1280→1300); PENDIENTE: prueba manual de compra del propietario (guion abajo) + autorización de publicación.
 
 ---
 
@@ -105,7 +106,58 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 
 ---
 
+## AUDITORÍA PRODUCCIÓN (19-OCT-2026, COMPLETADA)
+
+Orden: "auditoría y corrección de código: nivel producción". Todo en rama `nuvel/redisenio`; sin push a main; producción intacta.
+
+### Verificaciones (antes → después)
+
+| Herramienta | Antes | Después |
+|---|---|---|
+| `shopify theme check` (CLI 4.9.4) | 765 ofensas (756 errores, 9 avisos) | 11 (2 errores + 9 avisos, todos Rise-nativos justificados) |
+| JSON (script node) | 68/68 válidos | 68/68 válidos |
+| Coherencia settings_schema ↔ settings_data ↔ plantillas (script propio) | 1 real: presets scheme-4 sin fix AA | 0 problemas |
+| Lighthouse móvil — portada | perf 52 / a11y 92 / bp 77 / seo 85 (producción) | a11y 100 / seo 92 (dev; perf no comparable en dev) |
+| Lighthouse móvil — producto | perf 49 / a11y 92 / bp 77 / seo 92 | a11y 100 / seo 100 |
+| Lighthouse móvil — colección | perf 54 / a11y 97 / bp 77 / seo 85 | a11y 100 / seo 92 |
+| Lighthouse móvil — carrito | perf 53 / a11y 96 / bp 77 / seo 83 | a11y 100 / seo 92 |
+| `shopify theme dev` + sondeo HTML | — | 4 páginas 200, 0 "Liquid error", sticky presente, aria-labelledby presente, `href="//"` = 0 |
+
+Nota metodológica: "antes" = producción publicada (≈ origin/main); "después" = código local vía `shopify theme dev` (127.0.0.1:9292). Perf en dev no es comparable (hot-reload + inyección dev). Producción mantendrá los números "antes" hasta publicar.
+
+### Fix crítico de sincronización (el más importante)
+
+`page_width: 1280` no era un paso válido del rango del schema (step 100) → Shopify rechazaba subir `settings_data.json` ("Setting 'page_width' must be a step in the range") → **la rama entera no podía sincronizar** (dev/CLI/GitHub). Producción solo funciona porque el valor ya estaba guardado en el admin. Corregido a **1300** en current y presets (paso legal más cercano al diseño 1280; la página será 20px más ancha).
+
+### Ofensas restantes de Theme Check (justificadas, sin tocar Rise nativo)
+
+- 2 errores UnknownFilter `applicable_disclosures` (product-disclosures, cart-disclosure-indicator): idénticos al export original de Rise → filtro del runtime que theme-check 4.9.4 no conoce. Falso positivo.
+- 9 avisos Rise-nativos: VariableName (anchorId, moduloResult), UnusedAssign (seo_media, product_settings), UndefinedObject `continue` (`offset: continue` es Liquid válido), LiquidComplexity facets, OrphanedSnippet quick-order-product-row (código muerto incluido por Rise — candidato a borrar solo con aprobación), UndefinedObject scheme_classes ×2 (patrón auto-append nativo).
+
+### Commits de la auditoría (cada uno revertible por separado)
+
+- `88d35bb` Fase 3: templates/product.json + sections/nuvel-sticky-atc.liquid (nueva) + sections/nuvel-demo.liquid (nueva).
+- `a3e8e3e` A11y/robustez compra: main-product.liquid y featured-product.liquid (aria-labelledby en input de cantidad — bug nativo de Rise: label con contenido aria-hidden deja el nombre accesible vacío), sticky-atc (observer sobre el botón de compra en vez del formulario completo, desconexión en `shopify:section:unload`, guard de submitButton, padding inferior móvil vía `body:has()`), nuvel-demo (video_tag sin poster-string inválido).
+- `d848f2c` Fix href `//`: snippets/nuvel-nav-links.liquid + templates/index.json (root_url del locale primario = "/" + "/" extra) en 5 enlaces de nav/hero/CTA. Verificado en dev: 0 `href="//"`.
+- `343427d` settings_data.json: presets scheme-4 fondo #6E5838 (la Fase 2 afirmaba haberlo aplicado; solo estaba en current).
+- `3b67ab1` 29 locales: bloque `nuvel.*` con valores EN como fallback (cierra 754 MatchingTranslations; sin efecto visible, solo ES/EN activos).
+- `563ff62` settings_data.json: page_width 1280→1300 (bloqueo de sincronización).
+- `cd51f86` component-product-variant-picker.css (pill agotada 0.6→0.65 de opacidad, 4.43→~5.2:1) + es.json "Ver todo"→"Ver todos" (coincidencia con aria-label de featured-collection).
+
+### Lighthouse restante (no corregible desde el tema)
+
+- seo 92 por meta-description ausente en portada/colección (admin: Preferencias de la tienda / descripción de la colección "Productos") y carrito (estándar en Shopify; opcional noindex).
+- perf ~50: dominado por JS de Shopify/apps (PayPal portable-wallets, captcha, standard-events; TBT ~1s, bootup 2-3s). Poco margen desde el tema. Las 15 PNG del proveedor (alt=null) pesan en colección/LCP — reemplazo desde el admin pendiente (bloqueo #3).
+
+### Tracking
+
+Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard events de Shopify → apps/pixels reciben PageView/ViewContent. NO VERIFICADO desde el repo: qué pixels/apps hay en el admin ni duplicados → verificar con Meta Pixel Helper en la vista previa del borrador antes de Meta Ads.
+
+---
+
 ## DECISIONES
+
+
 
 1. **Tipografías**: se mantienen **Lora** (títulos, n5) + **Poppins** (cuerpo, n4). Ya estaban configuradas y coinciden con la evaluación pedida; no hay razón concreta para cambiarlas (coherencia serif editorial + sans legible, buena carga en fonts CDN de Shopify).
 2. **Paleta (máx. 5)**: blanco `#FFFFFF`, gris cálido `#F4F4F2`, negro `#1A1A1A`, dorado oscuro `#8A6F4A` (badge oferta), beige `#F5F1EC`. Sin cambios: ya cumple y es la identidad migrada.
@@ -120,6 +172,9 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 11. **Imágenes de marca**: secciones nuevas con `image_picker` editable + **fallback** al asset del repo (patrón compatible con el sync de GitHub; no se usa `shopify://assets/` en settings de imagen, según README).
 12. **Testimonios**: se elimina la sección en la portada (no hay reseñas verificadas que mostrar; el texto actual es un marcador). Documentado en Fase 5.
 13. **Idiomas**: textos nuevos con defaults en español en los settings (editables); `locales/es.json` y `en.default.json` solo para claves compartidas reales (`nuvel.*`).
+14. **Barra sticky sin precio** (desviación de la 10): el precio por variante quedaría desactualizado en productos del catálogo con precios distintos por variante; sincronizarlo exigiría duplicar lógica de Rise. Título + botón; añadir precio más adelante si se pide.
+15. **page_width 1300** (no 1280): Shopify exige pasos de 100 en el rango del schema; 1280 bloqueaba TODA la subida de settings_data (ver fix crítico en la sección de auditoría).
+16. **Pills de variante agotada a 0.65 de opacidad** (antes 0.6) y **"Ver todos"** en es.json (antes "Ver todo"): dos fallos a11y marginales de Rise corregidos quirúrgicamente sin duplicar CSS.
 
 ## ARCHIVOS MODIFICADOS
 
@@ -154,6 +209,7 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 6. Menús `nuvel-nav`/`nuvel-footer` no existen en el admin → navegación por fallback de código (funciona; crear los menús en el admin es mejora pendiente del propietario).
 7. `/policies/shipping-policy` y `/policies/refund-policy` → 404 (políticas nativas sin rellenar); el footer enlaza a `/pages/envios` y `/pages/devoluciones`, que sí existen. Los enlaces del tema apuntan a /pages/*.
 8. El README menciona redirects SEO pendientes en el admin (`/pages/producto` → producto nativo, etc.). No es del tema; queda en el checklist final.
+9. **Claims sin confirmar aún en locales** (hallado en auditoría 19-OCT): `nuvel.cta.text` ES/EN promete "30 días de prueba: te devolvemos el dinero" y `nuvel.hero.subtitle` dice "no se enrolla". La decisión 7 marcaba textos neutros por defecto, pero no se aplicó a estas claves. PENDIENTE DECISIÓN DEL PROPIETARIO: confirmar condiciones reales o pedir neutralización (cambio de 5 minutos).
 
 ## BLOQUEOS
 
@@ -163,15 +219,39 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 4. **Verificación de Meta Pixel / eventos duplicados**: sin acceso al admin (Customer Events / apps). La Fase 6 entrega los pasos para verificarlo con Meta Pixel Helper.
 5. **Condiciones reales de envío/devoluciones**: sección 4 sin datos → el propietario debe confirmar (o mantener las de /pages/envios y /pages/devoluciones) y ajustar los textos editables.
 6. **RUTA de la carpeta de imágenes del propietario** (placeholder sin rellenar): asumo que las imágenes propias son las de `assets/` del repo. Si hay más (fotos de producto reales, vídeos UGC), indicar ubicación para integrarlas.
+7. **Meta-description de portada y colección** (seo 92 en Lighthouse): se rellena desde el admin (Preferencias de la tienda / descripción de la colección "Productos"). No es corregible desde el tema.
 
 ## PRUEBAS
 
 | Elemento | Estado |
 |---|---|
-| Auditoría de archivos/estructura (Fase 1) | IMPLEMENTADO y PROBADO (lectura directa de repo + endpoints públicos) |
-| `shopify theme check` | PENDIENTE (se ejecuta en Fase 6; CLI 4.9.4 disponible) |
-| Validación JSON (PowerShell ConvertFrom-Json) | PENDIENTE (Fase 6) |
-| Flujo de compra completo (add to cart, drawer, talla, checkout) | PENDIENTE DE PRUEBA MANUAL (checklist en Fase 4) |
-| Botón sticky móvil | PENDIENTE DE PRUEBA MANUAL (Fase 4) |
-| Portada a 375px | PENDIENTE DE PRUEBA MANUAL (Fase 6) |
-| Meta Pixel / eventos | PENDIENTE DE PRUEBA MANUAL (Fase 6) |
+| Auditoría de archivos/estructura (Fase 1) | COMPLETADO (lectura directa de repo + endpoints públicos) |
+| `shopify theme check` | COMPLETADO: 765 → 11 ofensas (restantes Rise-nativas, justificadas arriba) |
+| Validación JSON (68 archivos) | COMPLETADO: 0 inválidos |
+| Coherencia schema/data/plantillas (script propio) | COMPLETADO: 0 problemas |
+| `shopify theme dev` render local | COMPLETADO: portada/producto/colección/carrito 200, 0 "Liquid error" |
+| Lighthouse a11y/seo (dev, código local) | COMPLETADO: a11y 100/100/100/100; seo 92-100 (restante: meta-description = admin) |
+| Lighthouse perf | NO COMPARABLE en dev (hot-reload); producción ~50 dominada por JS de apps |
+| Desbordamiento horizontal a 320px | PENDIENTE DE PRUEBA MANUAL |
+| Flujo de compra completo (add, drawer, talla, checkout) | PENDIENTE DE PRUEBA MANUAL (guion abajo) |
+| Barra sticky móvil | PENDIENTE DE PRUEBA MANUAL (guion abajo) |
+| Meta Pixel / eventos | PENDIENTE DE PRUEBA MANUAL (Meta Pixel Helper en la vista previa) |
+
+### Guion de prueba manual de la compra (en la vista previa del borrador, tras sincronizar)
+
+Precondición: vista previa del tema borrador conectado a esta rama. Móvil (DevTools 375px) + escritorio. F12 → Console abierto: 0 errores rojos durante toda la prueba.
+
+1. Cargar `/products/faja-moldeadora-invisible-nuvel` sin errores de consola.
+2. Seleccionar talla M → inspeccionar el input oculto `name="id"`: su valor cambia; el precio sigue 39,90 €.
+3. Subir cantidad a 2 con +/− → el input quantity vale 2.
+4. "Añadir al carrito" → el botón muestra spinner y se deshabilita durante la petición; el drawer abre con talla y cantidad correctas; el contador del icono suma 2.
+5. Doble clic rápido en "Añadir" → en Network solo una llamada `/cart/add` (sin duplicados).
+6. En el drawer: subtotal 79,80 € (2 × 39,90), sin descuentos simulados en el tema.
+7. Cambiar cantidad desde el drawer → subtotal se actualiza; vaciar → mensaje de carrito vacío correcto.
+8. Variante agotada (pill tachada, si existe) → botón deshabilitado o error visible, nunca pantalla en blanco.
+9. "Finalizar compra" → el checkout de Shopify abre con los mismos artículos (no completar el pago).
+10. Móvil: al bajar del botón principal aparece la barra sticky; tocar "Comprar ahora" envía el formulario nativo (misma validación, drawer normal); al volver al botón principal la barra se oculta.
+11. Teclado (escritorio): Tab recorre tallas y botón con focus visible; Enter añade al carrito.
+12. DevTools red "Fast 3G": estados de carga visibles, sin saltos graves de layout.
+
+Registrar OK/fallo + captura de cada paso antes de autorizar la publicación.
