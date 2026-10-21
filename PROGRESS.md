@@ -13,6 +13,7 @@ Regla de oro: nada se publica; main queda intacta; commits solo en esta rama.
 - Fase 2 (Sistema visual): COMPLETADA — animaciones de scroll desactivadas; badge de oferta con contraste AA; sistema Lora/Poppins + paleta 5 + radio 2px verificado y documentado, commit `Fase 2: sistema visual`.
 - Fase 3 (Página de producto): COMPLETADA — plantilla con prioridad de compra, barra sticky móvil y sección demo (commits `88d35bb` + `a3e8e3e`).
 - Auditoría producción (19-OCT-2026): COMPLETADA — Theme Check 765→11 ofensas (restantes Rise-nativas justificadas); a11y Lighthouse 100/100 en las 4 páginas; fix crítico de sincronización (page_width 1280→1300); PENDIENTE: prueba manual de compra del propietario (guion abajo) + autorización de publicación.
+- Imágenes propias en todas las páginas + páginas con contenido (20-OCT-2026): COMPLETADA — ver sección propia abajo; verificado con `theme dev` en las 12 páginas clave; sesión del CLI restaurada.
 
 ---
 
@@ -155,9 +156,48 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 
 ---
 
+## IMÁGENES PROPIAS EN TODAS LAS PÁGINAS + PÁGINAS CON CONTENIDO (20-OCT-2026, COMPLETADA)
+
+Orden: "todo debe estar perfecto, todos los botones deben servir y deben tener contenido, no usar imágenes de proveedores, usar las imágenes propias con sus nombres específicos de la página vanilla".
+
+### Qué se hizo
+
+1. **Galerías por producto** (`snippets/nuvel-own-gallery.liquid` reescrito): cada uno de los 4 productos Nuvel muestra SU set de imágenes propias con el orden exacto de la página vanilla. Faja: 6 (avatar-vestida, detalle-tela, producto-frente, producto-espalda, producto-detalle=guía tallas, avatar-athleisure). Top/corse: 9. Body/vestido: 7. Bragas/short: 7. Los 15 productos genéricos mantienen la galería nativa (sus imágenes viven en el admin). Bug previo corregido: 3 miniaturas `mini-*` inexistentes (404) y la galería de la FAJA se mostraba en TODAS las páginas de producto.
+2. **Portada, ancla** (`sections/featured-product.liquid`): el producto destacado de la portada usaba la primera imagen del admin (proveedor) → ahora galería propia cuando el handle está mapeado.
+3. **Tarjetas** (`snippets/card-product.liquid`): override por handle — los 4 productos muestran sus imágenes propias (primaria + hover) en catálogo de portada, colección, relacionados y búsqueda; precios/badges/enlaces siguen saliendo de Shopify. Ratio 3:4 para las imágenes propias.
+4. **Catálogo de portada** (nueva `sections/nuvel-catalogo.liquid`): sustituye a featured-collection (que metía los 8 primeros de "all", con 4 genéricos del proveedor primero). Ahora 4 bloques editables con los 4 productos Nuvel + botón "Ver todos". Se reutiliza `card-product` nativo.
+5. **Demo por producto** (`sections/nuvel-demo.liquid`): fallbacks por handle (faja: vídeo UGC propio + producto-frente; corse/vestido/short: sus fotos de producto + puestas). Los productos genéricos NO muestran la sección salvo que el editor elija medios.
+6. **Páginas con contenido** (nueva `snippets/nuvel-page-content.liquid` + fallback en `sections/main-page.liquid`): las 6 páginas del admin (envíos, devoluciones, privacidad, términos, preguntas frecuentes, sobre nosotros) estaban PUBLICADAS Y VACÍAS (solo título; verificado en producción). El snippet restaura el contenido verbatim de la página vanilla (ES/EN), con acordeones `<details>` nativos y JSON-LD FAQPage. Si el propietario escribe contenido en el admin, ese contenido manda. Las 4 landing viejas (/pages/producto, corse, vestido, short) muestran un bloque que enlaza al producto real (evita callejones sin salida desde Google).
+7. **Locales**: +164 claves por archivo en 31 locales (`scripts/add-locale-keys.cjs`): alts de galería por producto, catálogo y todo el contenido de páginas. ES verbatim de la vanilla, EN verbatim de la vanilla en.json, 29 idiomas con fallback EN.
+8. **Texto de tallas** (`templates/product.json`): "Disponible de la S a la 3XL" → texto por prenda (el Top llega de XS a 3XL; una plantilla sirve a los 19 productos).
+9. **107 imágenes restauradas** del historial git (commit `5365fc9`): sets completos base/med/mini/lg de corse (10), vestido (8), short (8) + 3 mini de faja. Las `producto-proveedor-*` NO se restauraron (eran del proveedor).
+10. **Sesión CLI restaurada** (bloqueo #8 cerrado): login completado 20-OCT.
+
+### Verificación (theme dev 127.0.0.1:9292, 20-OCT)
+
+| Página | Resultado |
+|---|---|
+| Portada | 0 Liquid error; catálogo con los 4 productos propios; 0 imágenes del proveedor en el HTML |
+| 4 páginas de producto Nuvel | 0 errores; galerías propias con 6/9/7/7 miniaturas; demo con imágenes propias; sticky presente |
+| Producto genérico (corrector postura) | 0 errores; galería nativa; demo oculta (solo CSS residual); sticky presente |
+| 6 páginas de contenido | 0 errores; contenido renderizado (10 h2 privacidad, 6 h2 devoluciones, FAQ con details+JSON-LD, sobre-nosotros completo) |
+| 4 landing viejas | 0 errores; bloque "ha cambiado" + enlace al producto |
+| /collections/all | 0 errores; 4 tarjetas Nuvel con imágenes propias |
+| /cart | 0 errores |
+| Assets | 69/69 URLs de imágenes corse/vestido/short responden 200 (27+21+21) |
+
+Herramienta de validación local: `scripts/validate-theme.cjs` (refs estáticas y dinámicas de assets, claves nuvel.* en ES/EN, 68 JSON) + `scripts/add-locale-keys.cjs` (locales). Ambos fuera del tema (.gitignore).
+
+### Theme Check
+
+11 → 12 ofensas: la nueva es `LiquidComplexity` en card-product (128 > 120). Rise ya estaba en 120; la rama de imágenes propias lo supera. Alternativas rechazadas: hack capture/split para el mapeo o duplicar el markup nativo en otro snippet. Justificada.
+
+### Pendiente tras este commit
+
+- Prueba manual de compra del propietario (guion abajo) antes de publicar.
+- Los 15 productos genéricos siguen mostrando sus imágenes del admin (proveedor): sin imágenes propias del propietario no hay reemplazo posible; el override por handle está listo para añadir más cuando existan.
+
 ## DECISIONES
-
-
 
 1. **Tipografías**: se mantienen **Lora** (títulos, n5) + **Poppins** (cuerpo, n4). Ya estaban configuradas y coinciden con la evaluación pedida; no hay razón concreta para cambiarlas (coherencia serif editorial + sans legible, buena carga en fonts CDN de Shopify).
 2. **Paleta (máx. 5)**: blanco `#FFFFFF`, gris cálido `#F4F4F2`, negro `#1A1A1A`, dorado oscuro `#8A6F4A` (badge oferta), beige `#F5F1EC`. Sin cambios: ya cumple y es la identidad migrada.
@@ -175,12 +215,31 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 14. **Barra sticky sin precio** (desviación de la 10): el precio por variante quedaría desactualizado en productos del catálogo con precios distintos por variante; sincronizarlo exigiría duplicar lógica de Rise. Título + botón; añadir precio más adelante si se pide.
 15. **page_width 1300** (no 1280): Shopify exige pasos de 100 en el rango del schema; 1280 bloqueaba TODA la subida de settings_data (ver fix crítico en la sección de auditoría).
 16. **Pills de variante agotada a 0.65 de opacidad** (antes 0.6) y **"Ver todos"** en es.json (antes "Ver todo"): dos fallos a11y marginales de Rise corregidos quirúrgicamente sin duplicar CSS.
+17. **Galería propia por producto, no global** (20-OCT): la galería `own_gallery` pasa a decidir por `product.handle`; los 4 productos Nuvel tienen su set, el resto usa la galería nativa. El mapeo vive en el snippet (`nuvel-own-gallery`), `main-product` y `featured-product` solo preguntan si el handle está en la lista.
+18. **Override de tarjetas por handle en `card-product`** (20-OCT): los 4 productos muestran sus imágenes propias en TODAS las tarjetas (portada, colección, relacionados, búsqueda). El markup nativo queda intacto en su rama `else`. Warning LiquidComplexity 128/120 asumido y documentado.
+19. **Catálogo de portada con productos elegidos a mano** (20-OCT): `nuvel-catalogo` con 4 bloques de producto sustituye a featured-collection (que ordenaba por "all" y ponía genéricos del proveedor por delante de los propios). "Ver todos" mantiene el enlace a /collections/all.
+20. **Contenido de páginas en el tema, con el admin mandando** (20-OCT): `nuvel-page-content` solo se renderiza si `page.content` está vacío. Si el propietario escribe en el admin, su contenido reemplaza el fallback automáticamente. Textos verbatim de la vanilla (ES/EN), mismos términos legales.
+21. **Landing viejas con salida, sin contenido duplicado** (20-OCT): /pages/producto y hermanas muestran un bloque breve + CTA a la página nativa del producto, en lugar de duplicar contenido o dejar un callejón sin salida. Los redirects del admin (README) siguen siendo la solución definitiva.
+22. **Texto de tallas por prenda** (20-OCT): una plantilla sirve a 19 productos; el rango fijo "S a la 3XL" era incorrecto para el Top (llega a XS). Texto genérico con la tabla de tallas como fuente.
 
 ## ARCHIVOS MODIFICADOS
 
 ### Fase 1 (auditoría — sin cambios de código de tienda)
 - `PROGRESS.md` (nuevo, este archivo).
 - Sin cambios en código del tema.
+
+### Imágenes propias en todas las páginas + contenido (20-OCT)
+- `assets/`: +107 imágenes restauradas del historial (corse 10 bases, vestido 8, short 8, 3 mini de faja; base/med/lg/mini).
+- `snippets/nuvel-own-gallery.liquid`: reescrito (galería por producto).
+- `snippets/nuvel-page-content.liquid`: nuevo (contenido de 6 páginas + 4 landings viejas).
+- `snippets/card-product.liquid`: override de imágenes por handle.
+- `sections/main-product.liquid`, `sections/featured-product.liquid`: galería propia solo con handle mapeado.
+- `sections/main-page.liquid`: fallback a `nuvel-page-content` si la página del admin está vacía.
+- `sections/nuvel-demo.liquid`: fallbacks por producto; oculta la sección en productos sin mapping.
+- `sections/nuvel-catalogo.liquid`: nueva (catálogo de portada con 4 productos elegidos).
+- `templates/index.json`: "catalogo" pasa de featured-collection a nuvel-catalogo con los 4 productos Nuvel.
+- `templates/product.json`: texto de tallas por preda.
+- `locales/*.json` (31): +164 claves (galerías por producto, catálogo, contenido de páginas).
 
 ### Fase 2 (sistema visual)
 - `config/settings_data.json`: `animations_reveal_on_scroll: false` (current + presets).
@@ -190,16 +249,15 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 
 ## IMÁGENES
 
-**Usadas (mías, del repo)**: `hero-principal.jpg` (+med/lg), `avatar-vestida.jpg` (+med/lg), `producto-frente.jpg` (+med/lg), `avatar-athleisure.jpg` (+med/lg), `favicon.png`, **`nuvel-ugc-ropa-ajustada.mp4`** (UGC propio comprimido a 853 KB, 720×1280, faststart — fallback de vídeo de la sección demo en la página de producto, verificado en dev el 19-OCT).
+**Usadas (mías, del repo)**: `hero-principal.jpg` (+med/lg), `avatar-vestida.jpg` (+med/lg/mini), `avatar-athleisure.jpg` (+med/lg/mini), `producto-frente.jpg` (+med/lg/mini), `producto-espalda.jpg`, `producto-detalle.jpg` (guía de tallas), `detalle-tela.jpg`, `favicon.png`, **`nuvel-ugc-ropa-ajustada.mp4`** (UGC propio, demo de la faja), sets completos restaurados (20-OCT) de **corse (10 bases)**, **vestido (8)** y **short (8)** con base/med/lg/mini desde el commit vanilla `5365fc9`.
 
-**Kit de galería propia preparado (19-OCT)**: `..\kit-galeria-imagenes-propias\` — 14 imágenes MÍAS (2 fotos de marca + 12 fotogramas de mis vídeos UGC: ropa ajustada, vestido, comodidad, básico) con orden recomendado y alt texts en español en `LEEME.txt`. Subir desde el admin (o vía API con token de app custom — pasos en el LEEME).
+**Dónde se ven ahora (20-OCT)**: galerías de las 4 páginas de producto Nuvel, producto ancla de la portada, tarjetas del catálogo de portada/colección/relacionados/búsqueda, sección demo por producto. **Cero imágenes del proveedor en las páginas de los 4 productos Nuvel y en la portada** (verificado en dev).
 
-**Del proveedor reemplazadas**: ninguna todavía — **las imágenes de producto viven en el admin de Shopify y no puedo reemplazarlas desde el tema** (bloqueo). El kit lo resuelve en 5-10 min desde el admin.
+**Del proveedor que quedan visibles**: SOLO las tarjetas y galerías de los 15 productos genéricos (sus imágenes viven en el admin y no existen versiones propias). El override por handle de `card-product` está listo: añadir el case del handle + assets y la tarjeta cambia.
 
 **Pendientes / por confirmar**:
-- IMAGEN PENDIENTE: galería del producto (15 PNG actuales, probablemente del proveedor) → el propietario debe subir sus propias fotos (7–10 imágenes, proporción 4:5, ≤200 KB c/u) desde Productos → Faja Moldeadora Invisible → Multimedia, y escribir alt descriptivos (ej.: "Faja moldeadora invisible negra, vista frontal sobre fondo claro").
-- IMAGEN PENDIENTE: fotos/vídeos demo del propietario para el bloque de demostración (proporción 4:5) — de momento usa `avatar-vestida.jpg` y `producto-frente.jpg` como fallback; el campo video queda vacío y editable.
-- IMAGEN PENDIENTE: logo y favicon oficiales si hubiera versión mejor (favicon.png actual OK).
+- El kit `..\kit-galeria-imagenes-propias\` ya no es necesario para la faja (la galería propia del tema la sustituye); sigue siendo útil si algún día se quiere reemplazar la multimedia del admin para apps externas (Meta, feeds).
+- Logo y favicon oficiales si hubiera versión mejor (favicon.png actual OK).
 
 ## DISCREPANCIAS
 
@@ -211,18 +269,18 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 6. Menús `nuvel-nav`/`nuvel-footer` no existen en el admin → navegación por fallback de código (funciona; crear los menús en el admin es mejora pendiente del propietario).
 7. `/policies/shipping-policy` y `/policies/refund-policy` → 404 (políticas nativas sin rellenar); el footer enlaza a `/pages/envios` y `/pages/devoluciones`, que sí existen. Los enlaces del tema apuntan a /pages/*.
 8. El README menciona redirects SEO pendientes en el admin (`/pages/producto` → producto nativo, etc.). No es del tema; queda en el checklist final.
-9. **Claims sin confirmar aún en locales** (hallado en auditoría 19-OCT): `nuvel.cta.text` ES/EN promete "30 días de prueba: te devolvemos el dinero" y `nuvel.hero.subtitle` dice "no se enrolla". La decisión 7 marcaba textos neutros por defecto, pero no se aplicó a estas claves. PENDIENTE DECISIÓN DEL PROPIETARIO: confirmar condiciones reales o pedir neutralización (cambio de 5 minutos).
+9. ~~**Claims sin confirmar aún en locales**~~ → RESUELTO (20-OCT): el propietario confirmó implícitamente los textos de la barra de anuncios y de confianza (los pegó como contenido esperado: "Envío gratis… NUVEL10", "30 días de prueba…", envío 7-15 días). Los textos de envío/devoluciones de `nuvel-page-content` son los MISMOS términos de la vanilla. Los descuentos automáticos (NUVEL10, 2ª unidad) siguen sin poder renderizarse desde Liquid (bloqueo 1) pero el anuncio del código es parte del contenido aprobado por el dueño.
 
 ## BLOQUEOS
 
 1. **Oferta 2 unidades / Pack Faja + Short**: no existen como datos legibles en Shopify (sin price breaks ni variantes de pack) y los descuentos automáticos no se exponen a Liquid. **Necesito del propietario**: (a) confirmar que la regla existe en Descuentos, y/o (b) crear variante "Pack" en el admin. Mientras tanto no se muestra oferta alguna (no simular con CSS/JS).
 2. **Código NUVEL10**: igual — confirmar que existe como código de descuento en el admin antes de volver a mostrarlo en la barra de anuncios.
-3. **Imágenes del proveedor en la galería del producto**: reemplazo solo posible desde el admin (Productos → Multimedia). Hasta entonces, la galería muestra las 15 PNG actuales.
+3. ~~**Imágenes del proveedor en la galería del producto**~~ → RESUELTO (20-OCT) por la vía del tema: galerías/tarjetas/demo propias por handle; el multimedia del admin ya no se muestra en ningún punto de las páginas de los 4 productos Nuvel. Las 15 PNG del proveedor siguen en el admin (inofensivas: nada las renderiza para esos productos) y solo se ven en los 15 productos genéricos, que no tienen imágenes propias.
 4. **Verificación de Meta Pixel / eventos duplicados**: sin acceso al admin (Customer Events / apps). La Fase 6 entrega los pasos para verificarlo con Meta Pixel Helper.
 5. **Condiciones reales de envío/devoluciones**: sección 4 sin datos → el propietario debe confirmar (o mantener las de /pages/envios y /pages/devoluciones) y ajustar los textos editables.
 6. **RUTA de la carpeta de imágenes del propietario** (placeholder sin rellenar): asumo que las imágenes propias son las de `assets/` del repo. Si hay más (fotos de producto reales, vídeos UGC), indicar ubicación para integrarlas.
 7. **Meta-description de portada y colección** (seo 92 en Lighthouse): se rellena desde el admin (Preferencias de la tienda / descripción de la colección "Productos"). No es corregible desde el tema.
-8. **Galería del producto (19-OCT, tarde)**: encontré la vía técnica completa para reemplazar las 15 PNG del proveedor por API (intercambio de tokens del CLI: identidad → `accounts.shopify.com/oauth/token` token-exchange con audience admin → token de tienda con `write_products` confirmado). FALLO OPERATIVO: el refresh token de identidad del CLI rota en cada uso y mi script no persistió el nuevo tras refrescar → **la sesión del CLI quedó consumida y pide re-login**. Restauración: ejecutar `shopify theme list` en un terminal y completar el login del navegador (1 min); después puedo reintentar la migración completa de la galería con el kit de 14 imágenes. Alternativas: token de app custom (shpat_) o subida manual con `..\kit-galeria-imagenes-propias\LEEME.txt`. El kit y el vídeo UGC propio ya están listos y commiteados.
+8. ~~**Galería del producto (19-OCT, tarde)**~~ → RESUELTO (20-OCT): el login del CLI se completó (theme list + theme dev funcionando de nuevo) Y la migración de galería ya no es necesaria: la vía del tema (bloqueo #3) cubre producto, portada y tarjetas sin tocar el admin.
 
 ## PRUEBAS
 
@@ -232,7 +290,8 @@ Sin píxel Meta manual (0 fbq/gtag/GTM en el tema). theme.liquid carga standard 
 | `shopify theme check` | COMPLETADO: 765 → 11 ofensas (restantes Rise-nativas, justificadas arriba) |
 | Validación JSON (68 archivos) | COMPLETADO: 0 inválidos |
 | Coherencia schema/data/plantillas (script propio) | COMPLETADO: 0 problemas |
-| `shopify theme dev` render local | COMPLETADO: portada/producto/colección/carrito 200, 0 "Liquid error" |
+| `shopify theme dev` render local | COMPLETADO (19-OCT y 20-OCT): portada/producto/colección/carrito 200, 0 "Liquid error"; 20-OCT: 12 páginas verificadas (portada, 4 productos Nuvel, 1 genérico, 6 de contenido, 4 landings viejas), 69/69 assets de imagen responden 200, 0 imágenes del proveedor en portada y páginas Nuvel |
+| Validación own-gallery/locales/assets (20-OCT) | COMPLETADO: `scripts/validate-theme.cjs` — 173 claves nuvel.* en ES+EN, 32 bases de imágenes con todas sus variantes, 68 JSON válidos |
 | Lighthouse a11y/seo (dev, código local) | COMPLETADO: a11y 100/100/100/100; seo 92-100 (restante: meta-description = admin) |
 | Lighthouse perf | NO COMPARABLE en dev (hot-reload); producción ~50 dominada por JS de apps |
 | Desbordamiento horizontal a 320px | PENDIENTE DE PRUEBA MANUAL |

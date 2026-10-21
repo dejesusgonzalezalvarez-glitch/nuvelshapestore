@@ -71,7 +71,7 @@
           "settings": {
             "icon": "ruler",
             "heading": "Guía de tallas",
-            "content": "<p>Disponible de la S a la 3XL. Mide tu cintura y compárala con la tabla de tallas antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
+            "content": "<p>Cada prenda incluye su tabla de tallas: mide tu cintura y compárala antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
           }
         },
         "envio-devoluciones": {
@@ -147,7 +147,7 @@
           "settings": {
             "icon": "ruler",
             "heading": "¿Qué talla elijo?",
-            "row_content": "<p>Disponible de la S a la 3XL. Mide tu cintura y compárala con la tabla de tallas antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
+            "row_content": "<p>Cada prenda incluye su tabla de tallas: mide tu cintura y compárala antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
           }
         },
         "uso": {

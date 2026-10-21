@@ -1,0 +1,443 @@
+{%- comment -%}
+  Contenido de respaldo para páginas del admin con el cuerpo vacío.
+  Se renderiza desde sections/main-page.liquid SOLO cuando page.content
+  está vacío: si el propietario escribe contenido en el administrador,
+  ese contenido tiene prioridad automática.
+  Textos traducibles en locales bajo nuvel.pages.* (ES/EN + fallback).
+{%- endcomment -%}
+
+{%- style -%}
+  .nuvel-page h2 {
+    margin: 2.4em 0 0.6em;
+  }
+
+  .nuvel-page h2 + p,
+  .nuvel-page h2 + ul {
+    margin-top: 0;
+  }
+
+  .nuvel-page ul {
+    padding-left: 1.2em;
+  }
+
+  .nuvel-page li {
+    margin-bottom: 0.5em;
+  }
+
+  .nuvel-page__meta {
+    font-size: 0.85em;
+    color: rgba(var(--color-foreground), 0.6);
+    margin: 0.4em 0 2.4em;
+  }
+
+  .nuvel-page__callout {
+    margin: 0 0 2.4em;
+    padding: 1.2em 1.4em;
+    background: rgb(var(--color-background));
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: var(--media-radius, 2px);
+  }
+
+  .nuvel-page__callout p {
+    margin: 0;
+  }
+
+  .nuvel-page__callout p + p {
+    margin-top: 0.5em;
+  }
+
+  .nuvel-page details {
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: var(--media-radius, 2px);
+    margin-bottom: 0.8rem;
+    background: rgb(var(--color-background));
+  }
+
+  .nuvel-page summary {
+    cursor: pointer;
+    padding: 1rem 1.2rem;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nuvel-page summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nuvel-page summary::after {
+    content: '+';
+    font-size: 1.3em;
+    font-weight: 400;
+    line-height: 1;
+    flex: 0 0 auto;
+    color: rgba(var(--color-foreground), 0.55);
+  }
+
+  .nuvel-page details[open] summary::after {
+    content: '\2212';
+  }
+
+  .nuvel-page details > div {
+    padding: 0 1.2rem 1.2rem;
+  }
+
+  .nuvel-page details > div > p {
+    margin: 0;
+  }
+
+  .nuvel-page blockquote {
+    margin: 1.8em 0;
+    padding: 0.2em 0 0.2em 1.2em;
+    border-left: 0.2rem solid rgba(var(--color-foreground), 0.25);
+    font-style: italic;
+  }
+
+  .nuvel-page__closing {
+    text-align: center;
+    margin: 2.8em 0 0.8em;
+    font-size: 1.5em;
+    line-height: 1.3;
+  }
+
+  .nuvel-page__closing-sub {
+    text-align: center;
+    font-size: 0.9em;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0 0 1.6em;
+  }
+
+  .nuvel-page__closing-cta {
+    display: inline-block;
+    padding: 0.9em 2em;
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    border-radius: var(--buttons-radius, 2px);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .nuvel-page__contact {
+    margin-top: 2.4em;
+    padding: 1em 1.4em;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: var(--media-radius, 2px);
+    background: rgb(var(--color-background));
+  }
+
+  .nuvel-page__more {
+    margin-top: 2.4em;
+  }
+{%- endstyle -%}
+
+<div class="nuvel-page">
+  {%- case page.handle -%}
+    {%- when 'envios' -%}
+      <h2>{{ 'nuvel.pages.shipping.deadlines_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.shipping.deadlines_1' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.deadlines_2' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.deadlines_3' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.deadlines_4' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.deadlines_5' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.deadlines_6' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.shipping.why_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.shipping.why_1' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.why_2' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.why_3' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.why_4' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.shipping.costs_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.shipping.costs_1' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.costs_2' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.shipping.tracking_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.shipping.tracking_1' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.tracking_2' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.tracking_3' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.tracking_4' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.shipping.issues_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.shipping.issues_1' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.issues_2' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.issues_3' | t }}</li>
+        <li>{{ 'nuvel.pages.shipping.issues_4' | t }}</li>
+      </ul>
+
+      <p class="nuvel-page__contact">
+        <strong>{{ 'nuvel.pages.shipping.contact_label' | t }}</strong>
+        {{ 'nuvel.pages.shipping.contact_text' | t }}
+        <a href="mailto:hola@nuvelshape.store">hola@nuvelshape.store</a>{{ 'nuvel.pages.shipping.contact_text_end' | t }}
+      </p>
+
+    {%- when 'devoluciones' -%}
+      <div class="nuvel-page__callout">
+        <p><strong>{{ 'nuvel.pages.returns.callout_1' | t }}</strong></p>
+        <p>{{ 'nuvel.pages.returns.callout_2' | t }}</p>
+      </div>
+
+      <h2>{{ 'nuvel.pages.returns.deadline_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.returns.deadline_1' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.deadline_2' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.returns.condition_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.returns.condition_1' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.condition_2' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.returns.how_to_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.returns.step_1' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.step_2' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.step_3' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.step_4' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.returns.size_change_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.returns.size_change_1' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.size_change_2' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.size_change_3' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.returns.defective_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.returns.defective_1' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.defective_2' | t }}</li>
+      </ul>
+
+      <h2>{{ 'nuvel.pages.returns.refunds_title' | t }}</h2>
+      <ul>
+        <li>{{ 'nuvel.pages.returns.refunds_1' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.refunds_2' | t }}</li>
+        <li>{{ 'nuvel.pages.returns.refunds_3' | t }}</li>
+      </ul>
+
+      <p class="nuvel-page__contact">
+        <strong>{{ 'nuvel.pages.contact_label' | t }}</strong>
+        {{ 'nuvel.pages.contact_text' | t }}
+        <a href="mailto:hola@nuvelshape.store">hola@nuvelshape.store</a>{{ 'nuvel.pages.contact_text_end' | t }}
+      </p>
+
+    {%- when 'privacidad' -%}
+      <h2>{{ 'nuvel.pages.privacy.controller_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.controller_text' | t }}</p>
+      <ul>
+        <li><strong>{{ 'nuvel.pages.privacy.owner_label' | t }}</strong> Jesús González Álvarez</li>
+        <li><strong>{{ 'nuvel.pages.privacy.address_label' | t }}</strong> Los Leones 3050, Lara, Venezuela</li>
+        <li><strong>{{ 'nuvel.pages.privacy.contact_email_label' | t }}</strong> hola@nuvelshape.store</li>
+        <li><strong>{{ 'nuvel.pages.privacy.platform_label' | t }}</strong> {{ 'nuvel.pages.privacy.platform_text' | t }}</li>
+      </ul>
+      <p class="nuvel-page__meta">{{ 'nuvel.pages.last_updated' | t }}</p>
+
+      <h2>{{ 'nuvel.pages.privacy.s1_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s1_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s2_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s2_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s3_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s3_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s4_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s4_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s5_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s5_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s6_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s6_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s7_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s7_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s8_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s8_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.privacy.s9_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.privacy.s9_text' | t }}</p>
+
+    {%- when 'terminos' -%}
+      <h2>{{ 'nuvel.pages.terms.seller_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.seller_text' | t }}</p>
+      <ul>
+        <li><strong>{{ 'nuvel.pages.privacy.owner_label' | t }}</strong> Jesús González Álvarez</li>
+        <li><strong>{{ 'nuvel.pages.privacy.address_label' | t }}</strong> Los Leones 3050, Lara, Venezuela</li>
+        <li><strong>{{ 'nuvel.pages.privacy.contact_email_label' | t }}</strong> hola@nuvelshape.store</li>
+      </ul>
+      <p>{{ 'nuvel.pages.terms.jurisdiction_note' | t }}</p>
+      <p class="nuvel-page__meta">{{ 'nuvel.pages.last_updated' | t }}</p>
+
+      <h2>{{ 'nuvel.pages.terms.s1_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s1_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s2_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s2_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s3_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s3_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s4_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s4_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s5_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s5_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s6_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s6_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s7_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s7_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s8_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s8_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s9_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s9_text' | t }}</p>
+      <h2>{{ 'nuvel.pages.terms.s10_title' | t }}</h2>
+      <p>{{ 'nuvel.pages.terms.s10_text' | t }}</p>
+
+    {%- when 'preguntas-frecuentes' -%}
+      <details id="enrolla">
+        <summary>{{ 'nuvel.pages.faq.q_rolls' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_rolls' | t }}</p></div>
+      </details>
+      <details id="talla">
+        <summary>{{ 'nuvel.pages.faq.q_size' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_size' | t }}</p></div>
+      </details>
+      <details id="se-nota">
+        <summary>{{ 'nuvel.pages.faq.q_visible' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_visible' | t }}</p></div>
+      </details>
+      <details id="bano">
+        <summary>{{ 'nuvel.pages.faq.q_bathroom' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_bathroom' | t }}</p></div>
+      </details>
+      <details id="lavado">
+        <summary>{{ 'nuvel.pages.faq.q_washing' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_washing' | t }}</p></div>
+      </details>
+      <details id="gorditos">
+        <summary>{{ 'nuvel.pages.faq.q_curvy' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_curvy' | t }}</p></div>
+      </details>
+      <details id="calor">
+        <summary>{{ 'nuvel.pages.faq.q_heat' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_heat' | t }}</p></div>
+      </details>
+      <details id="pica">
+        <summary>{{ 'nuvel.pages.faq.q_itchy' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_itchy' | t }}</p></div>
+      </details>
+      <details id="devolucion">
+        <summary>{{ 'nuvel.pages.faq.q_return' | t }}</summary>
+        <div><p>{{ 'nuvel.pages.faq.a_return' | t }}</p></div>
+      </details>
+
+      <p class="nuvel-page__more">
+        {{ 'nuvel.pages.faq.more_questions' | t }}
+        <a href="mailto:hola@nuvelshape.store">{{ 'nuvel.pages.write_to_email' | t }}</a>
+      </p>
+
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_rolls' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_rolls' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_size' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_size' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_visible' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_visible' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_bathroom' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_bathroom' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_washing' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_washing' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_curvy' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_curvy' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_heat' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_heat' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_itchy' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_itchy' | t | json }} }
+            },
+            {
+              "@type": "Question",
+              "name": {{ 'nuvel.pages.faq.q_return' | t | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ 'nuvel.pages.faq.a_return' | t | json }} }
+            }
+          ]
+        }
+      </script>
+
+    {%- when 'sobre-nosotros' -%}
+      <p>{{ 'nuvel.pages.about.p1' | t }}</p>
+      <p>{{ 'nuvel.pages.about.p2' | t }}</p>
+      <blockquote>{{ 'nuvel.pages.about.quote' | t }}</blockquote>
+      <p>{{ 'nuvel.pages.about.p3' | t }}</p>
+      <p>{{ 'nuvel.pages.about.p4' | t }}</p>
+
+      <p class="nuvel-page__closing">{{ 'nuvel.pages.about.closing_line' | t }}</p>
+      <p class="nuvel-page__closing-sub">{{ 'nuvel.pages.about.closing_sub' | t }}</p>
+      <p style="text-align: center; margin-bottom: 0;">
+        <a class="nuvel-page__closing-cta" href="{{ request.locale.root_url | remove_last: '/' }}/products/faja-moldeadora-invisible-nuvel">
+          {{ 'nuvel.pages.about.closing_cta' | t }}
+        </a>
+      </p>
+
+    {%- when 'producto' -%}
+      <p class="nuvel-page__contact">{{ 'nuvel.pages.moved_text' | t }}</p>
+      <p>
+        <a class="nuvel-page__closing-cta" href="{{ request.locale.root_url | remove_last: '/' }}/products/faja-moldeadora-invisible-nuvel">
+          {{ 'nuvel.pages.moved_cta' | t }} — Faja Moldeadora Invisible
+        </a>
+      </p>
+
+    {%- when 'corse' -%}
+      <p class="nuvel-page__contact">{{ 'nuvel.pages.moved_text' | t }}</p>
+      <p>
+        <a class="nuvel-page__closing-cta" href="{{ request.locale.root_url | remove_last: '/' }}/products/retro-shapewear-top-with-zipper">
+          {{ 'nuvel.pages.moved_cta' | t }} — Top Moldeador Retro con Cremallera
+        </a>
+      </p>
+
+    {%- when 'vestido' -%}
+      <p class="nuvel-page__contact">{{ 'nuvel.pages.moved_text' | t }}</p>
+      <p>
+        <a class="nuvel-page__closing-cta" href="{{ request.locale.root_url | remove_last: '/' }}/products/womens-shapewear-dress-jumpsuit">
+          {{ 'nuvel.pages.moved_cta' | t }} — Body Moldeador con Falda
+        </a>
+      </p>
+
+    {%- when 'short' -%}
+      <p class="nuvel-page__contact">{{ 'nuvel.pages.moved_text' | t }}</p>
+      <p>
+        <a class="nuvel-page__closing-cta" href="{{ request.locale.root_url | remove_last: '/' }}/products/seamless-shapewear-panties">
+          {{ 'nuvel.pages.moved_cta' | t }} — Bragas Moldeadoras Sin Costuras
+        </a>
+      </p>
+  {%- endcase -%}
+</div>

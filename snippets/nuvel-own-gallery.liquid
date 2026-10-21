@@ -1,133 +1,160 @@
 {%- comment -%}
   Galería propia de Nuvel: imágenes de marca del tema (assets) en lugar de
   la multimedia del producto del admin (imágenes del proveedor).
-  Se activa desde la plantilla de producto (main-product → own_gallery).
-  Marcado y clases propios; JS mínimo de sustitución de imagen principal.
+  Cada producto Nuvel tiene su propio set de imágenes, replicando el orden
+  de la página original: main-product/featured-product pasan `product` y
+  solo renderizan este snippet cuando el handle está mapeado.
+  Alt texts por producto en locales (nuvel.gallery.*).
 {%- endcomment -%}
 
 {%- liquid
-  assign gallery_handles = 'avatar-vestida,detalle-tela,producto-frente,producto-espalda,producto-detalle,avatar-athleisure' | split: ','
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign gallery_handles = 'avatar-vestida,detalle-tela,producto-frente,producto-espalda,producto-detalle,avatar-athleisure' | split: ','
+      assign alt_prefix = 'nuvel.gallery.alt_'
+      assign main_handle = 'avatar-vestida'
+      assign main_alt_key = 'nuvel.gallery.main_alt'
+    when 'retro-shapewear-top-with-zipper'
+      assign gallery_handles = 'corse-negro-frente,corse-negro-espalda,corse-tallas,corse-negro-modelo,corse-negro-modelo-espalda,corse-beige-frente,corse-beige-espalda,corse-rosa-modelo,corse-rosa-modelo-espalda' | split: ','
+      assign alt_prefix = 'nuvel.gallery.corse_alt_'
+      assign main_handle = 'corse-negro-frente'
+      assign main_alt_key = 'nuvel.gallery.corse_main_alt'
+    when 'womens-shapewear-dress-jumpsuit'
+      assign gallery_handles = 'vestido-negro-frente,vestido-negro-espalda,vestido-tallas,vestido-ugc-negro,vestido-gris-frente,vestido-gris-espalda,vestido-ugc-gris' | split: ','
+      assign alt_prefix = 'nuvel.gallery.vestido_alt_'
+      assign main_handle = 'vestido-negro-frente'
+      assign main_alt_key = 'nuvel.gallery.vestido_main_alt'
+    when 'seamless-shapewear-panties'
+      assign gallery_handles = 'short-negro-frente,short-negro-espalda,short-tallas,short-ugc-negro,short-beige-frente,short-beige-espalda,short-ugc-beige' | split: ','
+      assign alt_prefix = 'nuvel.gallery.short_alt_'
+      assign main_handle = 'short-negro-frente'
+      assign main_alt_key = 'nuvel.gallery.short_main_alt'
+  endcase
 -%}
 
-{%- style -%}
-  .nuvel-gallery {
-    display: block;
-  }
+{%- if gallery_handles != blank -%}
+  {%- style -%}
+    .nuvel-gallery {
+      display: block;
+    }
 
-  .nuvel-gallery__main {
-    margin: 0;
-  }
+    .nuvel-gallery__main {
+      margin: 0;
+    }
 
-  .nuvel-gallery__main img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: var(--media-radius, 2px);
-  }
+    .nuvel-gallery__main img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: var(--media-radius, 2px);
+    }
 
-  .nuvel-gallery__thumbs {
-    display: flex;
-    gap: 0.8rem;
-    margin-top: 0.8rem;
-    padding-bottom: 0.4rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
+    .nuvel-gallery__thumbs {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      padding-bottom: 0.4rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
 
-  .nuvel-gallery__thumb {
-    flex: 0 0 auto;
-    width: 6.4rem;
-    padding: 0;
-    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
-    border-radius: var(--media-radius, 2px);
-    background: rgb(var(--color-background));
-    cursor: pointer;
-    overflow: hidden;
-    scroll-snap-align: start;
-  }
+    .nuvel-gallery__thumb {
+      flex: 0 0 auto;
+      width: 6.4rem;
+      padding: 0;
+      border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+      border-radius: var(--media-radius, 2px);
+      background: rgb(var(--color-background));
+      cursor: pointer;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
 
-  .nuvel-gallery__thumb.is-active {
-    border-color: rgba(var(--color-foreground), 0.55);
-  }
+    .nuvel-gallery__thumb.is-active {
+      border-color: rgba(var(--color-foreground), 0.55);
+    }
 
-  .nuvel-gallery__thumb img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-  }
+    .nuvel-gallery__thumb img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
 
-  .nuvel-gallery__thumb:focus-visible {
-    outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-    outline-offset: 0.2rem;
-  }
-{%- endstyle -%}
+    .nuvel-gallery__thumb:focus-visible {
+      outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+      outline-offset: 0.2rem;
+    }
+  {%- endstyle -%}
 
-<div class="nuvel-gallery" data-nuvel-gallery-{{ section.id }}>
-  <figure class="nuvel-gallery__main">
-    <img
-      data-nuvel-gallery-main
-      src="{{ 'avatar-vestida.jpg' | asset_url }}"
-      srcset="{{ 'med-avatar-vestida.jpg' | asset_url }} 800w, {{ 'lg-avatar-vestida.jpg' | asset_url }} 1100w"
-      sizes="(min-width: 990px) 550px, (min-width: 750px) 420px, 100vw"
-      width="1100"
-      height="1467"
-      alt="{{ 'nuvel.gallery.main_alt' | t }}"
-      fetchpriority="high"
-    >
-  </figure>
-
-  <div class="nuvel-gallery__thumbs">
-    {%- for handle in gallery_handles -%}
-      {%- capture alt_key %}nuvel.gallery.alt_{{ forloop.index }}{% endcapture -%}
-      {%- capture mini_src %}mini-{{ handle }}.jpg{% endcapture -%}
-      {%- capture full_src %}lg-{{ handle }}.jpg{% endcapture -%}
-      <button
-        type="button"
-        class="nuvel-gallery__thumb{% if forloop.first %} is-active{% endif %}"
-        data-nuvel-gallery-thumb
-        data-full="{{ full_src | asset_url }}"
-        aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
-        aria-label="{{ alt_key | t }}"
+  <div class="nuvel-gallery" data-nuvel-gallery-{{ section.id }}>
+    <figure class="nuvel-gallery__main">
+      <img
+        data-nuvel-gallery-main
+        src="{{ main_handle | append: '.jpg' | asset_url }}"
+        srcset="{{ 'med-' | append: main_handle | append: '.jpg' | asset_url }} 800w, {{ 'lg-' | append: main_handle | append: '.jpg' | asset_url }} 1100w"
+        sizes="(min-width: 990px) 550px, (min-width: 750px) 420px, 100vw"
+        width="1100"
+        height="1467"
+        alt="{{ main_alt_key | t }}"
+        fetchpriority="high"
       >
-        <img
-          src="{{ mini_src | asset_url }}"
-          width="400"
-          height="400"
-          alt="{{ alt_key | t }}"
-          loading="lazy"
-          decoding="async"
+    </figure>
+
+    <div class="nuvel-gallery__thumbs">
+      {%- for handle in gallery_handles -%}
+        {%- capture alt_key %}{{ alt_prefix }}{{ forloop.index }}{% endcapture -%}
+        {%- capture mini_src %}mini-{{ handle }}.jpg{% endcapture -%}
+        {%- capture med_src %}med-{{ handle }}.jpg{% endcapture -%}
+        {%- capture full_src %}lg-{{ handle }}.jpg{% endcapture -%}
+        <button
+          type="button"
+          class="nuvel-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+          data-nuvel-gallery-thumb
+          data-src="{{ full_src | asset_url }}"
+          data-srcset="{{ med_src | asset_url }} 800w, {{ full_src | asset_url }} 1100w"
+          aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-label="{{ alt_key | t }}"
         >
-      </button>
-    {%- endfor -%}
+          <img
+            src="{{ mini_src | asset_url }}"
+            width="400"
+            height="400"
+            alt="{{ alt_key | t }}"
+            loading="lazy"
+            decoding="async"
+          >
+        </button>
+      {%- endfor -%}
+    </div>
   </div>
-</div>
 
-<script>
-  (function () {
-    var gallery = document.querySelector('[data-nuvel-gallery-{{ section.id }}]');
-    if (!gallery || gallery.dataset.init) return;
-    gallery.dataset.init = '1';
+  <script>
+    (function () {
+      var gallery = document.querySelector('[data-nuvel-gallery-{{ section.id }}]');
+      if (!gallery || gallery.dataset.init) return;
+      gallery.dataset.init = '1';
 
-    var main = gallery.querySelector('[data-nuvel-gallery-main]');
-    if (!main) return;
+      var main = gallery.querySelector('[data-nuvel-gallery-main]');
+      if (!main) return;
 
-    gallery.addEventListener('click', function (event) {
-      var thumb = event.target.closest('[data-nuvel-gallery-thumb]');
-      if (!thumb) return;
+      gallery.addEventListener('click', function (event) {
+        var thumb = event.target.closest('[data-nuvel-gallery-thumb]');
+        if (!thumb) return;
 
-      main.src = thumb.dataset.full;
-      main.removeAttribute('srcset');
-      var thumbImg = thumb.querySelector('img');
-      if (thumbImg) main.alt = thumbImg.alt;
+        main.src = thumb.dataset.src;
+        if (thumb.dataset.srcset) main.srcset = thumb.dataset.srcset;
+        var thumbImg = thumb.querySelector('img');
+        if (thumbImg) main.alt = thumbImg.alt;
 
-      var thumbs = gallery.querySelectorAll('[data-nuvel-gallery-thumb]');
-      for (var i = 0; i < thumbs.length; i++) {
-        thumbs[i].classList.toggle('is-active', thumbs[i] === thumb);
-        thumbs[i].setAttribute('aria-current', thumbs[i] === thumb ? 'true' : 'false');
-      }
-    });
-  })();
-</script>
+        var thumbs = gallery.querySelectorAll('[data-nuvel-gallery-thumb]');
+        for (var i = 0; i < thumbs.length; i++) {
+          thumbs[i].classList.toggle('is-active', thumbs[i] === thumb);
+          thumbs[i].setAttribute('aria-current', thumbs[i] === thumb ? 'true' : 'false');
+        }
+      });
+    })();
+  </script>
+{%- endif -%}

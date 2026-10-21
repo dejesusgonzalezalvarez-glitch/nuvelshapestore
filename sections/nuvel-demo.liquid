@@ -1,8 +1,10 @@
 {%- comment -%}
   Demostración: imagen/vídeo del producto + imagen "puesta bajo la ropa".
-  Imágenes editables desde el personalizador; si están vacías, usa los
-  assets de marca del propietario como fallback (compatible con el sync
-  de GitHub: nunca se referencia shopify://assets en settings JSON).
+  Imágenes editables desde el personalizador; si están vacías, cada producto
+  Nuvel usa sus propios assets del tema como fallback (compatible con el
+  sync de GitHub: nunca se referencia shopify://assets en settings JSON).
+  Productos sin fallback propio (p. ej. los del proveedor) no muestran la
+  sección salvo que el editor elija medios explícitos.
 {%- endcomment -%}
 
 {%- liquid
@@ -19,6 +21,37 @@
   assign has_video = false
   if section.settings.video != blank
     assign has_video = true
+  endif
+
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign fallback_product_image = 'producto-frente'
+      assign fallback_worn_image = 'avatar-vestida'
+      assign fallback_worn_video = true
+      assign fallback_product_alt = 'nuvel.gallery.alt_3'
+      assign fallback_worn_alt = 'nuvel.gallery.alt_1'
+    when 'retro-shapewear-top-with-zipper'
+      assign fallback_product_image = 'corse-negro-frente'
+      assign fallback_worn_image = 'corse-negro-modelo'
+      assign fallback_product_alt = 'nuvel.gallery.corse_alt_1'
+      assign fallback_worn_alt = 'nuvel.gallery.corse_alt_4'
+    when 'womens-shapewear-dress-jumpsuit'
+      assign fallback_product_image = 'vestido-negro-frente'
+      assign fallback_worn_image = 'vestido-ugc-negro'
+      assign fallback_product_alt = 'nuvel.gallery.vestido_alt_1'
+      assign fallback_worn_alt = 'nuvel.gallery.vestido_alt_4'
+    when 'seamless-shapewear-panties'
+      assign fallback_product_image = 'short-negro-frente'
+      assign fallback_worn_image = 'short-ugc-negro'
+      assign fallback_product_alt = 'nuvel.gallery.short_alt_1'
+      assign fallback_worn_alt = 'nuvel.gallery.short_alt_4'
+  endcase
+
+  assign show_section = false
+  if has_product_image or has_worn_image or has_video
+    assign show_section = true
+  elsif fallback_product_image != blank
+    assign show_section = true
   endif
 -%}
 
@@ -101,6 +134,7 @@
   }
 {%- endstyle -%}
 
+{%- if show_section -%}
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <div class="section-{{ section.id }}-padding page-width">
     {%- if section.settings.heading != blank or section.settings.subtitle != blank -%}
@@ -131,19 +165,19 @@
             loading="lazy"
             decoding="async"
           >
-        {%- else -%}
+        {%- elsif fallback_product_image != blank -%}
           <img
             class="nuvel-demo__media"
-            src="{{ 'producto-frente.jpg' | asset_url }}"
+            src="{{ fallback_product_image | append: '.jpg' | asset_url }}"
             srcset="
-              {{ 'med-producto-frente.jpg' | asset_url }} 800w,
-              {{ 'lg-producto-frente.jpg' | asset_url }} 1100w,
-              {{ 'producto-frente.jpg' | asset_url }} 1400w
+              {{ 'med-' | append: fallback_product_image | append: '.jpg' | asset_url }} 800w,
+              {{ 'lg-' | append: fallback_product_image | append: '.jpg' | asset_url }} 1100w,
+              {{ fallback_product_image | append: '.jpg' | asset_url }} 1400w
             "
             sizes="(min-width: 750px) 460px, 92vw"
             width="1400"
             height="1435"
-            alt="{{ section.settings.image_product_alt | escape }}"
+            alt="{{ fallback_product_alt | t | escape }}"
             loading="lazy"
             decoding="async"
           >
@@ -188,16 +222,31 @@
             loading="lazy"
             decoding="async"
           >
-        {%- else -%}
+        {%- elsif fallback_worn_video -%}
           <video
             class="nuvel-demo__media"
             src="{{ 'nuvel-ugc-ropa-ajustada.mp4' | asset_url }}"
             controls
             preload="metadata"
             playsinline
-            poster="{{ 'avatar-vestida.jpg' | asset_url }}"
-            aria-label="{{ section.settings.image_worn_alt | escape }}"
+            poster="{{ fallback_worn_image | append: '.jpg' | asset_url }}"
+            aria-label="{{ fallback_worn_alt | t | escape }}"
           ></video>
+        {%- elsif fallback_worn_image != blank -%}
+          <img
+            class="nuvel-demo__media"
+            src="{{ fallback_worn_image | append: '.jpg' | asset_url }}"
+            srcset="
+              {{ 'med-' | append: fallback_worn_image | append: '.jpg' | asset_url }} 800w,
+              {{ 'lg-' | append: fallback_worn_image | append: '.jpg' | asset_url }} 1100w
+            "
+            sizes="(min-width: 750px) 460px, 92vw"
+            width="1100"
+            height="1467"
+            alt="{{ fallback_worn_alt | t | escape }}"
+            loading="lazy"
+            decoding="async"
+          >
         {%- endif -%}
         {%- if section.settings.tag_worn != blank -%}
           <figcaption class="nuvel-demo__tag">{{ section.settings.tag_worn | escape }}</figcaption>
@@ -206,6 +255,7 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -272,7 +322,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Si dejas los campos vacíos, se muestran los vídeos y fotos de marca incluidos en el tema: la faja frontal, y un UGC propio de la prenda bajo ropa ajustada. Añade tus propios vídeos UGC con el selector de vídeo."
+      "content": "Si dejas los campos vacíos, cada producto Nuvel muestra sus propias fotos y vídeos de marca incluidos en el tema. En el resto de productos la sección solo aparece si eliges imágenes aquí. Añade tus propios vídeos UGC con el selector de vídeo."
     },
     {
       "type": "color_scheme",

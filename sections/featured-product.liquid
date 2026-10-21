@@ -67,6 +67,13 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+  {%- liquid
+    assign nuvel_own_products = 'faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties' | split: ','
+    assign use_own_gallery = false
+    if nuvel_own_products contains product.handle
+      assign use_own_gallery = true
+    endif
+  -%}
 
   {%- unless placeholder -%}
     <product-component view-event-payload="{{ product | standard_event_data: 'view' | escape }}">
@@ -76,7 +83,11 @@
       <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {%- unless placeholder -%}
-            {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
+            {%- if use_own_gallery -%}
+              {% render 'nuvel-own-gallery', product: product %}
+            {%- else -%}
+              {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
+            {%- endif -%}
           {%- else -%}
             <div class="product__media-item">
               <div
@@ -474,7 +485,9 @@
           </section>
         </div>
       </div>
-      {% render 'product-media-modal', product: product, variant_images: variant_images %}
+      {%- unless use_own_gallery -%}
+        {% render 'product-media-modal', product: product, variant_images: variant_images %}
+      {%- endunless -%}
     </div>
   </section>
   {%- unless placeholder -%}
