@@ -73,6 +73,13 @@
               assign quantity_rule_soldout = true
             endif
           -%}
+          {%- comment -%}
+            Nuvel: el botón de pago exprés (PayPal, y otras wallets activas)
+            va ENCIMA del botón principal, para quien no tiene tarjeta.
+          {%- endcomment -%}
+          {%- if show_dynamic_checkout -%}
+            {{ form | payment_button }}
+          {%- endif -%}
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -96,9 +103,6 @@
             </span>
             {%- render 'loading-spinner' -%}
           </button>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
-          {%- endif -%}
         </div>
       {%- endform -%}
     </product-form>

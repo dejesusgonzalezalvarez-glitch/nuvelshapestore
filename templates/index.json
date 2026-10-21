@@ -73,7 +73,9 @@
             "icon_1": "ruler",
             "heading_1": "Tabla de tallas incluida",
             "icon_2": "none",
-            "icon_3": "none"
+            "heading_2": "",
+            "icon_3": "none",
+            "heading_3": ""
           }
         }
       },

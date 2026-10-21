@@ -26,25 +26,33 @@
   case product.handle
     when 'faja-moldeadora-invisible-nuvel'
       assign fallback_product_image = 'producto-frente'
-      assign fallback_worn_image = 'avatar-vestida'
-      assign fallback_worn_video = true
+      assign fallback_worn_video_src = 'https://cdn.shopify.com/videos/c/vp/2aca2786852641e4be486749a9c9d3a7/2aca2786852641e4be486749a9c9d3a7.HD-720p-1.6Mbps-94276534.mp4'
+      assign fallback_worn_video_poster = 'https://cdn.shopify.com/s/files/1/0814/1288/2673/files/preview_images/2aca2786852641e4be486749a9c9d3a7.thumbnail.0000000000.jpg?v=1789313405'
       assign fallback_product_alt = 'nuvel.gallery.alt_3'
-      assign fallback_worn_alt = 'nuvel.gallery.alt_1'
+      assign fallback_worn_alt = 'nuvel.gallery.unboxing_alt'
+      assign fallback_tag_product = 'Faja Nuvel'
+      assign fallback_tag_worn = 'Unboxing'
     when 'retro-shapewear-top-with-zipper'
       assign fallback_product_image = 'corse-negro-frente'
       assign fallback_worn_image = 'corse-negro-modelo'
       assign fallback_product_alt = 'nuvel.gallery.corse_alt_1'
       assign fallback_worn_alt = 'nuvel.gallery.corse_alt_4'
+      assign fallback_tag_product = 'El top Nuvel'
+      assign fallback_tag_worn = 'Puesta'
     when 'womens-shapewear-dress-jumpsuit'
       assign fallback_product_image = 'vestido-negro-frente'
       assign fallback_worn_image = 'vestido-ugc-negro'
       assign fallback_product_alt = 'nuvel.gallery.vestido_alt_1'
       assign fallback_worn_alt = 'nuvel.gallery.vestido_alt_4'
+      assign fallback_tag_product = 'El body Nuvel'
+      assign fallback_tag_worn = 'Puesta'
     when 'seamless-shapewear-panties'
       assign fallback_product_image = 'short-negro-frente'
       assign fallback_worn_image = 'short-ugc-negro'
       assign fallback_product_alt = 'nuvel.gallery.short_alt_1'
       assign fallback_worn_alt = 'nuvel.gallery.short_alt_4'
+      assign fallback_tag_product = 'Las bragas Nuvel'
+      assign fallback_tag_worn = 'Puesta'
   endcase
 
   assign show_section = false
@@ -52,6 +60,11 @@
     assign show_section = true
   elsif fallback_product_image != blank
     assign show_section = true
+  endif
+
+  assign explicit_worn_media = false
+  if has_video or has_worn_image
+    assign explicit_worn_media = true
   endif
 -%}
 
@@ -182,8 +195,10 @@
             decoding="async"
           >
         {%- endif -%}
-        {%- if section.settings.tag_product != blank -%}
+        {%- if has_product_image and section.settings.tag_product != blank -%}
           <figcaption class="nuvel-demo__tag">{{ section.settings.tag_product | escape }}</figcaption>
+        {%- elsif fallback_tag_product != blank -%}
+          <figcaption class="nuvel-demo__tag">{{ fallback_tag_product | escape }}</figcaption>
         {%- endif -%}
       </figure>
 
@@ -222,14 +237,14 @@
             loading="lazy"
             decoding="async"
           >
-        {%- elsif fallback_worn_video -%}
+        {%- elsif fallback_worn_video_src != blank -%}
           <video
             class="nuvel-demo__media"
-            src="{{ 'nuvel-ugc-ropa-ajustada.mp4' | asset_url }}"
+            src="{{ fallback_worn_video_src }}"
             controls
             preload="metadata"
             playsinline
-            poster="{{ fallback_worn_image | append: '.jpg' | asset_url }}"
+            poster="{{ fallback_worn_video_poster }}"
             aria-label="{{ fallback_worn_alt | t | escape }}"
           ></video>
         {%- elsif fallback_worn_image != blank -%}
@@ -248,8 +263,10 @@
             decoding="async"
           >
         {%- endif -%}
-        {%- if section.settings.tag_worn != blank -%}
+        {%- if explicit_worn_media and section.settings.tag_worn != blank -%}
           <figcaption class="nuvel-demo__tag">{{ section.settings.tag_worn | escape }}</figcaption>
+        {%- elsif fallback_tag_worn != blank -%}
+          <figcaption class="nuvel-demo__tag">{{ fallback_tag_worn | escape }}</figcaption>
         {%- endif -%}
       </figure>
     </div>

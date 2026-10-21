@@ -560,7 +560,7 @@
       "eyebrow": "Así se ve puesta",
       "title": "El producto en la vida real",
       "subtitle": "La prenda por sí sola, y cómo se ve puesta bajo la ropa de calle, sin que se note.",
-      "tag_product": "El producto",
+      "tag_product": "Faja Nuvel",
       "tag_worn": "Puesta, invisible",
       "image_alt": "Faja moldeadora Nuvel",
       "worn_image_alt": "Faja Nuvel puesta, invisible bajo la ropa"
@@ -613,7 +613,8 @@
       "short_alt_5": "Bragas moldeadoras sin costuras Nuvel en beige, vista de frente",
       "short_alt_6": "Bragas moldeadoras sin costuras Nuvel en beige, vista por detrás",
       "short_alt_7": "Las bragas moldeadoras Nuvel beige puestas, sin marcarse",
-      "short_worn_alt": "Las bragas moldeadoras Nuvel puestas"
+      "short_worn_alt": "Las bragas moldeadoras Nuvel puestas",
+      "unboxing_alt": "Unboxing de la faja Nuvel"
     },
     "catalog": {
       "view_all": "Ver todos"

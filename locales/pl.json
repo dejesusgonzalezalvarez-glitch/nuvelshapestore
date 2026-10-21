@@ -572,7 +572,7 @@
       "eyebrow": "How it looks on",
       "title": "The product in real life",
       "subtitle": "The garment on its own, and how it looks worn under everyday clothes, without showing.",
-      "tag_product": "The product",
+      "tag_product": "Nuvel shaper",
       "tag_worn": "Worn, invisible",
       "image_alt": "Nuvel shaping girdle",
       "worn_image_alt": "Nuvel shaper worn, invisible under clothing"
@@ -625,7 +625,8 @@
       "short_alt_5": "Nuvel seamless shaping shorts in beige, front view",
       "short_alt_6": "Nuvel seamless shaping shorts in beige, back view",
       "short_alt_7": "The Nuvel shaping shorts worn in beige, no showing",
-      "short_worn_alt": "The Nuvel shaping shorts, worn"
+      "short_worn_alt": "The Nuvel shaping shorts, worn",
+      "unboxing_alt": "Nuvel shaper unboxing"
     },
     "catalog": {
       "view_all": "View all"
