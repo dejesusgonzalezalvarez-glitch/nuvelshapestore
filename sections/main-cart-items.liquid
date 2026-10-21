@@ -93,15 +93,12 @@
                       {% if item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
                         <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                        {%- assign nv_img_class = '' -%}
+                        {%- if item.parent_relationship.parent != null -%}
+                          {%- assign nv_img_class = 'global-media-settings' -%}
+                        {%- endif -%}
                         <div class="cart-item__image-container gradient {% if item.parent_relationship.parent == null %}global-media-settings{% endif %}">
-                          <img
-                            src="{{ item.image | image_url: width: 300 }}"
-                            class="cart-item__image {% if item.parent_relationship.parent != null %}global-media-settings{% endif %}"
-                            alt="{{ item.image.alt | escape }}"
-                            loading="lazy"
-                            width="150"
-                            height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
-                          >
+                          {% render 'nuvel-cart-item-image', item: item, img_class: nv_img_class %}
                         </div>
                       {% endif %}
                     </td>

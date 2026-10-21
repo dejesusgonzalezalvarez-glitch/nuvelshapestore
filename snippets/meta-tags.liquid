@@ -17,6 +17,30 @@
   elsif request.page_type == 'password'
     assign og_url = request.origin
   endif
+
+  comment
+    Nuvel: en los 4 productos de marca, la imagen social (og:image) usa las
+    fotos propias del tema en lugar de la multimedia del admin (proveedor).
+  endcomment
+  assign nv_og_image = blank
+  assign nv_og_width = 1100
+  assign nv_og_height = 1467
+  if request.page_type == 'product'
+    case product.handle
+      when 'faja-moldeadora-invisible-nuvel'
+        assign nv_og_image = 'producto-frente.jpg' | asset_url
+        assign nv_og_width = 1400
+        assign nv_og_height = 1435
+      when 'retro-shapewear-top-with-zipper'
+        assign nv_og_image = 'corse-negro-frente.jpg' | asset_url
+        assign nv_og_width = 1212
+        assign nv_og_height = 1297
+      when 'womens-shapewear-dress-jumpsuit'
+        assign nv_og_image = 'vestido-negro-frente.jpg' | asset_url
+      when 'seamless-shapewear-panties'
+        assign nv_og_image = 'short-negro-frente.jpg' | asset_url
+    endcase
+  endif
 %}
 
 <meta property="og:site_name" content="{{ shop.name }}">
@@ -25,7 +49,12 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 
-{%- if page_image -%}
+{%- if nv_og_image != blank -%}
+  <meta property="og:image" content="http:{{ nv_og_image }}">
+  <meta property="og:image:secure_url" content="https:{{ nv_og_image }}">
+  <meta property="og:image:width" content="{{ nv_og_width }}">
+  <meta property="og:image:height" content="{{ nv_og_height }}">
+{%- elsif page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url }}">
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
   <meta property="og:image:width" content="{{ page_image.width }}">

@@ -197,6 +197,18 @@ Herramienta de validación local: `scripts/validate-theme.cjs` (refs estáticas 
 - Prueba manual de compra del propietario (guion abajo) antes de publicar.
 - Los 15 productos genéricos siguen mostrando sus imágenes del admin (proveedor): sin imágenes propias del propietario no hay reemplazo posible; el override por handle está listo para añadir más cuando existan.
 
+## CIERRE DEL PROVEEDOR + POP-UP DE BIENVENIDA (21-OCT-2026, COMPLETADA)
+
+Barrido final de las últimas superficies donde la faja (y los otros 3 productos Nuvel) aún mostraban la imagen del admin:
+
+1. **og:image social** (`snippets/meta-tags.liquid`): los 4 productos usan sus fotos propias (faja: producto-frente; corse: corse-negro-frente; vestido/short: negro-frente) en og:image/secure_url/width/height. Verificado en dev: ya no aparece el hash del proveedor. El resto de páginas sigue usando `page_image`.
+2. **Miniaturas del carrito** (nueva `snippets/nuvel-cart-item-image.liquid` + `snippets/cart-drawer.liquid` + `sections/main-cart-items.liquid`): probado EN VIVO añadiendo la faja al carrito en dev — la página /cart y el drawer muestran `med-producto-frente.jpg` y 0 referencias al PNG del proveedor (carrito limpiado tras la prueba).
+3. **JSON-LD de producto**: lo inyecta Shopify automáticamente desde la multimedia del admin (no está en el tema). Única vía para cambiarlo: subir imágenes propias al admin (kit en `..\kit-galeria-imagenes-propias\`) — decisión pendiente del propietario. No afecta a la tienda visible.
+
+**Pop-up de bienvenida NUVEL10** (`layout/theme.liquid`, bloque único antes de `</body>`): aparece 1,5 s tras el load (con guard `document.readyState`), ticket con botón Copiar (clipboard API + respaldo execCommand, "Copiado" + check SVG 2 s, aria-live "Código copiado"), cierre por X / clic fuera / Escape / "Seguir comprando", 1 vez por 24 h (localStorage en try/catch), `role="dialog"` + foco atrapado + foco restaurado + `prefers-reduced-motion`, paleta de marca (negro/blanco roto #f3f1ee/gris ceniza/dorado #b09b66), Cormorant Garamond + Inter (Google Fonts), escritorio 2 paneles (10 % en serifa dorada sobre negro + ticket), móvil hoja inferior con banda negra. Ajustes: `NV_CODE`, `NV_DELAY_MS`, `NV_EXPIRY_MS` al inicio del script. Verificado en dev: markup/script/fuentes presentes, 0 errores Liquid. **PENDIENTE: prueba manual en navegador** (abrir la tienda, borrar `nv-popup-welcome` de localStorage para relanzarlo).
+
+**Theme Check**: 15 ofensas (2 errores KnownFilter ya justificados + 13 avisos). Los 3 nuevos son `RemoteAsset` por los 3 `<link>` de Google Fonts del pop-up: exigidos por el spec ("solo Google Fonts"), justificados.
+
 ## DECISIONES
 
 1. **Tipografías**: se mantienen **Lora** (títulos, n5) + **Poppins** (cuerpo, n4). Ya estaban configuradas y coinciden con la evaluación pedida; no hay razón concreta para cambiarlas (coherencia serif editorial + sans legible, buena carga en fonts CDN de Shopify).

@@ -403,5 +403,483 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    {%- comment -%}
+      ================================================================
+      Pop-up de descuento de bienvenida (Nuvel) — HTML + CSS + JS
+      Ajustes rápidos (busca estos valores en el <script> de abajo):
+        - NV_CODE       : código de descuento ("NUVEL10")
+        - NV_DELAY_MS   : retraso tras terminar la carga (1500 = 1,5 s)
+        - NV_EXPIRY_MS  : horas de expiración por visitante (86400000 = 24 h)
+      El código visible también está en el span .nv-code del ticket.
+      ================================================================
+    {%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+      #nv-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(26, 26, 26, 0.55);
+        font-family: 'Inter', system-ui, sans-serif;
+        color: #1a1a1a;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      #nv-overlay[hidden] {
+        display: none;
+      }
+
+      #nv-overlay.nv-open {
+        opacity: 1;
+      }
+
+      #nv-overlay .nv-modal {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(180px, 340px) minmax(320px, 480px);
+        width: min(820px, 94vw);
+        background: #f3f1ee;
+        border-radius: 4px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+      }
+
+      #nv-overlay.nv-open .nv-modal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #nv-overlay .nv-panel-dark {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 8px;
+        padding: 56px 40px;
+        background: #1a1a1a;
+      }
+
+      #nv-overlay .nv-percent {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(64px, 9vw, 104px);
+        line-height: 0.9;
+        color: #b09b66;
+        letter-spacing: 0.01em;
+      }
+
+      #nv-overlay .nv-panel-light {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding: 56px 48px;
+      }
+
+      #nv-overlay .nv-title {
+        margin: 0;
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-weight: 600;
+        font-size: clamp(28px, 3.4vw, 36px);
+        line-height: 1.15;
+        color: #1a1a1a;
+      }
+
+      #nv-overlay .nv-text {
+        margin: 0;
+        max-width: 40ch;
+        font-size: 15px;
+        line-height: 1.65;
+        color: #6f6a63;
+      }
+
+      #nv-overlay .nv-ticket {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        max-width: 380px;
+        margin-top: 4px;
+        background: #ffffff;
+        border: 1px solid #ddd9d3;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      #nv-overlay .nv-code {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-weight: 600;
+        font-size: 26px;
+        letter-spacing: 0.14em;
+        color: #1a1a1a;
+        border-right: 1px dashed #ddd9d3;
+      }
+
+      #nv-overlay .nv-copy {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 24px;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1a1a1a;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+      }
+
+      #nv-overlay .nv-copy:hover {
+        color: #b09b66;
+      }
+
+      #nv-overlay .nv-copy .nv-check {
+        display: none;
+        width: 14px;
+        height: 14px;
+      }
+
+      #nv-overlay .nv-copy[aria-pressed='true'] .nv-check {
+        display: block;
+      }
+
+      #nv-overlay .nv-continue {
+        align-self: flex-start;
+        margin-top: 4px;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        color: #6f6a63;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: #c9c4bc;
+      }
+
+      #nv-overlay .nv-continue:hover {
+        color: #1a1a1a;
+        text-decoration-color: #b09b66;
+      }
+
+      #nv-overlay .nv-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        color: #1a1a1a;
+        background: transparent;
+        border: 0;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      #nv-overlay .nv-close:hover {
+        color: #6f6a63;
+      }
+
+      #nv-overlay .nv-close svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      #nv-overlay button:focus-visible,
+      #nv-overlay a:focus-visible {
+        outline: 2px solid #b09b66;
+        outline-offset: 2px;
+      }
+
+      #nv-overlay .nv-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 749px) {
+        #nv-overlay {
+          align-items: flex-end;
+          justify-content: center;
+          padding: 0;
+        }
+
+        #nv-overlay .nv-modal {
+          grid-template-columns: 1fr;
+          width: 100%;
+          max-height: 88dvh;
+          overflow-y: auto;
+          border-radius: 4px 4px 0 0;
+          transform: translateY(100%);
+          transition:
+            opacity 0.4s ease,
+            transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
+        }
+
+        #nv-overlay.nv-open .nv-modal {
+          transform: translateY(0);
+        }
+
+        #nv-overlay .nv-panel-dark {
+          flex-direction: row;
+          align-items: center;
+          padding: 20px 56px 20px 24px;
+        }
+
+        #nv-overlay .nv-percent {
+          font-size: 40px;
+        }
+
+        #nv-overlay .nv-panel-light {
+          gap: 16px;
+          padding: 28px 24px 32px;
+        }
+
+        #nv-overlay .nv-title {
+          font-size: 26px;
+        }
+
+        #nv-overlay .nv-text {
+          font-size: 14.5px;
+        }
+
+        #nv-overlay .nv-close {
+          top: 10px;
+          right: 10px;
+          color: #f3f1ee;
+        }
+
+        #nv-overlay .nv-close:hover {
+          color: #b09b66;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #nv-overlay,
+        #nv-overlay .nv-modal {
+          transition: none;
+        }
+      }
+    </style>
+
+    <div id="nv-overlay" hidden>
+      <div class="nv-modal" role="dialog" aria-modal="true" aria-labelledby="nv-title">
+        <button class="nv-close" type="button" aria-label="Cerrar ventana de descuento">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="nv-panel-dark">
+          <span class="nv-percent">10&nbsp;%</span>
+        </div>
+
+        <div class="nv-panel-light">
+          <h2 class="nv-title" id="nv-title">Tu descuento de bienvenida</h2>
+          <p class="nv-text">Copia el código y pégalo al pagar. Si se te enrolla, se te marca o no es tu talla, te devolvemos el dinero. Sin preguntas.</p>
+          <div class="nv-ticket">
+            <span class="nv-code">NUVEL10</span>
+            <button class="nv-copy" type="button" aria-pressed="false">
+              <svg class="nv-check" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false">
+                <path d="M2 7.5L5.5 11L12 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="nv-copy-label">Copiar</span>
+            </button>
+          </div>
+          <a class="nv-continue" href="#" data-nv-continue>Seguir comprando</a>
+          <p class="nv-visually-hidden" aria-live="polite" data-nv-live></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var NV_CODE = 'NUVEL10';        /* código de descuento */
+        var NV_DELAY_MS = 1500;         /* retraso tras la carga: 1,5 s */
+        var NV_EXPIRY_MS = 86400000;    /* expiración por visitante: 24 h */
+        var NV_STORAGE_KEY = 'nv-popup-welcome';
+
+        var overlay = document.getElementById('nv-overlay');
+        if (!overlay) return;
+
+        var modal = overlay.querySelector('.nv-modal');
+        var closeBtn = overlay.querySelector('.nv-close');
+        var copyBtn = overlay.querySelector('.nv-copy');
+        var copyLabel = overlay.querySelector('.nv-copy-label');
+        var continueLink = overlay.querySelector('[data-nv-continue]');
+        var liveRegion = overlay.querySelector('[data-nv-live]');
+        var lastFocused = null;
+        var isOpen = false;
+
+        function storageSeen() {
+          try {
+            var seenAt = window.localStorage.getItem(NV_STORAGE_KEY);
+            return seenAt !== null && Date.now() - Number(seenAt) < NV_EXPIRY_MS;
+          } catch (error) {
+            return false;
+          }
+        }
+
+        function storageMark() {
+          try {
+            window.localStorage.setItem(NV_STORAGE_KEY, String(Date.now()));
+          } catch (error) {
+            /* sin localStorage: se ignora y el pop-up vuelve a poder salir */
+          }
+        }
+
+        function focusables() {
+          return [closeBtn, copyBtn, continueLink].filter(function (el) {
+            return el && !el.disabled && el.offsetParent !== null;
+          });
+        }
+
+        function trapFocus(event) {
+          if (event.key !== 'Tab') return;
+          var items = focusables();
+          if (!items.length) return;
+          var first = items[0];
+          var last = items[items.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+
+        function onKeydown(event) {
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            close();
+          } else {
+            trapFocus(event);
+          }
+        }
+
+        function open() {
+          if (isOpen) return;
+          isOpen = true;
+          lastFocused = document.activeElement;
+          storageMark();
+          overlay.hidden = false;
+          document.documentElement.style.overflow = 'hidden';
+          requestAnimationFrame(function () {
+            overlay.classList.add('nv-open');
+          });
+          document.addEventListener('keydown', onKeydown);
+          overlay.addEventListener('click', onOverlayClick);
+          closeBtn.addEventListener('click', close);
+          copyBtn.addEventListener('click', onCopyClick);
+          continueLink.addEventListener('click', onContinueClick);
+          window.setTimeout(function () {
+            closeBtn.focus();
+          }, 60);
+        }
+
+        function close() {
+          if (!isOpen) return;
+          isOpen = false;
+          overlay.classList.remove('nv-open');
+          document.documentElement.style.overflow = '';
+          document.removeEventListener('keydown', onKeydown);
+          overlay.removeEventListener('click', onOverlayClick);
+          closeBtn.removeEventListener('click', close);
+          copyBtn.removeEventListener('click', onCopyClick);
+          continueLink.removeEventListener('click', onContinueClick);
+          window.setTimeout(function () {
+            overlay.hidden = true;
+          }, 380);
+          if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+          }
+        }
+
+        function onOverlayClick(event) {
+          if (event.target === overlay) close();
+        }
+
+        function onContinueClick(event) {
+          event.preventDefault();
+          close();
+        }
+
+        function copiedFeedback() {
+          copyLabel.textContent = 'Copiado';
+          copyBtn.setAttribute('aria-pressed', 'true');
+          if (liveRegion) liveRegion.textContent = 'Código copiado';
+          window.setTimeout(function () {
+            copyLabel.textContent = 'Copiar';
+            copyBtn.setAttribute('aria-pressed', 'false');
+            if (liveRegion) liveRegion.textContent = '';
+          }, 2000);
+        }
+
+        function legacyCopy() {
+          var textarea = document.createElement('textarea');
+          textarea.value = NV_CODE;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            copiedFeedback();
+          } catch (error) {
+            window.prompt('Copia tu código:', NV_CODE);
+          }
+          document.body.removeChild(textarea);
+        }
+
+        function onCopyClick() {
+          if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard
+              .writeText(NV_CODE)
+              .then(copiedFeedback, legacyCopy);
+          } else {
+            legacyCopy();
+          }
+        }
+
+        function schedule() {
+          if (storageSeen()) return;
+          window.setTimeout(open, NV_DELAY_MS);
+        }
+
+        if (document.readyState === 'complete') {
+          schedule();
+        } else {
+          window.addEventListener('load', schedule);
+        }
+      })();
+    </script>
   </body>
 </html>

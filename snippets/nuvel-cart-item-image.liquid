@@ -1,0 +1,37 @@
+{%- comment -%}
+  Miniatura de artículo del carrito: los 4 productos Nuvel usan las
+  imágenes propias del tema; el resto, la imagen del admin.
+  @param {item} item - línea del carrito con .image y .product
+{%- endcomment -%}
+{%- liquid
+  assign nv_cart_image = blank
+  case item.product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign nv_cart_image = 'med-producto-frente.jpg'
+    when 'retro-shapewear-top-with-zipper'
+      assign nv_cart_image = 'med-corse-negro-frente.jpg'
+    when 'womens-shapewear-dress-jumpsuit'
+      assign nv_cart_image = 'med-vestido-negro-frente.jpg'
+    when 'seamless-shapewear-panties'
+      assign nv_cart_image = 'med-short-negro-frente.jpg'
+  endcase
+-%}
+{%- if nv_cart_image != blank -%}
+  <img
+    class="cart-item__image{% if img_class %} {{ img_class }}{% endif %}"
+    src="{{ nv_cart_image | asset_url }}"
+    alt="{{ item.product.title | escape }}"
+    loading="lazy"
+    width="150"
+    height="150"
+  >
+{%- else -%}
+  <img
+    class="cart-item__image{% if img_class %} {{ img_class }}{% endif %}"
+    src="{{ item.image | image_url: width: 300 }}"
+    alt="{{ item.image.alt | escape }}"
+    loading="lazy"
+    width="150"
+    height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+  >
+{%- endif -%}
