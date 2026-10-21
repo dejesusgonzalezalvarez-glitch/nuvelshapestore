@@ -329,3 +329,14 @@ Precondición: vista previa del tema borrador conectado a esta rama. Móvil (Dev
 12. DevTools red "Fast 3G": estados de carga visibles, sin saltos graves de layout.
 
 Registrar OK/fallo + captura de cada paso antes de autorizar la publicación.
+
+## LOTE 21-OCT (tarde): EXPERIENCIA DE COMPRA + FAJA (COMPLETADO, PUBLICADO)
+
+- Galeria faja: proporcion natural (alto completo de cada foto, como la vanilla) en vez de recorte 3:4.
+- Video de UNBOXING real (CDN de la tienda, verificado 200/2MB) con su poster y tag "Unboxing" en la seccion demo de la faja; el UGC ropa-ajustada sale del fallback (queda en assets).
+- Demo: tags por producto cuando usa medios fallback (Faja Nuvel/El top Nuvel/El body Nuvel/Las bragas Nuvel + Unboxing/Puesta).
+- PayPal Express ENCIMA del "Anadir al carrito" en todas las paginas de producto (payment_button reordenado en buy-buttons + show_dynamic_checkout true en product.json).
+- Portada: tag "Faja Nuvel" en la comparativa (antes "El producto"); eliminados los 2 items "Encabezado" del bloque guia-tallas (headings vacios).
+- +31 locales: nuvel.gallery.unboxing_alt y nuvel.compare.tag_product.
+- INCIDENTE: el sync GitHub->Shopify no aplico el lote en ~5 min; resuelto con el procedimiento de emergencia del README (shopify theme push --allow-live al tema live 162315960561). Verificado en vivo: unboxing 1, PayPal arriba, Encabezado 0, Faja Nuvel, 0 errores Liquid, 6 minis OK.
+- Bug propio detectado y corregido en el proceso: condicion Liquid con parentesis (no soportado) causaba 500; llave extra en index.json por edit. Lessons: theme check antes de dev.
