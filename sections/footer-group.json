@@ -22,7 +22,7 @@
           "type": "text",
           "settings": {
             "heading": "Contacto",
-            "subtext": "<p>Escríbenos a hola@nuvelshape.store</p><p>Instagram: @nuvelshape</p>"
+            "subtext": "<p>Escríbenos a <a href=\"mailto:hola@nuvelshape.store\">hola@nuvelshape.store</a></p><p>Instagram: <a href=\"https://www.instagram.com/nuvelshape/\">@nuvelshape</a></p>"
           }
         }
       },
