@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -35,7 +44,8 @@
           }
         },
         "precio": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "tallas": {
           "type": "variant_picker",
@@ -45,7 +55,8 @@
           }
         },
         "cantidad": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "comprar": {
           "type": "buy_buttons",
@@ -188,8 +199,8 @@
       ],
       "settings": {
         "title": "Por qué Nuvel",
-        "button_label": "",
         "heading_size": "h1",
+        "button_label": "",
         "columns_desktop": 4,
         "column_alignment": "center",
         "background_style": "secondary",
@@ -269,8 +280,8 @@
       ],
       "settings": {
         "title": "Compra con tranquilidad",
-        "button_label": "",
         "heading_size": "h1",
+        "button_label": "",
         "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "secondary",
