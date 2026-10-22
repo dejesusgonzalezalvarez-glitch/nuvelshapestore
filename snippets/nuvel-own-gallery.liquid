@@ -46,16 +46,17 @@
   ============================================================
   Una línea por imagen, con este formato (sin espacios junto a las barras):
 
-      archivo|ancho|alto|texto alt
+      archivo|ancho|alto|título|texto alt
 
   - "archivo": nombre EXACTO de la imagen dentro de la carpeta assets/
     (mayúsculas/minúsculas y extensión incluidas).
   - "ancho" y "alto": tamaño real en píxeles de la imagen (evita saltos
     de layout mientras carga). No fuerzan el recorte: la imagen se
     muestra completa (object-fit: contain).
+  - "título": etiqueta corta que se muestra DEBAJO de la imagen.
   - "texto alt": descripción de la imagen.
-  - Con 4 o más imágenes la cuadrícula pasa a 2 columnas en escritorio;
-    con menos, una sola columna. En móvil siempre 1 columna.
+  - La cuadrícula es de 2 columnas en escritorio y móvil (1 columna
+    en pantallas muy estrechas, menos de 360px).
   - Estas imágenes NO forman parte del carrusel y NO salen como miniaturas.
   - Para añadir otra imagen: copia una línea y cambia los datos.
   - Para ocultar la sección en un producto: borra sus líneas.
@@ -66,10 +67,10 @@
 {%- liquid
   assign technical_images_raw = ''
   if product.handle == 'faja-moldeadora-invisible-nuvel'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-1.jpg|1200|900|Detalle del borde sin costura de la Faja Moldeadora Invisible'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-2.jpg|1200|900|Banda de silicona antideslizante'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-3.jpg|1200|900|Compresión progresiva'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-4.jpg|1200|900|Guía de tallas'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-1.jpg|1200|900|Detalle del borde sin costura|Detalle del borde sin costura de la Faja Moldeadora Invisible'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-2.jpg|1200|900|Banda de silicona antideslizante|Banda de silicona antideslizante de la faja Nuvel'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-3.jpg|1200|900|Compresión progresiva|Compresión progresiva de la Faja Moldeadora Invisible Nuvel'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-4.jpg|1200|900|Guía de tallas|Guía de tallas de la Faja Moldeadora Invisible Nuvel'
   endif
 
   assign technical_records = technical_images_raw | split: ';;'
@@ -186,7 +187,7 @@
     .nuvel-gallery__thumb img {
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       object-position: center;
       background-color: #f4f4f4;
@@ -218,14 +219,20 @@
 
     .nuvel-tech__grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
-    @media screen and (min-width: 990px) {
-      .nuvel-tech__grid--two-cols {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    @media screen and (max-width: 359px) {
+      .nuvel-tech__grid {
+        grid-template-columns: 1fr;
       }
+    }
+
+    .nuvel-tech__caption {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 1.3rem;
     }
 
     .nuvel-tech__media {
@@ -322,6 +329,7 @@
           width="1100"
           height="1467"
           alt="{{ main_alt_key | t }}"
+          loading="eager"
           fetchpriority="high"
           onerror="this.classList.add('nuvel-img-broken')"
         >
@@ -369,8 +377,9 @@
               width="400"
               height="400"
               alt="{{ alt_key | t }}"
+              loading="lazy"
               decoding="async"
-              onerror="this.classList.add('nuvel-img-broken')"
+              onerror="this.closest('[data-nuvel-gallery-thumb]').style.display='none'"
             >
           </button>
         {%- endfor -%}
@@ -380,14 +389,15 @@
     {%- if technical_count > 0 -%}
       <section class="nuvel-tech">
         <p class="nuvel-tech__title">Cómo funciona</p>
-        <div class="nuvel-tech__grid{% if technical_count >= 4 %} nuvel-tech__grid--two-cols{% endif %}">
+        <div class="nuvel-tech__grid">
           {%- for record in technical_records -%}
             {%- liquid
               assign record_fields = record | split: '|'
               assign tech_file = record_fields[0] | strip
               assign tech_width = record_fields[1] | strip
               assign tech_height = record_fields[2] | strip
-              assign tech_alt = record_fields[3] | strip
+              assign tech_title = record_fields[3] | strip
+              assign tech_alt = record_fields[4] | strip
             -%}
             {%- if tech_file != blank -%}
               <button
@@ -407,6 +417,7 @@
                   decoding="async"
                   onerror="this.classList.add('nuvel-img-broken')"
                 >
+                <span class="nuvel-tech__caption">{{ tech_title | escape }}</span>
               </button>
             {%- endif -%}
           {%- endfor -%}
@@ -443,10 +454,16 @@
 
       if (main && thumbs.length) {
         var current = 0;
+        for (var i = 0; i < thumbs.length; i++) {
+          if (thumbs[i].style.display !== 'none') {
+            current = i;
+            break;
+          }
+        }
 
         function show(index) {
           var thumb = thumbs[index];
-          if (!thumb) return;
+          if (!thumb || thumb.style.display === 'none') return;
           current = index;
           main.classList.remove('nuvel-img-broken');
           if (main.src !== thumb.dataset.src) {
@@ -467,7 +484,15 @@
         }
 
         function step(delta) {
-          show((current + delta + thumbs.length) % thumbs.length);
+          var next = current;
+          var dir = delta > 0 ? 1 : -1;
+          for (var n = 0; n < thumbs.length; n++) {
+            next = (next + dir + thumbs.length) % thumbs.length;
+            if (thumbs[next].style.display !== 'none') {
+              show(next);
+              return;
+            }
+          }
         }
 
         root.addEventListener('click', function (event) {
