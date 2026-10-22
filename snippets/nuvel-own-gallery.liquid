@@ -5,6 +5,14 @@
   de la página original: main-product/featured-product pasan `product` y
   solo renderizan este snippet cuando el handle está mapeado.
   Alt texts por producto en locales (nuvel.gallery.*).
+
+  ESTRUCTURA DE ESTE SNIPPET (arriba a abajo):
+  1) BLOQUE 1 · Carrusel: imagen principal (4/5, cover, center top),
+     miniaturas de 72px con scroll horizontal, flechas y swipe.
+  2) BLOQUE 2 · Imágenes técnicas ("Cómo funciona"): sección aparte bajo
+     el carrusel, editable en el bloque marcado con "EDITA AQUÍ".
+  3) BLOQUE 3 · Robustez: onerror en todas las <img> que oculta el
+     texto alt y deja un placeholder gris (.nuvel-img-broken).
 {%- endcomment -%}
 
 {%- liquid
@@ -32,13 +40,57 @@
   endcase
 -%}
 
+{%- comment -%}
+  ============================================================
+  BLOQUE 2 · IMÁGENES TÉCNICAS ("Cómo funciona") — EDITA AQUÍ
+  ============================================================
+  Una línea por imagen, con este formato (sin espacios junto a las barras):
+
+      archivo|ancho|alto|texto alt
+
+  - "archivo": nombre EXACTO de la imagen dentro de la carpeta assets/
+    (mayúsculas/minúsculas y extensión incluidas).
+  - "ancho" y "alto": tamaño real en píxeles de la imagen (evita saltos
+    de layout mientras carga). No fuerzan el recorte: la imagen se
+    muestra completa (object-fit: contain).
+  - "texto alt": descripción de la imagen.
+  - Con 4 o más imágenes la cuadrícula pasa a 2 columnas en escritorio;
+    con menos, una sola columna. En móvil siempre 1 columna.
+  - Estas imágenes NO forman parte del carrusel y NO salen como miniaturas.
+  - Para añadir otra imagen: copia una línea y cambia los datos.
+  - Para ocultar la sección en un producto: borra sus líneas.
+  - Placeholders actuales de la faja: tecnica-1.jpg … tecnica-4.jpg
+    (sustitúyelos por tus archivos reales cuando estén en assets/).
+{%- endcomment -%}
+
+{%- liquid
+  assign technical_images_raw = ''
+  if product.handle == 'faja-moldeadora-invisible-nuvel'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-1.jpg|1200|900|Detalle del borde sin costura de la Faja Moldeadora Invisible'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-2.jpg|1200|900|Banda de silicona antideslizante'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-3.jpg|1200|900|Compresión progresiva'
+    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-4.jpg|1200|900|Guía de tallas'
+  endif
+
+  assign technical_records = technical_images_raw | split: ';;'
+  assign technical_count = 0
+  for record in technical_records
+    assign record_fields = record | split: '|'
+    if record_fields[0] != blank
+      assign technical_count = technical_count | plus: 1
+    endif
+  endfor
+-%}
+
 {%- if gallery_handles != blank -%}
   {%- style -%}
-    .nuvel-gallery {
+    .nuvel-media {
       display: block;
     }
 
+    /* ---------- BLOQUE 1 · CARRUSEL ---------- */
     .nuvel-gallery__main {
+      position: relative;
       margin: 0;
     }
 
@@ -46,12 +98,65 @@
       display: block;
       width: 100%;
       height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
       border-radius: var(--media-radius, 2px);
+      background-color: #f4f4f4;
+    }
+
+    .nuvel-gallery__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000000;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .nuvel-gallery__arrow--prev {
+      left: 8px;
+    }
+
+    .nuvel-gallery__arrow--next {
+      right: 8px;
+    }
+
+    .nuvel-gallery__arrow svg {
+      display: block;
+      width: 14px;
+      height: 14px;
+    }
+
+    .nuvel-gallery__arrow:hover {
+      background-color: #ffffff;
+    }
+
+    .nuvel-gallery__arrow:focus-visible {
+      outline: 0.2rem solid #000000;
+      outline-offset: 0.2rem;
+    }
+
+    @media screen and (min-width: 750px) {
+      .nuvel-gallery__arrow {
+        width: 44px;
+        height: 44px;
+      }
     }
 
     .nuvel-gallery__thumbs {
       display: flex;
-      gap: 0.8rem;
+      justify-content: flex-start;
+      gap: 8px;
       margin-top: 0.8rem;
       padding-bottom: 0.4rem;
       overflow-x: auto;
@@ -61,99 +166,399 @@
 
     .nuvel-gallery__thumb {
       flex: 0 0 auto;
-      width: 6.4rem;
+      width: 72px;
       padding: 0;
-      border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+      border: 2px solid transparent;
       border-radius: var(--media-radius, 2px);
-      background: rgb(var(--color-background));
+      background: none;
       cursor: pointer;
       overflow: hidden;
       scroll-snap-align: start;
+      opacity: 0.7;
+      transition: opacity 0.2s ease-in-out;
     }
 
     .nuvel-gallery__thumb.is-active {
-      border-color: rgba(var(--color-foreground), 0.55);
+      border-color: #000000;
+      opacity: 1;
     }
 
     .nuvel-gallery__thumb img {
       display: block;
       width: 100%;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
+      object-position: center;
+      background-color: #f4f4f4;
     }
 
     .nuvel-gallery__thumb:focus-visible {
-      outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+      outline: 0.2rem solid #000000;
+      outline-offset: 0.2rem;
+    }
+
+    /* ---------- BLOQUE 3 · PLACEHOLDER PARA IMÁGENES ROTAS ---------- */
+    /* Nunca se ve el texto alt: caja gris del mismo tamaño. */
+    .nuvel-media img.nuvel-img-broken {
+      font-size: 0;
+      color: transparent;
+      background-color: #f4f4f4;
+    }
+
+    /* ---------- BLOQUE 2 · IMÁGENES TÉCNICAS ---------- */
+    .nuvel-tech {
+      margin-top: 2rem; /* 24px totales bajo las miniaturas (20px + 4px de padding de scroll) */
+    }
+
+    .nuvel-tech__title {
+      margin: 0 0 1.2rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .nuvel-tech__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media screen and (min-width: 990px) {
+      .nuvel-tech__grid--two-cols {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .nuvel-tech__media {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: zoom-in;
+    }
+
+    .nuvel-tech__img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background-color: #f4f4f4;
+    }
+
+    .nuvel-tech__media:focus-visible {
+      outline: 0.2rem solid #000000;
+      outline-offset: 0.2rem;
+      border-radius: 8px;
+    }
+
+    /* ---------- LIGHTBOX ---------- */
+    .nuvel-lightbox {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.82);
+      cursor: zoom-out;
+      z-index: 999;
+    }
+
+    .nuvel-lightbox.is-open {
+      display: flex;
+    }
+
+    .nuvel-lightbox img {
+      max-width: min(100%, 1100px);
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      cursor: default;
+    }
+
+    .nuvel-lightbox__close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000000;
+      cursor: pointer;
+    }
+
+    .nuvel-lightbox__close svg {
+      display: block;
+      width: 14px;
+      height: 14px;
+    }
+
+    .nuvel-lightbox__close:focus-visible {
+      outline: 0.2rem solid #ffffff;
       outline-offset: 0.2rem;
     }
   {%- endstyle -%}
 
-  <div class="nuvel-gallery" data-nuvel-gallery-{{ section.id }}>
-    <figure class="nuvel-gallery__main">
-      <img
-        data-nuvel-gallery-main
-        src="{{ main_handle | append: '.jpg' | asset_url }}"
-        srcset="{{ 'med-' | append: main_handle | append: '.jpg' | asset_url }} 800w, {{ 'lg-' | append: main_handle | append: '.jpg' | asset_url }} 1100w"
-        sizes="(min-width: 990px) 550px, (min-width: 750px) 420px, 100vw"
-        width="1100"
-        height="1467"
-        alt="{{ main_alt_key | t }}"
-        fetchpriority="high"
-      >
-    </figure>
-
-    <div class="nuvel-gallery__thumbs">
-      {%- for handle in gallery_handles -%}
-        {%- capture alt_key %}{{ alt_prefix }}{{ forloop.index }}{% endcapture -%}
-        {%- capture mini_src %}mini-{{ handle }}.jpg{% endcapture -%}
-        {%- capture med_src %}med-{{ handle }}.jpg{% endcapture -%}
-        {%- capture full_src %}lg-{{ handle }}.jpg{% endcapture -%}
+  <div class="nuvel-media" data-nuvel-gallery-{{ section.id }}>
+    <div class="nuvel-gallery">
+      <figure class="nuvel-gallery__main" data-nuvel-gallery-swipe>
+        <img
+          data-nuvel-gallery-main
+          src="{{ main_handle | append: '.jpg' | asset_url }}"
+          srcset="{{ 'med-' | append: main_handle | append: '.jpg' | asset_url }} 800w, {{ 'lg-' | append: main_handle | append: '.jpg' | asset_url }} 1100w"
+          sizes="(min-width: 990px) 550px, (min-width: 750px) 420px, 100vw"
+          width="1100"
+          height="1467"
+          alt="{{ main_alt_key | t }}"
+          fetchpriority="high"
+          onerror="this.classList.add('nuvel-img-broken')"
+        >
         <button
           type="button"
-          class="nuvel-gallery__thumb{% if forloop.first %} is-active{% endif %}"
-          data-nuvel-gallery-thumb
-          data-src="{{ full_src | asset_url }}"
-          data-srcset="{{ med_src | asset_url }} 800w, {{ full_src | asset_url }} 1100w"
-          aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
-          aria-label="{{ alt_key | t }}"
+          class="nuvel-gallery__arrow nuvel-gallery__arrow--prev"
+          data-nuvel-gallery-arrow
+          data-nuvel-gallery-direction="-1"
+          aria-label="{{ 'sections.slideshow.previous_slide' | t }}"
         >
-          <img
-            src="{{ mini_src | asset_url }}"
-            width="400"
-            height="400"
-            alt="{{ alt_key | t }}"
-            loading="lazy"
-            decoding="async"
-          >
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+            <path d="M13 4 7 10l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
         </button>
-      {%- endfor -%}
+        <button
+          type="button"
+          class="nuvel-gallery__arrow nuvel-gallery__arrow--next"
+          data-nuvel-gallery-arrow
+          data-nuvel-gallery-direction="1"
+          aria-label="{{ 'sections.slideshow.next_slide' | t }}"
+        >
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+            <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </figure>
+
+      <div class="nuvel-gallery__thumbs">
+        {%- for handle in gallery_handles -%}
+          {%- capture alt_key %}{{ alt_prefix }}{{ forloop.index }}{% endcapture -%}
+          {%- capture mini_src %}mini-{{ handle }}.jpg{% endcapture -%}
+          {%- capture med_src %}med-{{ handle }}.jpg{% endcapture -%}
+          {%- capture full_src %}lg-{{ handle }}.jpg{% endcapture -%}
+          <button
+            type="button"
+            class="nuvel-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+            data-nuvel-gallery-thumb
+            data-src="{{ full_src | asset_url }}"
+            data-srcset="{{ med_src | asset_url }} 800w, {{ full_src | asset_url }} 1100w"
+            aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-label="{{ alt_key | t }}"
+          >
+            <img
+              src="{{ mini_src | asset_url }}"
+              width="400"
+              height="400"
+              alt="{{ alt_key | t }}"
+              decoding="async"
+              onerror="this.classList.add('nuvel-img-broken')"
+            >
+          </button>
+        {%- endfor -%}
+      </div>
     </div>
+
+    {%- if technical_count > 0 -%}
+      <section class="nuvel-tech">
+        <p class="nuvel-tech__title">Cómo funciona</p>
+        <div class="nuvel-tech__grid{% if technical_count >= 4 %} nuvel-tech__grid--two-cols{% endif %}">
+          {%- for record in technical_records -%}
+            {%- liquid
+              assign record_fields = record | split: '|'
+              assign tech_file = record_fields[0] | strip
+              assign tech_width = record_fields[1] | strip
+              assign tech_height = record_fields[2] | strip
+              assign tech_alt = record_fields[3] | strip
+            -%}
+            {%- if tech_file != blank -%}
+              <button
+                type="button"
+                class="nuvel-tech__media"
+                data-nuvel-tech-opener
+                data-full="{{ tech_file | asset_url }}"
+                aria-label="{{ tech_alt | escape }}"
+              >
+                <img
+                  class="nuvel-tech__img"
+                  src="{{ tech_file | asset_url }}"
+                  width="{{ tech_width }}"
+                  height="{{ tech_height }}"
+                  alt="{{ tech_alt | escape }}"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.classList.add('nuvel-img-broken')"
+                >
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </section>
+
+      <div class="nuvel-lightbox" data-nuvel-lightbox role="dialog" aria-modal="true">
+        <button
+          type="button"
+          class="nuvel-lightbox__close"
+          data-nuvel-lightbox-close
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+            <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </button>
+        <img data-nuvel-lightbox-img alt="" onerror="this.classList.add('nuvel-img-broken')">
+      </div>
+    {%- endif -%}
   </div>
 
   <script>
     (function () {
-      var gallery = document.querySelector('[data-nuvel-gallery-{{ section.id }}]');
-      if (!gallery || gallery.dataset.init) return;
-      gallery.dataset.init = '1';
+      'use strict';
+      var root = document.querySelector('[data-nuvel-gallery-{{ section.id }}]');
+      if (!root || root.dataset.init) return;
+      root.dataset.init = '1';
 
-      var main = gallery.querySelector('[data-nuvel-gallery-main]');
-      if (!main) return;
+      /* ---------- BLOQUE 1 · Carrusel ---------- */
+      var main = root.querySelector('[data-nuvel-gallery-main]');
+      var thumbs = root.querySelectorAll('[data-nuvel-gallery-thumb]');
+      var swipeArea = root.querySelector('[data-nuvel-gallery-swipe]');
 
-      gallery.addEventListener('click', function (event) {
-        var thumb = event.target.closest('[data-nuvel-gallery-thumb]');
-        if (!thumb) return;
+      if (main && thumbs.length) {
+        var current = 0;
 
-        main.src = thumb.dataset.src;
-        if (thumb.dataset.srcset) main.srcset = thumb.dataset.srcset;
-        var thumbImg = thumb.querySelector('img');
-        if (thumbImg) main.alt = thumbImg.alt;
-
-        var thumbs = gallery.querySelectorAll('[data-nuvel-gallery-thumb]');
-        for (var i = 0; i < thumbs.length; i++) {
-          thumbs[i].classList.toggle('is-active', thumbs[i] === thumb);
-          thumbs[i].setAttribute('aria-current', thumbs[i] === thumb ? 'true' : 'false');
+        function show(index) {
+          var thumb = thumbs[index];
+          if (!thumb) return;
+          current = index;
+          main.classList.remove('nuvel-img-broken');
+          if (main.src !== thumb.dataset.src) {
+            main.src = thumb.dataset.src;
+            if (thumb.dataset.srcset) {
+              main.srcset = thumb.dataset.srcset;
+            } else {
+              main.removeAttribute('srcset');
+            }
+          }
+          var thumbImg = thumb.querySelector('img');
+          if (thumbImg) main.alt = thumbImg.alt;
+          for (var i = 0; i < thumbs.length; i++) {
+            thumbs[i].classList.toggle('is-active', i === index);
+            thumbs[i].setAttribute('aria-current', i === index ? 'true' : 'false');
+          }
+          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
         }
-      });
+
+        function step(delta) {
+          show((current + delta + thumbs.length) % thumbs.length);
+        }
+
+        root.addEventListener('click', function (event) {
+          var thumb = event.target.closest('[data-nuvel-gallery-thumb]');
+          if (thumb) {
+            show(Array.prototype.indexOf.call(thumbs, thumb));
+            return;
+          }
+          var arrow = event.target.closest('[data-nuvel-gallery-arrow]');
+          if (arrow) {
+            var delta = parseInt(arrow.getAttribute('data-nuvel-gallery-direction'), 10) || 1;
+            step(delta);
+          }
+        });
+
+        /* Swipe en móvil: solo si el gesto es claramente horizontal. */
+        if (swipeArea) {
+          var touchX = null;
+          var touchY = null;
+          swipeArea.addEventListener(
+            'touchstart',
+            function (event) {
+              if (event.touches.length !== 1) {
+                touchX = null;
+                return;
+              }
+              touchX = event.touches[0].clientX;
+              touchY = event.touches[0].clientY;
+            },
+            { passive: true }
+          );
+          swipeArea.addEventListener(
+            'touchend',
+            function (event) {
+              if (touchX === null) return;
+              var deltaX = touchX - event.changedTouches[0].clientX;
+              var deltaY = touchY - event.changedTouches[0].clientY;
+              touchX = null;
+              touchY = null;
+              if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                step(deltaX > 0 ? 1 : -1);
+              }
+            },
+            { passive: true }
+          );
+        }
+      }
+
+      /* ---------- BLOQUE 2 · Lightbox de imágenes técnicas ---------- */
+      var lightbox = root.querySelector('[data-nuvel-lightbox]');
+      var lightboxImg = root.querySelector('[data-nuvel-lightbox-img]');
+      var lastFocused = null;
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('is-open');
+        lightbox.removeAttribute('aria-label');
+        document.documentElement.style.overflow = '';
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+        lastFocused = null;
+      }
+
+      if (lightbox && lightboxImg) {
+        root.addEventListener('click', function (event) {
+          var opener = event.target.closest('[data-nuvel-tech-opener]');
+          if (!opener) return;
+          var img = opener.querySelector('img');
+          if (!img || img.classList.contains('nuvel-img-broken')) return;
+          lastFocused = document.activeElement;
+          lightboxImg.classList.remove('nuvel-img-broken');
+          lightboxImg.src = opener.getAttribute('data-full') || img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.setAttribute('aria-label', img.alt);
+          lightbox.classList.add('is-open');
+          document.documentElement.style.overflow = 'hidden';
+          var closeBtn = lightbox.querySelector('[data-nuvel-lightbox-close]');
+          if (closeBtn) closeBtn.focus();
+        });
+
+        lightbox.addEventListener('click', function (event) {
+          if (event.target === lightbox || event.target.closest('[data-nuvel-lightbox-close]')) {
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+            closeLightbox();
+          }
+        });
+      }
     })();
   </script>
 {%- endif -%}
