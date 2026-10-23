@@ -1070,6 +1070,10 @@ class VariantSelects extends HTMLElement {
       const target = this.getInputForEventTarget(event.target);
       this.updateSelectionMetadata(event);
 
+      // Opciones ocultas (un solo valor efectivo): sincroniza su valor con
+      // la eleccion visible antes de resolver la variante en servidor.
+      this.syncHiddenOptions();
+
       this.dispatchProductSelectEvent();
 
       publish(PUB_SUB_EVENTS.optionValueSelectionChange, {
@@ -1078,6 +1082,57 @@ class VariantSelects extends HTMLElement {
           target,
           selectedOptionValues: this.selectedOptionValues,
         },
+      });
+    });
+  }
+
+  syncHiddenOptions() {
+    const groups = Array.from(this.querySelectorAll('fieldset, .product-form__input--dropdown'));
+    const hiddenGroups = groups.filter((group) => group.hasAttribute('data-nuvel-hidden-option'));
+    if (!hiddenGroups.length) return;
+
+    let variants = [];
+    try {
+      variants = JSON.parse(this.querySelector('[data-product-variants]')?.textContent || '[]');
+    } catch (error) {
+      variants = [];
+    }
+    if (!variants.length) return;
+
+    hiddenGroups.forEach((group) => {
+      const candidates = Array.from(group.querySelectorAll('input[type="radio"], select option'));
+      if (!candidates.length) return;
+
+      const current = candidates.find((candidate) => candidate.checked || candidate.selected) || candidates[0];
+      let fallback = null;
+      let target = null;
+
+      for (const candidate of candidates) {
+        const combo = groups.map((item) => {
+          if (item === group) return candidate.value;
+          const selected = item.querySelector('input:checked') || item.querySelector('select option[selected]');
+          return selected ? selected.value : null;
+        });
+        if (combo.some((value) => value == null)) continue;
+
+        const match = variants.find((variant) =>
+          combo.every((value, index) => String(variant.options[index]) === value)
+        );
+        if (!match) continue;
+        if (!fallback) fallback = candidate;
+        if (match.available) {
+          target = candidate;
+          break;
+        }
+      }
+
+      target = target || fallback || current;
+      candidates.forEach((candidate) => {
+        if (candidate.tagName === 'OPTION') {
+          candidate.toggleAttribute('selected', candidate === target);
+        } else {
+          candidate.checked = candidate === target;
+        }
       });
     });
   }

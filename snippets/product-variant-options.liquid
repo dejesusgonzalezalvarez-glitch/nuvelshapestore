@@ -47,9 +47,11 @@
   {%- endcapture -%}
 
   {%- capture label_unavailable -%}
-    <span class="visually-hidden label-unavailable">
-      {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
-    </span>
+    {%- if option_disabled -%}
+      <span class="visually-hidden label-unavailable">
+        {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+      </span>
+    {%- endif -%}
   {%- endcapture -%}
 
   {% assign escaped_value = value | escape %}

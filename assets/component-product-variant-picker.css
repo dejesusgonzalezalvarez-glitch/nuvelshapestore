@@ -26,6 +26,11 @@ variant-selects {
   margin-bottom: 0.2rem;
 }
 
+/* Opciones sin eleccion real (un solo valor): ocultas pero en el formulario */
+.product-form__input--hidden {
+  display: none;
+}
+
 .product-form__input input[type='radio'] {
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
