@@ -775,6 +775,11 @@
         "closing_sub": "30 días de prueba · Envío gratis a todo el mundo en 7-15 días",
         "closing_cta": "Descubrir la faja"
       }
+    },
+    "features": {
+      "faja_1": "Tejido con elasticidad en 4 direcciones, transpirable y cómodo de la mañana a la noche",
+      "faja_2": "Bordes de corte láser sin costuras, sin marcas bajo la ropa",
+      "faja_3": "Mantiene la forma y la compresión lavado tras lavado"
     }
   }
 }

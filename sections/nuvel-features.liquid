@@ -1,0 +1,189 @@
+{%- comment -%}
+  Cómo funciona (Nuvel): 4 imágenes técnicas bajo la galería.
+{%- endcomment -%}
+
+{%- liquid
+  assign show_section = false
+  if product.handle == 'faja-moldeadora-invisible-nuvel'
+    assign show_section = true
+  endif
+-%}
+
+{%- if show_section -%}
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    .nuvel-features__header {
+      margin: 0 0 1.6rem;
+    }
+
+    .nuvel-features__title {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .nuvel-features__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media screen and (max-width: 359px) {
+      .nuvel-features__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .nuvel-features__item {
+      margin: 0;
+    }
+
+    .nuvel-features__media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--media-radius, 2px);
+      background-color: #f4f4f4;
+      overflow: hidden;
+    }
+
+    .nuvel-features__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nuvel-features__caption {
+      display: block;
+      margin: 0.8rem 0 0;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+  {%- endstyle -%}
+
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="section-{{ section.id }}-padding page-width">
+      <div class="nuvel-features__header">
+        <h2 class="nuvel-features__title">Cómo funciona</h2>
+      </div>
+
+      <div class="nuvel-features__grid">
+        <figure class="nuvel-features__item">
+          <div class="nuvel-features__media">
+            <img
+              class="nuvel-features__img"
+              src="{{ 'tecnica-1.jpg' | asset_url }}"
+              width="1200"
+              height="900"
+              alt="{{ 'Detalle del borde sin costura de la Faja Moldeadora Invisible' | escape }}"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+            >
+          </div>
+          <figcaption class="nuvel-features__caption">Detalle del borde sin costura</figcaption>
+        </figure>
+        <figure class="nuvel-features__item">
+          <div class="nuvel-features__media">
+            <img
+              class="nuvel-features__img"
+              src="{{ 'tecnica-2.jpg' | asset_url }}"
+              width="1200"
+              height="900"
+              alt="{{ 'Banda de silicona antideslizante' | escape }}"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+            >
+          </div>
+          <figcaption class="nuvel-features__caption">Banda de silicona antideslizante</figcaption>
+        </figure>
+        <figure class="nuvel-features__item">
+          <div class="nuvel-features__media">
+            <img
+              class="nuvel-features__img"
+              src="{{ 'tecnica-3.jpg' | asset_url }}"
+              width="1200"
+              height="900"
+              alt="{{ 'Compresión progresiva' | escape }}"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+            >
+          </div>
+          <figcaption class="nuvel-features__caption">Compresión progresiva</figcaption>
+        </figure>
+        <figure class="nuvel-features__item">
+          <div class="nuvel-features__media">
+            <img
+              class="nuvel-features__img"
+              src="{{ 'tecnica-4.jpg' | asset_url }}"
+              width="1200"
+              height="900"
+              alt="{{ 'Guía de tallas' | escape }}"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+            >
+          </div>
+          <figcaption class="nuvel-features__caption">Guía de tallas</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cómo funciona (Nuvel)",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cómo funciona (Nuvel)"
+    }
+  ]
+}
+{% endschema %}
