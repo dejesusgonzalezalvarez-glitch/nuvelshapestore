@@ -20,6 +20,7 @@
     data-selected-price-amount="{{ product.selected_or_first_available_variant.price | default: 0 | money_amount | escape }}"
     {{ block.shopify_attributes }}
   >
+    {%- assign any_hidden_option = false -%}
     {%- for option in product.options_with_values -%}
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
@@ -32,9 +33,61 @@
             assign picker_type = 'swatch'
           endif
         endif
+
+        comment
+          Oculta opciones sin elección real: un solo valor, o varios valores
+          que son lo mismo con sufijo de una letra ("Black A" / "Black").
+          El campo se mantiene en el formulario (oculto) para que la
+          selección de variantes siga resolviendo combinaciones; el JS
+          sincroniza su valor con la opción visible.
+        endcomment
+        assign hide_option = false
+        if option.values.size == 1
+          assign hide_option = true
+        else
+          assign normalized_values = ''
+          for option_value in option.values
+            assign value_parts = option_value | split: ' '
+            assign normalized_value = option_value
+            if value_parts.size > 1
+              assign last_part = value_parts | last
+              assign last_part_up = last_part | upcase
+              assign last_part_down = last_part | downcase
+              if last_part.size == 1 and last_part_up != last_part_down
+                assign normalized_value = ''
+                assign part_index = 0
+                for value_part in value_parts
+                  assign part_index = part_index | plus: 1
+                  if part_index < value_parts.size
+                    if normalized_value == blank
+                      assign normalized_value = value_part
+                    else
+                      assign normalized_value = normalized_value | append: ' ' | append: value_part
+                    endif
+                  endif
+                endfor
+              endif
+            endif
+            if normalized_values == blank
+              assign normalized_values = normalized_value
+            else
+              assign normalized_values = normalized_values | append: '~' | append: normalized_value
+            endif
+          endfor
+          assign normalized_list = normalized_values | split: '~' | uniq
+          if normalized_list.size == 1
+            assign hide_option = true
+          endif
+        endif
+        if hide_option
+          assign any_hidden_option = true
+        endif
       -%}
       {%- if picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch">
+        <fieldset
+          class="js product-form__input product-form__input--swatch{% if hide_option %} product-form__input--hidden{% endif %}"
+          {% if hide_option %}data-nuvel-hidden-option{% endif %}
+        >
           <legend class="form__label">
             {{ option.name }}:
             <span data-selected-value>
@@ -48,7 +101,10 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
+        <fieldset
+          class="js product-form__input product-form__input--pill{% if hide_option %} product-form__input--hidden{% endif %}"
+          {% if hide_option %}data-nuvel-hidden-option{% endif %}
+        >
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options',
             option: option,
@@ -57,7 +113,10 @@
           %}
         </fieldset>
       {%- else -%}
-        <div class="product-form__input product-form__input--dropdown">
+        <div
+          class="product-form__input product-form__input--dropdown{% if hide_option %} product-form__input--hidden{% endif %}"
+          {% if hide_option %}data-nuvel-hidden-option{% endif %}
+        >
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
@@ -89,6 +148,12 @@
         </div>
       {%- endif -%}
     {%- endfor -%}
+
+    {%- if any_hidden_option -%}
+      <script type="application/json" data-product-variants>
+        {{ product.variants | json }}
+      </script>
+    {%- endif -%}
 
     <script type="application/json" data-selected-variant>
       {{ product.selected_or_first_available_variant | json }}

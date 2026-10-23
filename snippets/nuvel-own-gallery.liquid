@@ -6,13 +6,13 @@
   solo renderizan este snippet cuando el handle está mapeado.
   Alt texts por producto en locales (nuvel.gallery.*).
 
-  ESTRUCTURA DE ESTE SNIPPET (arriba a abajo):
-  1) BLOQUE 1 · Carrusel: imagen principal (4/5, cover, center top),
-     miniaturas de 72px con scroll horizontal, flechas y swipe.
-  2) BLOQUE 2 · Imágenes técnicas ("Cómo funciona"): sección aparte bajo
-     el carrusel, editable en el bloque marcado con "EDITA AQUÍ".
-  3) BLOQUE 3 · Robustez: onerror en todas las <img> que oculta el
-     texto alt y deja un placeholder gris (.nuvel-img-broken).
+  ESTRUCTURA DE ESTE SNIPPET:
+  Carrusel con imagen principal (4/5, cover, center top), miniaturas
+  cuadradas de 72px con scroll horizontal, flechas y swipe. La sección
+  "Cómo funciona" vive en sections/nuvel-features.liquid y se coloca
+  justo debajo de esta galería.
+  Robustez: onerror en todas las <img> que oculta el texto alt y deja un
+  placeholder gris (.nuvel-img-broken).
 {%- endcomment -%}
 
 {%- liquid
@@ -38,49 +38,6 @@
       assign main_handle = 'short-negro-frente'
       assign main_alt_key = 'nuvel.gallery.short_main_alt'
   endcase
--%}
-
-{%- comment -%}
-  ============================================================
-  BLOQUE 2 · IMÁGENES TÉCNICAS ("Cómo funciona") — EDITA AQUÍ
-  ============================================================
-  Una línea por imagen, con este formato (sin espacios junto a las barras):
-
-      archivo|ancho|alto|título|texto alt
-
-  - "archivo": nombre EXACTO de la imagen dentro de la carpeta assets/
-    (mayúsculas/minúsculas y extensión incluidas).
-  - "ancho" y "alto": tamaño real en píxeles de la imagen (evita saltos
-    de layout mientras carga). No fuerzan el recorte: la imagen se
-    muestra completa (object-fit: contain).
-  - "título": etiqueta corta que se muestra DEBAJO de la imagen.
-  - "texto alt": descripción de la imagen.
-  - La cuadrícula es de 2 columnas en escritorio y móvil (1 columna
-    en pantallas muy estrechas, menos de 360px).
-  - Estas imágenes NO forman parte del carrusel y NO salen como miniaturas.
-  - Para añadir otra imagen: copia una línea y cambia los datos.
-  - Para ocultar la sección en un producto: borra sus líneas.
-  - Placeholders actuales de la faja: tecnica-1.jpg … tecnica-4.jpg
-    (sustitúyelos por tus archivos reales cuando estén en assets/).
-{%- endcomment -%}
-
-{%- liquid
-  assign technical_images_raw = ''
-  if product.handle == 'faja-moldeadora-invisible-nuvel'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-1.jpg|1200|900|Detalle del borde sin costura|Detalle del borde sin costura de la Faja Moldeadora Invisible'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-2.jpg|1200|900|Banda de silicona antideslizante|Banda de silicona antideslizante de la faja Nuvel'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-3.jpg|1200|900|Compresión progresiva|Compresión progresiva de la Faja Moldeadora Invisible Nuvel'
-    assign technical_images_raw = technical_images_raw | append: ';;' | append: 'tecnica-4.jpg|1200|900|Guía de tallas|Guía de tallas de la Faja Moldeadora Invisible Nuvel'
-  endif
-
-  assign technical_records = technical_images_raw | split: ';;'
-  assign technical_count = 0
-  for record in technical_records
-    assign record_fields = record | split: '|'
-    if record_fields[0] != blank
-      assign technical_count = technical_count | plus: 1
-    endif
-  endfor
 -%}
 
 {%- if gallery_handles != blank -%}
@@ -198,123 +155,12 @@
       outline-offset: 0.2rem;
     }
 
-    /* ---------- BLOQUE 3 · PLACEHOLDER PARA IMÁGENES ROTAS ---------- */
+    /* ---------- PLACEHOLDER PARA IMÁGENES ROTAS ---------- */
     /* Nunca se ve el texto alt: caja gris del mismo tamaño. */
     .nuvel-media img.nuvel-img-broken {
       font-size: 0;
       color: transparent;
       background-color: #f4f4f4;
-    }
-
-    /* ---------- BLOQUE 2 · IMÁGENES TÉCNICAS ---------- */
-    .nuvel-tech {
-      margin-top: 2rem; /* 24px totales bajo las miniaturas (20px + 4px de padding de scroll) */
-    }
-
-    .nuvel-tech__title {
-      margin: 0 0 1.2rem;
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-
-    .nuvel-tech__grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    @media screen and (max-width: 359px) {
-      .nuvel-tech__grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .nuvel-tech__caption {
-      display: block;
-      margin-top: 0.8rem;
-      font-size: 1.3rem;
-    }
-
-    .nuvel-tech__media {
-      display: block;
-      width: 100%;
-      padding: 0;
-      border: 0;
-      background: none;
-      cursor: zoom-in;
-    }
-
-    .nuvel-tech__img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      background-color: #f4f4f4;
-    }
-
-    .nuvel-tech__media:focus-visible {
-      outline: 0.2rem solid #000000;
-      outline-offset: 0.2rem;
-      border-radius: 8px;
-    }
-
-    /* ---------- LIGHTBOX ---------- */
-    .nuvel-lightbox {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.82);
-      cursor: zoom-out;
-      z-index: 999;
-    }
-
-    .nuvel-lightbox.is-open {
-      display: flex;
-    }
-
-    .nuvel-lightbox img {
-      max-width: min(100%, 1100px);
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      cursor: default;
-    }
-
-    .nuvel-lightbox__close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #000000;
-      cursor: pointer;
-    }
-
-    .nuvel-lightbox__close svg {
-      display: block;
-      width: 14px;
-      height: 14px;
-    }
-
-    .nuvel-lightbox__close:focus-visible {
-      outline: 0.2rem solid #ffffff;
-      outline-offset: 0.2rem;
     }
   {%- endstyle -%}
 
@@ -386,58 +232,6 @@
       </div>
     </div>
 
-    {%- if technical_count > 0 -%}
-      <section class="nuvel-tech">
-        <p class="nuvel-tech__title">Cómo funciona</p>
-        <div class="nuvel-tech__grid">
-          {%- for record in technical_records -%}
-            {%- liquid
-              assign record_fields = record | split: '|'
-              assign tech_file = record_fields[0] | strip
-              assign tech_width = record_fields[1] | strip
-              assign tech_height = record_fields[2] | strip
-              assign tech_title = record_fields[3] | strip
-              assign tech_alt = record_fields[4] | strip
-            -%}
-            {%- if tech_file != blank -%}
-              <button
-                type="button"
-                class="nuvel-tech__media"
-                data-nuvel-tech-opener
-                data-full="{{ tech_file | asset_url }}"
-                aria-label="{{ tech_alt | escape }}"
-              >
-                <img
-                  class="nuvel-tech__img"
-                  src="{{ tech_file | asset_url }}"
-                  width="{{ tech_width }}"
-                  height="{{ tech_height }}"
-                  alt="{{ tech_alt | escape }}"
-                  loading="lazy"
-                  decoding="async"
-                  onerror="this.classList.add('nuvel-img-broken')"
-                >
-                <span class="nuvel-tech__caption">{{ tech_title | escape }}</span>
-              </button>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      </section>
-
-      <div class="nuvel-lightbox" data-nuvel-lightbox role="dialog" aria-modal="true">
-        <button
-          type="button"
-          class="nuvel-lightbox__close"
-          data-nuvel-lightbox-close
-          aria-label="{{ 'accessibility.close' | t }}"
-        >
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
-            <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-          </svg>
-        </button>
-        <img data-nuvel-lightbox-img alt="" onerror="this.classList.add('nuvel-img-broken')">
-      </div>
-    {%- endif -%}
   </div>
 
   <script>
@@ -541,49 +335,6 @@
         }
       }
 
-      /* ---------- BLOQUE 2 · Lightbox de imágenes técnicas ---------- */
-      var lightbox = root.querySelector('[data-nuvel-lightbox]');
-      var lightboxImg = root.querySelector('[data-nuvel-lightbox-img]');
-      var lastFocused = null;
-
-      function closeLightbox() {
-        if (!lightbox) return;
-        lightbox.classList.remove('is-open');
-        lightbox.removeAttribute('aria-label');
-        document.documentElement.style.overflow = '';
-        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
-        lastFocused = null;
-      }
-
-      if (lightbox && lightboxImg) {
-        root.addEventListener('click', function (event) {
-          var opener = event.target.closest('[data-nuvel-tech-opener]');
-          if (!opener) return;
-          var img = opener.querySelector('img');
-          if (!img || img.classList.contains('nuvel-img-broken')) return;
-          lastFocused = document.activeElement;
-          lightboxImg.classList.remove('nuvel-img-broken');
-          lightboxImg.src = opener.getAttribute('data-full') || img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.setAttribute('aria-label', img.alt);
-          lightbox.classList.add('is-open');
-          document.documentElement.style.overflow = 'hidden';
-          var closeBtn = lightbox.querySelector('[data-nuvel-lightbox-close]');
-          if (closeBtn) closeBtn.focus();
-        });
-
-        lightbox.addEventListener('click', function (event) {
-          if (event.target === lightbox || event.target.closest('[data-nuvel-lightbox-close]')) {
-            closeLightbox();
-          }
-        });
-
-        document.addEventListener('keydown', function (event) {
-          if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
-            closeLightbox();
-          }
-        });
-      }
     })();
   </script>
 {%- endif -%}
