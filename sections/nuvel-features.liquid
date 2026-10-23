@@ -4,7 +4,11 @@
 
 {%- liquid
   assign show_section = false
-  if product.handle == 'faja-moldeadora-invisible-nuvel'
+  assign features_handle = product.handle
+  if features_handle == blank
+    assign features_handle = all_products['faja-moldeadora-invisible-nuvel'].handle
+  endif
+  if features_handle == 'faja-moldeadora-invisible-nuvel'
     assign show_section = true
   endif
 -%}
