@@ -804,6 +804,14 @@
       "faja_1": "Tejido con elasticidad en 4 direcciones, transpirable y cómodo de la mañana a la noche",
       "faja_2": "Bordes de corte láser sin costuras, sin marcas bajo la ropa",
       "faja_3": "Mantiene la forma y la compresión lavado tras lavado"
+    },
+    "bundles": {
+      "heading": "Ahorra con un pack",
+      "subtitle": "Combina productos y ahorra",
+      "selection_title": "Selecciona una talla por cada producto",
+      "unit_label": "Unidad {{num}}",
+      "add_to_cart": "Añadir al carrito",
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar"
     }
   }
 }

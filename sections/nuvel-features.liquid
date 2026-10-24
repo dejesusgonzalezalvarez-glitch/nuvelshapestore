@@ -66,17 +66,24 @@
     .nuvel-features__media {
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 3;
       border-radius: var(--media-radius, 2px);
       background-color: #f4f4f4;
       overflow: hidden;
     }
 
+    .nuvel-features__media--square {
+      aspect-ratio: 1 / 1;
+    }
+
     .nuvel-features__img {
       display: block;
       width: 100%;
+      object-fit: contain;
+    }
+
+    .nuvel-features__img--square {
       height: 100%;
-      object-fit: cover;
+      aspect-ratio: 1 / 1;
     }
 
     .nuvel-features__caption {
