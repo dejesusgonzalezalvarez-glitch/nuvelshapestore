@@ -28,7 +28,9 @@
 
     assign option_disabled = true
     if value.available
-      assign option_disabled = false
+      if value != '3XL'
+        assign option_disabled = false
+      endif
     endif
   -%}
 
