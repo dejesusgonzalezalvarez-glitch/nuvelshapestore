@@ -1,324 +1,319 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
-  "sections": {
-    "hero": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "<style>\n  .nuvel-hero { position: relative; height: min(640px, 88vh); overflow: hidden; background: #1A1A1A; }\n  .nuvel-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }\n  .nuvel-hero__overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,20,15,.62) 0%, rgba(26,20,15,.22) 48%, rgba(26,20,15,0) 68%); }\n  .nuvel-hero__content { position: relative; max-width: 1280px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px; padding: 0 64px; }\n  .nuvel-hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #D9CFC2; }\n  .nuvel-hero__title { margin: 0; color: #FFFFFF; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; max-width: 640px; }\n  .nuvel-hero__subtitle { margin: 0; color: #F1E9DF; font-size: 17px; line-height: 1.55; max-width: 440px; }\n  .nuvel-hero__cta { display: inline-flex; align-items: center; background: #FFFFFF; color: #1A1A1A; padding: 15px 32px; font-size: 15px; font-weight: 500; border-radius: 2px; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }\n  .nuvel-hero__cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(26,20,15,.5); }\n  @media (max-width: 768px) { .nuvel-hero { height: min(560px, 82vh); } .nuvel-hero__content { padding: 0 20px; } .nuvel-hero__subtitle { font-size: 15.5px; } }\n</style>\n<div class=\"nuvel-hero\">\n  <img class=\"nuvel-hero__img\" src=\"{{ 'hero-principal.jpg' | asset_url }}\" srcset=\"{{ 'med-hero-principal.jpg' | asset_url }} 800w, {{ 'lg-hero-principal.jpg' | asset_url }} 1100w, {{ 'hero-principal.jpg' | asset_url }} 1600w\" sizes=\"100vw\" alt=\"{{ 'nuvel.hero.image_alt' | t }}\" fetchpriority=\"high\">\n  <div class=\"nuvel-hero__overlay\"></div>\n  <div class=\"nuvel-hero__content\">\n    <span class=\"nuvel-hero__eyebrow\">{{ 'nuvel.hero.eyebrow' | t }}</span>\n    <h1 class=\"nuvel-hero__title\">{{ 'nuvel.hero.title_line1' | t }}<br>{{ 'nuvel.hero.title_line2' | t }}</h1>\n    <p class=\"nuvel-hero__subtitle\">{{ 'nuvel.hero.subtitle' | t }}</p>\n    <a class=\"nuvel-hero__cta\" href=\"{{ request.locale.root_url | remove_last: '/' }}/products/faja-moldeadora-invisible-nuvel\">{{ 'nuvel.hero.cta' | t }}</a>\n  </div>\n</div>",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "vida-real": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "<style>\n  .nuvel-compare { text-align: center; }\n  .nuvel-compare__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #7a6c5a; }\n  .nuvel-compare__title { margin: 10px 0 0; font-size: 34px; line-height: 1.2; }\n  .nuvel-compare__sub { max-width: 480px; margin: 14px auto 0; color: #4a3f34; font-size: 15px; line-height: 1.6; }\n  .nuvel-compare__row { display: flex; justify-content: center; align-items: flex-end; max-width: 960px; margin: 48px auto 0; }\n  .nuvel-compare__card { position: relative; overflow: hidden; border-radius: 2px; box-shadow: 0 18px 40px -18px rgba(26,20,15,.22); }\n  .nuvel-compare__card img { display: block; width: 100%; height: 100%; object-fit: cover; }\n  .nuvel-compare__card--product { width: 420px; height: 480px; background: #FFFFFF; z-index: 1; }\n  .nuvel-compare__card--product img { object-fit: contain; padding: 24px; }\n  .nuvel-compare__card--worn { width: 480px; height: 520px; margin-left: -8px; }\n  .nuvel-compare__tag { position: absolute; top: 16px; left: 16px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; }\n  .nuvel-compare__tag--product { color: #FFFFFF; background: rgba(26,20,15,.55); }\n  .nuvel-compare__tag--worn { color: #2A2019; background: rgba(245,241,236,.85); }\n  @media (max-width: 900px) {\n    .nuvel-compare__row { flex-direction: column; align-items: center; gap: 18px; margin-top: 32px; }\n    .nuvel-compare__card--product, .nuvel-compare__card--worn { width: 92vw; max-width: 520px; height: auto; aspect-ratio: 4/5; margin-left: 0; }\n  }\n</style>\n<div class=\"nuvel-compare\">\n  <span class=\"nuvel-compare__eyebrow\">{{ 'nuvel.compare.eyebrow' | t }}</span>\n  <h2 class=\"nuvel-compare__title\">{{ 'nuvel.compare.title' | t }}</h2>\n  <p class=\"nuvel-compare__sub\">{{ 'nuvel.compare.subtitle' | t }}</p>\n  <div class=\"nuvel-compare__row\">\n    <div class=\"nuvel-compare__card nuvel-compare__card--product\">\n      <img src=\"{{ 'producto-frente.jpg' | asset_url }}\" srcset=\"{{ 'med-producto-frente.jpg' | asset_url }} 800w, {{ 'lg-producto-frente.jpg' | asset_url }} 1100w, {{ 'producto-frente.jpg' | asset_url }} 1400w\" sizes=\"(max-width: 900px) 92vw, 420px\" alt=\"{{ 'nuvel.compare.image_alt' | t }}\" loading=\"lazy\" decoding=\"async\">\n      <span class=\"nuvel-compare__tag nuvel-compare__tag--product\">{{ 'nuvel.compare.tag_product' | t }}</span>\n    </div>\n    <div class=\"nuvel-compare__card nuvel-compare__card--worn\">\n      <img src=\"{{ 'avatar-vestida.jpg' | asset_url }}\" srcset=\"{{ 'med-avatar-vestida.jpg' | asset_url }} 800w, {{ 'lg-avatar-vestida.jpg' | asset_url }} 1000w, {{ 'avatar-vestida.jpg' | asset_url }} 1400w\" sizes=\"(max-width: 900px) 92vw, 480px\" alt=\"{{ 'nuvel.compare.worn_image_alt' | t }}\" loading=\"lazy\" decoding=\"async\">\n      <span class=\"nuvel-compare__tag nuvel-compare__tag--worn\">{{ 'nuvel.compare.tag_worn' | t }}</span>\n    </div>\n  </div>\n</div>",
-        "color_scheme": "scheme-1",
-        "padding_top": 64,
-        "padding_bottom": 48
-      }
-    },
-    "caracteristicas-home": {
-      "type": "nuvel-features",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "producto-ancla": {
-      "type": "featured-product",
-      "blocks": {
-        "eyebrow": {
-          "type": "text",
-          "settings": {
-            "text": "Faja Moldeadora Invisible",
-            "text_style": "uppercase"
-          }
-        },
-        "titulo": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "precio": {
-          "type": "price",
-          "settings": {}
-        },
-        "tallas": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "cantidad": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "comprar": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": false
-          }
-        },
-        "beneficios": {
-          "type": "icon-with-text",
-          "settings": {
-            "layout": "horizontal",
-            "icon_1": "eye",
-            "heading_1": "Sin costuras: invisible bajo cualquier prenda",
-            "icon_2": "silhouette",
-            "heading_2": "Compresión suave y cómoda todo el día",
-            "icon_3": "washing",
-            "heading_3": "Resiste lavados sin perder la forma"
-          }
-        },
-        "guia-tallas": {
-          "type": "icon-with-text",
-          "settings": {
-            "layout": "horizontal",
-            "icon_1": "ruler",
-            "heading_1": "Tabla de tallas incluida",
-            "icon_2": "none",
-            "heading_2": "",
-            "icon_3": "none",
-            "heading_3": ""
-          }
-        }
-      },
-      "block_order": [
-        "eyebrow",
-        "titulo",
-        "precio",
-        "tallas",
-        "cantidad",
-        "comprar",
-        "beneficios",
-        "guia-tallas"
-      ],
-      "settings": {
-        "product": "faja-moldeadora-invisible-nuvel",
-        "color_scheme": "scheme-2",
-        "secondary_background": false,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
-    "catalogo": {
-      "type": "nuvel-catalogo",
-      "blocks": {
-        "producto-1": {
-          "type": "product",
-          "settings": {
-            "product": "faja-moldeadora-invisible-nuvel"
-          }
-        },
-        "producto-2": {
-          "type": "product",
-          "settings": {
-            "product": "retro-shapewear-top-with-zipper"
-          }
-        },
-        "producto-3": {
-          "type": "product",
-          "settings": {
-            "product": "womens-shapewear-dress-jumpsuit"
-          }
-        },
-        "producto-4": {
-          "type": "product",
-          "settings": {
-            "product": "seamless-shapewear-panties"
-          }
-        }
-      },
-      "block_order": [
-        "producto-1",
-        "producto-2",
-        "producto-3",
-        "producto-4"
-      ],
-      "settings": {
-        "heading": "Nuestro catálogo",
-        "heading_size": "h1",
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
-    "por-que": {
-      "type": "multicolumn",
-      "blocks": {
-        "column-0": {
-          "type": "column",
-          "settings": {
-            "title": "Sin costuras, invisible",
-            "text": "<p>No se marca bajo la ropa ni se adivina que la llevas.</p>"
-          }
-        },
-        "column-1": {
-          "type": "column",
-          "settings": {
-            "title": "No se enrolla ni pica",
-            "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>"
-          }
-        },
-        "column-2": {
-          "type": "column",
-          "settings": {
-            "title": "Resiste lavados",
-            "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>"
-          }
-        },
-        "column-3": {
-          "type": "column",
-          "settings": {
-            "title": "Tabla de tallas clara",
-            "text": "<p>Guía sencilla para elegir tu talla sin miedo a equivocarte.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "column-0",
-        "column-1",
-        "column-2",
-        "column-3"
-      ],
-      "settings": {
-        "title": "Por qué Nuvel",
-        "heading_size": "h1",
-        "button_label": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "secondary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
-    "testimonios": {
-      "type": "rich-text",
-      "blocks": {
-        "titulo": {
-          "type": "heading",
-          "settings": {
-            "heading": "Clientas reales, mensajes reales",
-            "heading_size": "h1"
-          }
-        },
-        "texto-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Cada semana publicamos capturas de los WhatsApp de nuestras clientas: dudas de talla, qué talla pidieron y la foto de la prenda puesta. Sin poses, tal cual llegan.</p>"
-          }
-        },
-        "texto-2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "titulo",
-        "texto-1",
-        "texto-2"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 72,
-        "padding_bottom": 72
-      }
-    },
-    "confianza": {
-      "type": "multicolumn",
-      "blocks": {
-        "column-0": {
-          "type": "column",
-          "settings": {
-            "title": "Envío gratis a todo el mundo",
-            "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>"
-          }
-        },
-        "column-1": {
-          "type": "column",
-          "settings": {
-            "title": "30 días de prueba",
-            "text": "<p>Si no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.</p>"
-          }
-        },
-        "column-2": {
-          "type": "column",
-          "settings": {
-            "title": "Pago 100% seguro",
-            "text": "<p>Tus datos protegidos en cada compra.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "column-0",
-        "column-1",
-        "column-2"
-      ],
-      "settings": {
-        "title": "Compra con tranquilidad",
-        "heading_size": "h1",
-        "button_label": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "secondary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
-    "cta-final": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "<style>\n  .nuvel-cta { position: relative; min-height: 460px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #1A1A1A; }\n  .nuvel-cta__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }\n  .nuvel-cta__overlay { position: absolute; inset: 0; background: rgba(26,20,15,.5); }\n  .nuvel-cta__content { position: relative; text-align: center; padding: 64px 20px; max-width: 760px; }\n  .nuvel-cta__title { margin: 0; color: #FFFFFF; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; }\n  .nuvel-cta__text { margin: 14px 0 28px; color: #F1E9DF; font-size: 16px; line-height: 1.6; }\n  .nuvel-cta__btn { display: inline-flex; align-items: center; background: #FFFFFF; color: #1A1A1A; padding: 15px 32px; font-size: 15px; font-weight: 500; border-radius: 2px; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }\n  .nuvel-cta__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(0,0,0,.5); }\n  @media (max-width: 768px) { .nuvel-cta { min-height: 380px; } }\n</style>\n<div class=\"nuvel-cta\">\n  <img class=\"nuvel-cta__img\" src=\"{{ 'avatar-athleisure.jpg' | asset_url }}\" srcset=\"{{ 'med-avatar-athleisure.jpg' | asset_url }} 800w, {{ 'lg-avatar-athleisure.jpg' | asset_url }} 1100w, {{ 'avatar-athleisure.jpg' | asset_url }} 1600w\" sizes=\"100vw\" alt=\"{{ 'nuvel.cta.image_alt' | t }}\" loading=\"lazy\" decoding=\"async\">\n  <div class=\"nuvel-cta__overlay\"></div>\n  <div class=\"nuvel-cta__content\">\n    <h2 class=\"nuvel-cta__title\">{{ 'nuvel.cta.title' | t }}</h2>\n    <p class=\"nuvel-cta__text\">{{ 'nuvel.cta.text' | t }}</p>\n    <a class=\"nuvel-cta__btn\" href=\"{{ request.locale.root_url | remove_last: '/' }}/collections/all\">{{ 'nuvel.cta.button' | t }}</a>\n  </div>\n</div>",
-        "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    }
-  },
-  "order": [
-    "hero",
-    "vida-real",
-    "producto-ancla",
-    "caracteristicas-home",
-    "catalogo",
-    "por-que",
-    "testimonios",
-    "confianza",
-    "cta-final"
-  ]
+    "sections":  {
+                     "hero":  {
+                                  "type":  "custom-liquid",
+                                  "settings":  {
+                                                   "custom_liquid":  "\u003cstyle\u003e\n  .nuvel-hero { position: relative; height: min(640px, 88vh); overflow: hidden; background: #1A1A1A; }\n  .nuvel-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }\n  .nuvel-hero__overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,20,15,.25) 0%, rgba(26,20,15,.1) 35%, rgba(26,20,15,0) 60%); }\n  .nuvel-hero__content { position: relative; max-width: 1280px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px; padding: 0 64px; }\n  .nuvel-hero__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #FFFFFF; }\n  .nuvel-hero__title { margin: 0; color: #FFFFFF; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; max-width: 640px; }\n  .nuvel-hero__subtitle { margin: 0; color: #FFFFFF; font-weight: 400; font-size: clamp(1rem, 4vw, 17px); line-height: 1.55; max-width: 440px; }\n  .nuvel-hero__cta { display: inline-flex; align-items: center; background: #FFFFFF; color: #1A1A1A; padding: 15px 32px; font-size: 15px; font-weight: 500; border-radius: 2px; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }\n  .nuvel-hero__cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(26,20,15,.5); }\n  @media (max-width: 768px) { .nuvel-hero { height: min(70vh, 82vh); } .nuvel-hero__img { object-position: 80% center; } .nuvel-hero__overlay { background: linear-gradient(180deg, rgba(26,20,15,0) 0%, rgba(26,20,15,.65) 100%); } .nuvel-hero__content { padding: 0 20px; justify-content: flex-end; } .nuvel-hero__eyebrow { font-size: 10px; } .nuvel-hero__title { font-size: clamp(1.4rem, 6vw, 2rem); max-width: 90vw; } .nuvel-hero__subtitle { font-size: clamp(13px, 4vw, 16px); max-width: 90vw; } .nuvel-hero__cta { font-size: 14px; padding: 12px 24px; } }\n\u003c/style\u003e\n\u003cdiv class=\"nuvel-hero\"\u003e\n  \u003cimg class=\"nuvel-hero__img\" src=\"{{ \u0027hero-retrato-degradado.jpg\u0027 | asset_url }}\" srcset=\"{{ \u0027med-hero-retrato-degradado.jpg\u0027 | asset_url }} 800w, {{ \u0027lg-hero-retrato-degradado.jpg\u0027 | asset_url }} 1100w, {{ \u0027hero-retrato-degradado.jpg\u0027 | asset_url }} 1600w\" sizes=\"100vw\" alt=\"Modelo con la Faja Moldeadora Invisible de Nuvel\" width=\"2400\" height=\"1028\" loading=\"eager\" fetchpriority=\"high\"\u003e\n  \u003cdiv class=\"nuvel-hero__overlay\"\u003e\u003c/div\u003e\n  \u003cdiv class=\"nuvel-hero__content\"\u003e\n    \u003cspan class=\"nuvel-hero__eyebrow\"\u003e{{ \u0027nuvel.hero.eyebrow\u0027 | t }}\u003c/span\u003e\n    \u003ch1 class=\"nuvel-hero__title\"\u003e{{ \u0027nuvel.hero.title_line1\u0027 | t }}\u003cbr\u003e{{ \u0027nuvel.hero.title_line2\u0027 | t }}\u003c/h1\u003e\n    \u003cp class=\"nuvel-hero__subtitle\"\u003e{{ \u0027nuvel.hero.subtitle\u0027 | t }}\u003c/p\u003e\n    \u003ca class=\"nuvel-hero__cta\" href=\"{{ request.locale.root_url | remove_last: \u0027/\u0027 }}/products/faja-moldeadora-invisible-nuvel\"\u003e{{ \u0027nuvel.hero.cta\u0027 | t }}\u003c/a\u003e\n  \u003c/div\u003e\n\u003c/div\u003e",
+                                                   "color_scheme":  "scheme-1",
+                                                   "padding_top":  0,
+                                                   "padding_bottom":  0
+                                               }
+                              },
+                     "vida-real":  {
+                                       "type":  "custom-liquid",
+                                       "settings":  {
+                                                        "custom_liquid":  "\u003cstyle\u003e\n  .nuvel-compare { text-align: center; }\n  .nuvel-compare__eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #7a6c5a; }\n  .nuvel-compare__title { margin: 10px 0 0; font-size: 34px; line-height: 1.2; }\n  .nuvel-compare__sub { max-width: 480px; margin: 14px auto 0; color: #4a3f34; font-size: 15px; line-height: 1.6; }\n  .nuvel-compare__row { display: flex; justify-content: center; align-items: flex-end; max-width: 960px; margin: 48px auto 0; }\n  .nuvel-compare__card { position: relative; overflow: hidden; border-radius: 2px; box-shadow: 0 18px 40px -18px rgba(26,20,15,.22); }\n  .nuvel-compare__card img { display: block; width: 100%; height: 100%; object-fit: cover; }\n  .nuvel-compare__card--product { width: 420px; height: 480px; background: #FFFFFF; z-index: 1; }\n  .nuvel-compare__card--product img { object-fit: contain; padding: 24px; }\n  .nuvel-compare__card--worn { width: 480px; height: 520px; margin-left: -8px; }\n  .nuvel-compare__tag { position: absolute; top: 16px; left: 16px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; border-radius: 20px; }\n  .nuvel-compare__tag--product { color: #FFFFFF; background: rgba(26,20,15,.55); }\n  .nuvel-compare__tag--worn { color: #2A2019; background: rgba(245,241,236,.85); }\n  @media (max-width: 900px) {\n    .nuvel-compare__row { flex-direction: column; align-items: center; gap: 18px; margin-top: 32px; }\n    .nuvel-compare__card--product, .nuvel-compare__card--worn { width: 92vw; max-width: 520px; height: auto; aspect-ratio: 4/5; margin-left: 0; }\n  }\n\u003c/style\u003e\n\u003cdiv class=\"nuvel-compare\"\u003e\n  \u003cspan class=\"nuvel-compare__eyebrow\"\u003e{{ \u0027nuvel.compare.eyebrow\u0027 | t }}\u003c/span\u003e\n  \u003ch2 class=\"nuvel-compare__title\"\u003e{{ \u0027nuvel.compare.title\u0027 | t }}\u003c/h2\u003e\n  \u003cp class=\"nuvel-compare__sub\"\u003e{{ \u0027nuvel.compare.subtitle\u0027 | t }}\u003c/p\u003e\n  \u003cdiv class=\"nuvel-compare__row\"\u003e\n    \u003cdiv class=\"nuvel-compare__card nuvel-compare__card--product\"\u003e\n      \u003cimg src=\"{{ \u0027producto-frente.jpg\u0027 | asset_url }}\" srcset=\"{{ \u0027med-producto-frente.jpg\u0027 | asset_url }} 800w, {{ \u0027lg-producto-frente.jpg\u0027 | asset_url }} 1100w, {{ \u0027producto-frente.jpg\u0027 | asset_url }} 1400w\" sizes=\"(max-width: 900px) 92vw, 420px\" alt=\"{{ \u0027nuvel.compare.image_alt\u0027 | t }}\" loading=\"lazy\" decoding=\"async\"\u003e\n      \u003cspan class=\"nuvel-compare__tag nuvel-compare__tag--product\"\u003e{{ \u0027nuvel.compare.tag_product\u0027 | t }}\u003c/span\u003e\n    \u003c/div\u003e\n    \u003cdiv class=\"nuvel-compare__card nuvel-compare__card--worn\"\u003e\n      \u003cimg src=\"{{ \u0027avatar-vestida.jpg\u0027 | asset_url }}\" srcset=\"{{ \u0027med-avatar-vestida.jpg\u0027 | asset_url }} 800w, {{ \u0027lg-avatar-vestida.jpg\u0027 | asset_url }} 1000w, {{ \u0027avatar-vestida.jpg\u0027 | asset_url }} 1400w\" sizes=\"(max-width: 900px) 92vw, 480px\" alt=\"{{ \u0027nuvel.compare.worn_image_alt\u0027 | t }}\" loading=\"lazy\" decoding=\"async\"\u003e\n      \u003cspan class=\"nuvel-compare__tag nuvel-compare__tag--worn\"\u003e{{ \u0027nuvel.compare.tag_worn\u0027 | t }}\u003c/span\u003e\n    \u003c/div\u003e\n  \u003c/div\u003e\n\u003c/div\u003e",
+                                                        "color_scheme":  "scheme-1",
+                                                        "padding_top":  64,
+                                                        "padding_bottom":  48
+                                                    }
+                                   },
+                     "caracteristicas-home":  {
+                                                  "type":  "nuvel-features",
+                                                  "settings":  {
+                                                                   "color_scheme":  "scheme-1",
+                                                                   "padding_top":  36,
+                                                                   "padding_bottom":  36
+                                                               }
+                                              },
+                     "producto-ancla":  {
+                                            "type":  "featured-product",
+                                            "blocks":  {
+                                                           "eyebrow":  {
+                                                                           "type":  "text",
+                                                                           "settings":  {
+                                                                                            "text":  "Faja Moldeadora Invisible",
+                                                                                            "text_style":  "uppercase"
+                                                                                        }
+                                                                       },
+                                                           "titulo":  {
+                                                                          "type":  "title",
+                                                                          "settings":  {
+                                                                                           "heading_size":  "h1"
+                                                                                       }
+                                                                      },
+                                                           "precio":  {
+                                                                          "type":  "price",
+                                                                          "settings":  {
+
+                                                                                       }
+                                                                      },
+                                                           "tallas":  {
+                                                                          "type":  "variant_picker",
+                                                                          "settings":  {
+                                                                                           "picker_type":  "button",
+                                                                                           "swatch_shape":  "circle"
+                                                                                       }
+                                                                      },
+                                                           "cantidad":  {
+                                                                            "type":  "quantity_selector",
+                                                                            "settings":  {
+
+                                                                                         }
+                                                                        },
+                                                           "comprar":  {
+                                                                           "type":  "buy_buttons",
+                                                                           "settings":  {
+                                                                                            "show_dynamic_checkout":  true,
+                                                                                            "show_gift_card_recipient":  false
+                                                                                        }
+                                                                       },
+                                                           "beneficios":  {
+                                                                              "type":  "icon-with-text",
+                                                                              "settings":  {
+                                                                                               "layout":  "horizontal",
+                                                                                               "icon_1":  "eye",
+                                                                                               "heading_1":  "Sin costuras: invisible bajo cualquier prenda",
+                                                                                               "icon_2":  "silhouette",
+                                                                                               "heading_2":  "Compresión suave y cómoda todo el día",
+                                                                                               "icon_3":  "washing",
+                                                                                               "heading_3":  "Resiste lavados sin perder la forma"
+                                                                                           }
+                                                                          },
+                                                           "guia-tallas":  {
+                                                                               "type":  "icon-with-text",
+                                                                               "settings":  {
+                                                                                                "layout":  "horizontal",
+                                                                                                "icon_1":  "ruler",
+                                                                                                "heading_1":  "Tabla de tallas incluida",
+                                                                                                "icon_2":  "none",
+                                                                                                "heading_2":  "",
+                                                                                                "icon_3":  "none",
+                                                                                                "heading_3":  ""
+                                                                                            }
+                                                                           }
+                                                       },
+                                            "block_order":  [
+                                                                "eyebrow",
+                                                                "titulo",
+                                                                "precio",
+                                                                "tallas",
+                                                                "cantidad",
+                                                                "comprar",
+                                                                "beneficios",
+                                                                "guia-tallas"
+                                                            ],
+                                            "settings":  {
+                                                             "product":  "faja-moldeadora-invisible-nuvel",
+                                                             "color_scheme":  "scheme-2",
+                                                             "secondary_background":  false,
+                                                             "media_size":  "medium",
+                                                             "constrain_to_viewport":  true,
+                                                             "media_fit":  "contain",
+                                                             "media_position":  "left",
+                                                             "image_zoom":  "lightbox",
+                                                             "hide_variants":  false,
+                                                             "enable_video_looping":  false,
+                                                             "padding_top":  64,
+                                                             "padding_bottom":  64
+                                                         }
+                                        },
+                     "catalogo":  {
+                                      "type":  "nuvel-catalogo",
+                                      "blocks":  {
+                                                     "producto-1":  {
+                                                                        "type":  "product",
+                                                                        "settings":  {
+                                                                                         "product":  "faja-moldeadora-invisible-nuvel"
+                                                                                     }
+                                                                    },
+                                                     "producto-2":  {
+                                                                        "type":  "product",
+                                                                        "settings":  {
+                                                                                         "product":  "retro-shapewear-top-with-zipper"
+                                                                                     }
+                                                                    },
+                                                     "producto-3":  {
+                                                                        "type":  "product",
+                                                                        "settings":  {
+                                                                                         "product":  "womens-shapewear-dress-jumpsuit"
+                                                                                     }
+                                                                    },
+                                                     "producto-4":  {
+                                                                        "type":  "product",
+                                                                        "settings":  {
+                                                                                         "product":  "seamless-shapewear-panties"
+                                                                                     }
+                                                                    }
+                                                 },
+                                      "block_order":  [
+                                                          "producto-1",
+                                                          "producto-2",
+                                                          "producto-3",
+                                                          "producto-4"
+                                                      ],
+                                      "settings":  {
+                                                       "heading":  "Nuestro catálogo",
+                                                       "heading_size":  "h1",
+                                                       "show_view_all":  true,
+                                                       "view_all_style":  "solid",
+                                                       "color_scheme":  "scheme-1",
+                                                       "padding_top":  64,
+                                                       "padding_bottom":  64
+                                                   }
+                                  },
+                     "por-que":  {
+                                     "type":  "multicolumn",
+                                     "blocks":  {
+                                                    "column-0":  {
+                                                                     "type":  "column",
+                                                                     "settings":  {
+                                                                                      "title":  "Sin costuras, invisible",
+                                                                                      "text":  "\u003cp\u003eNo se marca bajo la ropa ni se adivina que la llevas.\u003c/p\u003e"
+                                                                                  }
+                                                                 },
+                                                    "column-1":  {
+                                                                     "type":  "column",
+                                                                     "settings":  {
+                                                                                      "title":  "No se enrolla ni pica",
+                                                                                      "text":  "\u003cp\u003eCompresión suave que aguanta todo el día sin molestar.\u003c/p\u003e"
+                                                                                  }
+                                                                 },
+                                                    "column-2":  {
+                                                                     "type":  "column",
+                                                                     "settings":  {
+                                                                                      "title":  "Resiste lavados",
+                                                                                      "text":  "\u003cp\u003eNo pierde la forma ni la compresión al primer lavado.\u003c/p\u003e"
+                                                                                  }
+                                                                 },
+                                                    "column-3":  {
+                                                                     "type":  "column",
+                                                                     "settings":  {
+                                                                                      "title":  "Tabla de tallas clara",
+                                                                                      "text":  "\u003cp\u003eGuía sencilla para elegir tu talla sin miedo a equivocarte.\u003c/p\u003e"
+                                                                                  }
+                                                                 }
+                                                },
+                                     "block_order":  [
+                                                         "column-0",
+                                                         "column-1",
+                                                         "column-2",
+                                                         "column-3"
+                                                     ],
+                                     "settings":  {
+                                                      "title":  "Por qué Nuvel",
+                                                      "heading_size":  "h1",
+                                                      "button_label":  "",
+                                                      "columns_desktop":  4,
+                                                      "column_alignment":  "center",
+                                                      "background_style":  "secondary",
+                                                      "color_scheme":  "scheme-1",
+                                                      "columns_mobile":  "2",
+                                                      "swipe_on_mobile":  false,
+                                                      "padding_top":  64,
+                                                      "padding_bottom":  64
+                                                  }
+                                 },
+                     "testimonios":  {
+                                         "type":  "rich-text",
+                                         "blocks":  {
+                                                        "titulo":  {
+                                                                       "type":  "heading",
+                                                                       "settings":  {
+                                                                                        "heading":  "Clientas reales, mensajes reales",
+                                                                                        "heading_size":  "h1"
+                                                                                    }
+                                                                   },
+                                                        "texto-1":  {
+                                                                        "type":  "text",
+                                                                        "settings":  {
+                                                                                         "text":  "\u003cp\u003eCada semana publicamos capturas de los WhatsApp de nuestras clientas: dudas de talla, qué talla pidieron y la foto de la prenda puesta. Sin poses, tal cual llegan.\u003c/p\u003e"
+                                                                                     }
+                                                                    },
+                                                        "texto-2":  {
+                                                                        "type":  "text",
+                                                                        "settings":  {
+                                                                                         "text":  "\u003cp\u003eEstamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.\u003c/p\u003e"
+                                                                                     }
+                                                                    }
+                                                    },
+                                         "block_order":  [
+                                                             "titulo",
+                                                             "texto-1",
+                                                             "texto-2"
+                                                         ],
+                                         "settings":  {
+                                                          "desktop_content_position":  "center",
+                                                          "content_alignment":  "center",
+                                                          "color_scheme":  "scheme-2",
+                                                          "full_width":  true,
+                                                          "padding_top":  72,
+                                                          "padding_bottom":  72
+                                                      }
+                                     },
+                     "confianza":  {
+                                       "type":  "multicolumn",
+                                       "blocks":  {
+                                                      "column-0":  {
+                                                                       "type":  "column",
+                                                                       "settings":  {
+                                                                                        "title":  "Envío gratis a todo el mundo",
+                                                                                        "text":  "\u003cp\u003eEntrega en 7-15 días laborables, con seguimiento por email.\u003c/p\u003e"
+                                                                                    }
+                                                                   },
+                                                      "column-1":  {
+                                                                       "type":  "column",
+                                                                       "settings":  {
+                                                                                        "title":  "30 días de prueba",
+                                                                                        "text":  "\u003cp\u003eSi no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.\u003c/p\u003e"
+                                                                                    }
+                                                                   },
+                                                      "column-2":  {
+                                                                       "type":  "column",
+                                                                       "settings":  {
+                                                                                        "title":  "Pago 100% seguro",
+                                                                                        "text":  "\u003cp\u003eTus datos protegidos en cada compra.\u003c/p\u003e"
+                                                                                    }
+                                                                   }
+                                                  },
+                                       "block_order":  [
+                                                           "column-0",
+                                                           "column-1",
+                                                           "column-2"
+                                                       ],
+                                       "settings":  {
+                                                        "title":  "Compra con tranquilidad",
+                                                        "heading_size":  "h1",
+                                                        "button_label":  "",
+                                                        "columns_desktop":  3,
+                                                        "column_alignment":  "center",
+                                                        "background_style":  "secondary",
+                                                        "color_scheme":  "scheme-1",
+                                                        "columns_mobile":  "1",
+                                                        "swipe_on_mobile":  false,
+                                                        "padding_top":  64,
+                                                        "padding_bottom":  64
+                                                    }
+                                   },
+                     "cta-final":  {
+                                       "type":  "custom-liquid",
+                                       "settings":  {
+                                                        "custom_liquid":  "\u003cstyle\u003e\n  .nuvel-cta { position: relative; min-height: 460px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #1A1A1A; }\n  .nuvel-cta__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }\n  .nuvel-cta__overlay { position: absolute; inset: 0; background: rgba(26,20,15,.5); }\n  .nuvel-cta__content { position: relative; text-align: center; padding: 64px 20px; max-width: 760px; }\n  .nuvel-cta__title { margin: 0; color: #FFFFFF; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; }\n  .nuvel-cta__text { margin: 14px 0 28px; color: #F1E9DF; font-size: 16px; line-height: 1.6; }\n  .nuvel-cta__btn { display: inline-flex; align-items: center; background: #FFFFFF; color: #1A1A1A; padding: 15px 32px; font-size: 15px; font-weight: 500; border-radius: 2px; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }\n  .nuvel-cta__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(0,0,0,.5); }\n  @media (max-width: 768px) { .nuvel-cta { min-height: 380px; } }\n\u003c/style\u003e\n\u003cdiv class=\"nuvel-cta\"\u003e\n  \u003cimg class=\"nuvel-cta__img\" src=\"{{ \u0027avatar-athleisure.jpg\u0027 | asset_url }}\" srcset=\"{{ \u0027med-avatar-athleisure.jpg\u0027 | asset_url }} 800w, {{ \u0027lg-avatar-athleisure.jpg\u0027 | asset_url }} 1100w, {{ \u0027avatar-athleisure.jpg\u0027 | asset_url }} 1600w\" sizes=\"100vw\" alt=\"{{ \u0027nuvel.cta.image_alt\u0027 | t }}\" loading=\"lazy\" decoding=\"async\"\u003e\n  \u003cdiv class=\"nuvel-cta__overlay\"\u003e\u003c/div\u003e\n  \u003cdiv class=\"nuvel-cta__content\"\u003e\n    \u003ch2 class=\"nuvel-cta__title\"\u003e{{ \u0027nuvel.cta.title\u0027 | t }}\u003c/h2\u003e\n    \u003cp class=\"nuvel-cta__text\"\u003e{{ \u0027nuvel.cta.text\u0027 | t }}\u003c/p\u003e\n    \u003ca class=\"nuvel-cta__btn\" href=\"{{ request.locale.root_url | remove_last: \u0027/\u0027 }}/collections/all\"\u003e{{ \u0027nuvel.cta.button\u0027 | t }}\u003c/a\u003e\n  \u003c/div\u003e\n\u003c/div\u003e",
+                                                        "color_scheme":  "scheme-1",
+                                                        "padding_top":  0,
+                                                        "padding_bottom":  0
+                                                    }
+                                   }
+                 },
+    "order":  [
+                  "hero",
+                  "vida-real",
+                  "producto-ancla",
+                  "caracteristicas-home",
+                  "catalogo",
+                  "por-que",
+                  "testimonios",
+                  "confianza",
+                  "cta-final"
+              ]
 }
