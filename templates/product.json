@@ -42,10 +42,6 @@
             "show_gift_card_recipient": false
           }
         },
-        "product-bundles": {
-          "type": "product-bundles",
-          "settings": {}
-        },
         "quantity-selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -97,7 +93,6 @@
         "price",
         "variant-picker",
         "quantity-selector",
-        "product-bundles",
         "buy_buttons",
         "inventory",
         "beneficios",

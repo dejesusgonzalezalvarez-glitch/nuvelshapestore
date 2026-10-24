@@ -427,8 +427,6 @@
                     product_form_id: product_form_id,
                     section_id: section.id
                   -%}
-                {%- when 'product-bundles' -%}
-                  {%- render 'nuvel-packs' -%}
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
                 {%- when 'rating' -%}
