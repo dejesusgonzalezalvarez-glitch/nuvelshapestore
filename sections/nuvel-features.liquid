@@ -1,5 +1,7 @@
 {%- comment -%}
-  Cómo funciona (Nuvel): 4 imágenes técnicas bajo la galería.
+  Tecnología de la tela (Nuvel): 4 imágenes técnicas bajo la galería.
+  Si tecnica-N.jpg no existe en assets/, la caja conserva su fondo neutro
+  y solo se oculta la <img> (nunca se ve una imagen rota).
 {%- endcomment -%}
 
 {%- liquid
@@ -37,6 +39,12 @@
       font-weight: 600;
     }
 
+    .nuvel-features__intro {
+      margin: 0.4rem 0 0;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+
     .nuvel-features__grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -66,7 +74,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .nuvel-features__caption {
@@ -75,12 +83,18 @@
       font-size: 1.3rem;
       line-height: 1.5;
     }
+
+    .nuvel-features__name {
+      display: block;
+      font-weight: 600;
+    }
   {%- endstyle -%}
 
   <div class="color-{{ section.settings.color_scheme }} gradient">
     <div class="section-{{ section.id }}-padding page-width">
       <div class="nuvel-features__header">
-        <h2 class="nuvel-features__title">Cómo funciona</h2>
+        <h2 class="nuvel-features__title">Tecnología de la tela</h2>
+        <p class="nuvel-features__intro">Cuatro detalles pensados para tu comodidad.</p>
       </div>
 
       <div class="nuvel-features__grid">
@@ -91,13 +105,16 @@
               src="{{ 'tecnica-1.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Detalle del borde sin costura de la Faja Moldeadora Invisible' | escape }}"
+              alt="{{ 'Sin costuras de la Faja Moldeadora Invisible Nuvel' | escape }}"
               loading="lazy"
               decoding="async"
-              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+              onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">Detalle del borde sin costura</figcaption>
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">Sin costuras</span>
+            Invisible bajo cualquier prenda
+          </figcaption>
         </figure>
         <figure class="nuvel-features__item">
           <div class="nuvel-features__media">
@@ -106,13 +123,16 @@
               src="{{ 'tecnica-2.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Banda de silicona antideslizante' | escape }}"
+              alt="{{ 'Cierre frontal de la Faja Moldeadora Invisible Nuvel' | escape }}"
               loading="lazy"
               decoding="async"
-              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+              onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">Banda de silicona antideslizante</figcaption>
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">Cierre frontal</span>
+            Para ponértela con comodidad
+          </figcaption>
         </figure>
         <figure class="nuvel-features__item">
           <div class="nuvel-features__media">
@@ -121,13 +141,16 @@
               src="{{ 'tecnica-3.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Compresión progresiva' | escape }}"
+              alt="{{ 'Compresión suave de la Faja Moldeadora Invisible Nuvel' | escape }}"
               loading="lazy"
               decoding="async"
-              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+              onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">Compresión progresiva</figcaption>
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">Compresión suave</span>
+            Moldea sin apretar de más
+          </figcaption>
         </figure>
         <figure class="nuvel-features__item">
           <div class="nuvel-features__media">
@@ -136,13 +159,16 @@
               src="{{ 'tecnica-4.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Guía de tallas' | escape }}"
+              alt="{{ 'Guía de tallas de la Faja Moldeadora Invisible Nuvel' | escape }}"
               loading="lazy"
               decoding="async"
-              onerror="this.parentElement.style.display='none'; this.closest('.nuvel-features__item').style.display='none'"
+              onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">Guía de tallas</figcaption>
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">Guía de tallas</span>
+            Mide tu cintura antes de pedir
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -151,7 +177,7 @@
 
 {% schema %}
 {
-  "name": "Cómo funciona (Nuvel)",
+  "name": "Tecnología de la tela (Nuvel)",
   "settings": [
     {
       "type": "color_scheme",
@@ -186,7 +212,7 @@
   ],
   "presets": [
     {
-      "name": "Cómo funciona (Nuvel)"
+      "name": "Tecnología de la tela (Nuvel)"
     }
   ]
 }
