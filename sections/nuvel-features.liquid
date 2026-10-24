@@ -1,8 +1,9 @@
 {%- comment -%}
   Tecnología de la tela (Nuvel): 4 imágenes técnicas bajo la galería.
-  Si tecnica-N.jpg no existe en assets/, la caja conserva su fondo neutro
-  y solo se oculta la <img> (nunca se ve una imagen rota).
-  Reintento de sincronización 23-OCT.
+  Imágenes: tecnica-1-disenada-para-adaptarse.png, tecnica-2-silueta-uniforme.png,
+  tecnica-3-comodidad-ritmo.png y producto-detalle.jpg (guía de tallas).
+  Si una imagen no existe, la caja conserva su fondo neutro y solo se oculta
+  la ́ımagen (nunca se ve una imagen rota).
 {%- endcomment -%}
 
 {%- liquid
@@ -94,8 +95,8 @@
   <div class="color-{{ section.settings.color_scheme }} gradient">
     <div class="section-{{ section.id }}-padding page-width">
       <div class="nuvel-features__header">
-        <h2 class="nuvel-features__title">Tecnología de la tela</h2>
-        <p class="nuvel-features__intro">Cuatro detalles pensados para tu comodidad.</p>
+        <h2 class="nuvel-features__title">{{ 'nuvel.tecnica.titulo' | t }}</h2>
+        <p class="nuvel-features__intro">{{ 'nuvel.tecnica.intro' | t }}</p>
       </div>
 
       <div class="nuvel-features__grid">
@@ -103,54 +104,54 @@
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'lg-detalle-tela.jpg' | asset_url }}"
+              src="{{ 'tecnica-1-disenada-para-adaptarse.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Detalle del tejido sin costuras de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque1.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
           <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Sin costuras</span>
-            Invisible bajo cualquier prenda
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque1.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque1.texto' | t }}
           </figcaption>
         </figure>
         <figure class="nuvel-features__item">
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'tecnica-2.jpg' | asset_url }}"
+              src="{{ 'tecnica-2-silueta-uniforme.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Cierre frontal de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque2.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
           <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Cierre frontal</span>
-            Para ponértela con comodidad
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque2.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque2.texto' | t }}
           </figcaption>
         </figure>
         <figure class="nuvel-features__item">
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'tecnica-3.jpg' | asset_url }}"
+              src="{{ 'tecnica-3-comodidad-ritmo.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Compresión suave de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque3.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
           <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Compresión suave</span>
-            Moldea sin apretar de más
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque3.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque3.texto' | t }}
           </figcaption>
         </figure>
         <figure class="nuvel-features__item">
@@ -160,15 +161,15 @@
               src="{{ 'lg-producto-detalle.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Guía de tallas de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque4.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
           <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Guía de tallas</span>
-            Mide tu cintura antes de pedir
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque4.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque4.texto' | t }}
           </figcaption>
         </figure>
       </div>

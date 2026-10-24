@@ -616,6 +616,30 @@
     "catalog": {
       "view_all": "View all"
     },
+    "tecnica": {
+      "titulo": "Get to know your shapewear",
+      "intro": "Get to know the details of your Nuvel Invisible Shaping Girdle.",
+      "bloque1": {
+        "titulo": "Designed to fit you",
+        "texto": "Shaped cups, adjustable straps and a one-piece design with an elegant black finish.",
+        "alt": "Designed to fit you - detail of the Nuvel girdle"
+      },
+      "bloque2": {
+        "titulo": "A smoother silhouette",
+        "texto": "Made to wear under your clothes, with gentle compression and flexible fabric.",
+        "alt": "A smoother silhouette - detail of the Nuvel girdle"
+      },
+      "bloque3": {
+        "titulo": "Comfort that moves with you",
+        "texto": "Adjustable straps for a personalised fit, fabric that moves with you and gentle compression without excess pressure.",
+        "alt": "Comfort that moves with you - detail of the Nuvel girdle"
+      },
+      "bloque4": {
+        "titulo": "Find your size",
+        "texto": "Check the size guide before you order.",
+        "alt": "Size guide for the Nuvel Invisible Shaping Girdle"
+      }
+    },
     "pages": {
       "last_updated": "Last updated: September 2026",
       "write_to_email": "Email hola@nuvelshape.store",

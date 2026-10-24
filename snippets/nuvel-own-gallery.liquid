@@ -20,8 +20,8 @@
 {%- liquid
   case product.handle
     when 'faja-moldeadora-invisible-nuvel'
-      assign gallery_handles = 'avatar-vestida,producto-frente,producto-espalda,avatar-athleisure' | split: ','
-      assign gallery_alt_map = '1,3,4,6' | split: ','
+      assign gallery_handles = 'producto-frente,producto-espalda,avatar-vestida,avatar-athleisure,producto-detalle' | split: ','
+      assign gallery_alt_map = '3,4,1,6,5' | split: ','
       assign alt_prefix = 'nuvel.gallery.alt_'
       assign main_handle = 'avatar-vestida'
       assign main_alt_key = 'nuvel.gallery.main_alt'

@@ -628,6 +628,30 @@
     "catalog": {
       "view_all": "Ver todos"
     },
+    "tecnica": {
+      "titulo": "Conoce tu faja",
+      "intro": "Conoce los detalles de tu faja Moldeadora Invisible Nuvel.",
+      "bloque1": {
+        "titulo": "Diseñada para adaptarse a ti",
+        "texto": "Copas con forma definida, tirantes ajustables y diseño de una sola pieza, con un acabado negro elegante.",
+        "alt": "Diseñada para adaptarse a ti - detalle de la faja Nuvel"
+      },
+      "bloque2": {
+        "titulo": "Una silueta más uniforme",
+        "texto": "Pensada para llevar bajo tu ropa, con compresión suave y tejido flexible.",
+        "alt": "Una silueta más uniforme - detalle de la faja Nuvel"
+      },
+      "bloque3": {
+        "titulo": "Comodidad que se adapta a tu ritmo",
+        "texto": "Tirantes regulables para un ajuste personalizado, tejido que te acompaña en cada movimiento y compresión suave, sin exceso de presión.",
+        "alt": "Comodidad que se adapta a tu ritmo - detalle de la faja Nuvel"
+      },
+      "bloque4": {
+        "titulo": "Encuentra tu talla",
+        "texto": "Consulta la guía antes de pedir.",
+        "alt": "Guía de tallas de la Faja Moldeadora Invisible Nuvel"
+      }
+    },
     "pages": {
       "last_updated": "Última actualización: septiembre de 2026",
       "write_to_email": "Escribe a hola@nuvelshape.store",
