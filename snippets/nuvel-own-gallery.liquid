@@ -10,7 +10,7 @@
   Carrusel con imagen principal (4/5, cover, center top), flechas y swipe.
   Miniaturas cuadradas: columna a la izquierda de la foto principal en
   escritorio (>=990px, 72px) y fila horizontal con scroll en movil (56px)
-  con puntos indicadores debajo. La seccion "Tecnologia de la tela" vive
+  con puntos indicadores debajo. La seccion tecnica "Conoce tu faja" vive
   en sections/nuvel-features.liquid y se coloca justo debajo de esta
   galeria.
   Robustez: onerror en todas las <img> que oculta el texto alt y deja un
@@ -20,8 +20,8 @@
 {%- liquid
   case product.handle
     when 'faja-moldeadora-invisible-nuvel'
-      assign gallery_handles = 'avatar-vestida,producto-frente,producto-espalda,avatar-athleisure' | split: ','
-      assign gallery_alt_map = '1,3,4,6' | split: ','
+      assign gallery_handles = 'producto-frente,producto-espalda,avatar-vestida,avatar-athleisure,producto-detalle' | split: ','
+      assign gallery_alt_map = '3,4,1,6,5' | split: ','
       assign alt_prefix = 'nuvel.gallery.alt_'
       assign main_handle = 'avatar-vestida'
       assign main_alt_key = 'nuvel.gallery.main_alt'

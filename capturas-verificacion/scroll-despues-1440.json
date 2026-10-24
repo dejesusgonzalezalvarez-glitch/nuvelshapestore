@@ -1,0 +1,93 @@
+{
+  "base": 24,
+  "filas": [
+    {
+      "clic": "siguiente #1",
+      "scrollY": 24
+    },
+    {
+      "clic": "siguiente #2",
+      "scrollY": 24
+    },
+    {
+      "clic": "siguiente #3",
+      "scrollY": 24
+    },
+    {
+      "clic": "siguiente #4",
+      "scrollY": 24
+    },
+    {
+      "clic": "siguiente #5",
+      "scrollY": 24
+    },
+    {
+      "clic": "siguiente #6",
+      "scrollY": 24
+    },
+    {
+      "clic": "miniatura #3",
+      "scrollY": 24
+    },
+    {
+      "clic": "anterior #1",
+      "scrollY": 24
+    }
+  ],
+  "thumbs": [
+    {
+      "i": 0,
+      "label": "Faja moldeadora invisible bajo un ve",
+      "btn": {
+        "w": 72,
+        "h": 72
+      },
+      "img": {
+        "w": 72,
+        "h": 72
+      },
+      "ok": true
+    },
+    {
+      "i": 1,
+      "label": "Faja Moldeadora Invisible Nuvel vist",
+      "btn": {
+        "w": 72,
+        "h": 72
+      },
+      "img": {
+        "w": 72,
+        "h": 72
+      },
+      "ok": true
+    },
+    {
+      "i": 2,
+      "label": "Faja Moldeadora Invisible Nuvel vist",
+      "btn": {
+        "w": 72,
+        "h": 72
+      },
+      "img": {
+        "w": 72,
+        "h": 72
+      },
+      "ok": true
+    },
+    {
+      "i": 3,
+      "label": "La faja Nuvel puesta con ropa deport",
+      "btn": {
+        "w": 72,
+        "h": 72
+      },
+      "img": {
+        "w": 72,
+        "h": 72
+      },
+      "ok": true
+    }
+  ],
+  "scrollOK": true,
+  "todoOK": true
+}

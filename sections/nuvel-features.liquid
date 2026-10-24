@@ -1,8 +1,9 @@
 {%- comment -%}
-  Tecnología de la tela (Nuvel): 4 imágenes técnicas bajo la galería.
-  Si tecnica-N.jpg no existe en assets/, la caja conserva su fondo neutro
-  y solo se oculta la <img> (nunca se ve una imagen rota).
-  Reintento de sincronización 23-OCT.
+  Tecnología de la tela (Nuvel): 4 bloques apilados bajo la galería de la faja.
+  Imágenes: tecnica-1-disenada-para-adaptarse.jpg, tecnica-2-silueta-uniforme.jpg,
+  tecnica-3-comodidad-ritmo.jpg y producto-detalle.jpg (guía de tallas).
+  Si una imagen no existe, la caja conserva su fondo neutro y solo se oculta
+  la ́ımagen (nunca se ve una imagen rota).
 {%- endcomment -%}
 
 {%- liquid
@@ -46,20 +47,27 @@
       line-height: 1.5;
     }
 
-    .nuvel-features__grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    @media screen and (max-width: 359px) {
-      .nuvel-features__grid {
-        grid-template-columns: 1fr;
-      }
+    .nuvel-features__list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+      margin-top: 1.2rem;
     }
 
     .nuvel-features__item {
       margin: 0;
+    }
+
+    .nuvel-features__block-title {
+      margin: 0 0 0.4rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .nuvel-features__block-text {
+      margin: 0 0 0.8rem;
+      font-size: 1.3rem;
+      line-height: 1.5;
     }
 
     .nuvel-features__media {
@@ -79,97 +87,81 @@
     }
 
     .nuvel-features__caption {
-      display: block;
-      margin: 0.8rem 0 0;
-      font-size: 1.3rem;
-      line-height: 1.5;
-    }
-
-    .nuvel-features__name {
-      display: block;
-      font-weight: 600;
+      display: none;
     }
   {%- endstyle -%}
 
   <div class="color-{{ section.settings.color_scheme }} gradient">
     <div class="section-{{ section.id }}-padding page-width">
       <div class="nuvel-features__header">
-        <h2 class="nuvel-features__title">Tecnología de la tela</h2>
-        <p class="nuvel-features__intro">Cuatro detalles pensados para tu comodidad.</p>
+        <h2 class="nuvel-features__title">{{ 'nuvel.tecnica.titulo' | t }}</h2>
+        <p class="nuvel-features__intro">{{ 'nuvel.tecnica.intro' | t }}</p>
       </div>
 
-      <div class="nuvel-features__grid">
+      <div class="nuvel-features__list">
         <figure class="nuvel-features__item">
+          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque1.titulo' | t }}</h3>
+          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque1.texto' | t }}</p>
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'lg-detalle-tela.jpg' | asset_url }}"
+              src="{{ 'tecnica-1-disenada-para-adaptarse.png' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Detalle del tejido sin costuras de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque1.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Sin costuras</span>
-            Invisible bajo cualquier prenda
-          </figcaption>
         </figure>
         <figure class="nuvel-features__item">
+          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque2.titulo' | t }}</h3>
+          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque2.texto' | t }}</p>
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'tecnica-2.jpg' | asset_url }}"
+              src="{{ 'tecnica-2-silueta-uniforme.png' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Cierre frontal de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque2.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Cierre frontal</span>
-            Para ponértela con comodidad
-          </figcaption>
         </figure>
         <figure class="nuvel-features__item">
+          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque3.titulo' | t }}</h3>
+          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque3.texto' | t }}</p>
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'tecnica-3.jpg' | asset_url }}"
+              src="{{ 'tecnica-3-comodidad-ritmo.png' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Compresión suave de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque3.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Compresión suave</span>
-            Moldea sin apretar de más
-          </figcaption>
         </figure>
         <figure class="nuvel-features__item">
+          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque4.titulo' | t }}</h3>
+          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque4.texto' | t }}</p>
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'lg-producto-detalle.jpg' | asset_url }}"
+              src="{{ 'producto-detalle.jpg' | asset_url }}"
               width="1200"
               height="900"
-              alt="{{ 'Guía de tallas de la Faja Moldeadora Invisible Nuvel' | escape }}"
+              alt="{{ 'nuvel.tecnica.bloque4.alt' | t }}"
               loading="lazy"
               decoding="async"
               onerror="this.style.display='none'"
             >
           </div>
-          <figcaption class="nuvel-features__caption">
-            <span class="nuvel-features__name">Guía de tallas</span>
-            Mide tu cintura antes de pedir
-          </figcaption>
         </figure>
       </div>
     </div>
@@ -197,7 +189,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "t:sections.all.padding.section_padding_heading",
       "default": 36
     },
     {
@@ -207,7 +199,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "t:sections.all.padding.section_padding_heading",
       "default": 36
     }
   ],

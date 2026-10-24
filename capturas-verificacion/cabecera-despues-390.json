@@ -1,0 +1,61 @@
+{
+  "visible": true,
+  "wrapDisplay": "flex",
+  "wrapFlex": {
+    "display": "flex",
+    "flexDir": "row",
+    "wrap": "nowrap",
+    "gap": "12px"
+  },
+  "header": {
+    "left": 0,
+    "right": 390,
+    "top": 52.2,
+    "bottom": 116.2
+  },
+  "botones": [
+    {
+      "texto": "US | EUR",
+      "aria": "País/región: Estados Unidos, EUR",
+      "rect": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0,
+        "w": 0,
+        "h": 0
+      },
+      "dentro": true
+    },
+    {
+      "texto": "ES",
+      "aria": "Idioma: Español",
+      "rect": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0,
+        "w": 0,
+        "h": 0
+      },
+      "dentro": true
+    }
+  ],
+  "drawerTieneLocalizacion": true,
+  "mismaLinea": true,
+  "dentroOK": true,
+  "desplegables": [
+    {
+      "boton": "US | EUR",
+      "panel": {
+        "texto": "Buscar Afganistán EUR € Albania EUR € Alemania EUR € Andorra EUR € Angola EUR € Anguila EUR € Antigua y Barbuda EUR € Ar"
+      }
+    },
+    {
+      "boton": "ES",
+      "panel": {
+        "texto": "Buscar Afganistán EUR € Albania EUR € Alemania EUR € Andorra EUR € Angola EUR € Anguila EUR € Antigua y Barbuda EUR € Ar"
+      }
+    }
+  ]
+}

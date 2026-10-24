@@ -1,0 +1,265 @@
+{
+  "galeria": {
+    "rect": {
+      "w": 360,
+      "h": 880,
+      "x": 15,
+      "y": 132.2
+    },
+    "display": "block",
+    "gridTemplateColumns": "none",
+    "alignItems": "normal"
+  },
+  "fotoPrincipal": {
+    "rect": {
+      "w": 360,
+      "h": 450,
+      "x": 15,
+      "y": 132.2
+    }
+  },
+  "contenedor": {
+    "rect": {
+      "w": 360,
+      "h": 408,
+      "x": 15,
+      "y": 604.2
+    },
+    "computed": {
+      "display": "flex",
+      "flex-direction": "row",
+      "align-items": "normal",
+      "width": "360px",
+      "height": "408px",
+      "overflow-x": "auto",
+      "gap": "8px"
+    }
+  },
+  "thumbs": [
+    {
+      "i": 0,
+      "label": "Faja moldeadora invisible bajo un vestid",
+      "oculta": false,
+      "btn": {
+        "rect": {
+          "w": 56,
+          "h": 404,
+          "x": 15,
+          "y": 604.2
+        },
+        "computed": {
+          "width": "56px",
+          "height": "404px",
+          "aspect-ratio": "auto",
+          "flex": "0 0 auto",
+          "opacity": "1",
+          "display": "block",
+          "object-fit": "fill"
+        }
+      },
+      "img": {
+        "rect": {
+          "w": 52,
+          "h": 400,
+          "x": 17,
+          "y": 606.2
+        },
+        "computed": {
+          "width": "52px",
+          "height": "400px",
+          "aspect-ratio": "1 / 1",
+          "object-fit": "cover"
+        }
+      }
+    },
+    {
+      "i": 1,
+      "label": "Detalle del borde y el tejido sin costur",
+      "oculta": false,
+      "btn": {
+        "rect": {
+          "w": 56,
+          "h": 404,
+          "x": 79,
+          "y": 604.2
+        },
+        "computed": {
+          "width": "56px",
+          "height": "404px",
+          "aspect-ratio": "auto",
+          "flex": "0 0 auto",
+          "opacity": "0.7",
+          "display": "block",
+          "object-fit": "fill"
+        }
+      },
+      "img": {
+        "rect": {
+          "w": 52,
+          "h": 400,
+          "x": 81,
+          "y": 606.2
+        },
+        "computed": {
+          "width": "52px",
+          "height": "400px",
+          "aspect-ratio": "1 / 1",
+          "object-fit": "cover"
+        }
+      }
+    },
+    {
+      "i": 2,
+      "label": "Faja Moldeadora Invisible Nuvel vista de",
+      "oculta": false,
+      "btn": {
+        "rect": {
+          "w": 56,
+          "h": 404,
+          "x": 143,
+          "y": 604.2
+        },
+        "computed": {
+          "width": "56px",
+          "height": "404px",
+          "aspect-ratio": "auto",
+          "flex": "0 0 auto",
+          "opacity": "0.7",
+          "display": "block",
+          "object-fit": "fill"
+        }
+      },
+      "img": {
+        "rect": {
+          "w": 52,
+          "h": 400,
+          "x": 145,
+          "y": 606.2
+        },
+        "computed": {
+          "width": "52px",
+          "height": "400px",
+          "aspect-ratio": "1 / 1",
+          "object-fit": "cover"
+        }
+      }
+    },
+    {
+      "i": 3,
+      "label": "Faja Moldeadora Invisible Nuvel vista po",
+      "oculta": false,
+      "btn": {
+        "rect": {
+          "w": 56,
+          "h": 404,
+          "x": 207,
+          "y": 604.2
+        },
+        "computed": {
+          "width": "56px",
+          "height": "404px",
+          "aspect-ratio": "auto",
+          "flex": "0 0 auto",
+          "opacity": "0.7",
+          "display": "block",
+          "object-fit": "fill"
+        }
+      },
+      "img": {
+        "rect": {
+          "w": 52,
+          "h": 400,
+          "x": 209,
+          "y": 606.2
+        },
+        "computed": {
+          "width": "52px",
+          "height": "400px",
+          "aspect-ratio": "1 / 1",
+          "object-fit": "cover"
+        }
+      }
+    },
+    {
+      "i": 4,
+      "label": "Guía de tallas de la Faja Moldeadora Inv",
+      "oculta": false,
+      "btn": {
+        "rect": {
+          "w": 56,
+          "h": 404,
+          "x": 271,
+          "y": 604.2
+        },
+        "computed": {
+          "width": "56px",
+          "height": "404px",
+          "aspect-ratio": "auto",
+          "flex": "0 0 auto",
+          "opacity": "0.7",
+          "display": "block",
+          "object-fit": "fill"
+        }
+      },
+      "img": {
+        "rect": {
+          "w": 52,
+          "h": 400,
+          "x": 273,
+          "y": 606.2
+        },
+        "computed": {
+          "width": "52px",
+          "height": "400px",
+          "aspect-ratio": "1 / 1",
+          "object-fit": "cover"
+        }
+      }
+    },
+    {
+      "i": 5,
+      "label": "La faja Nuvel puesta con ropa deportiva",
+      "oculta": false,
+      "btn": {
+        "rect": {
+          "w": 56,
+          "h": 404,
+          "x": 335,
+          "y": 604.2
+        },
+        "computed": {
+          "width": "56px",
+          "height": "404px",
+          "aspect-ratio": "auto",
+          "flex": "0 0 auto",
+          "opacity": "0.7",
+          "display": "block",
+          "object-fit": "fill"
+        }
+      },
+      "img": {
+        "rect": {
+          "w": 52,
+          "h": 400,
+          "x": 337,
+          "y": 606.2
+        },
+        "computed": {
+          "width": "52px",
+          "height": "400px",
+          "aspect-ratio": "1 / 1",
+          "object-fit": "cover"
+        }
+      }
+    }
+  ],
+  "reglasContenedor": [],
+  "reglasThumb": [],
+  "reglasImg": [],
+  "erroresJS": [],
+  "etiqueta": "antes",
+  "viewport": {
+    "w": 390,
+    "h": 844
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "visible": true,
+  "wrapDisplay": "flex",
+  "wrapFlex": {
+    "display": "flex",
+    "flexDir": "row",
+    "wrap": "nowrap",
+    "gap": "12px"
+  },
+  "header": {
+    "left": 0,
+    "right": 1024,
+    "top": 39,
+    "bottom": 163.4
+  },
+  "botones": [
+    {
+      "texto": "US | EUR",
+      "aria": "País/región: Estados Unidos, EUR",
+      "rect": {
+        "left": 651.8,
+        "right": 750,
+        "top": 82.2,
+        "bottom": 120.2,
+        "w": 98.2,
+        "h": 38
+      },
+      "dentro": true
+    },
+    {
+      "texto": "ES",
+      "aria": "Idioma: Español",
+      "rect": {
+        "left": 762,
+        "right": 834,
+        "top": 82.2,
+        "bottom": 120.2,
+        "w": 72,
+        "h": 38
+      },
+      "dentro": true
+    }
+  ],
+  "drawerTieneLocalizacion": true,
+  "mismaLinea": true,
+  "dentroOK": true,
+  "desplegables": [
+    {
+      "boton": "US | EUR",
+      "panel": null
+    },
+    {
+      "boton": "ES",
+      "panel": {
+        "texto": "Español English"
+      }
+    }
+  ]
+}
