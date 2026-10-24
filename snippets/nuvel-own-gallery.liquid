@@ -20,7 +20,8 @@
 {%- liquid
   case product.handle
     when 'faja-moldeadora-invisible-nuvel'
-      assign gallery_handles = 'avatar-vestida,detalle-tela,producto-frente,producto-espalda,producto-detalle,avatar-athleisure' | split: ','
+      assign gallery_handles = 'avatar-vestida,producto-frente,producto-espalda,avatar-athleisure' | split: ','
+      assign gallery_alt_map = '1,3,4,6' | split: ','
       assign alt_prefix = 'nuvel.gallery.alt_'
       assign main_handle = 'avatar-vestida'
       assign main_alt_key = 'nuvel.gallery.main_alt'
@@ -116,6 +117,7 @@
     .nuvel-gallery__thumbs {
       display: flex;
       justify-content: flex-start;
+      align-items: flex-start;
       gap: 8px;
       margin-top: 0.8rem;
       padding-bottom: 0.4rem;
@@ -127,6 +129,8 @@
     .nuvel-gallery__thumb {
       flex: 0 0 auto;
       width: 72px;
+      height: 72px;
+      aspect-ratio: 1 / 1;
       padding: 0;
       border: 2px solid transparent;
       border-radius: var(--media-radius, 2px);
@@ -145,7 +149,8 @@
 
     .nuvel-gallery__thumb img {
       display: block;
-      width: 100%;
+      width: 72px;
+      height: 72px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       object-position: center;
@@ -157,9 +162,16 @@
       outline-offset: 0.2rem;
     }
 
-    @media screen and (max-width: 749px) {
+    /* MOVIL Y TABLET (menos de 990px): fila horizontal de 56px debajo de la foto */
+    @media screen and (max-width: 989px) {
       .nuvel-gallery__thumb {
         width: 56px;
+        height: 56px;
+      }
+
+      .nuvel-gallery__thumb img {
+        width: 56px;
+        height: 56px;
       }
     }
 
@@ -208,7 +220,7 @@
       background-color: #000000;
     }
 
-    @media screen and (min-width: 750px) {
+    @media screen and (min-width: 990px) {
       .nuvel-gallery__dots {
         display: none;
       }
@@ -270,7 +282,11 @@
 
       <div class="nuvel-gallery__thumbs">
         {%- for handle in gallery_handles -%}
-          {%- capture alt_key %}{{ alt_prefix }}{{ forloop.index }}{% endcapture -%}
+          {%- if gallery_alt_map -%}
+            {%- capture alt_key %}{{ alt_prefix }}{{ gallery_alt_map[forloop.index0] }}{% endcapture -%}
+          {%- else -%}
+            {%- capture alt_key %}{{ alt_prefix }}{{ forloop.index }}{% endcapture -%}
+          {%- endif -%}
           {%- capture mini_src %}mini-{{ handle }}.jpg{% endcapture -%}
           {%- capture med_src %}med-{{ handle }}.jpg{% endcapture -%}
           {%- capture full_src %}lg-{{ handle }}.jpg{% endcapture -%}
