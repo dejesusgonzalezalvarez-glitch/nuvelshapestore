@@ -263,6 +263,25 @@
       {%- endif -%}
     {%- endif -%}
 
+    {%- style -%}
+      /* Localizacion de cabecera en una sola linea, compacta. */
+      .desktop-localization-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 12px;
+        margin-right: 1.2rem;
+      }
+
+      .desktop-localization-wrapper localization-form {
+        display: inline-flex;
+      }
+
+      .desktop-localization-wrapper .disclosure__button.localization-form__select {
+        white-space: nowrap;
+      }
+    {%- endstyle -%}
+
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
       <div class="desktop-localization-wrapper">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
@@ -270,7 +289,7 @@
             {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+                {%- render 'country-localization', localPosition: 'HeaderCountry', abbreviated: true -%}
               </div>
             {%- endform -%}
           </localization-form>
@@ -281,7 +300,7 @@
             {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-                {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+                {%- render 'language-localization', localPosition: 'HeaderLanguage', abbreviated: true -%}
               </div>
             {%- endform -%}
           </localization-form>

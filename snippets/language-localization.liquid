@@ -14,8 +14,13 @@
     aria-expanded="false"
     aria-controls="{{ localPosition }}List"
     aria-describedby="{{ localPosition }}Label"
+    aria-label="{{ 'localization.language_label' | t }}: {{ localization.language.endonym_name | capitalize }}"
   >
-    <span>{{ localization.language.endonym_name | capitalize }}</span>
+    {%- if abbreviated -%}
+      <span>{{ localization.language.iso_code | upcase }}</span>
+    {%- else -%}
+      <span>{{ localization.language.endonym_name | capitalize }}</span>
+    {%- endif -%}
     {{ 'icon-caret.svg' | inline_asset_content }}
   </button>
   <div class="disclosure__list-wrapper language-selector" hidden>

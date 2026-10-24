@@ -34,12 +34,17 @@
     aria-expanded="false"
     aria-controls="{{ localPosition }}-country-results"
     aria-describedby="{{ localPosition }}Label"
+    aria-label="{{ 'localization.country_label' | t }}: {{ localization.country.name }}, {{ localization.country.currency.iso_code }}"
   >
-    <span>
-      {{- localization.country.name }} |
-      {{ localization.country.currency.iso_code }}
-      {{ localization.country.currency.symbol -}}
-    </span>
+    {%- if abbreviated -%}
+      <span>{{ localization.country.iso_code }} | {{ localization.country.currency.iso_code }}</span>
+    {%- else -%}
+      <span>
+        {{- localization.country.name }} |
+        {{ localization.country.currency.iso_code }}
+        {{ localization.country.currency.symbol -}}
+      </span>
+    {%- endif -%}
     {{ 'icon-caret.svg' | inline_asset_content }}
   </button>
   <div class="disclosure__list-wrapper country-selector" hidden>
