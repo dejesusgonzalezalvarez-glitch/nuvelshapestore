@@ -640,6 +640,15 @@
         "alt": "Size guide for the Nuvel Invisible Shaping Girdle"
       }
     },
+    "packs": {
+      "title": "Save with a bundle",
+      "duo_name": "Shapewear Duo Pack — Nuvel",
+      "duo_incluye": "2 invisible shaping girdles",
+      "completo_name": "Complete Pack — Nuvel",
+      "completo_incluye": "Shaping girdle + shaper dress + seamless shorts",
+      "ver_pack": "View pack",
+      "ahorras": "Save {{ amount }}"
+    },
     "pages": {
       "last_updated": "Last updated: September 2026",
       "write_to_email": "Email hola@nuvelshape.store",

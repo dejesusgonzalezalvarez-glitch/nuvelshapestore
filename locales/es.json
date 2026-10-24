@@ -652,6 +652,15 @@
         "alt": "Guía de tallas de la Faja Moldeadora Invisible Nuvel"
       }
     },
+    "packs": {
+      "title": "Ahorra con un pack",
+      "duo_name": "Pack Dúo de Fajas — Nuvel",
+      "duo_incluye": "2 fajas moldeadoras invisibles",
+      "completo_name": "Pack Completo — Nuvel",
+      "completo_incluye": "Faja + body con falda + bragas moldeadoras",
+      "ver_pack": "Ver pack",
+      "ahorras": "Ahorras {{ amount }}"
+    },
     "pages": {
       "last_updated": "Última actualización: septiembre de 2026",
       "write_to_email": "Escribe a hola@nuvelshape.store",

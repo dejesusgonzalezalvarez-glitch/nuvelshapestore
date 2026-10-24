@@ -14,6 +14,10 @@
 -%}
 
 {%- for value in option.values -%}
+  {%- assign value_norm = value | upcase | strip -%}
+  {%- if value_norm == '3XL' or value_norm == 'XXXL' -%}
+    {%- continue -%}
+  {%- endif -%}
   {%- liquid
     assign swatch_focal_point = null
     if value.swatch.image
@@ -28,9 +32,7 @@
 
     assign option_disabled = true
     if value.available
-      if value != '3XL'
-        assign option_disabled = false
-      endif
+      assign option_disabled = false
     endif
   -%}
 

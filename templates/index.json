@@ -55,19 +55,25 @@
                                                                                            "swatch_shape":  "circle"
                                                                                        }
                                                                       },
-                                                           "cantidad":  {
-                                                                            "type":  "quantity_selector",
-                                                                            "settings":  {
+                                                            "cantidad":  {
+                                                                             "type":  "quantity_selector",
+                                                                             "settings":  {
 
-                                                                                         }
+                                                                                          }
                                                                         },
-                                                           "comprar":  {
-                                                                           "type":  "buy_buttons",
+                                                            "packs":  {
+                                                                           "type":  "product-bundles",
                                                                            "settings":  {
-                                                                                            "show_dynamic_checkout":  true,
-                                                                                            "show_gift_card_recipient":  false
+
                                                                                         }
                                                                        },
+                                                            "comprar":  {
+                                                                             "type":  "buy_buttons",
+                                                                             "settings":  {
+                                                                                             "show_dynamic_checkout":  true,
+                                                                                             "show_gift_card_recipient":  false
+                                                                                         }
+                                                                        },
                                                            "beneficios":  {
                                                                               "type":  "icon-with-text",
                                                                               "settings":  {
@@ -93,16 +99,17 @@
                                                                                             }
                                                                            }
                                                        },
-                                            "block_order":  [
-                                                                "eyebrow",
-                                                                "titulo",
-                                                                "precio",
-                                                                "tallas",
-                                                                "cantidad",
-                                                                "comprar",
-                                                                "beneficios",
-                                                                "guia-tallas"
-                                                            ],
+                                             "block_order":  [
+                                                                 "eyebrow",
+                                                                 "titulo",
+                                                                 "precio",
+                                                                 "tallas",
+                                                                 "cantidad",
+                                                                 "packs",
+                                                                 "comprar",
+                                                                 "beneficios",
+                                                                 "guia-tallas"
+                                                             ],
                                             "settings":  {
                                                              "product":  "faja-moldeadora-invisible-nuvel",
                                                              "color_scheme":  "scheme-2",
