@@ -326,6 +326,7 @@
       var main = root.querySelector('[data-nuvel-gallery-main]');
       var thumbs = root.querySelectorAll('[data-nuvel-gallery-thumb]');
       var dots = root.querySelectorAll('[data-nuvel-gallery-dot]');
+      var thumbsWrap = root.querySelector('.nuvel-gallery__thumbs');
       var swipeArea = root.querySelector('[data-nuvel-gallery-swipe]');
 
       if (main && thumbs.length) {
@@ -359,7 +360,16 @@
           for (var d = 0; d < dots.length; d++) {
             dots[d].classList.toggle('is-active', d === index);
           }
-          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+          /* Desplazar SOLO el contenedor de miniaturas, nunca la pagina:
+             scrollTo del propio wrap en lugar de scrollIntoView (que
+             arrastraba a la ventana). Centra la miniatura visible. */
+          if (thumbsWrap) {
+            var tRect = thumb.getBoundingClientRect();
+            var wRect = thumbsWrap.getBoundingClientRect();
+            var topTarget = thumbsWrap.scrollTop + (tRect.top - wRect.top) - (thumbsWrap.clientHeight - tRect.height) / 2;
+            var leftTarget = thumbsWrap.scrollLeft + (tRect.left - wRect.left) - (thumbsWrap.clientWidth - tRect.width) / 2;
+            thumbsWrap.scrollTo({ top: topTarget, left: leftTarget, behavior: 'smooth' });
+          }
         }
 
         function step(delta) {
