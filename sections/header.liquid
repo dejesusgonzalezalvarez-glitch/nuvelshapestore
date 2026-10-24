@@ -280,6 +280,13 @@
       .desktop-localization-wrapper .disclosure__button.localization-form__select {
         white-space: nowrap;
       }
+
+      /* En movil y tablet los selectores viven en el menu desplegable. */
+      @media screen and (max-width: 989px) {
+        .desktop-localization-wrapper {
+          display: none;
+        }
+      }
     {%- endstyle -%}
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
