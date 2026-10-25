@@ -81,11 +81,6 @@
             {{ form | payment_button }}
           {%- endif -%}
 
-          {%- comment -%}
-            Nuvel: los packs van ENTRE el botón de PayPal y "Agregar al carrito".
-          {%- endcomment -%}
-          {%- render 'nuvel-packs' -%}
-
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
