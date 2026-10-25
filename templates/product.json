@@ -35,70 +35,26 @@
             "swatch_shape": "circle"
           }
         },
+        "nuvel-packs": {
+          "type": "nuvel_packs",
+          "settings": {
+            "show_pack_prices": true
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": false
           }
-        },
-        "quantity-selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "inventory": {
-          "type": "inventory",
-          "settings": {
-            "text_style": "body",
-            "inventory_threshold": 10,
-            "show_inventory_quantity": false
-          }
-        },
-        "beneficios": {
-          "type": "icon-with-text",
-          "settings": {
-            "layout": "horizontal",
-            "icon_1": "eye",
-            "heading_1": "Sin costuras — invisible bajo cualquier prenda",
-            "icon_2": "silhouette",
-            "heading_2": "Compresión suave y cómoda todo el día",
-            "icon_3": "shirt",
-            "heading_3": "Tejido flexible que se adapta a tu figura"
-          }
-        },
-        "tallas": {
-          "type": "collapsible_tab",
-          "settings": {
-            "icon": "ruler",
-            "heading": "Guía de tallas",
-            "content": "<p>Cada prenda incluye su tabla de tallas: mide tu cintura y compárala antes de pedir. Si estás entre dos tallas, elige la mayor: la prenda debe moldear, no apretar.</p>"
-          }
-        },
-        "envio-devoluciones": {
-          "type": "collapsible_tab",
-          "settings": {
-            "icon": "truck",
-            "heading": "Envío y devoluciones",
-            "content": "<p>El coste y el plazo de envío se calculan y se muestran en el checkout antes de pagar. Consulta las condiciones completas en nuestras páginas de <a href=\"/pages/envios\">envíos</a> y <a href=\"/pages/devoluciones\">devoluciones</a>.</p>"
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
         }
       },
       "block_order": [
-        "vendor",
         "title",
         "price",
         "variant-picker",
-        "quantity-selector",
-        "buy_buttons",
-        "inventory",
-        "beneficios",
-        "tallas",
-        "envio-devoluciones",
-        "description"
+        "nuvel-packs",
+        "buy_buttons"
       ],
       "settings": {
         "enable_sticky_info": true,

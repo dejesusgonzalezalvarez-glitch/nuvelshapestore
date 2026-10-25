@@ -1,219 +1,161 @@
 {%- liquid
-  assign pack_duo = all_products['pack-duo-fajas-nuvel']
-  assign pack_completo = all_products['pack-completo-nuvel']
+  assign show_pack_prices = block.settings.show_pack_prices != false
+  assign faja_handle = 'faja-moldeadora-invisible-nuvel'
+  assign body_falda_handle = 'body-moldeador-con-falda-nuvel'
+  assign bragas_handle = 'bragas-moldeadoras-sin-costuras-nuvel'
 
-  assign pack_duo_visible = false
-  assign pack_completo_visible = false
-  if pack_duo != blank and pack_duo.published
-    assign pack_duo_visible = true
+  assign faja_product = all_products[faja_handle]
+  assign body_falda_product = all_products[body_falda_handle]
+  assign bragas_product = all_products[bragas_handle]
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign current_price = current_variant.price | money
+  assign current_compare_at = current_variant.compare_at_price
+
+  assign faja_variant = blank
+  assign body_falda_variant = blank
+  assign bragas_variant = blank
+
+  if faja_product != blank
+    assign faja_variant = faja_product.variants | where: 'option1', current_variant.option1 | first
   endif
-  if pack_completo != blank and pack_completo.published
-    assign pack_completo_visible = true
+  if body_falda_product != blank
+    assign body_falda_variant = body_falda_product.variants | where: 'option1', current_variant.option1 | first
+  endif
+  if bragas_product != blank
+    assign bragas_variant = bragas_product.variants | where: 'option1', current_variant.option1 | first
   endif
 
-  assign any_pack_visible = pack_duo_visible or pack_completo_visible
+  assign duo_price = current_variant.price | times: 2 | minus: current_variant.price | divided_by: 2
+  assign duo_price_money = duo_price | money
+  assign duo_compare_at = current_variant.price | times: 2 | money
+
+  assign kit_price = 6490 | divided_by: 100
+  assign kit_compare_at = 8480 | divided_by: 100
+  assign kit_price_money = kit_price | money
+  assign kit_compare_at_money = kit_compare_at | money
 -%}
 
-{%- if any_pack_visible -%}
-  {%- style -%}
-    .nuvel-packs {
-      margin-top: 1.25rem;
-      border: 1px solid rgba(var(--color-foreground), 0.15);
-      border-radius: var(--media-radius, 2px);
-      background: var(--color-background);
-      overflow: hidden;
-    }
-    .nuvel-packs__header {
-      padding: 1rem 1rem 0.5rem;
-      border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
-    }
-    .nuvel-packs__title {
-      margin: 0 0 0.25rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: rgb(26, 26, 26);
-    }
-    .nuvel-packs__list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      padding: 0.5rem 1rem 1rem;
-    }
-    .nuvel-packs__card {
-      display: flex;
-      flex-direction: column;
-      border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.15s ease;
-    }
-    .nuvel-packs__card:last-child {
-      border-bottom: none;
-    }
-    .nuvel-packs__card:hover {
-      background: rgba(var(--color-foreground), 0.03);
-    }
-    .nuvel-packs__card-body {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-    }
-    .nuvel-packs__thumb {
-      width: 64px;
-      height: 64px;
-      flex-shrink: 0;
-      border-radius: var(--media-radius, 2px);
-      overflow: hidden;
-      background: rgba(var(--color-foreground), 0.06);
-    }
-    .nuvel-packs__thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .nuvel-packs__info {
-      flex: 1;
-      min-width: 0;
-    }
-    .nuvel-packs__name {
-      margin: 0 0 0.2rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: rgb(26, 26, 26);
-    }
-    .nuvel-packs__includes {
-      margin: 0 0 0.5rem;
-      font-size: 0.8rem;
-      line-height: 1.4;
-      color: rgba(var(--color-foreground), 0.65);
-    }
-    .nuvel-packs__prices {
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .nuvel-packs__price {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: rgb(26, 26, 26);
-    }
-    .nuvel-packs__compare {
-      font-size: 0.85rem;
-      text-decoration: line-through;
-      color: rgba(var(--color-foreground), 0.5);
-    }
-    .nuvel-packs__savings {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: rgb(138, 111, 74);
-    }
-    .nuvel-packs__btn {
-      display: block;
-      width: 100%;
-      padding: 0.6rem 0.9rem;
-      border: 1px solid rgb(26, 26, 26);
-      border-radius: var(--media-radius, 2px);
-      background: rgb(26, 26, 26);
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      text-decoration: none;
-      margin-top: auto;
-      transition: opacity 0.15s ease;
-    }
-    .nuvel-packs__btn:hover {
-      opacity: 0.85;
-    }
-    @media screen and (min-width: 750px) {
-      .nuvel-packs__thumb {
-        width: 80px;
-        height: 80px;
+<div class="nuvel-packs" data-nuvel-packs data-section-id="{{ section_id }}">
+  <h3 class="nuvel-packs__title">{{ 'nuvel.product_page.packs_title' | t }}</h3>
+  <div class="nuvel-packs__list" role="radiogroup" aria-label="{{ 'nuvel.product_page.packs_title' | t }}">
+
+    {%- comment -%}Pack 1: Solo una faja{%- endcomment -%}
+    <label class="nuvel-packs__card{% unless show_pack_prices %} nuvel-packs__card--no-prices{% endunless %}" data-pack="solo">
+      <input
+        type="radio"
+        name="nuvel-pack"
+        value="solo"
+        class="nuvel-packs__radio"
+        aria-label="{{ 'nuvel.product_page.pack_solo_title' | t }}"
+      >
+      <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
+      <div class="nuvel-packs__card-body">
+        <div class="nuvel-packs__thumb">
+          {%- if product.featured_media -%}
+            {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
+          {%- else -%}
+            <span class="visually-hidden">{{ 'nuvel.product_page.pack_solo_title' | t }}</span>
+          {%- endif -%}
+        </div>
+        <div class="nuvel-packs__info">
+          <h4 class="nuvel-packs__name">{{ 'nuvel.product_page.pack_solo_title' | t }}</h4>
+          <p class="nuvel-packs__includes">{{ 'nuvel.product_page.pack_solo_subtitle' | t }}</p>
+          {%- if show_pack_prices -%}
+            <div class="nuvel-packs__prices">
+              <span class="nuvel-packs__price">{{ current_price }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </label>
+
+    {%- comment -%}Pack 2: 2ª unidad al 50% (default selected){%- endcomment -%}
+    <label class="nuvel-packs__card is-selected{% unless show_pack_prices %} nuvel-packs__card--no-prices{% endunless %}" data-pack="duo">
+      <input
+        type="radio"
+        name="nuvel-pack"
+        value="duo"
+        class="nuvel-packs__radio"
+        checked
+        aria-label="{{ 'nuvel.product_page.pack_duo_title' | t }}"
+      >
+      <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
+      <div class="nuvel-packs__card-body">
+        <div class="nuvel-packs__thumb">
+          {%- if product.featured_media -%}
+            {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
+          {%- else -%}
+            <span class="visually-hidden">{{ 'nuvel.product_page.pack_duo_title' | t }}</span>
+          {%- endif -%}
+        </div>
+        <div class="nuvel-packs__info">
+          <div class="nuvel-packs__name-row">
+            <h4 class="nuvel-packs__name">{{ 'nuvel.product_page.pack_duo_title' | t }}</h4>
+            <span class="nuvel-packs__badge">{{ 'nuvel.product_page.pack_duo_badge' | t }}</span>
+          </div>
+          <p class="nuvel-packs__includes">{{ 'nuvel.product_page.pack_duo_subtitle' | t }}</p>
+          {%- if show_pack_prices -%}
+            <div class="nuvel-packs__prices">
+              <span class="nuvel-packs__price">{{ duo_price_money }}</span>
+              <span class="nuvel-packs__compare">{{ duo_compare_at }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </label>
+
+    {%- comment -%}Pack 3: Kit del Vestido Perfecto{%- endcomment -%}
+    <label class="nuvel-packs__card{% unless show_pack_prices %} nuvel-packs__card--no-prices{% endunless %}" data-pack="kit">
+      <input
+        type="radio"
+        name="nuvel-pack"
+        value="kit"
+        class="nuvel-packs__radio"
+        aria-label="{{ 'nuvel.product_page.pack_kit_title' | t }}"
+      >
+      <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
+      <div class="nuvel-packs__card-body">
+        <div class="nuvel-packs__thumb">
+          {%- if body_falda_product != blank and body_falda_product.featured_media -%}
+            {{ body_falda_product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: body_falda_product.title | escape }}
+          {%- else -%}
+            <span class="visually-hidden">{{ 'nuvel.product_page.pack_kit_title' | t }}</span>
+          {%- endif -%}
+        </div>
+        <div class="nuvel-packs__info">
+          <h4 class="nuvel-packs__name">{{ 'nuvel.product_page.pack_kit_title' | t }}</h4>
+          <p class="nuvel-packs__includes">{{ 'nuvel.product_page.pack_kit_subtitle' | t }}</p>
+          {%- if show_pack_prices -%}
+            <div class="nuvel-packs__prices">
+              <span class="nuvel-packs__price">{{ kit_price_money }}</span>
+              <span class="nuvel-packs__compare">{{ kit_compare_at_money }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </label>
+
+  </div>
+
+  <script type="application/json" data-nuvel-pack-data>
+    {
+      "solo": {
+        "items": [{ "variant_id": {{ current_variant.id }}, "quantity": 1 }],
+        "properties": { "_pack": "solo" }
+      },
+      "duo": {
+        "items": [{ "variant_id": {{ current_variant.id }}, "quantity": 2 }],
+        "properties": { "_pack": "duo" }
+      },
+      "kit": {
+        "items": [
+          { "variant_id": {{ current_variant.id }}, "quantity": 1 },
+          { "variant_id": {{ faja_variant.id | default: current_variant.id }}, "quantity": 1 },
+          { "variant_id": {{ bragas_variant.id | default: current_variant.id }}, "quantity": 1 }
+        ],
+        "properties": { "_pack": "kit" }
       }
     }
-  {%- endstyle -%}
-
-  <div class="nuvel-packs" data-nuvel-packs>
-    <div class="nuvel-packs__header">
-      <h3 class="nuvel-packs__title">{{ 'nuvel.packs.title' | t }}</h3>
-    </div>
-    <div class="nuvel-packs__list" data-nuvel-packs-list>
-      {%- if pack_duo_visible -%}
-          {%- liquid
-            assign p = pack_duo
-            assign img = p.featured_media | default: null
-            assign img_url = blank
-            if img != blank
-              assign img_url = img.preview_image.src | image_url: width: 240
-            endif
-            {%- if p.compare_at_price != blank -%}
-              {%- assign ahorro = p.compare_at_price | minus: p.price -%}
-            {%- endif -%}
-          -%}
-        <a href="{{ p.url }}" class="nuvel-packs__card" aria-label="{{ 'nuvel.packs.ver_pack' | t: pack: p.title | escape }}">
-          <div class="nuvel-packs__card-body">
-            <div class="nuvel-packs__thumb">
-              {%- if img_url -%}
-                <img src="{{ img_url }}" alt="{{ p.title | escape }}" loading="lazy" width="240" height="240">
-              {%- else -%}
-                <span class="visually-hidden">{{ p.title | escape }}</span>
-              {%- endif -%}
-            </div>
-            <div class="nuvel-packs__info">
-              <h4 class="nuvel-packs__name">{{ p.title | escape }}</h4>
-              <p class="nuvel-packs__includes">{{ 'nuvel.packs.duo_incluye' | t }}</p>
-              <div class="nuvel-packs__prices">
-                <span class="nuvel-packs__price">{{ p.price | money }}</span>
-                {%- if p.compare_at_price > p.price -%}
-                  <span class="nuvel-packs__compare">{{ p.compare_at_price | money }}</span>
-                  <span class="nuvel-packs__savings">{{ 'nuvel.packs.ahorras' | t: amount: ahorro | money }}</span>
-                {%- endif -%}
-              </div>
-            </div>
-          </div>
-          <span class="nuvel-packs__btn">{{ 'nuvel.packs.ver_pack' | t }}</span>
-        </a>
-      {%- endif -%}
-
-      {%- if pack_completo_visible -%}
-        {%- liquid
-          assign p = pack_completo
-          assign img = p.featured_media | default: null
-          assign img_url = blank
-          if img != blank
-            assign img_url = img.preview_image.src | image_url: width: 240
-          endif
-          {%- if p.compare_at_price != blank -%}
-            {%- assign ahorro = p.compare_at_price | minus: p.price -%}
-          {%- endif -%}
-        -%}
-        <a href="{{ p.url }}" class="nuvel-packs__card" aria-label="{{ 'nuvel.packs.ver_pack' | t: pack: p.title | escape }}">
-          <div class="nuvel-packs__card-body">
-            <div class="nuvel-packs__thumb">
-              {%- if img_url -%}
-                <img src="{{ img_url }}" alt="{{ p.title | escape }}" loading="lazy" width="240" height="240">
-              {%- else -%}
-                <span class="visually-hidden">{{ p.title | escape }}</span>
-              {%- endif -%}
-            </div>
-            <div class="nuvel-packs__info">
-              <h4 class="nuvel-packs__name">{{ p.title | escape }}</h4>
-              <p class="nuvel-packs__includes">{{ 'nuvel.packs.completo_incluye' | t }}</p>
-              <div class="nuvel-packs__prices">
-                <span class="nuvel-packs__price">{{ p.price | money }}</span>
-                {%- if p.compare_at_price > p.price -%}
-                  <span class="nuvel-packs__compare">{{ p.compare_at_price | money }}</span>
-                  <span class="nuvel-packs__savings">{{ 'nuvel.packs.ahorras' | t: amount: ahorro | money }}</span>
-                {%- endif -%}
-              </div>
-            </div>
-          </div>
-          <span class="nuvel-packs__btn">{{ 'nuvel.packs.ver_pack' | t }}</span>
-        </a>
-      {%- endif -%}
-    </div>
-  </div>
-{%- endif -%}
+  </script>
+</div>
