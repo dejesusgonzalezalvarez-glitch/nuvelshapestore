@@ -1,7 +1,7 @@
 {%- comment -%}
-  Tecnología de la tela (Nuvel): 4 bloques apilados bajo la galería de la faja.
-  Imágenes: tecnica-1-disenada-para-adaptarse.jpg, tecnica-2-silueta-uniforme.jpg,
-  tecnica-3-comodidad-ritmo.jpg y producto-detalle.jpg (guía de tallas).
+  Tecnología de la tela (Nuvel): 4 imágenes técnicas bajo la galería.
+  Imágenes: tecnica-1-disenada-para-adaptarse.png, tecnica-2-silueta-uniforme.png,
+  tecnica-3-comodidad-ritmo.png y producto-detalle.jpg (guía de tallas).
   Si una imagen no existe, la caja conserva su fondo neutro y solo se oculta
   la ́ımagen (nunca se ve una imagen rota).
 {%- endcomment -%}
@@ -47,47 +47,55 @@
       line-height: 1.5;
     }
 
-    .nuvel-features__list {
-      display: flex;
-      flex-direction: column;
-      gap: 2.4rem;
-      margin-top: 1.2rem;
+    .nuvel-features__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    @media screen and (max-width: 749px) {
+      .nuvel-features__grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
     }
 
     .nuvel-features__item {
       margin: 0;
     }
 
-    .nuvel-features__block-title {
-      margin: 0 0 0.4rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .nuvel-features__block-text {
-      margin: 0 0 0.8rem;
+    .nuvel-features__caption {
+      display: block;
+      margin: 0 0 0.6rem;
       font-size: 1.3rem;
       line-height: 1.5;
+    }
+
+    .nuvel-features__name {
+      display: block;
+      margin: 0 0 0.15rem;
+      font-weight: 600;
     }
 
     .nuvel-features__media {
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 3;
       border-radius: var(--media-radius, 2px);
-      background-color: #f4f4f4;
-      overflow: hidden;
+    }
+
+    .nuvel-features__media--square {
+      aspect-ratio: 1 / 1;
     }
 
     .nuvel-features__img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
     }
 
-    .nuvel-features__caption {
-      display: none;
+    .nuvel-features__img--square {
+      aspect-ratio: 1 / 1;
     }
   {%- endstyle -%}
 
@@ -98,16 +106,18 @@
         <p class="nuvel-features__intro">{{ 'nuvel.tecnica.intro' | t }}</p>
       </div>
 
-      <div class="nuvel-features__list">
+      <div class="nuvel-features__grid">
         <figure class="nuvel-features__item">
-          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque1.titulo' | t }}</h3>
-          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque1.texto' | t }}</p>
-          <div class="nuvel-features__media">
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque1.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque1.texto' | t }}
+          </figcaption>
+          <div class="nuvel-features__media nuvel-features__media--square">
             <img
-              class="nuvel-features__img"
-              src="{{ 'tecnica-1-disenada-para-adaptarse.png' | asset_url }}"
+              class="nuvel-features__img nuvel-features__img--square"
+              src="{{ 'tecnica-1-disenada-para-adaptarse.jpg' | asset_url }}"
               width="1200"
-              height="900"
+              height="1200"
               alt="{{ 'nuvel.tecnica.bloque1.alt' | t }}"
               loading="lazy"
               decoding="async"
@@ -116,14 +126,16 @@
           </div>
         </figure>
         <figure class="nuvel-features__item">
-          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque2.titulo' | t }}</h3>
-          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque2.texto' | t }}</p>
-          <div class="nuvel-features__media">
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque2.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque2.texto' | t }}
+          </figcaption>
+          <div class="nuvel-features__media nuvel-features__media--square">
             <img
-              class="nuvel-features__img"
-              src="{{ 'tecnica-2-silueta-uniforme.png' | asset_url }}"
+              class="nuvel-features__img nuvel-features__img--square"
+              src="{{ 'tecnica-2-silueta-uniforme.jpg' | asset_url }}"
               width="1200"
-              height="900"
+              height="1200"
               alt="{{ 'nuvel.tecnica.bloque2.alt' | t }}"
               loading="lazy"
               decoding="async"
@@ -132,14 +144,16 @@
           </div>
         </figure>
         <figure class="nuvel-features__item">
-          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque3.titulo' | t }}</h3>
-          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque3.texto' | t }}</p>
-          <div class="nuvel-features__media">
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque3.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque3.texto' | t }}
+          </figcaption>
+          <div class="nuvel-features__media nuvel-features__media--square">
             <img
-              class="nuvel-features__img"
-              src="{{ 'tecnica-3-comodidad-ritmo.png' | asset_url }}"
+              class="nuvel-features__img nuvel-features__img--square"
+              src="{{ 'tecnica-3-comodidad-ritmo.jpg' | asset_url }}"
               width="1200"
-              height="900"
+              height="1200"
               alt="{{ 'nuvel.tecnica.bloque3.alt' | t }}"
               loading="lazy"
               decoding="async"
@@ -148,14 +162,15 @@
           </div>
         </figure>
         <figure class="nuvel-features__item">
-          <h3 class="nuvel-features__block-title">{{ 'nuvel.tecnica.bloque4.titulo' | t }}</h3>
-          <p class="nuvel-features__block-text">{{ 'nuvel.tecnica.bloque4.texto' | t }}</p>
+          <figcaption class="nuvel-features__caption">
+            <span class="nuvel-features__name">{{ 'nuvel.tecnica.bloque4.titulo' | t }}</span>
+            {{ 'nuvel.tecnica.bloque4.texto' | t }}
+          </figcaption>
           <div class="nuvel-features__media">
             <img
               class="nuvel-features__img"
-              src="{{ 'producto-detalle.jpg' | asset_url }}"
+              src="{{ 'lg-producto-detalle.jpg' | asset_url }}"
               width="1200"
-              height="900"
               alt="{{ 'nuvel.tecnica.bloque4.alt' | t }}"
               loading="lazy"
               decoding="async"
@@ -189,7 +204,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.section_padding_heading",
+      "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
     {
@@ -199,7 +214,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.section_padding_heading",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
   ],

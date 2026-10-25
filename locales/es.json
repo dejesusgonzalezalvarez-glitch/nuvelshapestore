@@ -628,6 +628,39 @@
     "catalog": {
       "view_all": "Ver todos"
     },
+    "tecnica": {
+      "titulo": "Conoce tu faja",
+      "intro": "Conoce los detalles de tu faja Moldeadora Invisible Nuvel.",
+      "bloque1": {
+        "titulo": "Diseñada para adaptarse a ti",
+        "texto": "Copas con forma definida, tirantes ajustables y diseño de una sola pieza, con un acabado negro elegante.",
+        "alt": "Diseñada para adaptarse a ti - detalle de la faja Nuvel"
+      },
+      "bloque2": {
+        "titulo": "Una silueta más uniforme",
+        "texto": "Pensada para llevar bajo tu ropa, con compresión suave y tejido flexible.",
+        "alt": "Una silueta más uniforme - detalle de la faja Nuvel"
+      },
+      "bloque3": {
+        "titulo": "Comodidad que se adapta a tu ritmo",
+        "texto": "Tirantes regulables para un ajuste personalizado, tejido que te acompaña en cada movimiento y compresión suave, sin exceso de presión.",
+        "alt": "Comodidad que se adapta a tu ritmo - detalle de la faja Nuvel"
+      },
+      "bloque4": {
+        "titulo": "Encuentra tu talla",
+        "texto": "Consulta la guía antes de pedir.",
+        "alt": "Guía de tallas de la Faja Moldeadora Invisible Nuvel"
+      }
+    },
+    "packs": {
+      "title": "Ahorra con un pack",
+      "duo_name": "Pack Dúo de Fajas — Nuvel",
+      "duo_incluye": "2 fajas moldeadoras invisibles",
+      "completo_name": "Pack Completo — Nuvel",
+      "completo_incluye": "Faja + body con falda + bragas moldeadoras",
+      "ver_pack": "Ver pack",
+      "ahorras": "Ahorras {{ amount }}"
+    },
     "pages": {
       "last_updated": "Última actualización: septiembre de 2026",
       "write_to_email": "Escribe a hola@nuvelshape.store",
@@ -780,6 +813,14 @@
       "faja_1": "Tejido con elasticidad en 4 direcciones, transpirable y cómodo de la mañana a la noche",
       "faja_2": "Bordes de corte láser sin costuras, sin marcas bajo la ropa",
       "faja_3": "Mantiene la forma y la compresión lavado tras lavado"
+    },
+    "bundles": {
+      "heading": "Ahorra con un pack",
+      "subtitle": "Combina productos y ahorra",
+      "selection_title": "Selecciona una talla por cada producto",
+      "unit_label": "Unidad {{num}}",
+      "add_to_cart": "Añadir al carrito",
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar"
     }
   }
 }

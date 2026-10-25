@@ -3635,3 +3635,7 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Nuvel: ocultar 'Más opciones de pago' del pago exprés (solo se deja el botón de PayPal y 'Agregar al carrito') */
+.shopify-payment-button__more-options { display: none !important; }
+

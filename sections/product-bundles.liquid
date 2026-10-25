@@ -1,0 +1,525 @@
+{%- liquid
+  assign bundle_1_enabled = section.settings.bundle_1_enabled
+  assign bundle_2_enabled = section.settings.bundle_2_enabled
+  assign default_selected = section.settings.default_selected | default: 'none'
+
+  assign bundle_1_title = section.settings.bundle_1_title | default: 'Set completo'
+  assign bundle_1_subtitle = section.settings.bundle_1_subtitle | default: '1 short + 1 body + 1 faja'
+  assign bundle_1_label = section.settings.bundle_1_label | default: ''
+  assign bundle_1_price = section.settings.bundle_1_price | default: 0
+  assign bundle_1_show_savings = section.settings.bundle_1_show_savings
+  assign bundle_1_product_1 = section.settings.bundle_1_product_1
+  assign bundle_1_product_2 = section.settings.bundle_1_product_2
+  assign bundle_1_product_3 = section.settings.bundle_1_product_3
+
+  assign bundle_2_title = section.settings.bundle_2_title | default: 'Pack doble'
+  assign bundle_2_subtitle = section.settings.bundle_2_subtitle | default: '2 fajas moldeadoras'
+  assign bundle_2_label = section.settings.bundle_2_label | default: ''
+  assign bundle_2_price = section.settings.bundle_2_price | default: 0
+  assign bundle_2_show_savings = section.settings.bundle_2_show_savings
+  assign bundle_2_product_1 = section.settings.bundle_2_product_1
+  assign bundle_2_product_2 = section.settings.bundle_2_product_2
+
+  assign show_savings = bundle_1_show_savings or bundle_2_show_savings
+-%}
+
+{%- comment -%}
+  Product Bundles section — Nuvel.
+  Compatible con temas Rise/Dawn. JavaScript puro en assets/product-bundles.js.
+{%- endcomment -%}
+
+{%- if bundle_1_enabled or bundle_2_enabled -%}
+  <section class="product-bundles color-{{ section.settings.color_scheme }} gradient" data-product-bundles>
+    <div class="page-width">
+      <div class="title-wrapper{% if section.settings.heading_alignment == 'center' %} title-wrapper--center{% endif %}">
+        <h2 class="section-header__title">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="section-header__subtitle">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="product-bundles__cards" data-product-bundles-cards>
+        {%- if bundle_1_enabled and bundle_1_product_1 != blank -%}
+          {%- assign p1 = bundle_1_product_1 -%}
+          {%- assign p2 = bundle_1_product_2 -%}
+          {%- assign p3 = bundle_1_product_3 -%}
+          <div class="product-bundles__card" data-bundle="1" {% if default_selected == 'bundle_1' %}data-selected{% endif %}>
+            <button type="button" class="product-bundles__card-selector" data-select-bundle="1" aria-pressed="{% if default_selected == 'bundle_1' %}true{% else %}false{% endif %}">
+              <div class="product-bundles__badge">{{ bundle_1_label }}</div>
+              <h3 class="product-bundles__card-title">{{ bundle_1_title }}</h3>
+              <p class="product-bundles__card-subtitle">{{ bundle_1_subtitle }}</p>
+
+              <div class="product-bundles__items">
+                {%- for p in array(p1, p2, p3) -%}
+                  {%- if p != blank -%}
+                    {%- assign product = all_products[p] -%}
+                    <div class="product-bundles__item">
+                      <img class="product-bundles__item-img" src="{{ p | product_img_url: 'small' }}" alt="{{ p | product.title | escape }}" loading="lazy">
+                      <span class="product-bundles__item-title">{{ p | product.title | escape }}</span>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              <div class="product-bundles__prices">
+                <span class="product-bundles__price">{{ bundle_1_price | money }}</span>
+                {%- if bundle_1_show_savings -%}
+                  <span class="product-bundles__original">{{ bundle_1_compare | money }}</span>
+                  <span class="product-bundles__savings">Ahorras {{ bundle_1_savings | money }}</span>
+                {%- endif -%}
+              </div>
+            </button>
+          </div>
+        {%- endif -%}
+
+        {%- if bundle_2_enabled and bundle_2_product_1 != blank -%}
+          {%- assign q1 = bundle_2_product_1 -%}
+          {%- assign q2 = bundle_2_product_2 -%}
+          <div class="product-bundles__card" data-bundle="2" {% if default_selected == 'bundle_2' %}data-selected{% endif %}>
+            <button type="button" class="product-bundles__card-selector" data-select-bundle="2" aria-pressed="{% if default_selected == 'bundle_2' %}true{% else %}false{% endif %}">
+              <div class="product-bundles__badge">{{ bundle_2_label }}</div>
+              <h3 class="product-bundles__card-title">{{ bundle_2_title }}</h3>
+              <p class="product-bundles__card-subtitle">{{ bundle_2_subtitle }}</p>
+
+              <div class="product-bundles__items">
+                {%- if q1 != blank -%}
+                  {%- assign product = all_products[q1] -%}
+                  <div class="product-bundles__item">
+                    <img class="product-bundles__item-img" src="{{ q1 | product_img_url: 'small' }}" alt="{{ q1 | product.title | escape }}" loading="lazy">
+                    <span class="product-bundles__item-title">{{ q1 | product.title | escape }}</span>
+                    <span class="product-bundles__item-qty">×{{ bundle_2_qty_1 | default: 2 }}</span>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="product-bundles__prices">
+                <span class="product-bundles__price">{{ bundle_2_price | money }}</span>
+                {%- if bundle_2_show_savings -%}
+                  <span class="product-bundles__original">{{ bundle_2_compare | money }}</span>
+                  <span class="product-bundles__savings">Ahorras {{ bundle_2_savings | money }}</span>
+                {%- endif -%}
+              </div>
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-bundles__selections" data-product-bundles-selections>
+        {%- if bundle_1_enabled and bundle_1_product_1 != blank -%}
+          <div data-bundle-selection="1" class="product-bundles__selection" data-selected="{% if default_selected == 'bundle_1' %}true{% else %}false{% endif %}">
+            <h4 class="product-bundles__selection-title">{{ 'product-bundles.selection_title' | t: count: 3 }}</h4>
+            {%- assign p1 = bundle_1_product_1 -%}
+            {%- assign p2 = bundle_1_product_2 -%}
+            {%- assign p3 = bundle_1_product_3 -%}
+            {%- for p in array(p1, p2, p3) -%}
+              {%- if p != blank -%}
+                {%- assign product = all_products[p] -%}
+                <div class="product-bundles__selection-item">
+                  <label class="product-bundles__selection-label">{{ p | product.title | escape }}</label>
+                  <select class="product-bundles__selection-select" data-bundle="1" data-option="{{ forloop.index }}" data-product="{{ p }}">
+                    {%- for variant in product.variants -%}
+                      <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>
+                        {{ variant.title }} - {{ variant.price | money }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if bundle_2_enabled and bundle_2_product_1 != blank -%}
+          <div data-bundle-selection="2" class="product-bundles__selection" data-selected="{% if default_selected == 'bundle_2' %}true{% else %}false{% endif %}">
+            <h4 class="product-bundles__selection-title">{{ 'product-bundles.selection_title' | t: count: 2 }}</h4>
+            {%- assign q1 = bundle_2_product_1 -%}
+            {%- if q1 != blank -%}
+              {%- assign product = all_products[q1] -%}
+              <div class="product-bundles__selection-item">
+                <label class="product-bundles__selection-label">{{ q1 | product.title | escape }} {{ 'product-bundles.unit_label' | t: num: 1 }}</label>
+                <select class="product-bundles__selection-select" data-bundle="2" data-option="1" data-product="{{ q1 }}">
+                  {%- for variant in product.variants -%}
+                    <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>
+                      {{ variant.title }} - {{ variant.price | money }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+              <div class="product-bundles__selection-item">
+                <label class="product-bundles__selection-label">{{ q1 | product.title | escape }} {{ 'product-bundles.unit_label' | t: num: 2 }}</label>
+                <select class="product-bundles__selection-select" data-bundle="2" data-option="2" data-product="{{ q1 }}">
+                  {%- for variant in product.variants -%}
+                    <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>
+                      {{ variant.title }} - {{ variant.price | money }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-bundles__actions" data-product-bundles-actions>
+        <button type="button" class="button button--full-width product-bundles__add" data-add-to-cart disabled>
+          {{ 'product-bundles.add_to_cart' | t }}
+        </button>
+        <p class="product-bundles__error" data-add-error hidden>{{ 'product-bundles.missing_selections' | t }}</p>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Bundles",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Bundle 1 — Set completo"
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_1_enabled",
+      "label": "Activar bundle 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bundle_1_title",
+      "label": "Título",
+      "default": "Set completo"
+    },
+    {
+      "type": "text",
+      "id": "bundle_1_subtitle",
+      "label": "Subtítulo",
+      "default": "1 short + 1 body + 1 faja"
+    },
+    {
+      "type": "text",
+      "id": "bundle_1_label",
+      "label": "Etiqueta opcional (ej. Más vendido)",
+      "default": ""
+    },
+    {
+      "type": "product",
+      "id": "bundle_1_product_1",
+      "label": "Producto 1"
+    },
+    {
+      "type": "product",
+      "id": "bundle_1_product_2",
+      "label": "Producto 2"
+    },
+    {
+      "type": "product",
+      "id": "bundle_1_product_3",
+      "label": "Producto 3"
+    },
+    {
+      "type": "number",
+      "id": "bundle_1_price",
+      "label": "Precio final del bundle (€)",
+      "default": 9990,
+      "min": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_1_show_savings",
+      "label": "Mostrar precio original y ahorro",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Bundle 2 — Pack doble"
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_2_enabled",
+      "label": "Activar bundle 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bundle_2_title",
+      "label": "Título",
+      "default": "Pack doble"
+    },
+    {
+      "type": "text",
+      "id": "bundle_2_subtitle",
+      "label": "Subtítulo",
+      "default": "2 fajas moldeadoras"
+    },
+    {
+      "type": "text",
+      "id": "bundle_2_label",
+      "label": "Etiqueta opcional (ej. Mejor valor)",
+      "default": ""
+    },
+    {
+      "type": "product",
+      "id": "bundle_2_product_1",
+      "label": "Producto 1 (cantidad 2)"
+    },
+    {
+      "type": "product",
+      "id": "bundle_2_product_2",
+      "label": "Producto 2 (opcional, para bundle mixto)",
+      "default": ""
+    },
+    {
+      "type": "number",
+      "id": "bundle_2_price",
+      "label": "Precio final del bundle (€)",
+      "default": 6490,
+      "min": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_2_show_savings",
+      "label": "Mostrar precio original y ahorro",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "default_selected",
+      "label": "Bundle seleccionado por defecto",
+      "options": [
+        { "value": "none", "label": "Ninguno" },
+        { "value": "bundle_1", "label": "Bundle 1" },
+        { "value": "bundle_2", "label": "Bundle 2" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título de sección",
+      "default": "Ahorra con un pack"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Combina productos y ahorra"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Alineación del título",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Bundles",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.product-bundles {
+  --bundle-border: rgba(var(--color-foreground), 0.15);
+  --bundle-accent: rgba(var(--color-foreground), 0.05);
+  --bundle-selected: rgba(var(--color-foreground), 0.12);
+}
+
+.product-bundles__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.product-bundles__card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--bundle-border);
+  border-radius: var(--media-radius, 2px);
+  background: var(--color-background);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.product-bundles__card[data-selected] {
+  border-color: var(--color-foreground);
+  background: var(--bundle-selected);
+}
+
+.product-bundles__card-selector {
+  width: 100%;
+  padding: 1.25rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-bundles__badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+  margin-bottom: 0.25rem;
+}
+
+.product-bundles__card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.product-bundles__card-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.product-bundles__items {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.product-bundles__item {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--media-radius, 2px);
+  overflow: hidden;
+  background: var(--bundle-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  color: transparent;
+}
+
+.product-bundles__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-bundles__prices {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.product-bundles__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.product-bundles__original {
+  font-size: 1rem;
+  text-decoration: line-through;
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.product-bundles__savings {
+  font-size: 1rem;
+  color: rgb(138, 111, 74);
+  font-weight: 600;
+}
+
+.product-bundles__selections {
+  margin-top: 2rem;
+  display: none;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.product-bundles__selections[data-selected="true"] {
+  display: grid;
+}
+
+.product-bundles__selection-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.product-bundles__selection-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-bundles__selection-label {
+  min-width: 120px;
+  font-size: 0.875rem;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.product-bundles__selection-select {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: var(--media-radius, 2px);
+  background: var(--color-background);
+}
+
+.product-bundles__actions {
+  margin-top: 1.5rem;
+}
+
+.product-bundles__add {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.product-bundles__add[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.product-bundles__error {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: rgb(196, 48, 48);
+}
+
+@media (min-width: 750px) {
+  .product-bundles__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-bundles__selections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+{% endstylesheet %}
+
+<script src="{{ 'product-bundles.js' | asset_url }}" defer></script>
