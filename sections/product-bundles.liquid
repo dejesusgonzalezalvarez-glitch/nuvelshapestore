@@ -20,7 +20,11 @@
   assign bundle_2_product_1 = section.settings.bundle_2_product_1
   assign bundle_2_product_2 = section.settings.bundle_2_product_2
 
-  assign show_savings = bundle_1_show_savings or bundle_2_show_savings
+  {%- if bundle_1_show_savings or bundle_2_show_savings -%}
+    {%- assign show_savings = true -%}
+  {%- else -%}
+    {%- assign show_savings = false -%}
+  {%- endif -%}
 -%}
 
 {%- comment -%}
