@@ -26,98 +26,34 @@
                                                                    "padding_bottom":  36
                                                                }
                                               },
-                     "producto-ancla":  {
+                 "producto-ancla":  {
                                             "type":  "featured-product",
                                             "blocks":  {
-                                                           "eyebrow":  {
-                                                                           "type":  "text",
-                                                                           "settings":  {
-                                                                                            "text":  "Faja Moldeadora Invisible",
-                                                                                            "text_style":  "uppercase"
-                                                                                        }
-                                                                       },
-                                                           "titulo":  {
-                                                                          "type":  "title",
-                                                                          "settings":  {
-                                                                                           "heading_size":  "h1"
-                                                                                       }
-                                                                      },
-                                                           "precio":  {
-                                                                          "type":  "price",
-                                                                          "settings":  {
-
-                                                                                       }
-                                                                      },
-                                                           "tallas":  {
-                                                                          "type":  "variant_picker",
-                                                                          "settings":  {
-                                                                                           "picker_type":  "button",
-                                                                                           "swatch_shape":  "circle"
-                                                                                       }
-                                                                      },
-                                                            "cantidad":  {
-                                                                             "type":  "quantity_selector",
-                                                                             "settings":  {
-
-                                                                                          }
-                                                                        },
-                                                            "comprar":  {
-                                                                             "type":  "buy_buttons",
-                                                                             "settings":  {
-                                                                                             "show_dynamic_checkout":  true,
-                                                                                             "show_gift_card_recipient":  false
+                                           "buybox":  {
+                                                                            "type":  "custom_liquid",
+                                                                            "settings":  {
+                                                                                             "custom_liquid":  "{% render 'nuvel-buybox', product: section.settings.product, compact: true %}"
                                                                                          }
-                                                                        },
-                                                           "beneficios":  {
-                                                                              "type":  "icon-with-text",
-                                                                              "settings":  {
-                                                                                               "layout":  "horizontal",
-                                                                                               "icon_1":  "eye",
-                                                                                               "heading_1":  "Sin costuras: invisible bajo cualquier prenda",
-                                                                                               "icon_2":  "silhouette",
-                                                                                               "heading_2":  "Compresión suave y cómoda todo el día",
-                                                                                               "icon_3":  "washing",
-                                                                                               "heading_3":  "Resiste lavados sin perder la forma"
-                                                                                           }
-                                                                          },
-                                                           "guia-tallas":  {
-                                                                               "type":  "icon-with-text",
-                                                                               "settings":  {
-                                                                                                "layout":  "horizontal",
-                                                                                                "icon_1":  "ruler",
-                                                                                                "heading_1":  "Tabla de tallas incluida",
-                                                                                                "icon_2":  "none",
-                                                                                                "heading_2":  "",
-                                                                                                "icon_3":  "none",
-                                                                                                "heading_3":  ""
-                                                                                            }
-                                                                           }
-                                                       },
-                                             "block_order":  [
-                                                                 "eyebrow",
-                                                                 "titulo",
-                                                                 "precio",
-                                                                 "tallas",
-                                                                 "cantidad",
-                                                                 "comprar",
-                                                                 "beneficios",
-                                                                 "guia-tallas"
-                                                             ],
-                                            "settings":  {
-                                                             "product":  "faja-moldeadora-invisible-nuvel",
-                                                             "color_scheme":  "scheme-2",
-                                                             "secondary_background":  false,
-                                                             "media_size":  "medium",
-                                                             "constrain_to_viewport":  true,
-                                                             "media_fit":  "contain",
-                                                             "media_position":  "left",
-                                                             "image_zoom":  "lightbox",
-                                                             "hide_variants":  false,
-                                                             "enable_video_looping":  false,
-                                                             "padding_top":  64,
-                                                             "padding_bottom":  64
-                                                         }
-                                        },
+                                                                        }
+                                                        },
+                                              "block_order":  [
+                                                                  "buybox"
+                                                              ],
+                                              "settings":  {
+                                                               "product":  "faja-moldeadora-invisible-nuvel",
+                                                               "color_scheme":  "scheme-2",
+                                                               "secondary_background":  false,
+                                                               "media_size":  "medium",
+                                                               "constrain_to_viewport":  true,
+                                                               "media_fit":  "contain",
+                                                               "media_position":  "left",
+                                                               "image_zoom":  "lightbox",
+                                                               "hide_variants":  false,
+                                                               "enable_video_looping":  false,
+                                                               "padding_top":  64,
+                                                               "padding_bottom":  64
+                                                           }
+                                         },
                      "catalogo":  {
                                       "type":  "nuvel-catalogo",
                                       "blocks":  {

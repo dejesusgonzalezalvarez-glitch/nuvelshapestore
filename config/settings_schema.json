@@ -1451,5 +1451,17 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.nuvel.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_pack_prices",
+        "default": true,
+        "label": "Mostrar precios de packs",
+        "info": "Oculta los precios de los packs si los descuentos automáticos no están activos en Shopify Admin."
+      }
+    ]
   }
 ]

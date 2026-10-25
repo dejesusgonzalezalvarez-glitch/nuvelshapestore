@@ -1,0 +1,487 @@
+{%- liquid
+  assign compact = compact | default: false
+  assign show_pack_prices = settings.show_pack_prices != false
+
+  assign size_order = 'S,M,L,XL,2XL' | split: ','
+
+  assign current_variant = product.selected_or_first_available_variant
+  assign current_price = current_variant.price | divided_by: 100
+
+  assign faja_handle = 'faja-moldeadora-invisible-nuvel'
+  assign body_handle = 'womens-shapewear-dress-jumpsuit'
+  assign bragas_handle = 'seamless-shapewear-panties'
+
+  assign faja_product = all_products[faja_handle]
+  assign body_product = all_products[body_handle]
+  assign bragas_product = all_products[bragas_handle]
+
+  assign faja_variant = blank
+  assign body_variant = blank
+  assign bragas_variant = blank
+
+  if faja_product != blank
+    assign faja_variant = faja_product.variants | where: 'option1', current_variant.option1 | first
+  endif
+  if body_product != blank
+    assign body_variant = body_product.variants | where: 'option1', current_variant.option1 | first
+  endif
+  if bragas_product != blank
+    assign bragas_variant = bragas_product.variants | where: 'option1', current_variant.option1 | first
+  endif
+
+  assign duo_price = current_variant.price | times: 2 | minus: current_variant.price | divided_by: 2 | divided_by: 100
+  assign duo_compare_at = current_variant.price | times: 2 | divided_by: 100
+
+  assign kit_price = 6490 | divided_by: 100
+  assign kit_compare_at = (faja_product.variants.first.price | plus: body_product.variants.first.price | plus: bragas_product.variants.first.price) | divided_by: 100
+
+  assign faja_variant_id = faja_variant.id | default: current_variant.id
+  assign body_variant_id = body_variant.id | default: 0
+  assign bragas_variant_id = bragas_variant.id | default: 0
+-%}
+
+<div class="nuvel-buybox{% if compact %} nuvel-buybox--compact{% endif %}" data-nuvel-buybox data-section-id="{{ section.id | default: 'home' }}">
+  <p class="nuvel-buybox__eyebrow">{{ 'nuvel.product_page.eyebrow' | t }}</p>
+
+  <h1 class="nuvel-buybox__title">{{ product.title | escape }}</h1>
+
+  <div id="nuvel-price-{{ section.id | default: 'home' }}" role="status" class="nuvel-buybox__price">
+    {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
+  </div>
+
+  <div class="nuvel-buybox__shipping-row" aria-hidden="false">
+    <span class="nuvel-buybox__shipping-icon" aria-hidden="true">{% render 'icon', icon: 'truck', size: 18 %}</span>
+    <div class="nuvel-buybox__shipping-text">
+      <strong>{{ 'nuvel.product_page.shipping_row_title' | t }}</strong>
+      <span>{{ 'nuvel.product_page.shipping_row_text' | t }}</span>
+    </div>
+  </div>
+
+  <div class="nuvel-buybox__size-selector" data-size-selector>
+    <label class="form__label" for="NuvelSizeSelector-{{ section.id | default: 'home' }}">{{ 'nuvel.product_page.size_selector_label' | t }}</label>
+    <div class="nuvel-buybox__size-buttons" role="group" aria-labelledby="NuvelSizeSelector-{{ section.id | default: 'home' }}">
+      {%- for size in size_order -%}
+        {%- assign variant_for_size = product.variants | where: 'option1', size | first -%}
+        {%- assign is_available = variant_for_size != blank and variant_for_size.available -%}
+        {%- assign is_selected = forloop.first -%}
+        {%- if variant_for_size == blank -%}
+          {%- continue -%}
+        {%- endif -%}
+        <button
+          type="button"
+          class="nuvel-buybox__size-button{% if is_selected %} is-selected{% endif %}{% unless is_available %} is-sold-out{% endunless %}"
+          data-size="{{ size }}"
+          data-variant-id="{{ variant_for_size.id }}"
+          {% unless is_available %}disabled aria-disabled="true"{% endunless %}
+          {% if is_selected %}aria-pressed="true"{% else %}aria-pressed="false"{% endif %}
+        >
+          <span class="nuvel-buybox__size-button-text">{{ size }}</span>
+          {% unless is_available %}
+            <span class="nuvel-buybox__size-button-strike" aria-hidden="true"></span>
+            <span class="visually-hidden">{{ 'products.product.sold_out' | t }}</span>
+          {% endunless %}
+        </button>
+      {%- endfor -%}
+    </div>
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="nuvel-buybox__variant-id">
+  </div>
+
+  <div class="nuvel-buybox__packs" data-packs>
+    <h3 class="nuvel-buybox__packs-title">{% unless compact %}{{ 'nuvel.product_page.packs_title' | t }}{% endunless %}</h3>
+    <div class="nuvel-buybox__packs-list" role="radiogroup" aria-label="{{ 'nuvel.product_page.packs_title' | t }}">
+
+      <label class="nuvel-buybox__pack-card{% unless show_pack_prices %} nuvel-buybox__pack-card--no-prices{% endunless %}" data-pack="solo">
+        <input type="radio" name="nuvel-pack" value="solo" class="nuvel-buybox__pack-radio" aria-label="{{ 'nuvel.product_page.pack_solo_title' | t }}">
+        <span class="nuvel-buybox__pack-radio-visual" aria-hidden="true"></span>
+        <div class="nuvel-buybox__pack-card-body">
+          <div class="nuvel-buybox__pack-thumb">
+            {%- if product.featured_media -%}
+              {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
+            {%- else -%}
+              <span class="visually-hidden">{{ 'nuvel.product_page.pack_solo_title' | t }}</span>
+            {%- endif -%}
+          </div>
+          <div class="nuvel-buybox__pack-info">
+            <h4 class="nuvel-buybox__pack-name">{{ 'nuvel.product_page.pack_solo_title' | t }}</h4>
+            <p class="nuvel-buybox__pack-includes">{{ 'nuvel.product_page.pack_solo_subtitle' | t }}</p>
+            {%- if show_pack_prices -%}
+              <div class="nuvel-buybox__pack-prices">
+                <span class="nuvel-buybox__pack-price">{{ current_price | money }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </label>
+
+      <label class="nuvel-buybox__pack-card is-selected{% unless show_pack_prices %} nuvel-buybox__pack-card--no-prices{% endunless %}" data-pack="duo">
+        <input type="radio" name="nuvel-pack" value="duo" class="nuvel-buybox__pack-radio" checked aria-label="{{ 'nuvel.product_page.pack_duo_title' | t }}">
+        <span class="nuvel-buybox__pack-radio-visual" aria-hidden="true"></span>
+        <div class="nuvel-buybox__pack-card-body">
+          <div class="nuvel-buybox__pack-thumb">
+            {%- if product.featured_media -%}
+              {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
+            {%- else -%}
+              <span class="visually-hidden">{{ 'nuvel.product_page.pack_duo_title' | t }}</span>
+            {%- endif -%}
+          </div>
+          <div class="nuvel-buybox__pack-info">
+            <div class="nuvel-buybox__pack-name-row">
+              <h4 class="nuvel-buybox__pack-name">{{ 'nuvel.product_page.pack_duo_title' | t }}</h4>
+              <span class="nuvel-buybox__pack-badge">{{ 'nuvel.product_page.pack_duo_badge' | t }}</span>
+            </div>
+            <p class="nuvel-buybox__pack-includes">{{ 'nuvel.product_page.pack_duo_subtitle' | t }}</p>
+            {%- if show_pack_prices -%}
+              <div class="nuvel-buybox__pack-prices">
+                <span class="nuvel-buybox__pack-price">{{ duo_price | money }}</span>
+                <span class="nuvel-buybox__pack-compare">{{ duo_compare_at | money }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </label>
+
+      <label class="nuvel-buybox__pack-card{% unless show_pack_prices %} nuvel-buybox__pack-card--no-prices{% endunless %}" data-pack="kit">
+        <input type="radio" name="nuvel-pack" value="kit" class="nuvel-buybox__pack-radio" aria-label="{{ 'nuvel.product_page.pack_kit_title' | t }}">
+        <span class="nuvel-buybox__pack-radio-visual" aria-hidden="true"></span>
+        <div class="nuvel-buybox__pack-card-body">
+          <div class="nuvel-buybox__pack-thumb">
+            {%- if body_product != blank and body_product.featured_media -%}
+              {{ body_product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: body_product.title | escape }}
+            {%- else -%}
+              <span class="visually-hidden">{{ 'nuvel.product_page.pack_kit_title' | t }}</span>
+            {%- endif -%}
+          </div>
+          <div class="nuvel-buybox__pack-info">
+            <h4 class="nuvel-buybox__pack-name">{{ 'nuvel.product_page.pack_kit_title' | t }}</h4>
+            <p class="nuvel-buybox__pack-includes">{{ 'nuvel.product_page.pack_kit_subtitle' | t }}</p>
+            {%- if show_pack_prices -%}
+              <div class="nuvel-buybox__pack-prices">
+                <span class="nuvel-buybox__pack-price">{{ kit_price | money }}</span>
+                <span class="nuvel-buybox__pack-compare">{{ kit_compare_at | money }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </label>
+
+    </div>
+
+    <script type="application/json" data-nuvel-pack-data>
+      {
+        "solo": {
+          "items": [{ "variant_id": {{ current_variant.id }}, "quantity": 1 }],
+          "properties": { "_pack": "solo" }
+        },
+        "duo": {
+          "items": [{ "variant_id": {{ current_variant.id }}, "quantity": 2 }],
+          "properties": { "_pack": "duo" }
+        },
+        "kit": {
+          "items": [
+            { "variant_id": {{ current_variant.id }}, "quantity": 1 },
+            { "variant_id": {{ body_variant_id }}, "quantity": 1 },
+            { "variant_id": {{ bragas_variant_id }}, "quantity": 1 }
+          ],
+          "properties": { "_pack": "kit" }
+        }
+      }
+    </script>
+  </div>
+
+  {%- form 'product', product, id: 'nuvel-product-form-' | append: (section.id | default: 'home'), class: 'nuvel-buybox__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+    <input type="hidden" name="quantity" value="1" class="nuvel-buybox__quantity">
+
+    <div class="product-form__error-message-wrapper" role="alert" hidden>
+      <span class="svg-wrapper">{{ 'icon-error.svg' | inline_asset_content }}</span>
+      <span class="product-form__error-message"></span>
+    </div>
+
+    <div class="nuvel-buybox__button-group">
+      {%- if compact != true -%}
+        {%- assign show_dynamic_checkout = true -%}
+        {%- if show_dynamic_checkout -%}
+          <div class="nuvel-buybox__dynamic-checkout">
+            {{ form | payment_button }}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      <button
+        type="submit"
+        name="add"
+        id="NuvelAddToCart-{{ section.id | default: 'home' }}"
+        class="nuvel-buybox__add-to-cart button button--full-width"
+        {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}disabled{% endif %}
+      >
+        <span>{{ 'nuvel.product_page.add_to_cart_button' | t }} · <span class="nuvel-buybox__add-to-cart-price">{{ current_price | money }}</span></span>
+        {% render 'loading-spinner' %}
+      </button>
+
+      <button
+        type="button"
+        id="NuvelBuyNow-{{ section.id | default: 'home' }}"
+        class="nuvel-buybox__buy-now button button--full-width button--outline"
+        {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}disabled{% endif %}
+      >
+        <span>{{ 'nuvel.product_page.buy_now_button' | t }}</span>
+      </button>
+    </div>
+
+    {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' and product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+      <p class="nuvel-buybox__inventory" aria-live="polite">
+        <span class="svg-wrapper" style="color: rgb(62, 214, 96)">{{ 'icon-inventory-status.svg' | inline_asset_content }}</span>
+        <span>{{ 'nuvel.product_page.in_stock' | t }}</span>
+      </p>
+    {%- endif -%}
+  {%- endform -%}
+
+  <div class="nuvel-buybox__benefits" role="list" aria-label="{{ 'nuvel.product_page.benefits_label' | default: 'Beneficios' }}">
+    <div class="nuvel-buybox__benefit" role="listitem">
+      <span class="nuvel-buybox__benefit-icon" aria-hidden="true">{% render 'icon', icon: 'eye', size: 20 %}</span>
+      <span class="nuvel-buybox__benefit-text">{{ 'nuvel.product_page.benefit_1_text' | t }}</span>
+    </div>
+    <div class="nuvel-buybox__benefit-divider" aria-hidden="true"></div>
+    <div class="nuvel-buybox__benefit" role="listitem">
+      <span class="nuvel-buybox__benefit-icon" aria-hidden="true">{% render 'icon', icon: 'silhouette', size: 20 %}</span>
+      <span class="nuvel-buybox__benefit-text">{{ 'nuvel.product_page.benefit_2_text' | t }}</span>
+    </div>
+    <div class="nuvel-buybox__benefit-divider" aria-hidden="true"></div>
+    <div class="nuvel-buybox__benefit" role="listitem">
+      <span class="nuvel-buybox__benefit-icon" aria-hidden="true">{% render 'icon', icon: 'shirt', size: 20 %}</span>
+      <span class="nuvel-buybox__benefit-text">{{ 'nuvel.product_page.benefit_3_text' | t }}</span>
+    </div>
+  </div>
+
+  {%- unless compact -%}
+    <div class="nuvel-buybox__accordions">
+      <div class="product__accordion accordion" data-accordion>
+        <details id="NuvelDetails-sizes-{{ section.id | default: 'home' }}">
+          <summary>
+            <div class="summary__title">
+              {% render 'icon-accordion', icon: 'ruler' %}
+              <h2 class="h4 accordion__title">{{ 'nuvel.product_page.accordion_sizes_title' | t }}</h2>
+            </div>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </summary>
+          <div class="accordion__content rte" id="NuvelProductAccordion-sizes-{{ section.id | default: 'home' }}">
+            {{ 'nuvel.product_page.accordion_sizes_content' | t }}
+          </div>
+        </details>
+      </div>
+
+      <div class="product__accordion accordion" data-accordion>
+        <details id="NuvelDetails-shipping-{{ section.id | default: 'home' }}">
+          <summary>
+            <div class="summary__title">
+              {% render 'icon-accordion', icon: 'truck' %}
+              <h2 class="h4 accordion__title">{{ 'nuvel.product_page.accordion_shipping_title' | t }}</h2>
+            </div>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </summary>
+          <div class="accordion__content rte" id="NuvelProductAccordion-shipping-{{ section.id | default: 'home' }}">
+            <p>{{ 'nuvel.product_page.accordion_shipping_content' | t }}</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="product__accordion accordion" data-accordion>
+        <details id="NuvelDetails-nuvel-{{ section.id | default: 'home' }}">
+          <summary>
+            <div class="summary__title">
+              {% render 'icon-accordion', icon: 'shield' %}
+              <h2 class="h4 accordion__title">{{ 'nuvel.product_page.accordion_nuvel_title' | t }}</h2>
+            </div>
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </summary>
+          <div class="accordion__content rte" id="NuvelProductAccordion-nuvel-{{ section.id | default: 'home' }}">
+            <p>{{ 'nuvel.product_page.accordion_nuvel_content' | t }}</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  {%- else -%}
+    <a href="{{ product.url }}" class="nuvel-buybox__view-details link animate-arrow">
+      {{ 'products.product.view_full_details' | t }} {{- 'icon-arrow.svg' | inline_asset_content -}}
+    </a>
+  {%- endunless -%}
+</div>
+
+<script>
+  (function() {
+    'use strict';
+    var container = document.querySelector('[data-nuvel-buybox]');
+    if (!container) return;
+
+    var sizeButtons = container.querySelectorAll('.nuvel-buybox__size-button');
+    var variantIdInput = container.querySelector('.nuvel-buybox__variant-id');
+    var packRadios = container.querySelectorAll('.nuvel-buybox__pack-radio');
+    var packCards = container.querySelectorAll('.nuvel-buybox__pack-card');
+    var addToCartButton = container.querySelector('.nuvel-buybox__add-to-cart');
+    var addToCartPrice = container.querySelector('.nuvel-buybox__add-to-cart-price');
+    var buyNowButton = container.querySelector('.nuvel-buybox__buy-now');
+    var form = container.querySelector('.nuvel-buybox__form');
+    var packDataEl = container.querySelector('[data-nuvel-pack-data]');
+    var packData = null;
+    var basePrice = 0;
+    var currentPack = 'duo';
+
+    function parsePackData() {
+      if (packDataEl) {
+        try { packData = JSON.parse(packDataEl.textContent); } catch(e) {}
+      }
+    }
+    parsePackData();
+
+    function updateVariantId(vid) {
+      if (variantIdInput) variantIdInput.value = vid;
+      var fvid = form?.querySelector('.product-variant-id');
+      if (fvid) fvid.value = vid;
+    }
+
+    function updateURL(vid) {
+      var url = new URL(window.location.href);
+      url.searchParams.set('variant', vid);
+      window.history.replaceState({}, '', url);
+    }
+
+    function selectSize(size, vid) {
+      sizeButtons.forEach(function(btn) {
+        var sel = btn.dataset.size === size;
+        btn.classList.toggle('is-selected', sel);
+        btn.setAttribute('aria-pressed', sel);
+      });
+      updateVariantId(vid);
+      updatePackData(vid);
+    }
+
+    function updatePackData(vid) {
+      if (!packData) return;
+      var pd = JSON.parse(JSON.stringify(packData));
+      Object.keys(pd).forEach(function(key) {
+        pd[key].items = pd[key].items.map(function(item) {
+          if (item.variant_id === vid || item.variant_id === packData[key].items[0].variant_id) {
+            return Object.assign({}, item, { variant_id: vid });
+          }
+          return item;
+        });
+      });
+      packData = pd;
+      if (packDataEl) packDataEl.textContent = JSON.stringify(pd);
+    }
+
+    sizeButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (btn.disabled) return;
+        selectSize(btn.dataset.size, btn.dataset.variantId);
+        updateURL(btn.dataset.variantId);
+      });
+    });
+
+    packRadios.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        currentPack = radio.value;
+        packCards.forEach(function(card) {
+          var sel = card.dataset.pack === currentPack;
+          card.classList.toggle('is-selected', sel);
+          var r = card.querySelector('.nuvel-buybox__pack-radio');
+          if (r) r.checked = sel;
+        });
+        updateUI();
+      });
+    });
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(price);
+    }
+
+    function calcPackPrice() {
+      var p = { solo: { m: 1 }, duo: { m: 1.5 }, kit: { fixed: 64.90 } }[currentPack];
+      if (!p) return basePrice;
+      if (p.fixed) return p.fixed;
+      return basePrice * p.multiplier;
+    }
+
+    function updateUI() {
+      var price = calcPackPrice();
+      if (addToCartPrice) addToCartPrice.textContent = formatPrice(price);
+      if (addToCartButton) {
+        var span = addToCartButton.querySelector('span');
+        if (span) {
+          var nodes = span.childNodes;
+          nodes.forEach(function(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.textContent = 'AÑADIR AL CARRITO · ' + formatPrice(price) + ' ';
+            }
+          });
+        }
+      }
+    }
+
+    function handleAddToCart(e) {
+      e.preventDefault();
+      if (addToCartButton.disabled) return;
+      var original = addToCartButton.innerHTML;
+      addToCartButton.disabled = true;
+      addToCartButton.innerHTML = '<span class="loading-spinner"></span>';
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: packData[currentPack].items.map(function(item) {
+            return { id: item.variant_id, quantity: item.quantity, properties: packData[currentPack].properties };
+          })
+        })
+      }).then(function(res) {
+        if (!res.ok) return res.json().then(function(err) { throw new Error(err.description || 'Failed'); });
+        return res.json();
+      }).then(function() {
+        addToCartButton.disabled = false;
+        addToCartButton.innerHTML = original;
+      }).catch(function(err) {
+        console.error(err);
+        addToCartButton.disabled = false;
+        addToCartButton.innerHTML = original;
+      });
+    }
+
+    function handleBuyNow(e) {
+      e.preventDefault();
+      if (buyNowButton.disabled) return;
+      buyNowButton.disabled = true;
+      buyNowButton.textContent = 'Procesando...';
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: packData[currentPack].items.map(function(item) {
+            return { id: item.variant_id, quantity: item.quantity, properties: packData[currentPack].properties };
+          })
+        })
+      }).then(function(res) {
+        if (!res.ok) throw new Error('Failed');
+        window.location.href = '/checkout';
+      }).catch(function(err) {
+        buyNowButton.disabled = false;
+        buyNowButton.textContent = 'Comprar ahora';
+      });
+    }
+
+    if (addToCartButton) addToCartButton.addEventListener('click', handleAddToCart);
+    if (buyNowButton) buyNowButton.addEventListener('click', handleBuyNow);
+
+    document.addEventListener('variant:changed', function(e) {
+      if (e.detail.sectionId && e.detail.sectionId !== (container.dataset.sectionId || '')) return;
+      var v = e.detail.variant;
+      if (!v) return;
+      var btn = container.querySelector('[data-variant-id="' + v.id + '"]');
+      if (btn && !btn.disabled) selectSize(btn.dataset.size, v.id);
+      basePrice = v.price / 100;
+      updateUI();
+    });
+
+    var firstAvailable = Array.from(sizeButtons).find(function(b) { return !b.disabled; });
+    if (firstAvailable) selectSize(firstAvailable.dataset.size, firstAvailable.dataset.variantId);
+    updateUI();
+  })();
+</script>
