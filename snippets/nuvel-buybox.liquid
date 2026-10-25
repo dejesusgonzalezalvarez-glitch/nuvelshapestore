@@ -1,6 +1,9 @@
 {%- liquid
   assign compact = compact | default: false
-  assign show_pack_prices = settings.show_pack_prices != false
+  assign show_pack_prices = true
+  if settings.show_pack_prices == false
+    assign show_pack_prices = false
+  endif
 
   assign size_order = 'S,M,L,XL,2XL' | split: ','
 

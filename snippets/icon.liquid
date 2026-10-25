@@ -10,7 +10,7 @@
 {%- assign icon_name = icon | default: '' | replace: '_', '-' | downcase -%}
 {%- assign size_val = size | default: 20 -%}
 
-{%- assign available_icons = '3d-model,account,apple,arrow,banana,bottle,box,caret,carrot,cart,cart-empty,chat-bubble,check-mark,checkmark,clipboard,close,close-small,copy,dairy,dairy-free,disclosure-info,discount,dryer,error,eye,facebook,filter,fire,gluten-free,hamburger,heart,info,instagram,inventory-status,iron,leaf,leather,lightning-bolt,lipstick,lock,map-pin,minus,nut-free,padlock,pants,pause,paw-print,pepper,perfume,pinterest,plane,plant,play,plus,price-tag,question-mark,recycle,remove,reset,return,ruler,search,serving-dish,share,shirt,shoe,shopify,silhouette,snapchat,snowflake,star,stopwatch,success,tick,tiktok,truck,tumblr,twitter,unavailable,vimeo,warning,washing,youtube,zoom | split: ',' -%}
+{%- assign available_icons = "3d-model,account,apple,arrow,banana,bottle,box,caret,carrot,cart,cart-empty,chat-bubble,check-mark,checkmark,clipboard,close,close-small,copy,dairy,dairy-free,disclosure-info,discount,dryer,error,eye,facebook,filter,fire,gluten-free,hamburger,heart,info,instagram,inventory-status,iron,leaf,leather,lightning-bolt,lipstick,lock,map-pin,minus,nut-free,padlock,pants,pause,paw-print,pepper,perfume,pinterest,plane,plant,play,plus,price-tag,question-mark,recycle,remove,reset,return,ruler,search,serving-dish,share,shirt,shoe,shopify,silhouette,snapchat,snowflake,star,stopwatch,success,tick,tiktok,truck,tumblr,twitter,unavailable,vimeo,warning,washing,youtube,zoom" | split: ',' -%}
 
 {%- if icon_name != blank and icon_name != 'none' and available_icons contains icon_name -%}
   {%- assign file = 'icon-' | append: icon_name | append: '.svg' -%}

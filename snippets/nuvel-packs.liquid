@@ -1,5 +1,8 @@
 {%- liquid
-  assign show_pack_prices = block.settings.show_pack_prices != false
+  assign show_pack_prices = true
+  if block.settings.show_pack_prices == false
+    assign show_pack_prices = false
+  endif
   assign faja_handle = 'faja-moldeadora-invisible-nuvel'
   assign body_falda_handle = 'body-moldeador-con-falda-nuvel'
   assign bragas_handle = 'bragas-moldeadoras-sin-costuras-nuvel'
