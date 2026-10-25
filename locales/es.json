@@ -825,6 +825,7 @@
     "product_page": {
       "announcement_bar_text": "La faja que no se nota ni bailando · Envío gratis · Cambio de talla gratis 30 días",
       "gallery_label": "AJUSTE ANCLADO™ · DISEÑO SIN COSTURAS",
+      "position_indicator": "Imagen {{ index }} de {{ total }}",
       "editorial_headline": "No era tu cuerpo. Eran las costuras.",
       "editorial_paragraph": "La faja moldeadora invisible Nuvel está diseñada para desaparecer bajo tu ropa y acompañarte con un ajuste cómodo. Su diseño sin costuras y su tejido flexible están pensados para que te muevas con confianza durante todo el día.",
       "editorial_feature_1_title": "Ajuste Anclado™",
