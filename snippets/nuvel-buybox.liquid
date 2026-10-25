@@ -198,13 +198,11 @@
     </div>
 
     <div class="nuvel-buybox__button-group">
-      {%- if compact != true -%}
-        {%- assign show_dynamic_checkout = true -%}
-        {%- if show_dynamic_checkout -%}
-          <div class="nuvel-buybox__dynamic-checkout">
-            {{ form | payment_button }}
-          </div>
-        {%- endif -%}
+      {%- assign show_dynamic_checkout = true -%}
+      {%- if show_dynamic_checkout -%}
+        <div class="nuvel-buybox__dynamic-checkout">
+          {{ form | payment_button }}
+        </div>
       {%- endif -%}
 
       <button
