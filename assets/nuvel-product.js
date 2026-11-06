@@ -86,7 +86,9 @@
         this.buyNowButton.addEventListener('click', this.handleBuyNow.bind(this));
       }
 
+      // Listen to both custom event and native Shopify variant:change event
       document.addEventListener('nuvel:variant:changed', this.handleVariantChange.bind(this));
+      document.addEventListener('variant:change', this.handleNativeVariantChange.bind(this));
     }
 
     handleSizeClick(event) {
@@ -196,6 +198,21 @@
       const variant = event.detail.variant;
       if (!variant) return;
 
+      const button = this.container.querySelector(`[data-variant-id="${variant.id}"]`);
+      if (button && !button.disabled) {
+        this.selectSize(button.dataset.size, variant.id);
+      }
+
+      this.basePriceCents = variant.price;
+      this.updateUI();
+    }
+
+    handleNativeVariantChange(event) {
+      // Native Shopify variant-selects component dispatches variant:change
+      const variant = event.detail?.variant;
+      if (!variant) return;
+
+      // Only update if this variant belongs to our product
       const button = this.container.querySelector(`[data-variant-id="${variant.id}"]`);
       if (button && !button.disabled) {
         this.selectSize(button.dataset.size, variant.id);

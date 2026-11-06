@@ -85,12 +85,9 @@
 
   {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
-  {%- assign size_order = 'S,M,L,XL,2XL' | split: ',' -%}
-  {%- assign size_labels = 'S|M|L|XL|2XL' | split: '|' -%}
-
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
     <div class="page-width">
-      <div class="nuvel-pdp">
+      <div class="nuvel-pdp" data-section-id="{{ section.id }}" data-base-price="{{ product.selected_or_first_available_variant.price }}">
         <div class="nuvel-pdp__grid">
           <div class="nuvel-pdp__left">
             <div class="nuvel-pdp__gallery-wrapper">
