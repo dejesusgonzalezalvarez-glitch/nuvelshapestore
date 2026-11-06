@@ -40,7 +40,16 @@
   assign duo_compare_at = current_variant.price | times: 2 | money
 
   assign kit_price = 6490 | money
-  assign kit_compare_at = 8480 | money
+
+  {%- assign kit_compare_at = 0 -%}
+  {%- if faja_product != blank and body_product != blank and bragas_product != blank -%}
+    {%- assign faja_first_price = faja_product.variants.first.price -%}
+    {%- assign body_first_price = body_product.variants.first.price -%}
+    {%- assign bragas_first_price = bragas_product.variants.first.price -%}
+    {%- assign kit_compare_at = faja_first_price | plus: body_first_price | plus: bragas_first_price | money -%}
+  {%- else -%}
+    {%- assign kit_compare_at = 8480 | money -%}
+  {%- endif -%}
 
   assign faja_variant_id = faja_variant.id | default: current_variant.id
   assign body_variant_id = body_variant.id | default: 0
@@ -69,10 +78,12 @@
     <div class="nuvel-buybox__size-buttons" role="group" aria-labelledby="NuvelSizeSelector-{{ section.id | default: 'home' }}">
       {%- for size in size_order -%}
         {%- assign variant_for_size = product.variants | where: 'option1', size | first -%}
-        {%- assign variant_exists = variant_for_size != blank -%}
-        {%- assign variant_available = variant_exists and variant_for_size.available -%}
+        {%- assign variant_available = false -%}
+        {%- if variant_for_size != blank and variant_for_size.available -%}
+          {%- assign variant_available = true -%}
+        {%- endif -%}
         {%- assign is_selected = forloop.first -%}
-        {%- if variant_exists == false -%}
+        {%- if variant_for_size == blank -%}
           {%- continue -%}
         {%- endif -%}
         <button

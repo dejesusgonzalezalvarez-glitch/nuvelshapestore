@@ -36,7 +36,16 @@
   assign duo_compare_at = current_variant.price | times: 2 | money
 
   assign kit_price = 6490 | money
-  assign kit_compare_at = 8480 | money
+
+  {%- assign kit_compare_at = 0 -%}
+  {%- if faja_product != blank and body_product != blank and bragas_product != blank -%}
+    {%- assign faja_first_price = faja_product.variants.first.price -%}
+    {%- assign body_first_price = body_product.variants.first.price -%}
+    {%- assign bragas_first_price = bragas_product.variants.first.price -%}
+    {%- assign kit_compare_at = faja_first_price | plus: body_first_price | plus: bragas_first_price | money -%}
+  {%- else -%}
+    {%- assign kit_compare_at = 8480 | money -%}
+  {%- endif -%}
 
   assign faja_variant_id = faja_variant.id | default: current_variant.id
   assign body_variant_id = body_variant.id | default: 0
