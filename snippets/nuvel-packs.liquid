@@ -36,7 +36,7 @@
   assign duo_compare_at = current_variant.price | times: 2 | money
 
   assign kit_price = 6490 | money
-  assign kit_compare_at = (faja_product.variants.first.price | plus: body_product.variants.first.price | plus: bragas_product.variants.first.price) | money
+  assign kit_compare_at = 8480 | money
 
   assign faja_variant_id = faja_variant.id | default: current_variant.id
   assign body_variant_id = body_variant.id | default: 0

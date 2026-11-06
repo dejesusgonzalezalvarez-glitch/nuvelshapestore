@@ -40,7 +40,7 @@
   assign duo_compare_at = current_variant.price | times: 2 | money
 
   assign kit_price = 6490 | money
-  assign kit_compare_at = (faja_product.variants.first.price | plus: body_product.variants.first.price | plus: bragas_product.variants.first.price) | money
+  assign kit_compare_at = 8480 | money
 
   assign faja_variant_id = faja_variant.id | default: current_variant.id
   assign body_variant_id = body_variant.id | default: 0
@@ -69,21 +69,22 @@
     <div class="nuvel-buybox__size-buttons" role="group" aria-labelledby="NuvelSizeSelector-{{ section.id | default: 'home' }}">
       {%- for size in size_order -%}
         {%- assign variant_for_size = product.variants | where: 'option1', size | first -%}
-        {%- assign is_available = variant_for_size != blank and variant_for_size.available -%}
+        {%- assign variant_exists = variant_for_size != blank -%}
+        {%- assign variant_available = variant_exists and variant_for_size.available -%}
         {%- assign is_selected = forloop.first -%}
-        {%- if variant_for_size == blank -%}
+        {%- if variant_exists == false -%}
           {%- continue -%}
         {%- endif -%}
         <button
           type="button"
-          class="nuvel-buybox__size-button{% if is_selected %} is-selected{% endif %}{% unless is_available %} is-sold-out{% endunless %}"
+          class="nuvel-buybox__size-button{% if is_selected %} is-selected{% endif %}{% unless variant_available %} is-sold-out{% endunless %}"
           data-size="{{ size }}"
           data-variant-id="{{ variant_for_size.id }}"
-          {% unless is_available %}disabled aria-disabled="true"{% endunless %}
+          {% unless variant_available %}disabled aria-disabled="true"{% endunless %}
           {% if is_selected %}aria-pressed="true"{% else %}aria-pressed="false"{% endif %}
         >
           <span class="nuvel-buybox__size-button-text">{{ size }}</span>
-          {% unless is_available %}
+          {% unless variant_available %}
             <span class="nuvel-buybox__size-button-strike" aria-hidden="true"></span>
             <span class="visually-hidden">{{ 'products.product.sold_out' | t }}</span>
           {% endunless %}
@@ -195,7 +196,8 @@
     </script>
   </div>
 
-  {%- form 'product', product, id: 'nuvel-product-form-' | append: (section.id | default: 'home'), class: 'nuvel-buybox__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+  {%- assign form_id = 'nuvel-product-form-' | append: section.id | default: 'home' -%}
+  {%- form 'product', product, id: form_id, class: 'nuvel-buybox__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
     <input type="hidden" name="quantity" value="1" class="nuvel-buybox__quantity">
 
@@ -219,7 +221,7 @@
         class="nuvel-buybox__add-to-cart button button--full-width"
         {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}disabled{% endif %}
       >
-        <span>{{ 'nuvel.product_page.add_to_cart_button' | t }} · <span class="nuvel-buybox__add-to-cart-price">{{ base_price }}</span></span>
+        <span>{{ 'nuvel.product_page.add_to_cart_button' | t }} &middot; <span class="nuvel-buybox__add-to-cart-price">{{ base_price }}</span></span>
         {% render 'loading-spinner' %}
       </button>
 

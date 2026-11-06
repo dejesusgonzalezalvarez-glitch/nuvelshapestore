@@ -837,16 +837,15 @@
       "benefit_3_icon": "shirt",
       "benefit_3_text": "Flexible fabric that adapts to your figure",
       "accordion_sizes_title": "Size Guide",
-      "accordion_sizes_content": "Available in sizes S to 2XL",
+      "accordion_sizes_content": "Available in sizes XL to 3XL",
       "accordion_shipping_title": "Shipping & Returns",
       "accordion_nuvel_title": "What makes Nuvel different?",
       "accordion_nuvel_content": "Seamless design with Anchored Fit™ made to not be seen or felt.",
-      "size_s": "S",
-      "size_m": "M",
-      "size_l": "L",
       "size_xl": "XL",
       "size_2xl": "2XL",
-      "pack_price_suffix": "€"
+      "size_3xl": "3XL",
+      "pack_price_suffix": "€",
+      "position_indicator": "Image {{ index }} of {{ total }}"
     }
   }
 }
