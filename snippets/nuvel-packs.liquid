@@ -3,43 +3,47 @@
   if block.settings.show_pack_prices == false
     assign show_pack_prices = false
   endif
+
   assign faja_handle = 'faja-moldeadora-invisible-nuvel'
-  assign body_falda_handle = 'body-moldeador-con-falda-nuvel'
-  assign bragas_handle = 'bragas-moldeadoras-sin-costuras-nuvel'
+  assign body_handle = 'womens-shapewear-dress-jumpsuit'
+  assign bragas_handle = 'seamless-shapewear-panties'
 
   assign faja_product = all_products[faja_handle]
-  assign body_falda_product = all_products[body_falda_handle]
+  assign body_product = all_products[body_handle]
   assign bragas_product = all_products[bragas_handle]
 
   assign current_variant = product.selected_or_first_available_variant
-  assign current_price = current_variant.price | money
-  assign current_compare_at = current_variant.compare_at_price
+  assign base_price_cents = current_variant.price
+  assign base_price = current_variant.price | money
+  assign base_compare_at = current_variant.compare_at_price | money
 
   assign faja_variant = blank
-  assign body_falda_variant = blank
+  assign body_variant = blank
   assign bragas_variant = blank
 
   if faja_product != blank
     assign faja_variant = faja_product.variants | where: 'option1', current_variant.option1 | first
   endif
-  if body_falda_product != blank
-    assign body_falda_variant = body_falda_product.variants | where: 'option1', current_variant.option1 | first
+  if body_product != blank
+    assign body_variant = body_product.variants | where: 'option1', current_variant.option1 | first
   endif
   if bragas_product != blank
     assign bragas_variant = bragas_product.variants | where: 'option1', current_variant.option1 | first
   endif
 
-  assign duo_price = current_variant.price | times: 2 | minus: current_variant.price | divided_by: 2
-  assign duo_price_money = duo_price | money
+  assign duo_price_cents = current_variant.price | times: 1.5
+  assign duo_price = duo_price_cents | money
   assign duo_compare_at = current_variant.price | times: 2 | money
 
-  assign kit_price = 6490 | divided_by: 100
-  assign kit_compare_at = 8480 | divided_by: 100
-  assign kit_price_money = kit_price | money
-  assign kit_compare_at_money = kit_compare_at | money
+  assign kit_price = 6490 | money
+  assign kit_compare_at = (faja_product.variants.first.price | plus: body_product.variants.first.price | plus: bragas_product.variants.first.price) | money
+
+  assign faja_variant_id = faja_variant.id | default: current_variant.id
+  assign body_variant_id = body_variant.id | default: 0
+  assign bragas_variant_id = bragas_variant.id | default: 0
 -%}
 
-<div class="nuvel-packs" data-nuvel-packs data-section-id="{{ section_id }}">
+<div class="nuvel-packs" data-nuvel-packs data-section-id="{{ section_id }}" data-base-price="{{ current_variant.price }}">
   <h3 class="nuvel-packs__title">{{ 'nuvel.product_page.packs_title' | t }}</h3>
   <div class="nuvel-packs__list" role="radiogroup" aria-label="{{ 'nuvel.product_page.packs_title' | t }}">
 
@@ -66,7 +70,7 @@
           <p class="nuvel-packs__includes">{{ 'nuvel.product_page.pack_solo_subtitle' | t }}</p>
           {%- if show_pack_prices -%}
             <div class="nuvel-packs__prices">
-              <span class="nuvel-packs__price">{{ current_price }}</span>
+              <span class="nuvel-packs__price">{{ base_price }}</span>
             </div>
           {%- endif -%}
         </div>
@@ -100,7 +104,7 @@
           <p class="nuvel-packs__includes">{{ 'nuvel.product_page.pack_duo_subtitle' | t }}</p>
           {%- if show_pack_prices -%}
             <div class="nuvel-packs__prices">
-              <span class="nuvel-packs__price">{{ duo_price_money }}</span>
+              <span class="nuvel-packs__price">{{ duo_price }}</span>
               <span class="nuvel-packs__compare">{{ duo_compare_at }}</span>
             </div>
           {%- endif -%}
@@ -120,8 +124,8 @@
       <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
       <div class="nuvel-packs__card-body">
         <div class="nuvel-packs__thumb">
-          {%- if body_falda_product != blank and body_falda_product.featured_media -%}
-            {{ body_falda_product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: body_falda_product.title | escape }}
+          {%- if body_product != blank and body_product.featured_media -%}
+            {{ body_product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: body_product.title | escape }}
           {%- else -%}
             <span class="visually-hidden">{{ 'nuvel.product_page.pack_kit_title' | t }}</span>
           {%- endif -%}
@@ -131,8 +135,8 @@
           <p class="nuvel-packs__includes">{{ 'nuvel.product_page.pack_kit_subtitle' | t }}</p>
           {%- if show_pack_prices -%}
             <div class="nuvel-packs__prices">
-              <span class="nuvel-packs__price">{{ kit_price_money }}</span>
-              <span class="nuvel-packs__compare">{{ kit_compare_at_money }}</span>
+              <span class="nuvel-packs__price">{{ kit_price }}</span>
+              <span class="nuvel-packs__compare">{{ kit_compare_at }}</span>
             </div>
           {%- endif -%}
         </div>
@@ -154,8 +158,8 @@
       "kit": {
         "items": [
           { "variant_id": {{ current_variant.id }}, "quantity": 1 },
-          { "variant_id": {{ faja_variant.id | default: current_variant.id }}, "quantity": 1 },
-          { "variant_id": {{ bragas_variant.id | default: current_variant.id }}, "quantity": 1 }
+          { "variant_id": {{ body_variant_id }}, "quantity": 1 },
+          { "variant_id": {{ bragas_variant_id }}, "quantity": 1 }
         ],
         "properties": { "_pack": "kit" }
       }

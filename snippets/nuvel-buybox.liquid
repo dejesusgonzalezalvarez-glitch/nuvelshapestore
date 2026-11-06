@@ -5,10 +5,9 @@
     assign show_pack_prices = false
   endif
 
-  assign size_order = 'S,M,L,XL,2XL' | split: ','
+  assign size_order = 'XL,2XL,3XL' | split: ','
 
   assign current_variant = product.selected_or_first_available_variant
-  assign current_price = current_variant.price | divided_by: 100
 
   assign faja_handle = 'faja-moldeadora-invisible-nuvel'
   assign body_handle = 'womens-shapewear-dress-jumpsuit'
@@ -32,18 +31,23 @@
     assign bragas_variant = bragas_product.variants | where: 'option1', current_variant.option1 | first
   endif
 
-  assign duo_price = current_variant.price | times: 2 | minus: current_variant.price | divided_by: 2 | divided_by: 100
-  assign duo_compare_at = current_variant.price | times: 2 | divided_by: 100
+  assign base_price_cents = current_variant.price
+  assign base_price = current_variant.price | money
+  assign base_compare_at = current_variant.compare_at_price | money
 
-  assign kit_price = 6490 | divided_by: 100
-  assign kit_compare_at = (faja_product.variants.first.price | plus: body_product.variants.first.price | plus: bragas_product.variants.first.price) | divided_by: 100
+  assign duo_price_cents = current_variant.price | times: 1.5
+  assign duo_price = duo_price_cents | money
+  assign duo_compare_at = current_variant.price | times: 2 | money
+
+  assign kit_price = 6490 | money
+  assign kit_compare_at = (faja_product.variants.first.price | plus: body_product.variants.first.price | plus: bragas_product.variants.first.price) | money
 
   assign faja_variant_id = faja_variant.id | default: current_variant.id
   assign body_variant_id = body_variant.id | default: 0
   assign bragas_variant_id = bragas_variant.id | default: 0
 -%}
 
-<div class="nuvel-buybox{% if compact %} nuvel-buybox--compact{% endif %}" data-nuvel-buybox data-section-id="{{ section.id | default: 'home' }}">
+<div class="nuvel-buybox{% if compact %} nuvel-buybox--compact{% endif %}" data-nuvel-buybox data-section-id="{{ section.id | default: 'home' }}" data-base-price="{{ current_variant.price }}">
   <p class="nuvel-buybox__eyebrow">{{ 'nuvel.product_page.eyebrow' | t }}</p>
 
   <h1 class="nuvel-buybox__title">{{ product.title | escape }}</h1>
@@ -109,7 +113,7 @@
             <p class="nuvel-buybox__pack-includes">{{ 'nuvel.product_page.pack_solo_subtitle' | t }}</p>
             {%- if show_pack_prices -%}
               <div class="nuvel-buybox__pack-prices">
-                <span class="nuvel-buybox__pack-price">{{ current_price | money }}</span>
+                <span class="nuvel-buybox__pack-price">{{ base_price }}</span>
               </div>
             {%- endif -%}
           </div>
@@ -135,8 +139,8 @@
             <p class="nuvel-buybox__pack-includes">{{ 'nuvel.product_page.pack_duo_subtitle' | t }}</p>
             {%- if show_pack_prices -%}
               <div class="nuvel-buybox__pack-prices">
-                <span class="nuvel-buybox__pack-price">{{ duo_price | money }}</span>
-                <span class="nuvel-buybox__pack-compare">{{ duo_compare_at | money }}</span>
+                <span class="nuvel-buybox__pack-price">{{ duo_price }}</span>
+                <span class="nuvel-buybox__pack-compare">{{ duo_compare_at }}</span>
               </div>
             {%- endif -%}
           </div>
@@ -159,8 +163,8 @@
             <p class="nuvel-buybox__pack-includes">{{ 'nuvel.product_page.pack_kit_subtitle' | t }}</p>
             {%- if show_pack_prices -%}
               <div class="nuvel-buybox__pack-prices">
-                <span class="nuvel-buybox__pack-price">{{ kit_price | money }}</span>
-                <span class="nuvel-buybox__pack-compare">{{ kit_compare_at | money }}</span>
+                <span class="nuvel-buybox__pack-price">{{ kit_price }}</span>
+                <span class="nuvel-buybox__pack-compare">{{ kit_compare_at }}</span>
               </div>
             {%- endif -%}
           </div>
@@ -215,7 +219,7 @@
         class="nuvel-buybox__add-to-cart button button--full-width"
         {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}disabled{% endif %}
       >
-        <span>{{ 'nuvel.product_page.add_to_cart_button' | t }} · <span class="nuvel-buybox__add-to-cart-price">{{ current_price | money }}</span></span>
+        <span>{{ 'nuvel.product_page.add_to_cart_button' | t }} · <span class="nuvel-buybox__add-to-cart-price">{{ base_price }}</span></span>
         {% render 'loading-spinner' %}
       </button>
 
@@ -307,182 +311,3 @@
     </a>
   {%- endunless -%}
 </div>
-
-<script>
-  (function() {
-    'use strict';
-    var container = document.querySelector('[data-nuvel-buybox]');
-    if (!container) return;
-
-    var sizeButtons = container.querySelectorAll('.nuvel-buybox__size-button');
-    var variantIdInput = container.querySelector('.nuvel-buybox__variant-id');
-    var packRadios = container.querySelectorAll('.nuvel-buybox__pack-radio');
-    var packCards = container.querySelectorAll('.nuvel-buybox__pack-card');
-    var addToCartButton = container.querySelector('.nuvel-buybox__add-to-cart');
-    var addToCartPrice = container.querySelector('.nuvel-buybox__add-to-cart-price');
-    var buyNowButton = container.querySelector('.nuvel-buybox__buy-now');
-    var form = container.querySelector('.nuvel-buybox__form');
-    var packDataEl = container.querySelector('[data-nuvel-pack-data]');
-    var packData = null;
-    var basePrice = 0;
-    var currentPack = 'duo';
-
-    function parsePackData() {
-      if (packDataEl) {
-        try { packData = JSON.parse(packDataEl.textContent); } catch(e) {}
-      }
-    }
-    parsePackData();
-
-    function updateVariantId(vid) {
-      if (variantIdInput) variantIdInput.value = vid;
-      var fvid = form?.querySelector('.product-variant-id');
-      if (fvid) fvid.value = vid;
-    }
-
-    function updateURL(vid) {
-      var url = new URL(window.location.href);
-      url.searchParams.set('variant', vid);
-      window.history.replaceState({}, '', url);
-    }
-
-    function selectSize(size, vid) {
-      sizeButtons.forEach(function(btn) {
-        var sel = btn.dataset.size === size;
-        btn.classList.toggle('is-selected', sel);
-        btn.setAttribute('aria-pressed', sel);
-      });
-      updateVariantId(vid);
-      updatePackData(vid);
-    }
-
-    function updatePackData(vid) {
-      if (!packData) return;
-      var pd = JSON.parse(JSON.stringify(packData));
-      Object.keys(pd).forEach(function(key) {
-        pd[key].items = pd[key].items.map(function(item) {
-          if (item.variant_id === vid || item.variant_id === packData[key].items[0].variant_id) {
-            return Object.assign({}, item, { variant_id: vid });
-          }
-          return item;
-        });
-      });
-      packData = pd;
-      if (packDataEl) packDataEl.textContent = JSON.stringify(pd);
-    }
-
-    sizeButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        if (btn.disabled) return;
-        selectSize(btn.dataset.size, btn.dataset.variantId);
-        updateURL(btn.dataset.variantId);
-      });
-    });
-
-    packRadios.forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        currentPack = radio.value;
-        packCards.forEach(function(card) {
-          var sel = card.dataset.pack === currentPack;
-          card.classList.toggle('is-selected', sel);
-          var r = card.querySelector('.nuvel-buybox__pack-radio');
-          if (r) r.checked = sel;
-        });
-        updateUI();
-      });
-    });
-
-    function formatPrice(price) {
-      return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(price);
-    }
-
-    function calcPackPrice() {
-      var p = { solo: { m: 1 }, duo: { m: 1.5 }, kit: { fixed: 64.90 } }[currentPack];
-      if (!p) return basePrice;
-      if (p.fixed) return p.fixed;
-      return basePrice * p.multiplier;
-    }
-
-    function updateUI() {
-      var price = calcPackPrice();
-      if (addToCartPrice) addToCartPrice.textContent = formatPrice(price);
-      if (addToCartButton) {
-        var span = addToCartButton.querySelector('span');
-        if (span) {
-          var nodes = span.childNodes;
-          nodes.forEach(function(node) {
-            if (node.nodeType === Node.TEXT_NODE) {
-              node.textContent = 'AÑADIR AL CARRITO · ' + formatPrice(price) + ' ';
-            }
-          });
-        }
-      }
-    }
-
-    function handleAddToCart(e) {
-      e.preventDefault();
-      if (addToCartButton.disabled) return;
-      var original = addToCartButton.innerHTML;
-      addToCartButton.disabled = true;
-      addToCartButton.innerHTML = '<span class="loading-spinner"></span>';
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items: packData[currentPack].items.map(function(item) {
-            return { id: item.variant_id, quantity: item.quantity, properties: packData[currentPack].properties };
-          })
-        })
-      }).then(function(res) {
-        if (!res.ok) return res.json().then(function(err) { throw new Error(err.description || 'Failed'); });
-        return res.json();
-      }).then(function() {
-        addToCartButton.disabled = false;
-        addToCartButton.innerHTML = original;
-      }).catch(function(err) {
-        console.error(err);
-        addToCartButton.disabled = false;
-        addToCartButton.innerHTML = original;
-      });
-    }
-
-    function handleBuyNow(e) {
-      e.preventDefault();
-      if (buyNowButton.disabled) return;
-      buyNowButton.disabled = true;
-      buyNowButton.textContent = 'Procesando...';
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items: packData[currentPack].items.map(function(item) {
-            return { id: item.variant_id, quantity: item.quantity, properties: packData[currentPack].properties };
-          })
-        })
-      }).then(function(res) {
-        if (!res.ok) throw new Error('Failed');
-        window.location.href = '/checkout';
-      }).catch(function(err) {
-        buyNowButton.disabled = false;
-        buyNowButton.textContent = 'Comprar ahora';
-      });
-    }
-
-    if (addToCartButton) addToCartButton.addEventListener('click', handleAddToCart);
-    if (buyNowButton) buyNowButton.addEventListener('click', handleBuyNow);
-
-    document.addEventListener('variant:changed', function(e) {
-      if (e.detail.sectionId && e.detail.sectionId !== (container.dataset.sectionId || '')) return;
-      var v = e.detail.variant;
-      if (!v) return;
-      var btn = container.querySelector('[data-variant-id="' + v.id + '"]');
-      if (btn && !btn.disabled) selectSize(btn.dataset.size, v.id);
-      basePrice = v.price / 100;
-      updateUI();
-    });
-
-    var firstAvailable = Array.from(sizeButtons).find(function(b) { return !b.disabled; });
-    if (firstAvailable) selectSize(firstAvailable.dataset.size, firstAvailable.dataset.variantId);
-    updateUI();
-  })();
-</script>

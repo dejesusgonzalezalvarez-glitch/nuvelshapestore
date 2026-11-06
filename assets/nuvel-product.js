@@ -2,23 +2,23 @@
   'use strict';
 
   const SELECTORS = {
-    sizeButton: '.nuvel-pdp__size-button',
-    sizeButtons: '.nuvel-pdp__size-buttons',
-    variantIdInput: '.nuvel-pdp__variant-id',
-    packCards: '.nuvel-packs__card',
-    packRadios: '.nuvel-packs__radio',
-    addToCartButton: '.nuvel-pdp__add-to-cart',
-    addToCartPrice: '.nuvel-pdp__add-to-cart-price',
-    buyNowButton: '.nuvel-pdp__buy-now',
-    form: '.nuvel-pdp__form',
+    container: '[data-nuvel-buybox], [data-nuvel-packs]',
+    sizeButton: '.nuvel-buybox__size-button',
+    sizeButtons: '.nuvel-buybox__size-buttons',
+    variantIdInput: '.nuvel-buybox__variant-id',
+    packCards: '.nuvel-buybox__pack-card, .nuvel-packs__card',
+    packRadios: '.nuvel-buybox__pack-radio, .nuvel-packs__radio',
+    addToCartButton: '.nuvel-buybox__add-to-cart',
+    addToCartPrice: '.nuvel-buybox__add-to-cart-price',
+    buyNowButton: '.nuvel-buybox__buy-now',
+    form: '.nuvel-buybox__form',
     packData: '[data-nuvel-pack-data]',
-    priceElement: '.price--large',
   };
 
-  const PACK_PRICES = {
-    solo: { multiplier: 1, label: 'Solo una faja' },
-    duo: { multiplier: 1.5, label: '2ª unidad al 50%' },
-    kit: { fixedPrice: 6490, label: 'Kit del Vestido Perfecto' },
+  const PACK_CONFIG = {
+    solo: { multiplier: 1 },
+    duo: { multiplier: 1.5 },
+    kit: { fixedPrice: 6490 },
   };
 
   class NuvelProductPage {
@@ -28,7 +28,7 @@
       this.currentPack = 'duo';
       this.currentSize = null;
       this.currentVariantId = null;
-      this.basePrice = 0;
+      this.basePriceCents = 0;
       this.packData = null;
 
       this.init();
@@ -51,9 +51,6 @@
       this.addToCartPrice = this.container.querySelector(SELECTORS.addToCartPrice);
       this.buyNowButton = this.container.querySelector(SELECTORS.buyNowButton);
       this.form = this.container.querySelector(SELECTORS.form);
-      this.priceElement = this.container.querySelector(SELECTORS.priceElement);
-
-      this.sizeButtonsContainer = this.container.querySelector(SELECTORS.sizeButtons);
     }
 
     parsePackData() {
@@ -66,12 +63,9 @@
         }
       }
 
-      if (this.priceElement) {
-        const priceText = this.priceElement.textContent.trim();
-        const priceMatch = priceText.match(/[\d.,]+/);
-        if (priceMatch) {
-          this.basePrice = parseFloat(priceMatch[0].replace(',', '.'));
-        }
+      const basePriceAttr = this.container.dataset.basePrice;
+      if (basePriceAttr) {
+        this.basePriceCents = parseInt(basePriceAttr, 10);
       }
     }
 
@@ -92,7 +86,7 @@
         this.buyNowButton.addEventListener('click', this.handleBuyNow.bind(this));
       }
 
-      document.addEventListener('variant:changed', this.handleVariantChange.bind(this));
+      document.addEventListener('nuvel:variant:changed', this.handleVariantChange.bind(this));
     }
 
     handleSizeClick(event) {
@@ -207,43 +201,46 @@
         this.selectSize(button.dataset.size, variant.id);
       }
 
-      this.basePrice = variant.price / 100;
+      this.basePriceCents = variant.price;
       this.updateUI();
     }
 
     calculatePackPrice() {
-      const packConfig = PACK_PRICES[this.currentPack];
-      if (!packConfig) return this.basePrice;
+      const packConfig = PACK_CONFIG[this.currentPack];
+      if (!packConfig) return this.basePriceCents;
 
       if (packConfig.fixedPrice) {
-        return packConfig.fixedPrice / 100;
+        return packConfig.fixedPrice;
       }
 
-      return this.basePrice * packConfig.multiplier;
+      return Math.round(this.basePriceCents * packConfig.multiplier);
     }
 
-    formatPrice(price) {
+    formatPrice(cents) {
       return new Intl.NumberFormat('es-ES', {
         style: 'currency',
         currency: 'EUR',
         minimumFractionDigits: 2
-      }).format(price);
+      }).format(cents / 100);
     }
 
     updateUI() {
-      const packPrice = this.calculatePackPrice();
+      const packPriceCents = this.calculatePackPrice();
 
       if (this.addToCartPrice) {
-        this.addToCartPrice.textContent = this.formatPrice(packPrice);
+        this.addToCartPrice.textContent = this.formatPrice(packPriceCents);
       }
 
       if (this.addToCartButton) {
-        const packLabel = PACK_PRICES[this.currentPack]?.label || '';
-        this.addToCartButton.querySelector('span')?.childNodes.forEach(node => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            node.textContent = `AÑADIR AL CARRITO · ${this.formatPrice(packPrice)} `;
-          }
-        });
+        const span = this.addToCartButton.querySelector('span');
+        if (span) {
+          const nodes = span.childNodes;
+          nodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              node.textContent = 'AÑADIR AL CARRITO · ' + this.formatPrice(packPriceCents) + ' ';
+            }
+          });
+        }
       }
 
       this.updatePackCardPrices();
@@ -254,28 +251,28 @@
 
       this.packCards.forEach(card => {
         const pack = card.dataset.pack;
-        const priceEl = card.querySelector('.nuvel-packs__price');
-        const compareEl = card.querySelector('.nuvel-packs__compare');
+        const priceEl = card.querySelector('.nuvel-buybox__pack-price, .nuvel-packs__price');
+        const compareEl = card.querySelector('.nuvel-buybox__pack-compare, .nuvel-packs__compare');
 
         if (!priceEl) return;
 
-        const packConfig = PACK_PRICES[pack];
+        const packConfig = PACK_CONFIG[pack];
         if (!packConfig) return;
 
-        let price, compareAt;
+        let priceCents, compareAtCents;
 
         if (packConfig.fixedPrice) {
-          price = packConfig.fixedPrice / 100;
-          compareAt = 8480 / 100;
+          priceCents = packConfig.fixedPrice;
+          compareAtCents = 8480;
         } else {
-          price = this.basePrice * packConfig.multiplier;
-          compareAt = this.basePrice * (pack === 'duo' ? 2 : 1);
+          priceCents = Math.round(this.basePriceCents * packConfig.multiplier);
+          compareAtCents = this.basePriceCents * (pack === 'duo' ? 2 : 1);
         }
 
-        priceEl.textContent = this.formatPrice(price);
+        priceEl.textContent = this.formatPrice(priceCents);
 
-        if (compareEl && compareAt > price) {
-          compareEl.textContent = this.formatPrice(compareAt);
+        if (compareEl && compareAtCents > priceCents) {
+          compareEl.textContent = this.formatPrice(compareAtCents);
         }
       });
     }
@@ -285,7 +282,7 @@
 
       if (this.addToCartButton.disabled) return;
 
-      const originalText = this.addToCartButton.innerHTML;
+      const originalHTML = this.addToCartButton.innerHTML;
       this.addToCartButton.disabled = true;
       this.addToCartButton.innerHTML = '<span class="loading-spinner"></span>';
 
@@ -297,7 +294,7 @@
         this.showNotification('Error al añadir al carrito', true);
       } finally {
         this.addToCartButton.disabled = false;
-        this.addToCartButton.innerHTML = originalText;
+        this.addToCartButton.innerHTML = originalHTML;
       }
     }
 
@@ -367,7 +364,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const containers = document.querySelectorAll('.nuvel-pdp');
+    const containers = document.querySelectorAll(SELECTORS.container);
     containers.forEach(container => {
       new NuvelProductPage(container);
     });
