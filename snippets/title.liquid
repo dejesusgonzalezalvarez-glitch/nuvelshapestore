@@ -1,0 +1,8 @@
+{%- comment -%}
+  Fallback for native Rise 'title' block snippet
+{%- endcomment -%}
+{%- if block.settings.text != blank -%}
+  <h1 class="product__title {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+    {{ block.settings.text }}
+  </h1>
+{%- endif -%}

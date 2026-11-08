@@ -1,0 +1,8 @@
+{%- comment -%}
+  Fallback for native Rise 'description' block snippet
+{%- endcomment -%}
+{%- if product.description != blank -%}
+  <div class="product__description rte" {{ block.shopify_attributes }}>
+    {{ product.description }}
+  </div>
+{%- endif -%}

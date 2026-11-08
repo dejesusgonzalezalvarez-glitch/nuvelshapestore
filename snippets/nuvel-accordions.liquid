@@ -1,6 +1,7 @@
 {%- comment -%}
   Acordeones Nuvel: Guía de tallas, Envío y devoluciones, Qué hace diferente a Nuvel.
   Se renderiza dentro del buybox híbrido, al final.
+  Uso: {% render 'nuvel-accordions', section_id: section.id %}
 {%- endcomment -%}
 
 <div class="nuvel-accordions">
@@ -49,17 +50,3 @@
     </details>
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Acordeones Nuvel",
-  "settings": [
-    {
-      "type": "text",
-      "id": "section_id",
-      "label": "ID de sección (para IDs únicos)",
-      "default": "product"
-    }
-  ]
-}
-{% endschema %}

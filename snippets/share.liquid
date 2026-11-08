@@ -1,0 +1,10 @@
+{%- comment -%}
+  Fallback for native Rise 'share' block snippet
+{%- endcomment -%}
+{%- if block.settings.share_label != blank -%}
+  <share-button class="share-button" data-share-url="{{ product.url }}" data-share-title="{{ product.title | escape }}">
+    <button class="share-button__button button button--tertiary" aria-label="{{ block.settings.share_label | escape }}">
+      {{ block.settings.share_label }}
+    </button>
+  </share-button>
+{%- endif -%}

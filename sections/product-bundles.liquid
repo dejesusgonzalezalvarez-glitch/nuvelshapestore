@@ -22,7 +22,7 @@
   assign bundle_2_qty_1 = section.settings.bundle_2_qty_1 | default: 2
   assign bundle_2_qty_2 = section.settings.bundle_2_qty_2 | default: 1
 
-  {%- comment -%} Calcular precio comparativo y ahorro para Bundle 1 {%- endcomment -%}
+  # Calcular precio comparativo y ahorro para Bundle 1
   assign bundle_1_compare = 0
   assign bundle_1_savings = 0
   if bundle_1_product_1 != blank
@@ -47,7 +47,7 @@
     assign bundle_1_savings = bundle_1_compare | minus: bundle_1_price
   endif
 
-  {%- comment -%} Calcular precio comparativo y ahorro para Bundle 2 {%- endcomment -%}
+  # Calcular precio comparativo y ahorro para Bundle 2
   assign bundle_2_compare = 0
   assign bundle_2_savings = 0
   if bundle_2_product_1 != blank
@@ -215,7 +215,7 @@
                     </option>
                   {%- endfor -%}
                 </select>
-              </div
+              </div>
             {%- endif -%}
             {%- if q2 != blank -%}
               {%- assign product_q2 = all_products[q2] -%}
@@ -241,7 +241,7 @@
         <p class="product-bundles__error" data-add-error hidden>{{ 'product-bundles.missing_selections' | t }}</p>
       </div>
     </div>
-  </section>
+  </section
 {%- endif -%}
 
 {% schema %}

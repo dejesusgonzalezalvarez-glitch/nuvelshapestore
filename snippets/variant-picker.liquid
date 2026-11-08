@@ -1,0 +1,6 @@
+{%- comment -%}
+  Fallback for native Rise 'variant_picker' block snippet
+{%- endcomment -%}
+{%- form 'product', product, id: 'product-form-installment', class: 'product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+  {%- render 'product-variant-picker', block: block, block_id: block.id -%}
+{%- endform -%}
