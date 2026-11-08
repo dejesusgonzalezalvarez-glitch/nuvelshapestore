@@ -820,7 +820,15 @@
       "selection_title": "Selecciona una talla por cada producto",
       "unit_label": "Unidad {{num}}",
       "add_to_cart": "Añadir al carrito",
-      "missing_selections": "Selecciona una talla para cada producto antes de comprar"
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar",
+      "savings": "Ahorras {{ amount }}"
+    },
+    "product-bundles": {
+      "selection_title": "Elige tu talla para {{count}} productos",
+      "unit_label": "Unidad {{num}}",
+      "add_to_cart": "Añadir al carrito",
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar",
+      "savings": "Ahorras {{ amount }}"
     },
     "product_page": {
       "announcement_bar_text": "La faja que no se nota ni bailando · Envío gratis · Cambio de talla gratis 30 días",

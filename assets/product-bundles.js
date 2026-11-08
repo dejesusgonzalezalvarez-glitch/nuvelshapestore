@@ -1,134 +1,213 @@
-class ProductBundles extends HTMLElement {
-  connectedCallback() {
-    this.bundles = {};
-    this.selectedBundle = null;
-    this.selections = {};
+/**
+ * Product Bundles — Nuvel
+ * Selección de bundles, variantes y add-to-cart nativo.
+ * Compatible con carrito drawer de Rise.
+ */
+(function () {
+  'use strict';
 
-    this.cardContainer = this.querySelector('[data-product-bundles-cards]');
-    this.selectionsContainer = this.querySelector('[data-product-bundles-selections]');
-    this.addButton = this.querySelector('[data-add-to-cart]');
-    this.errorEl = this.querySelector('[data-add-error]');
+  function initProductBundles() {
+    var sections = document.querySelectorAll('[data-product-bundles]');
+    if (!sections.length) return;
 
-    this.cardContainer.addEventListener('click', (evt) => {
-      const btn = evt.target.closest('[data-select-bundle]');
-      if (!btn) return;
-      const bundleId = Number(btn.dataset.selectBundle);
-      this.selectBundle(bundleId);
-    });
+    sections.forEach(function (section) {
+      var cards = section.querySelectorAll('[data-select-bundle]');
+      var selections = section.querySelectorAll('[data-bundle-selection]');
+      var addButton = section.querySelector('[data-add-to-cart]');
+      var errorEl = section.querySelector('[data-add-error]');
+      var form = document.querySelector('form[data-type="add-to-cart-form"]') || document.querySelector('form[action*="/cart/add"]');
 
-    this.selectionsContainer.addEventListener('change', (evt) => {
-      const select = evt.target.closest('[data-bundle]');
-      if (!select) return;
-      const bundleId = Number(select.dataset.bundle);
-      const option = Number(select.dataset.option);
-      this.selections[bundleId] = this.selections[bundleId] || {};
-      this.selections[bundleId][option] = select.value;
-      this.checkSelections();
-    });
+      if (!cards.length || !addButton || !form) return;
 
-    this.addButton.addEventListener('click', () => {
-      this.addToCart();
-    });
+      var selectedBundle = null;
+      var selectedVariants = {};
 
-    this.initSelectionState();
-  }
-
-  initSelectionState() {
-    const cards = this.cardContainer.querySelectorAll('[data-bundle]');
-    cards.forEach((card) => {
-      const id = Number(card.dataset.bundle);
-      const btn = card.querySelector('[data-select-bundle]');
-      const selected = card.hasAttribute('data-selected');
-
-      if (selected) {
-        this.selectBundle(id, false);
-      } else {
-        btn.setAttribute('aria-pressed', 'false');
-      }
-    });
-
-    this.checkSelections();
-  }
-
-  selectBundle(id) {
-    const cards = this.cardContainer.querySelectorAll('[data-bundle]');
-    cards.forEach((card) => {
-      const isSame = Number(card.dataset.bundle) === id;
-      card.toggleAttribute('data-selected', isSame);
-      const btn = card.querySelector('[data-select-bundle]');
-      btn.setAttribute('aria-pressed', isSame);
-    });
-
-    const selections = this.selectionsContainer.querySelectorAll('[data-bundle-selection]');
-    selections.forEach((sel) => {
-      const isSame = Number(sel.dataset.bundleSelection) === id;
-      sel.toggleAttribute('data-selected', isSame);
-    });
-
-    this.selectedBundle = id;
-    this.checkSelections();
-  }
-
-  checkSelections() {
-    if (!this.selectedBundle) {
-      this.addButton.disabled = true;
-      this.errorEl.hidden = false;
-      return;
-    }
-
-    const sel = this.selections[this.selectedBundle] || {};
-    let complete = true;
-    const selects = this.selectionsContainer.querySelectorAll(`[data-bundle="${this.selectedBundle}"]`);
-    selects.forEach((s) => {
-      if (!s.value) complete = false;
-    });
-
-    this.addButton.disabled = !complete;
-    this.errorEl.hidden = complete;
-  }
-
-  async addToCart() {
-    const sel = this.selections[this.selectedBundle];
-    if (!sel) return;
-
-    const lines = [];
-    for (const [option, variantId] of Object.entries(sel)) {
-      lines.push({
-        id: Number(variantId),
-        quantity: 1,
-        properties: {
-          _bundle_id: this.selectedBundle,
-          _bundle_name: this.selectedBundle
+      // Inicializar estado desde data-selected
+      cards.forEach(function (card) {
+        if (card.hasAttribute('data-selected')) {
+          selectedBundle = card.getAttribute('data-bundle');
+          selectBundle(selectedBundle);
         }
       });
-    }
 
-    this.addButton.disabled = true;
-    this.addButton.textContent = 'Añadiendo...';
-
-    try {
-      const res = await fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: lines })
+      // Click en tarjetas de bundle
+      cards.forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('[data-select-bundle]')) {
+            var bundleId = card.getAttribute('data-bundle');
+            selectBundle(bundleId);
+          }
+        });
       });
 
-      if (!res.ok) throw new Error('Error al añadir al carrito');
+      function selectBundle(bundleId) {
+        selectedBundle = bundleId;
+        selectedVariants[bundleId] = selectedVariants[bundleId] || {};
 
-      window.dispatchEvent(new CustomEvent('cart:updated'));
+        // Actualizar tarjetas
+        cards.forEach(function (card) {
+          var isSelected = card.getAttribute('data-bundle') === bundleId;
+          card.toggleAttribute('data-selected', isSelected);
+          card.querySelector('[data-select-bundle]').setAttribute('aria-pressed', isSelected);
+        });
 
-      const drawer = document.querySelector('cart-drawer');
-      if (drawer && typeof drawer.open === 'function') {
-        drawer.open();
-      } else {
-        window.location.href = '/cart';
+        // Mostrar/ocultar selecciones de variantes
+        selections.forEach(function (sel) {
+          var isSelected = sel.getAttribute('data-bundle-selection') === bundleId;
+          sel.toggleAttribute('data-selected', isSelected);
+        });
+
+        updateAddButton();
       }
-    } catch (e) {
-      console.error(e);
-      this.addButton.disabled = false;
-      this.addButton.textContent = 'Añadir al carrito';
-    }
-  }
-}
 
-customElements.define('product-bundles', ProductBundles);
+      // Cambios en selects de variantes
+      section.querySelectorAll('[data-product-bundles-selections] select').forEach(function (select) {
+        select.addEventListener('change', function () {
+          var bundleId = select.getAttribute('data-bundle');
+          var optionIndex = select.getAttribute('data-option');
+          var productHandle = select.getAttribute('data-product');
+          var variantId = select.value;
+
+          if (!selectedVariants[bundleId]) selectedVariants[bundleId] = {};
+          selectedVariants[bundleId][optionIndex] = {
+            product: productHandle,
+            variantId: variantId
+          };
+
+          updateAddButton();
+        });
+      });
+
+      function updateAddButton() {
+        if (!selectedBundle) {
+          addButton.disabled = true;
+          if (errorEl) errorEl.hidden = false;
+          return;
+        }
+
+        var bundleSel = selectedVariants[selectedBundle] || {};
+        var requiredCount = 0;
+        var filledCount = 0;
+
+        // Contar selects requeridos para este bundle
+        var selects = section.querySelectorAll('[data-bundle-selection="' + selectedBundle + '"] select');
+        requiredCount = selects.length;
+
+        selects.forEach(function (select) {
+          var optionIndex = select.getAttribute('data-option');
+          if (bundleSel[optionIndex] && bundleSel[optionIndex].variantId) {
+            filledCount++;
+          }
+        });
+
+        var isComplete = requiredCount > 0 && filledCount === requiredCount;
+        addButton.disabled = !isComplete;
+
+        if (errorEl) {
+          errorEl.hidden = isComplete || requiredCount === 0;
+        }
+      }
+
+      // Add to cart
+      addButton.addEventListener('click', function () {
+        if (addButton.disabled) return;
+
+        var bundleSel = selectedVariants[selectedBundle] || {};
+        var items = [];
+
+        // Construir items según el bundle seleccionado
+        if (selectedBundle === '1') {
+          // Bundle 1: 3 productos, cantidad 1 cada uno
+          Object.keys(bundleSel).forEach(function (optionIndex) {
+            var sel = bundleSel[optionIndex];
+            if (sel && sel.variantId) {
+              items.push({ variant_id: parseInt(sel.variantId, 10), quantity: 1 });
+            }
+          });
+        } else if (selectedBundle === '2') {
+          // Bundle 2: producto 1 cantidad N, producto 2 opcional cantidad M
+          // Los selects están en orden: opción 1 y 2 para producto 1, opción 1 para producto 2
+          var qty1 = 2; // default
+          var qty2 = 1; // default
+
+          // Intentar leer cantidades desde data attributes si existen
+          var card = section.querySelector('[data-bundle="2"]');
+          if (card) {
+            var qtyEl1 = card.querySelector('[data-bundle="2"] .product-bundles__item-qty');
+            if (qtyEl1) {
+              var match = qtyEl1.textContent.match(/×(\d+)/);
+              if (match) qty1 = parseInt(match[1], 10);
+            }
+          }
+
+          Object.keys(bundleSel).forEach(function (optionIndex) {
+            var sel = bundleSel[optionIndex];
+            if (sel && sel.variantId) {
+              var qty = (optionIndex === '1' || optionIndex === '2') ? qty1 : qty2;
+              items.push({ variant_id: parseInt(sel.variantId, 10), quantity: qty });
+            }
+          });
+        }
+
+        if (!items.length) return;
+
+        // Usar fetch nativo para add-to-cart (compatible con carrito drawer de Rise)
+        var formData = new FormData();
+        formData.append('items', JSON.stringify(items));
+        formData.append('sections', 'cart-drawer,cart-icon-bubble');
+        formData.append('sections_url', window.location.pathname);
+
+        addButton.disabled = true;
+        var originalText = addButton.textContent;
+        addButton.textContent = 'Añadiendo...';
+
+        fetch('{{ routes.cart_add_url }}', {
+          method: 'POST',
+          body: formData
+        })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          // Disparar evento para que el carrito drawer se abra (Rise usa este patrón)
+          document.dispatchEvent(new CustomEvent('cart:refresh', { detail: data }));
+          document.dispatchEvent(new CustomEvent('cart:add', { detail: { items: items } }));
+
+          // Mostrar feedback
+          addButton.textContent = 'Añadido ✓';
+          addButton.style.background = '#3ed660';
+          addButton.style.borderColor = '#3ed660';
+
+          setTimeout(function () {
+            addButton.textContent = originalText;
+            addButton.style.background = '';
+            addButton.style.borderColor = '';
+            addButton.disabled = false;
+          }, 2000);
+        })
+        .catch(function (err) {
+          console.error('Bundle add-to-cart error:', err);
+          addButton.textContent = 'Error';
+          setTimeout(function () {
+            addButton.textContent = originalText;
+            addButton.disabled = false;
+          }, 2000);
+        });
+      });
+    });
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProductBundles);
+  } else {
+    initProductBundles();
+  }
+
+  // También inicializar en navegación turbo/hot-reload
+  document.addEventListener('shopify:section:load', function (e) {
+    if (e.target.querySelector('[data-product-bundles]')) {
+      initProductBundles();
+    }
+  });
+})();
