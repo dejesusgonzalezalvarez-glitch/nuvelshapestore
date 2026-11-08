@@ -267,8 +267,34 @@
           </div>
 
           <div class="nuvel-pdp__right">
-            {% render 'nuvel-buybox', product: product, compact: false, section_id: section.id %}
-          </div>
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'title' -%}
+                  {%- render 'title', block: block, block_id: block.id -%}
+                {%- when 'price' -%}
+                  {%- render 'price', block: block, block_id: block.id -%}
+                {%- when 'variant_picker' -%}
+                  {%- render 'variant-picker', block: block, block_id: block.id -%}
+                {%- when 'nuvel_packs' -%}
+                  {%- render 'nuvel-packs', product: product, section_id: section.id, block: block -%}
+                {%- when 'buy_buttons' -%}
+                  {%- render 'buy-buttons', block: block, block_id: block.id -%}
+                {%- when 'description' -%}
+                  {%- render 'description', block: block, block_id: block.id -%}
+                {%- when 'nuvel_benefits' -%}
+                  {% render 'nuvel-benefits', product: product %}
+                {%- when 'nuvel_accordions' -%}
+                  {% render 'nuvel-accordions', product: product %}
+                {%- when 'rating' -%}
+                  {%- render 'rating', block: block, block_id: block.id -%}
+                {%- when 'share' -%}
+                  {%- render 'share', block: block, block_id: block.id -%}
+                {%- when 'custom_liquid' -%}
+                  {{ block.settings.custom_liquid }}
+                {%- when '@app' -%}
+                  {% render block %}
+              {%- endcase -%}
+            {%- endfor -%}
         </div>
       </div>
     </div>
@@ -775,6 +801,16 @@
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
         }
       ]
+    },
+    {
+      "type": "nuvel_benefits",
+      "name": "Beneficios Nuvel",
+      "limit": 1
+    },
+    {
+      "type": "nuvel_accordions",
+      "name": "Acordeones Nuvel",
+      "limit": 1
     }
   ],
   "settings": [
