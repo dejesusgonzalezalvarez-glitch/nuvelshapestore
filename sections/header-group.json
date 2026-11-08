@@ -41,7 +41,7 @@
         "announcement-bar-3"
       ],
       "settings": {
-        "auto_rotate": true,
+        "auto_rotate": false,
         "change_slides_speed": 5,
         "color_scheme": "scheme-3",
         "show_line_separator": true,
