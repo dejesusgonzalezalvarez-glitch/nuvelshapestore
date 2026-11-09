@@ -8,8 +8,8 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Envío gratis a todo el mundo · 10% de descuento con el código NUVEL10",
-            "link": ""
+            "text": "Envío gratis · 10% de descuento con el código NUVEL10",
+            "link": "/discount/NUVEL10?redirect=/collections/all"
           }
         },
         "announcement-bar-1": {

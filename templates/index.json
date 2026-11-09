@@ -105,21 +105,21 @@
           "type": "column",
           "settings": {
             "title": "Sin costuras, invisible",
-            "text": "<p>No se marca bajo la ropa ni se adivina que la llevas.</p>"
+            "text": "<p>Diseñada para no marcarse bajo la ropa.</p>"
           }
         },
         "column-1": {
           "type": "column",
           "settings": {
             "title": "No se enrolla ni pica",
-            "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>"
+            "text": "<p>Pensada para no enrollarse ni molestar.</p>"
           }
         },
         "column-2": {
           "type": "column",
           "settings": {
             "title": "Resiste lavados",
-            "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>"
+            "text": "<p>Tejido pensado para resistir los lavados.</p>"
           }
         },
         "column-3": {
@@ -151,40 +151,13 @@
       }
     },
     "testimonios": {
-      "type": "rich-text",
-      "blocks": {
-        "titulo": {
-          "type": "heading",
-          "settings": {
-            "heading": "Clientas reales, mensajes reales",
-            "heading_size": "h1"
-          }
-        },
-        "texto-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Cada semana publicamos capturas de los WhatsApp de nuestras clientas: dudas de talla, qué talla pidieron y la foto de la prenda puesta. Sin poses, tal cual llegan.</p>"
-          }
-        },
-        "texto-2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "titulo",
-        "texto-1",
-        "texto-2"
-      ],
+      "type": "custom-liquid",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "custom_liquid": "{% if section.settings.show_testimonials %}\n<div class=\"rich-text color-scheme-2 full-width page-width\" style=\"padding-top: 72px; padding-bottom: 72px;\">\n  <div class=\"rich-text__content\" style=\"text-align: center;\">\n    <h2 class=\"rich-text__heading h1\">Clientas reales, mensajes reales</h2>\n    <div class=\"rich-text__content rte\" style=\"text-align: center;\">\n      <p>Cada semana publicamos capturas de los WhatsApp de nuestras clientas: dudas de talla, qué talla pidieron y la foto de la prenda puesta. Sin poses, tal cual llegan.</p>\n      <p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>\n    </div>\n  </div>\n</div>\n{% endif %}",
         "color_scheme": "scheme-2",
-        "full_width": true,
         "padding_top": 72,
-        "padding_bottom": 72
+        "padding_bottom": 72,
+        "show_testimonials": false
       }
     },
     "confianza": {
@@ -193,7 +166,7 @@
         "column-0": {
           "type": "column",
           "settings": {
-            "title": "Envío gratis a todo el mundo",
+            "title": "Envío gratis",
             "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>"
           }
         },

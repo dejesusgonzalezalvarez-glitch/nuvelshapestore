@@ -698,7 +698,7 @@
 
         <div class="nv-panel-light">
           <h2 class="nv-title" id="nv-title">Tu descuento de bienvenida</h2>
-          <p class="nv-text">Copia el código y pégalo al pagar. Si se te enrolla, se te marca o no es tu talla, te devolvemos el dinero. Sin preguntas.</p>
+          <p class="nv-text">Copia el código y pégalo al pagar. Si no es tu talla o no te convence, escríbenos en los primeros 30 días.</p>
           <div class="nv-ticket">
             <span class="nv-code">NUVEL10</span>
             <button class="nv-copy" type="button" aria-pressed="false">
@@ -708,7 +708,7 @@
               <span class="nv-copy-label">Copiar</span>
             </button>
           </div>
-          <a class="nv-continue" href="#" data-nv-continue>Seguir comprando</a>
+          <a class="nv-continue nv-apply-discount" href="/discount/NUVEL10?redirect=/collections/all">Aplicar descuento</a>
           <p class="nv-visually-hidden" aria-live="polite" data-nv-live></p>
         </div>
       </div>
@@ -876,6 +876,61 @@
           schedule();
         } else {
           window.addEventListener('load', schedule);
+        }
+
+        // Update payment text based on enabled payment types
+        function updatePaymentText() {
+          var hasCreditCard = false;
+          var hasPayPal = false;
+          {% for type in shop.enabled_payment_types %}
+            {% if type == 'credit_card' or type == 'shopify_payments' %}
+              hasCreditCard = true;
+            {% endif %}
+            {% if type == 'paypal' or type == 'paypal_express' %}
+              hasPayPal = true;
+            {% endif %}
+          {% endfor %}
+          
+          var paymentText = hasCreditCard && hasPayPal ? 'Pago 100% seguro con tarjeta y PayPal' :
+                            hasCreditCard ? 'Pago 100% seguro con tarjeta' :
+                            hasPayPal ? 'Pago 100% seguro con PayPal' :
+                            'Pago seguro';
+          
+          // Update announcement bar
+          var announcementElements = document.querySelectorAll('.announcement-bar__message');
+          announcementElements.forEach(function(el) {
+            if (el.textContent.includes('Pago 100% seguro') || el.textContent.includes('Pago seguro')) {
+              el.textContent = paymentText;
+            }
+          });
+          
+          // Update "Compra con tranquilidad" section
+          var trustElements = document.querySelectorAll('.multicolumn .column .nuvel-compare__card, .confianza .column');
+          trustElements.forEach(function(el) {
+            var titleEl = el.querySelector('h3, .title, strong');
+            if (titleEl && (titleEl.textContent.includes('Pago 100% seguro') || titleEl.textContent.includes('Pago seguro'))) {
+              var textEl = el.querySelector('p, .text');
+              if (textEl) {
+                textEl.textContent = paymentText;
+              }
+            }
+          });
+          
+          // Update footer payment section
+          var footerPaymentEl = document.querySelector('.footer__payment .list-payment');
+          if (footerPaymentEl) {
+            var titleEl = footerPaymentEl.previousElementSibling;
+            if (titleEl && titleEl.textContent.includes('Pago')) {
+              titleEl.textContent = paymentText;
+            }
+          }
+        }
+        
+        // Run after DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', updatePaymentText);
+        } else {
+          updatePaymentText();
         }
       })();
     </script>

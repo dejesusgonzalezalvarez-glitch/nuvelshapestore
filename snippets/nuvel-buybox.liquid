@@ -72,6 +72,10 @@
       <span>{{ 'nuvel.product_page.shipping_row_text' | t }}</span>
     </div>
   </div>
+  <div class="nuvel-buybox__shipping-timeline" aria-hidden="false">
+    <span class="nuvel-buybox__shipping-icon" aria-hidden="true">{% render 'icon', icon: 'truck', size: 16 %}</span>
+    <span>{{ 'nuvel.product_page.shipping_timeline_text' | t }}</span>
+  </div>
 
   <div class="nuvel-buybox__size-selector" data-size-selector>
     <label class="form__label" for="NuvelSizeSelector-{{ section.id | default: 'home' }}">{{ 'nuvel.product_page.size_selector_label' | t }}</label>
@@ -114,7 +118,7 @@
         <span class="nuvel-buybox__pack-radio-visual" aria-hidden="true"></span>
         <div class="nuvel-buybox__pack-card-body">
           <div class="nuvel-buybox__pack-thumb">
-            {%- if product.featured_media -%}
+            {%- if product.featured_media and product.featured_media.media_type == 'image' -%}
               {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
             {%- else -%}
               <span class="visually-hidden">{{ 'nuvel.product_page.pack_solo_title' | t }}</span>
@@ -137,7 +141,7 @@
         <span class="nuvel-buybox__pack-radio-visual" aria-hidden="true"></span>
         <div class="nuvel-buybox__pack-card-body">
           <div class="nuvel-buybox__pack-thumb">
-            {%- if product.featured_media -%}
+            {%- if product.featured_media and product.featured_media.media_type == 'image' -%}
               {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
             {%- else -%}
               <span class="visually-hidden">{{ 'nuvel.product_page.pack_duo_title' | t }}</span>
@@ -152,7 +156,9 @@
             {%- if show_pack_prices -%}
               <div class="nuvel-buybox__pack-prices">
                 <span class="nuvel-buybox__pack-price">{{ duo_price }}</span>
-                <span class="nuvel-buybox__pack-compare">{{ duo_compare_at }}</span>
+                {%- if duo_compare_at != duo_price -%}
+                  <span class="nuvel-buybox__pack-compare">{{ duo_compare_at }}</span>
+                {%- endif -%}
               </div>
             {%- endif -%}
           </div>
@@ -164,7 +170,7 @@
         <span class="nuvel-buybox__pack-radio-visual" aria-hidden="true"></span>
         <div class="nuvel-buybox__pack-card-body">
           <div class="nuvel-buybox__pack-thumb">
-            {%- if body_product != blank and body_product.featured_media -%}
+            {%- if body_product != blank and body_product.featured_media and body_product.featured_media.media_type == 'image' -%}
               {{ body_product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: body_product.title | escape }}
             {%- else -%}
               <span class="visually-hidden">{{ 'nuvel.product_page.pack_kit_title' | t }}</span>
@@ -176,7 +182,9 @@
             {%- if show_pack_prices -%}
               <div class="nuvel-buybox__pack-prices">
                 <span class="nuvel-buybox__pack-price">{{ kit_price }}</span>
-                <span class="nuvel-buybox__pack-compare">{{ kit_compare_at }}</span>
+                {%- if kit_compare_at != kit_price -%}
+                  <span class="nuvel-buybox__pack-compare">{{ kit_compare_at }}</span>
+                {%- endif -%}
               </div>
             {%- endif -%}
           </div>

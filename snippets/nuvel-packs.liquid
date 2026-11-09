@@ -68,7 +68,7 @@
       <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
       <div class="nuvel-packs__card-body">
         <div class="nuvel-packs__thumb">
-          {%- if product.featured_media -%}
+          {%- if product.featured_media and product.featured_media.media_type == 'image' -%}
             {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
           {%- else -%}
             <span class="visually-hidden">{{ 'nuvel.product_page.pack_solo_title' | t }}</span>
@@ -99,7 +99,7 @@
       <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
       <div class="nuvel-packs__card-body">
         <div class="nuvel-packs__thumb">
-          {%- if product.featured_media -%}
+          {%- if product.featured_media and product.featured_media.media_type == 'image' -%}
             {{ product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: product.title | escape }}
           {%- else -%}
             <span class="visually-hidden">{{ 'nuvel.product_page.pack_duo_title' | t }}</span>
@@ -114,7 +114,9 @@
           {%- if show_pack_prices -%}
             <div class="nuvel-packs__prices">
               <span class="nuvel-packs__price">{{ duo_price }}</span>
-              <span class="nuvel-packs__compare">{{ duo_compare_at }}</span>
+              {%- if duo_compare_at != duo_price -%}
+                <span class="nuvel-packs__compare">{{ duo_compare_at }}</span>
+              {%- endif -%}
             </div>
           {%- endif -%}
         </div>
@@ -133,7 +135,7 @@
       <span class="nuvel-packs__radio-visual" aria-hidden="true"></span>
       <div class="nuvel-packs__card-body">
         <div class="nuvel-packs__thumb">
-          {%- if body_product != blank and body_product.featured_media -%}
+          {%- if body_product != blank and body_product.featured_media and body_product.featured_media.media_type == 'image' -%}
             {{ body_product.featured_media | image_tag: width: 64, height: 48, loading: 'lazy', alt: body_product.title | escape }}
           {%- else -%}
             <span class="visually-hidden">{{ 'nuvel.product_page.pack_kit_title' | t }}</span>
@@ -145,7 +147,9 @@
           {%- if show_pack_prices -%}
             <div class="nuvel-packs__prices">
               <span class="nuvel-packs__price">{{ kit_price }}</span>
-              <span class="nuvel-packs__compare">{{ kit_compare_at }}</span>
+              {%- if kit_compare_at != kit_price -%}
+                <span class="nuvel-packs__compare">{{ kit_compare_at }}</span>
+              {%- endif -%}
             </div>
           {%- endif -%}
         </div>

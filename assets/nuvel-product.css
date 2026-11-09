@@ -212,6 +212,20 @@
   margin: 4px 0;
 }
 
+.nuvel-pdp__shipping-timeline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--nuvel-gray);
+}
+
+.nuvel-pdp__shipping-timeline .nuvel-pdp__shipping-icon {
+  color: var(--nuvel-gold);
+  flex-shrink: 0;
+}
+
 .nuvel-pdp__shipping-icon {
   color: var(--nuvel-gold);
   flex-shrink: 0;

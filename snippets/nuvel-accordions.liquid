@@ -15,7 +15,53 @@
         {{ 'icon-caret.svg' | inline_asset_content }}
       </summary>
       <div class="accordion__content rte" id="NuvelProductAccordion-sizes-{{ section_id }}">
-        {{ 'nuvel.product_page.accordion_sizes_content' | t }}
+        <p>{{ 'nuvel.product_page.accordion_sizes_content' | t }}</p>
+        <p style="margin-top: 1rem;"><strong>{{ 'nuvel.product_page.size_guide_how_to_measure' | t }}</strong></p>
+        <div class="nuvel-size-guide-table-wrapper" style="overflow-x: auto; margin-top: 1rem;">
+          <table class="nuvel-size-guide-table" style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+              <tr style="background: rgba(var(--color-foreground), 0.05);">
+                <th style="padding: 12px; text-align: left; border: 1px solid rgba(var(--color-foreground), 0.1);">{{ 'nuvel.product_page.size_guide_size' | t }}</th>
+                <th style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{{ 'nuvel.product_page.size_guide_bust' | t }} (cm)</th>
+                <th style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{{ 'nuvel.product_page.size_guide_waist' | t }} (cm)</th>
+                <th style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{{ 'nuvel.product_page.size_guide_hip' | t }} (cm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid rgba(var(--color-foreground), 0.1);">
+                <td style="padding: 12px; text-align: left; border: 1px solid rgba(var(--color-foreground), 0.1); font-weight: 600;">S</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add bust measurement for S{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add waist measurement for S{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add hip measurement for S{% endcomment %}TODO</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(var(--color-foreground), 0.1);">
+                <td style="padding: 12px; text-align: left; border: 1px solid rgba(var(--color-foreground), 0.1); font-weight: 600;">M</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add bust measurement for M{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add waist measurement for M{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add hip measurement for M{% endcomment %}TODO</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(var(--color-foreground), 0.1);">
+                <td style="padding: 12px; text-align: left; border: 1px solid rgba(var(--color-foreground), 0.1); font-weight: 600;">L</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add bust measurement for L{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add waist measurement for L{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add hip measurement for L{% endcomment %}TODO</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(var(--color-foreground), 0.1);">
+                <td style="padding: 12px; text-align: left; border: 1px solid rgba(var(--color-foreground), 0.1); font-weight: 600;">XL</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add bust measurement for XL{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add waist measurement for XL{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add hip measurement for XL{% endcomment %}TODO</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; text-align: left; border: 1px solid rgba(var(--color-foreground), 0.1); font-weight: 600;">2XL</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add bust measurement for 2XL{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add waist measurement for 2XL{% endcomment %}TODO</td>
+                <td style="padding: 12px; text-align: center; border: 1px solid rgba(var(--color-foreground), 0.1);">{% comment %}TODO: Add hip measurement for 2XL{% endcomment %}TODO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top: 1rem; font-size: 13px; color: rgba(var(--color-foreground), 0.6);">{% comment %}TODO: Add 'How to measure' instructions{% endcomment %}{{ 'nuvel.product_page.size_guide_how_to_measure_text' | t }}</p>
       </div>
     </details>
   </div>
