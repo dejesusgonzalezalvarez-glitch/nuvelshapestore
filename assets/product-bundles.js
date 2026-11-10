@@ -161,7 +161,7 @@
         var originalText = addButton.textContent;
         addButton.textContent = 'Añadiendo...';
 
-        fetch('{{ routes.cart_add_url }}', {
+        fetch(window.routes.cart_add_url, {
           method: 'POST',
           body: formData
         })

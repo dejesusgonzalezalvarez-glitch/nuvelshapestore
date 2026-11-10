@@ -878,12 +878,40 @@
       "accordion_shipping_content": "Envío gratis en todos los pedidos. Cambio de talla gratis durante 30 días.",
       "accordion_nuvel_title": "¿Qué hace diferente a Nuvel?",
       "accordion_nuvel_content": "Diseño sin costuras con Ajuste Anclado pensado para no verse ni notarse.",
+      "size_guide_how_to_measure": "Cómo medirte",
+      "size_guide_size": "Talla",
+      "size_guide_bust": "Busto",
+      "size_guide_waist": "Cintura",
+      "size_guide_hip": "Cadera",
+      "size_guide_how_to_measure_text": "Mide tu contorno de busto, cintura y cadera con una cinta métrica flexible. Mantén la cinta paralela al suelo y no la aprietes demasiado. Compara tus medidas con la tabla para encontrar tu talla ideal.",
+      "accordion_shipping_title": "Envío y devoluciones",
+      "accordion_shipping_content": "Envío gratis en todos los pedidos. Cambio de talla gratis durante 30 días.",
+      "accordion_nuvel_title": "¿Qué hace diferente a Nuvel?",
+      "accordion_nuvel_content": "Diseño sin costuras con Ajuste Anclado pensado para no verse ni notarse.",
       "size_s": "S",
       "size_m": "M",
       "size_l": "L",
       "size_xl": "XL",
       "size_2xl": "2XL",
-      "pack_price_suffix": "€"
+      "size_3xl": "3XL",
+      "pack_price_suffix": "€",
+      "position_indicator": "Imagen {{ index }} de {{ total }}"
+    },
+    "bundles": {
+      "heading": "Ahorra con un pack",
+      "subtitle": "Combina productos y ahorra",
+      "selection_title": "Selecciona una talla por cada producto",
+      "unit_label": "Unidad {{num}}",
+      "add_to_cart": "Añadir al carrito",
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar",
+      "savings": "Ahorras {{ amount }}"
+    },
+    "product-bundles": {
+      "selection_title": "Elige tu talla para {{count}} productos",
+      "unit_label": "Unidad {{num}}",
+      "add_to_cart": "Añadir al carrito",
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar",
+      "savings": "Ahorras {{ amount }}"
     }
   }
 }

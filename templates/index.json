@@ -60,33 +60,26 @@
         "producto-1": {
           "type": "product",
           "settings": {
-            "product": "faja-moldeadora-invisible-nuvel"
+            "product": "womens-shapewear-dress-jumpsuit"
           }
         },
         "producto-2": {
           "type": "product",
           "settings": {
-            "product": "retro-shapewear-top-with-zipper"
+            "product": "seamless-shapewear-panties"
           }
         },
         "producto-3": {
           "type": "product",
           "settings": {
-            "product": "womens-shapewear-dress-jumpsuit"
-          }
-        },
-        "producto-4": {
-          "type": "product",
-          "settings": {
-            "product": "seamless-shapewear-panties"
+            "product": "faja-moldeadora-invisible-nuvel"
           }
         }
       },
       "block_order": [
         "producto-1",
         "producto-2",
-        "producto-3",
-        "producto-4"
+        "producto-3"
       ],
       "settings": {
         "heading": "Nuestro catálogo",

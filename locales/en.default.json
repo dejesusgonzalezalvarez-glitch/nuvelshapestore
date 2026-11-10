@@ -816,6 +816,7 @@
       "eyebrow": "THE COMFORT YOU DON'T SEE",
       "shipping_row_title": "FREE SHIPPING INCLUDED",
       "shipping_row_text": "Free shipping on your order, no additional shipping costs.",
+      "shipping_timeline_text": "Delivery in 7-15 business days",
       "size_selector_label": "CHOOSE YOUR SIZE",
       "packs_title": "PACKS & OFFERS",
       "pack_solo_title": "Just one shaper",
@@ -841,11 +842,40 @@
       "accordion_shipping_title": "Shipping & Returns",
       "accordion_nuvel_title": "What makes Nuvel different?",
       "accordion_nuvel_content": "Seamless design with Anchored Fit™ made to not be seen or felt.",
+      "size_guide_how_to_measure": "How to measure",
+      "size_guide_size": "Size",
+      "size_guide_bust": "Bust",
+      "size_guide_waist": "Waist",
+      "size_guide_hip": "Hip",
+      "size_guide_how_to_measure_text": "Measure your bust, waist, and hip circumference with a flexible tape measure. Keep the tape parallel to the floor and don't pull it too tight. Compare your measurements with the chart to find your ideal size.",
+      "accordion_shipping_title": "Shipping & Returns",
+      "accordion_shipping_content": "Free shipping on all orders. Free size exchange within 30 days.",
+      "accordion_nuvel_title": "What makes Nuvel different?",
+      "accordion_nuvel_content": "Seamless design with Anchored Fit™ made to not be seen or felt.",
       "size_xl": "XL",
       "size_2xl": "2XL",
       "size_3xl": "3XL",
+      "size_s": "S",
+      "size_m": "M",
+      "size_l": "L",
       "pack_price_suffix": "€",
       "position_indicator": "Image {{ index }} of {{ total }}"
+    },
+    "bundles": {
+      "heading": "Save with a bundle",
+      "subtitle": "Combine products and save",
+      "selection_title": "Select a size for each product",
+      "unit_label": "Unit {{num}}",
+      "add_to_cart": "Add to cart",
+      "missing_selections": "Select a size for each product before buying",
+      "savings": "Save {{ amount }}"
+    },
+    "product-bundles": {
+      "selection_title": "Choose your size for {{count}} products",
+      "unit_label": "Unit {{num}}",
+      "add_to_cart": "Add to cart",
+      "missing_selections": "Select a size for each product before buying",
+      "savings": "Save {{ amount }}"
     }
   }
 }

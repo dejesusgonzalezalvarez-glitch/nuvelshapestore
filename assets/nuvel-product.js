@@ -339,18 +339,20 @@
       const packData = this.packData?.[pack];
       if (!packData) throw new Error('Pack data not found');
 
-      const response = await fetch('/cart/add.js', {
+      const formData = new FormData();
+      formData.append('items', JSON.stringify(
+        packData.items.map(item => ({
+          id: item.variant_id,
+          quantity: item.quantity,
+          properties: packData.properties
+        }))
+      ));
+      formData.append('sections', 'cart-drawer,cart-icon-bubble');
+      formData.append('sections_url', window.location.pathname);
+
+      const response = await fetch(window.routes.cart_add_url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          items: packData.items.map(item => ({
-            id: item.variant_id,
-            quantity: item.quantity,
-            properties: packData.properties
-          }))
-        }),
+        body: formData,
       });
 
       if (!response.ok) {

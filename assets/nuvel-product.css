@@ -1,19 +1,17 @@
 :root {
-  --nuvel-gold: #8A6F4A;
-  --nuvel-gold-rgb: 138, 111, 74;
-  --nuvel-beige: #f3ece1;
-  --nuvel-beige-rgb: 243, 236, 225;
-  --nuvel-divider: #e6e3de;
-  --nuvel-divider-rgb: 230, 227, 222;
   --nuvel-black: #1a1a1a;
   --nuvel-charcoal: #333;
   --nuvel-gray: #666;
   --nuvel-white: #fff;
+  --nuvel-divider: #e5e5e5;
+  --nuvel-divider-rgb: 229, 229, 229;
+  --nuvel-beige: #f5f1ec;
+  --nuvel-beige-rgb: 245, 241, 236;
 }
 
 .nuvel-pdp {
-  --color-accent: var(--nuvel-gold);
-  --color-accent-rgb: var(--nuvel-gold-rgb);
+  --color-accent: var(--nuvel-black);
+  --color-accent-rgb: 26, 26, 26;
   --color-beige: var(--nuvel-beige);
   --color-divider: var(--nuvel-divider);
 }
@@ -85,7 +83,7 @@
 }
 
 .nuvel-pdp__position-indicator.is-active {
-  background: var(--nuvel-gold);
+  background: var(--color-accent);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -138,7 +136,7 @@
 }
 
 .nuvel-pdp__editorial-feature-icon {
-  color: var(--nuvel-gold);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
@@ -146,7 +144,7 @@
   font-family: var(--font-heading-family);
   font-size: 14px;
   font-weight: 600;
-  color: var(--nuvel-gold);
+  color: var(--color-accent);
   letter-spacing: 0.02em;
 }
 
@@ -178,7 +176,7 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--nuvel-gold);
+  color: var(--color-accent);
   margin: 0;
 }
 
@@ -222,12 +220,12 @@
 }
 
 .nuvel-pdp__shipping-timeline .nuvel-pdp__shipping-icon {
-  color: var(--nuvel-gold);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
 .nuvel-pdp__shipping-icon {
-  color: var(--nuvel-gold);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
@@ -289,12 +287,12 @@
 }
 
 .nuvel-pdp__size-button:hover:not(:disabled) {
-  border-color: var(--nuvel-gold);
-  background: var(--nuvel-beige);
+  border-color: var(--color-accent);
+  background: var(--color-beige);
 }
 
 .nuvel-pdp__size-button:focus-visible {
-  outline: 2px solid var(--nuvel-gold);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -364,16 +362,16 @@
 }
 
 .nuvel-packs__card:hover {
-  border-color: var(--nuvel-gold);
+  border-color: var(--color-accent);
 }
 
 .nuvel-packs__card.is-selected {
-  background: var(--nuvel-beige);
-  border-color: var(--nuvel-gold);
+  background: var(--color-beige);
+  border-color: var(--color-accent);
 }
 
 .nuvel-packs__card:focus-within {
-  outline: 2px solid var(--nuvel-gold);
+  outline: 2px solid var(--color-accent);
   outline-offset: -2px;
   border-radius: 2px;
 }
@@ -405,8 +403,8 @@
 }
 
 .nuvel-packs__card.is-selected .nuvel-packs__radio-visual {
-  border-color: var(--nuvel-gold);
-  box-shadow: inset 0 0 0 4px var(--nuvel-white), 0 0 0 2px var(--nuvel-gold);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--nuvel-white), 0 0 0 2px var(--color-accent);
 }
 
 .nuvel-packs__card-body {
@@ -462,7 +460,7 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--nuvel-white);
-  background: var(--nuvel-gold);
+  background: var(--color-accent);
   padding: 2px 8px;
   border-radius: 2px;
   white-space: nowrap;
@@ -538,7 +536,7 @@
 }
 
 .nuvel-pdp__dynamic-checkout .shopify-payment-button__button:focus-visible {
-  outline: 2px solid var(--nuvel-gold);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -567,7 +565,7 @@
 }
 
 .nuvel-pdp__add-to-cart:focus-visible {
-  outline: 2px solid var(--nuvel-gold);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -601,7 +599,7 @@
 }
 
 .nuvel-pdp__buy-now:focus-visible {
-  outline: 2px solid var(--nuvel-gold);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -773,18 +771,6 @@
   .nuvel-pdp__editorial {
     order: 3;
   }
-}
-
-/* Announcement bar - black bg, white 12px text */
-.announcement-bar {
-  background: #1a1a1a !important;
-}
-.announcement-bar__message {
-  color: #ffffff !important;
-  font-size: 12px !important;
-}
-.announcement-bar__message span {
-  color: #ffffff !important;
 }
 
 /* Compact buybox for home page */

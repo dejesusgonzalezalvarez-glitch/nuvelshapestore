@@ -117,8 +117,14 @@
           // El precio se actualiza vía product-form.js, leer del data attribute
           var pdp = document.querySelector('.nuvel-pdp');
           if (pdp && pdp.dataset.basePrice) {
-            var price = parseInt(pdp.dataset.basePrice, 10);
-            if (priceEl) priceEl.textContent = '{{ product.selected_or_first_available_variant.price | money }}';
+            var priceCents = parseInt(pdp.dataset.basePrice, 10);
+            if (priceEl) {
+              priceEl.textContent = new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 2
+              }).format(priceCents / 100);
+            }
           }
         }
       });
