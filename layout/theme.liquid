@@ -412,11 +412,9 @@
         - NV_DELAY_MS   : retraso tras terminar la carga (1500 = 1,5 s)
         - NV_EXPIRY_MS  : horas de expiración por visitante (86400000 = 24 h)
       El código visible también está en el span .nv-code del ticket.
+      Usa fuentes del tema: Lora (títulos) + Poppins (cuerpo)
       ================================================================
     {%- endcomment -%}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
       #nv-overlay {
@@ -427,9 +425,9 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-        background: rgba(26, 26, 26, 0.55);
-        font-family: 'Inter', system-ui, sans-serif;
-        color: #1a1a1a;
+        background: rgba(17, 17, 17, 0.55);
+        font-family: var(--font-body-family);
+        color: #111111;
         opacity: 0;
         transition: opacity 0.35s ease;
       }
@@ -447,8 +445,8 @@
         display: grid;
         grid-template-columns: minmax(180px, 340px) minmax(320px, 480px);
         width: min(820px, 94vw);
-        background: #f3f1ee;
-        border-radius: 4px;
+        background: #F4F4F4;
+        border-radius: 2px;
         overflow: hidden;
         opacity: 0;
         transform: translateY(18px);
@@ -469,15 +467,15 @@
         justify-content: center;
         gap: 8px;
         padding: 56px 40px;
-        background: #1a1a1a;
+        background: #111111;
       }
 
       #nv-overlay .nv-percent {
-        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-family: var(--font-heading-family);
         font-weight: 500;
         font-size: clamp(64px, 9vw, 104px);
         line-height: 0.9;
-        color: #b09b66;
+        color: #FFFFFF;
         letter-spacing: 0.01em;
       }
 
@@ -491,11 +489,11 @@
 
       #nv-overlay .nv-title {
         margin: 0;
-        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-family: var(--font-heading-family);
         font-weight: 600;
         font-size: clamp(28px, 3.4vw, 36px);
         line-height: 1.15;
-        color: #1a1a1a;
+        color: #111111;
       }
 
       #nv-overlay .nv-text {
@@ -503,7 +501,7 @@
         max-width: 40ch;
         font-size: 15px;
         line-height: 1.65;
-        color: #6f6a63;
+        color: #777777;
       }
 
       #nv-overlay .nv-ticket {
@@ -512,9 +510,9 @@
         width: 100%;
         max-width: 380px;
         margin-top: 4px;
-        background: #ffffff;
-        border: 1px solid #ddd9d3;
-        border-radius: 4px;
+        background: #FFFFFF;
+        border: 1px solid #E5E5E5;
+        border-radius: 2px;
         overflow: hidden;
       }
 
@@ -523,12 +521,12 @@
         display: flex;
         align-items: center;
         padding: 16px 20px;
-        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-family: var(--font-heading-family);
         font-weight: 600;
         font-size: 26px;
         letter-spacing: 0.14em;
-        color: #1a1a1a;
-        border-right: 1px dashed #ddd9d3;
+        color: #111111;
+        border-right: 1px dashed #E5E5E5;
       }
 
       #nv-overlay .nv-copy {
@@ -537,17 +535,17 @@
         align-items: center;
         gap: 8px;
         padding: 0 24px;
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: var(--font-body-family);
         font-size: 14px;
         font-weight: 500;
-        color: #1a1a1a;
+        color: #111111;
         background: transparent;
         border: 0;
         cursor: pointer;
       }
 
       #nv-overlay .nv-copy:hover {
-        color: #b09b66;
+        color: #777777;
       }
 
       #nv-overlay .nv-copy .nv-check {
@@ -563,17 +561,17 @@
       #nv-overlay .nv-continue {
         align-self: flex-start;
         margin-top: 4px;
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: var(--font-body-family);
         font-size: 14px;
-        color: #6f6a63;
+        color: #777777;
         text-decoration: underline;
         text-underline-offset: 3px;
-        text-decoration-color: #c9c4bc;
+        text-decoration-color: #E5E5E5;
       }
 
       #nv-overlay .nv-continue:hover {
-        color: #1a1a1a;
-        text-decoration-color: #b09b66;
+        color: #111111;
+        text-decoration-color: #111111;
       }
 
       #nv-overlay .nv-close {
@@ -587,15 +585,15 @@
         width: 36px;
         height: 36px;
         padding: 0;
-        color: #1a1a1a;
+        color: #FFFFFF;
         background: transparent;
         border: 0;
-        border-radius: 4px;
+        border-radius: 2px;
         cursor: pointer;
       }
 
       #nv-overlay .nv-close:hover {
-        color: #6f6a63;
+        color: #777777;
       }
 
       #nv-overlay .nv-close svg {
@@ -605,7 +603,7 @@
 
       #nv-overlay button:focus-visible,
       #nv-overlay a:focus-visible {
-        outline: 2px solid #b09b66;
+        outline: 2px solid #111111;
         outline-offset: 2px;
       }
 
@@ -633,7 +631,7 @@
           width: 100%;
           max-height: 88dvh;
           overflow-y: auto;
-          border-radius: 4px 4px 0 0;
+          border-radius: 2px 2px 0 0;
           transform: translateY(100%);
           transition:
             opacity 0.4s ease,
@@ -670,11 +668,11 @@
         #nv-overlay .nv-close {
           top: 10px;
           right: 10px;
-          color: #f3f1ee;
+          color: #FFFFFF;
         }
 
         #nv-overlay .nv-close:hover {
-          color: #b09b66;
+          color: #777777;
         }
       }
 
@@ -700,7 +698,7 @@
 
         <div class="nv-panel-light">
           <h2 class="nv-title" id="nv-title">Tu descuento de bienvenida</h2>
-          <p class="nv-text">Copia el código y pégalo al pagar. Si se te enrolla, se te marca o no es tu talla, te devolvemos el dinero. Sin preguntas.</p>
+          <p class="nv-text">Copia el código y pégalo al pagar. Si no es tu talla o no te convence, escríbenos en los primeros 30 días.</p>
           <div class="nv-ticket">
             <span class="nv-code">NUVEL10</span>
             <button class="nv-copy" type="button" aria-pressed="false">
@@ -710,7 +708,7 @@
               <span class="nv-copy-label">Copiar</span>
             </button>
           </div>
-          <a class="nv-continue" href="#" data-nv-continue>Seguir comprando</a>
+          <a class="nv-continue nv-apply-discount" href="/discount/NUVEL10?redirect=/collections/all">Aplicar descuento</a>
           <p class="nv-visually-hidden" aria-live="polite" data-nv-live></p>
         </div>
       </div>
@@ -878,6 +876,61 @@
           schedule();
         } else {
           window.addEventListener('load', schedule);
+        }
+
+        // Update payment text based on enabled payment types
+        function updatePaymentText() {
+          var hasCreditCard = false;
+          var hasPayPal = false;
+          {% for type in shop.enabled_payment_types %}
+            {% if type == 'credit_card' or type == 'shopify_payments' %}
+              hasCreditCard = true;
+            {% endif %}
+            {% if type == 'paypal' or type == 'paypal_express' %}
+              hasPayPal = true;
+            {% endif %}
+          {% endfor %}
+          
+          var paymentText = hasCreditCard && hasPayPal ? 'Pago 100% seguro con tarjeta y PayPal' :
+                            hasCreditCard ? 'Pago 100% seguro con tarjeta' :
+                            hasPayPal ? 'Pago 100% seguro con PayPal' :
+                            'Pago seguro';
+          
+          // Update announcement bar
+          var announcementElements = document.querySelectorAll('.announcement-bar__message');
+          announcementElements.forEach(function(el) {
+            if (el.textContent.includes('Pago 100% seguro') || el.textContent.includes('Pago seguro')) {
+              el.textContent = paymentText;
+            }
+          });
+          
+          // Update "Compra con tranquilidad" section
+          var trustElements = document.querySelectorAll('.multicolumn .column .nuvel-compare__card, .confianza .column');
+          trustElements.forEach(function(el) {
+            var titleEl = el.querySelector('h3, .title, strong');
+            if (titleEl && (titleEl.textContent.includes('Pago 100% seguro') || titleEl.textContent.includes('Pago seguro'))) {
+              var textEl = el.querySelector('p, .text');
+              if (textEl) {
+                textEl.textContent = paymentText;
+              }
+            }
+          });
+          
+          // Update footer payment section
+          var footerPaymentEl = document.querySelector('.footer__payment .list-payment');
+          if (footerPaymentEl) {
+            var titleEl = footerPaymentEl.previousElementSibling;
+            if (titleEl && titleEl.textContent.includes('Pago')) {
+              titleEl.textContent = paymentText;
+            }
+          }
+        }
+        
+        // Run after DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', updatePaymentText);
+        } else {
+          updatePaymentText();
         }
       })();
     </script>

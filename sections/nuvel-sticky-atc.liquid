@@ -25,6 +25,13 @@
       display: flex;
     }
 
+    .nuvel-sticky-atc__content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+
     .nuvel-sticky-atc__title {
       margin: 0;
       font-size: 1.3rem;
@@ -33,17 +40,28 @@
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .nuvel-sticky-atc__price {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: rgb(var(--color-foreground));
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nuvel-sticky-atc__button {
       margin-left: auto;
       flex-shrink: 0;
       min-height: 4.4rem;
+      min-width: 160px;
     }
 
     @media screen and (max-width: 749px) {
       body:has(.nuvel-sticky-atc) {
-        padding-bottom: 7.6rem;
+        padding-bottom: 8.4rem;
       }
     }
 
@@ -58,29 +76,57 @@
     class="nuvel-sticky-atc color-{{ section.settings.color_scheme }} gradient"
     data-nuvel-sticky-atc
   >
-    <p class="nuvel-sticky-atc__title">{{ product.title | escape }}</p>
-    <button
-      type="button"
-      class="button button--primary nuvel-sticky-atc__button"
-      data-nuvel-sticky-submit
-    >
-      {{ section.settings.button_label }}
-    </button>
+    <div class="nuvel-sticky-atc__content">
+      <p class="nuvel-sticky-atc__title">{{ product.title | escape }}</p>
+      <span class="nuvel-sticky-atc__price" aria-live="polite">{{ product.selected_or_first_available_variant.price | money }}</span>
+      <button
+        type="button"
+        class="button button--primary nuvel-sticky-atc__button"
+        data-nuvel-sticky-submit
+      >
+        <span class="nuvel-sticky-atc__button-text">{{ section.settings.button_label }}</span>
+        {% render 'loading-spinner' %}
+      </button>
+    </div>
   </div>
 
   <script>
     (function () {
+      'use strict';
+
       var bar = document.querySelector('[data-nuvel-sticky-atc]');
       var form = document.querySelector('form[data-type="add-to-cart-form"]');
       if (!bar || !form || bar.dataset.init) return;
       bar.dataset.init = '1';
 
       var submitButton = bar.querySelector('[data-nuvel-sticky-submit]');
-      if (!submitButton) return;
+      var buttonText = bar.querySelector('.nuvel-sticky-atc__button-text');
+      var priceEl = bar.querySelector('.nuvel-sticky-atc__price');
+      var spinner = bar.querySelector('.loading-spinner');
 
-      var mainButton = form.querySelector('[type="submit"]') || form;
+      if (!submitButton || !form) return;
+
+      var mainButton = form.querySelector('[type="submit"][name="add"]') || form.querySelector('[type="submit"]');
       var observer = null;
+      var isSubmitting = false;
 
+      // Sincronizar precio cuando cambia la variante
+      var priceObserver = new MutationObserver(function () {
+        var variantPrice = form.querySelector('[name="id"]');
+        if (variantPrice && variantPrice.value) {
+          // El precio se actualiza vía product-form.js, leer del data attribute
+          var pdp = document.querySelector('.nuvel-pdp');
+          if (pdp && pdp.dataset.basePrice) {
+            var price = parseInt(pdp.dataset.basePrice, 10);
+            if (priceEl) priceEl.textContent = '{{ product.selected_or_first_available_variant.price | money }}';
+          }
+        }
+      });
+
+      // Observar cambios en el formulario
+      priceObserver.observe(form, { attributes: true, subtree: true, attributeFilter: ['value'] });
+
+      // Observer para visibilidad (scroll)
       if ('IntersectionObserver' in window) {
         observer = new IntersectionObserver(
           function (entries) {
@@ -95,27 +141,80 @@
         bar.classList.add('is-visible');
       }
 
+      // Sincronizar estado disabled con botón principal
+      function syncDisabledState() {
+        if (mainButton && submitButton) {
+          var isDisabled = mainButton.disabled || mainButton.hasAttribute('aria-disabled');
+          submitButton.disabled = isDisabled || isSubmitting;
+          submitButton.setAttribute('aria-disabled', isDisabled || isSubmitting);
+        }
+      }
+
+      // Observar cambios en el botón principal
+      var mainButtonObserver = new MutationObserver(syncDisabledState);
+      if (mainButton) {
+        mainButtonObserver.observe(mainButton, { attributes: true, attributeFilter: ['disabled', 'aria-disabled'] });
+      }
+
+      function setSubmitting(state) {
+        isSubmitting = state;
+        submitButton.disabled = state || (mainButton && mainButton.disabled);
+        if (spinner) {
+          spinner.hidden = !state;
+        }
+        if (buttonText) {
+          buttonText.textContent = state ? '{{ 'products.product.adding' | t | escape }}' : '{{ section.settings.button_label | escape }}';
+        }
+        syncDisabledState();
+      }
+
       function onClick() {
-        if (mainButton.disabled) {
-          mainButton.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        if (submitButton.disabled || isSubmitting) {
+          if (mainButton && mainButton.disabled) {
+            mainButton.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          }
           return;
         }
+
+        setSubmitting(true);
+
         if (typeof form.requestSubmit === 'function') {
           form.requestSubmit();
         } else {
           mainButton.click();
         }
+
+        // Reset submitting state after a delay (form submission will navigate or drawer will open)
+        setTimeout(function () {
+          setSubmitting(false);
+        }, 3000);
       }
+
       submitButton.addEventListener('click', onClick);
+
+      // Escuchar envío del formulario para resetear estado
+      form.addEventListener('submit', function () {
+        setSubmitting(true);
+      });
+
+      // Escuchar evento de carrito abierto (Rise)
+      document.addEventListener('cart:open', function () {
+        setSubmitting(false);
+      });
 
       function onSectionUnload(event) {
         if (event.target && event.target.contains(bar)) {
           if (observer) observer.disconnect();
+          if (priceObserver) priceObserver.disconnect();
+          if (mainButtonObserver) mainButtonObserver.disconnect();
           submitButton.removeEventListener('click', onClick);
           document.removeEventListener('shopify:section:unload', onSectionUnload);
         }
       }
       document.addEventListener('shopify:section:unload', onSectionUnload);
+
+      // Sync inicial
+      syncDisabledState();
     })();
   </script>
 {%- endif -%}
@@ -129,7 +228,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Barra fija inferior en móvil con acceso directo a la compra. El botón usa el formulario nativo del producto (sin duplicar el carrito)."
+      "content": "Barra fija inferior en móvil con acceso directo a la compra. El botón usa el formulario nativo del producto (sin duplicar el carrito). Sincroniza precio, estado disabled y loading con el botón principal."
     },
     {
       "type": "checkbox",

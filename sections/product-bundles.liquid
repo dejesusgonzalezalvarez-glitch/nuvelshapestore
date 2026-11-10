@@ -19,17 +19,64 @@
   assign bundle_2_show_savings = section.settings.bundle_2_show_savings
   assign bundle_2_product_1 = section.settings.bundle_2_product_1
   assign bundle_2_product_2 = section.settings.bundle_2_product_2
+  assign bundle_2_qty_1 = section.settings.bundle_2_qty_1 | default: 2
+  assign bundle_2_qty_2 = section.settings.bundle_2_qty_2 | default: 1
 
-  {%- if bundle_1_show_savings or bundle_2_show_savings -%}
-    {%- assign show_savings = true -%}
-  {%- else -%}
-    {%- assign show_savings = false -%}
-  {%- endif -%}
+  # Calcular precio comparativo y ahorro para Bundle 1
+  assign bundle_1_compare = 0
+  assign bundle_1_savings = 0
+  if bundle_1_product_1 != blank
+    assign p1 = all_products[bundle_1_product_1]
+    if p1 != blank
+      assign bundle_1_compare = bundle_1_compare | plus: p1.variants.first.price
+    endif
+  endif
+  if bundle_1_product_2 != blank
+    assign p2 = all_products[bundle_1_product_2]
+    if p2 != blank
+      assign bundle_1_compare = bundle_1_compare | plus: p2.variants.first.price
+    endif
+  endif
+  if bundle_1_product_3 != blank
+    assign p3 = all_products[bundle_1_product_3]
+    if p3 != blank
+      assign bundle_1_compare = bundle_1_compare | plus: p3.variants.first.price
+    endif
+  endif
+  if bundle_1_compare > 0 and bundle_1_price > 0
+    assign bundle_1_savings = bundle_1_compare | minus: bundle_1_price
+  endif
+
+  # Calcular precio comparativo y ahorro para Bundle 2
+  assign bundle_2_compare = 0
+  assign bundle_2_savings = 0
+  if bundle_2_product_1 != blank
+    assign q1 = all_products[bundle_2_product_1]
+    if q1 != blank
+      assign bundle_2_compare = bundle_2_compare | plus: q1.variants.first.price | times: bundle_2_qty_1
+    endif
+  endif
+  if bundle_2_product_2 != blank
+    assign q2 = all_products[bundle_2_product_2]
+    if q2 != blank
+      assign bundle_2_compare = bundle_2_compare | plus: q2.variants.first.price | times: bundle_2_qty_2
+    endif
+  endif
+  if bundle_2_compare > 0 and bundle_2_price > 0
+    assign bundle_2_savings = bundle_2_compare | minus: bundle_2_price
+  endif
+
+  if bundle_1_show_savings or bundle_2_show_savings
+    assign show_savings = true
+  else
+    assign show_savings = false
+  endif
 -%}
 
 {%- comment -%}
   Product Bundles section — Nuvel.
-  Compatible con temas Rise/Dawn. JavaScript puro en assets/product-bundles.js.
+  Calcula precios comparativos y ahorros reales desde variantes de Shopify.
+  JavaScript en assets/product-bundles.js para selección y add-to-cart nativo.
 {%- endcomment -%}
 
 {%- if bundle_1_enabled or bundle_2_enabled -%}
@@ -47,6 +94,7 @@
           {%- assign p1 = bundle_1_product_1 -%}
           {%- assign p2 = bundle_1_product_2 -%}
           {%- assign p3 = bundle_1_product_3 -%}
+          {%- assign bundle_products = p1 | append: ',' | append: p2 | append: ',' | append: p3 | split: ',' -%}
           <div class="product-bundles__card" data-bundle="1" {% if default_selected == 'bundle_1' %}data-selected{% endif %}>
             <button type="button" class="product-bundles__card-selector" data-select-bundle="1" aria-pressed="{% if default_selected == 'bundle_1' %}true{% else %}false{% endif %}">
               <div class="product-bundles__badge">{{ bundle_1_label }}</div>
@@ -54,12 +102,12 @@
               <p class="product-bundles__card-subtitle">{{ bundle_1_subtitle }}</p>
 
               <div class="product-bundles__items">
-                {%- for p in array(p1, p2, p3) -%}
+                {%- for p in bundle_products -%}
                   {%- if p != blank -%}
-                    {%- assign product = all_products[p] -%}
+                    {%- assign bundle_product = all_products[p] -%}
                     <div class="product-bundles__item">
-                      <img class="product-bundles__item-img" src="{{ p | product_img_url: 'small' }}" alt="{{ p | product.title | escape }}" loading="lazy">
-                      <span class="product-bundles__item-title">{{ p | product.title | escape }}</span>
+                      <img class="product-bundles__item-img" src="{{ bundle_product.featured_image | image_url: width: 100 }}" alt="{{ bundle_product.title | escape }}" loading="lazy">
+                      <span class="product-bundles__item-title">{{ bundle_product.title | escape }}</span>
                     </div>
                   {%- endif -%}
                 {%- endfor -%}
@@ -67,9 +115,9 @@
 
               <div class="product-bundles__prices">
                 <span class="product-bundles__price">{{ bundle_1_price | money }}</span>
-                {%- if bundle_1_show_savings -%}
+                {%- if bundle_1_show_savings and bundle_1_compare > 0 and bundle_1_savings > 0 -%}
                   <span class="product-bundles__original">{{ bundle_1_compare | money }}</span>
-                  <span class="product-bundles__savings">Ahorras {{ bundle_1_savings | money }}</span>
+                  <span class="product-bundles__savings">{{ 'product-bundles.savings' | t: amount: bundle_1_savings | money }}</span>
                 {%- endif -%}
               </div>
             </button>
@@ -87,20 +135,28 @@
 
               <div class="product-bundles__items">
                 {%- if q1 != blank -%}
-                  {%- assign product = all_products[q1] -%}
+                  {%- assign bundle_product_q1 = all_products[q1] -%}
                   <div class="product-bundles__item">
-                    <img class="product-bundles__item-img" src="{{ q1 | product_img_url: 'small' }}" alt="{{ q1 | product.title | escape }}" loading="lazy">
-                    <span class="product-bundles__item-title">{{ q1 | product.title | escape }}</span>
-                    <span class="product-bundles__item-qty">×{{ bundle_2_qty_1 | default: 2 }}</span>
+                    <img class="product-bundles__item-img" src="{{ bundle_product_q1.featured_image | image_url: width: 100 }}" alt="{{ bundle_product_q1.title | escape }}" loading="lazy">
+                    <span class="product-bundles__item-title">{{ bundle_product_q1.title | escape }}</span>
+                    <span class="product-bundles__item-qty">×{{ bundle_2_qty_1 }}</span>
+                  </div>
+                {%- endif -%}
+                {%- if q2 != blank -%}
+                  {%- assign bundle_product_q2 = all_products[q2] -%}
+                  <div class="product-bundles__item">
+                    <img class="product-bundles__item-img" src="{{ bundle_product_q2.featured_image | image_url: width: 100 }}" alt="{{ bundle_product_q2.title | escape }}" loading="lazy">
+                    <span class="product-bundles__item-title">{{ bundle_product_q2.title | escape }}</span>
+                    <span class="product-bundles__item-qty">×{{ bundle_2_qty_2 }}</span>
                   </div>
                 {%- endif -%}
               </div>
 
               <div class="product-bundles__prices">
                 <span class="product-bundles__price">{{ bundle_2_price | money }}</span>
-                {%- if bundle_2_show_savings -%}
+                {%- if bundle_2_show_savings and bundle_2_compare > 0 and bundle_2_savings > 0 -%}
                   <span class="product-bundles__original">{{ bundle_2_compare | money }}</span>
-                  <span class="product-bundles__savings">Ahorras {{ bundle_2_savings | money }}</span>
+                  <span class="product-bundles__savings">{{ 'product-bundles.savings' | t: amount: bundle_2_savings | money }}</span>
                 {%- endif -%}
               </div>
             </button>
@@ -115,11 +171,12 @@
             {%- assign p1 = bundle_1_product_1 -%}
             {%- assign p2 = bundle_1_product_2 -%}
             {%- assign p3 = bundle_1_product_3 -%}
-            {%- for p in array(p1, p2, p3) -%}
+            {%- assign bundle_products = p1 | append: ',' | append: p2 | append: ',' | append: p3 | split: ',' -%}
+            {%- for p in bundle_products -%}
               {%- if p != blank -%}
                 {%- assign product = all_products[p] -%}
                 <div class="product-bundles__selection-item">
-                  <label class="product-bundles__selection-label">{{ p | product.title | escape }}</label>
+                  <label class="product-bundles__selection-label">{{ product.title | escape }}</label>
                   <select class="product-bundles__selection-select" data-bundle="1" data-option="{{ forloop.index }}" data-product="{{ p }}">
                     {%- for variant in product.variants -%}
                       <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>
@@ -140,7 +197,7 @@
             {%- if q1 != blank -%}
               {%- assign product = all_products[q1] -%}
               <div class="product-bundles__selection-item">
-                <label class="product-bundles__selection-label">{{ q1 | product.title | escape }} {{ 'product-bundles.unit_label' | t: num: 1 }}</label>
+                <label class="product-bundles__selection-label">{{ product.title | escape }} {{ 'product-bundles.unit_label' | t: num: 1 }}</label>
                 <select class="product-bundles__selection-select" data-bundle="2" data-option="1" data-product="{{ q1 }}">
                   {%- for variant in product.variants -%}
                     <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>
@@ -150,10 +207,23 @@
                 </select>
               </div>
               <div class="product-bundles__selection-item">
-                <label class="product-bundles__selection-label">{{ q1 | product.title | escape }} {{ 'product-bundles.unit_label' | t: num: 2 }}</label>
+                <label class="product-bundles__selection-label">{{ product.title | escape }} {{ 'product-bundles.unit_label' | t: num: 2 }}</label>
                 <select class="product-bundles__selection-select" data-bundle="2" data-option="2" data-product="{{ q1 }}">
                   {%- for variant in product.variants -%}
                     <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}>
+                      {{ variant.title }} - {{ variant.price | money }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endif -%}
+            {%- if q2 != blank -%}
+              {%- assign product_q2 = all_products[q2] -%}
+              <div class="product-bundles__selection-item">
+                <label class="product-bundles__selection-label">{{ product_q2.title | escape }} {{ 'product-bundles.unit_label' | t: num: 1 }}</label>
+                <select class="product-bundles__selection-select" data-bundle="2" data-option="1" data-product="{{ q2 }}">
+                  {%- for variant in product_q2.variants -%}
+                    <option value="{{ variant.id }}"{% if variant == product_q2.selected_or_first_available_variant %} selected{% endif %}>
                       {{ variant.title }} - {{ variant.price | money }}
                     </option>
                   {%- endfor -%}
@@ -171,7 +241,7 @@
         <p class="product-bundles__error" data-add-error hidden>{{ 'product-bundles.missing_selections' | t }}</p>
       </div>
     </div>
-  </section>
+  </section
 {%- endif -%}
 
 {% schema %}
@@ -205,8 +275,7 @@
     {
       "type": "text",
       "id": "bundle_1_label",
-      "label": "Etiqueta opcional (ej. Más vendido)",
-      "default": ""
+      "label": "Etiqueta opcional (ej. Más vendido)"
     },
     {
       "type": "product",
@@ -261,8 +330,7 @@
     {
       "type": "text",
       "id": "bundle_2_label",
-      "label": "Etiqueta opcional (ej. Mejor valor)",
-      "default": ""
+      "label": "Etiqueta opcional (ej. Mejor valor)"
     },
     {
       "type": "product",
@@ -270,10 +338,23 @@
       "label": "Producto 1 (cantidad 2)"
     },
     {
+      "type": "number",
+      "id": "bundle_2_qty_1",
+      "label": "Cantidad producto 1",
+      "default": 2,
+      "min": 1
+    },
+    {
       "type": "product",
       "id": "bundle_2_product_2",
-      "label": "Producto 2 (opcional, para bundle mixto)",
-      "default": ""
+      "label": "Producto 2 (opcional, para bundle mixto)"
+    },
+    {
+      "type": "number",
+      "id": "bundle_2_qty_2",
+      "label": "Cantidad producto 2",
+      "default": 1,
+      "min": 1
     },
     {
       "type": "number",

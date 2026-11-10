@@ -38,6 +38,133 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    /* Nuvel custom gallery styles - extends native Rise gallery */
+    .nuvel-pdp__gallery-wrapper {
+      position: relative;
+    }
+
+    .nuvel-pdp__gallery-label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 10;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(var(--color-foreground), 0.6);
+      background: rgba(var(--color-background), 0.9);
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* Native gallery customizations */
+    .product-media-container {
+      border-radius: var(--media-radius, 2px);
+      overflow: hidden;
+    }
+
+    .product-media-container > .media-gallery {
+      border-radius: var(--media-radius, 2px);
+    }
+
+    .product__media-wrapper {
+      border-radius: var(--media-radius, 2px);
+      overflow: hidden;
+    }
+
+    /* Thumbnails styling for Nuvel */
+    .media-gallery__thumbnails {
+      gap: 0.5rem !important;
+    }
+
+    .media-gallery__thumbnail {
+      border: 2px solid transparent !important;
+      border-radius: var(--media-radius, 2px) !important;
+      opacity: 0.6;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+      background: rgba(var(--color-foreground), 0.05);
+    }
+
+    .media-gallery__thumbnail:hover {
+      opacity: 0.9;
+    }
+
+    .media-gallery__thumbnail.is-active,
+    .media-gallery__thumbnail[aria-current="true"] {
+      border-color: rgb(var(--color-foreground)) !important;
+      opacity: 1;
+    }
+
+    /* Mobile thumbnails */
+    @media screen and (max-width: 749px) {
+      .media-gallery__thumbnails {
+        justify-content: flex-start !important;
+        padding-bottom: 0.5rem;
+      }
+
+      .media-gallery__thumbnail {
+        width: 56px !important;
+        height: 56px !important;
+        flex-shrink: 0;
+      }
+    }
+
+    /* Desktop thumbnails - vertical sidebar when enabled */
+    @media screen and (min-width: 750px) {
+      .product-media-container[data-layout="thumbnail"] .media-gallery {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 1rem;
+      }
+
+      .product-media-container[data-layout="thumbnail"] .media-gallery__thumbnails {
+        flex-direction: column;
+        overflow: visible;
+        padding-bottom: 0;
+      }
+
+      .product-media-container[data-layout="thumbnail"] .media-gallery__thumbnail {
+        width: 72px;
+        height: 72px;
+      }
+    }
+
+    /* Zoom/lightbox */
+    .media-gallery__zoom-button {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+    }
+
+    .media-gallery__zoom-button:hover {
+      background: #ffffff;
+    }
+
+    /* Position indicators (dots) */
+    .media-gallery__dots {
+      gap: 0.5rem;
+    }
+
+    .media-gallery__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(var(--color-foreground), 0.3);
+      transition: background 0.2s ease;
+    }
+
+    .media-gallery__dot.is-active {
+      background: rgb(var(--color-foreground));
+    }
+
+    /* Hide native indicators when using custom ones */
+    .nuvel-pdp__position-indicators + .media-gallery__dots {
+      display: none;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -77,9 +204,9 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   {%- liquid
     assign nuvel_own_products = 'faja-moldeadora-invisible-nuvel,retro-shapewear-top-with-zipper,womens-shapewear-dress-jumpsuit,seamless-shapewear-panties' | split: ','
-    assign use_own_gallery = false
-    if section.settings.own_gallery and nuvel_own_products contains product.handle
-      assign use_own_gallery = true
+    assign use_native_gallery = true
+    if section.settings.own_gallery and nuvel_own_products contains product.handle and product.media.size == 0
+      assign use_native_gallery = false
     endif
   -%}
 
@@ -92,18 +219,22 @@
           <div class="nuvel-pdp__left">
             <div class="nuvel-pdp__gallery-wrapper">
               <div class="grid__item product__media-wrapper">
-                {%- if use_own_gallery -%}
-                  {% render 'nuvel-own-gallery', product: product %}
-                {%- else -%}
+                {%- if use_native_gallery -%}
                   {% render 'product-media-gallery', variant_images: variant_images %}
+                {%- else -%}
+                  {% render 'nuvel-own-gallery', product: product %}
                 {%- endif -%}
               </div>
               <div class="nuvel-pdp__gallery-label" aria-hidden="true">{{ 'nuvel.product_page.gallery_label' | t }}</div>
-              <div class="nuvel-pdp__position-indicators" aria-hidden="true" role="tablist">
-                {%- for media in product.media -%}
-                  <button class="nuvel-pdp__position-indicator{% if forloop.first %} is-active{% endif %}" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'nuvel.product_page.position_indicator' | t: index: forloop.index, total: product.media.size }}" data-index="{{ forloop.index0 }}"></button>
-                {%- endfor -%}
-              </div>
+              {%- if use_native_gallery -%}
+                {%- comment -%} Native gallery handles its own indicators {%- endcomment -%}
+              {%- else -%}
+                <div class="nuvel-pdp__position-indicators" aria-hidden="true" role="tablist">
+                  {%- for media in product.media -%}
+                    <button class="nuvel-pdp__position-indicator{% if forloop.first %} is-active{% endif %}" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'nuvel.product_page.position_indicator' | t: index: forloop.index, total: product.media.size }}" data-index="{{ forloop.index0 }}"></button>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
             </div>
 
             <div class="nuvel-pdp__editorial" data-editorial>
@@ -136,13 +267,39 @@
           </div>
 
           <div class="nuvel-pdp__right">
-            {% render 'nuvel-buybox', product: product, compact: false, section_id: section.id %}
-          </div>
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'title' -%}
+                  {%- render 'title', block: block, block_id: block.id -%}
+                {%- when 'price' -%}
+                  {%- render 'price', block: block, block_id: block.id -%}
+                {%- when 'variant_picker' -%}
+                  {%- render 'variant-picker', block: block, block_id: block.id -%}
+                {%- when 'nuvel_packs' -%}
+                  {%- render 'nuvel-packs', product: product, section_id: section.id, block: block -%}
+                {%- when 'buy_buttons' -%}
+                  {%- render 'buy-buttons', block: block, block_id: block.id -%}
+                {%- when 'description' -%}
+                  {%- render 'description', block: block, block_id: block.id -%}
+                {%- when 'nuvel_benefits' -%}
+                  {% render 'nuvel-benefits', product: product %}
+                {%- when 'nuvel_accordions' -%}
+                  {% render 'nuvel-accordions', product: product %}
+                {%- when 'rating' -%}
+                  {%- render 'rating', block: block, block_id: block.id -%}
+                {%- when 'share' -%}
+                  {%- render 'share', block: block, block_id: block.id -%}
+                {%- when 'custom_liquid' -%}
+                  {{ block.settings.custom_liquid }}
+                {%- when '@app' -%}
+                  {% render block %}
+              {%- endcase -%}
+            {%- endfor -%}
         </div>
       </div>
     </div>
 
-    {%- unless use_own_gallery -%}
+    {%- unless use_native_gallery -%}
       {% render 'product-media-modal', variant_images: variant_images %}
     {%- endunless -%}
 
@@ -644,6 +801,16 @@
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
         }
       ]
+    },
+    {
+      "type": "nuvel_benefits",
+      "name": "Beneficios Nuvel",
+      "limit": 1
+    },
+    {
+      "type": "nuvel_accordions",
+      "name": "Acordeones Nuvel",
+      "limit": 1
     }
   ],
   "settings": [

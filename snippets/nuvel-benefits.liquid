@@ -1,0 +1,21 @@
+{%- comment -%}
+  Beneficios Nuvel: 3 bloques visuales con iconos elegantes.
+  Se renderiza dentro del buybox híbrido, después de los botones de compra.
+{%- endcomment -%}
+
+<div class="nuvel-benefits" role="list" aria-label="{{ 'nuvel.product_page.benefits_label' | default: 'Beneficios' }}">
+  <div class="nuvel-benefits__item" role="listitem">
+    <span class="nuvel-benefits__icon" aria-hidden="true">{% render 'icon', icon: 'eye', size: 20 %}</span>
+    <span class="nuvel-benefits__text">{{ 'nuvel.product_page.benefit_1_text' | t }}</span>
+  </div>
+  <div class="nuvel-benefits__divider" aria-hidden="true"></div>
+  <div class="nuvel-benefits__item" role="listitem">
+    <span class="nuvel-benefits__icon" aria-hidden="true">{% render 'icon', icon: 'silhouette', size: 20 %}</span>
+    <span class="nuvel-benefits__text">{{ 'nuvel.product_page.benefit_2_text' | t }}</span>
+  </div>
+  <div class="nuvel-benefits__divider" aria-hidden="true"></div>
+  <div class="nuvel-benefits__item" role="listitem">
+    <span class="nuvel-benefits__icon" aria-hidden="true">{% render 'icon', icon: 'shirt', size: 20 %}</span>
+    <span class="nuvel-benefits__text">{{ 'nuvel.product_page.benefit_3_text' | t }}</span>
+  </div>
+</div>

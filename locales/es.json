@@ -562,7 +562,7 @@
       "eyebrow": "Faja Moldeadora Invisible",
       "title_line1": "Fajas moldeadoras que no se notan",
       "title_line2": "ni en el espejo.",
-      "subtitle": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, no se enrolla y no se le adivina el borde.",
+      "subtitle": "Porque la faja perfecta es la que nadie sabe que llevas: entra bajo el vestido, diseñada para no enrollarse ni marcar el borde.",
       "cta": "Descubre la Faja Moldeadora Invisible"
     },
     "compare": {
@@ -577,7 +577,7 @@
     "cta": {
       "image_alt": "Mujer con ropa deportiva Nuvel",
       "title": "Sin aros. Sin costuras. Sin que se note nada.",
-      "text": "30 días de prueba: si no te convence, te devolvemos el dinero.",
+      "text": "30 días de prueba: si no es tu talla o no te convence, escríbenos en los primeros 30 días.",
       "button": "Ver el catálogo"
     },
     "footer": {
@@ -805,7 +805,7 @@
         "p3": "De ahí salen las decisiones de producto: bordes láser-cut para que no se marquen bajo la ropa, compresión progresiva en lugar de apretar todo por igual, banda interior para que no suba, y una tabla de tallas por centímetros para saber exactamente cuál pedir.",
         "p4": "Hoy vendemos directamente, sin tienda de por medio, y respondemos cada WhatsApp nosotras mismas. Sin promesas mágicas: si una prenda no nos hubiera convencido a nosotras en persona, no la lanzamos.",
         "closing_line": "La silueta que quieres. Sin que nadie lo sepa.",
-        "closing_sub": "30 días de prueba · Envío gratis a todo el mundo en 7-15 días",
+        "closing_sub": "30 días de prueba · Envío gratis en 7-15 días",
         "closing_cta": "Descubrir la faja"
       }
     },
@@ -820,15 +820,23 @@
       "selection_title": "Selecciona una talla por cada producto",
       "unit_label": "Unidad {{num}}",
       "add_to_cart": "Añadir al carrito",
-      "missing_selections": "Selecciona una talla para cada producto antes de comprar"
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar",
+      "savings": "Ahorras {{ amount }}"
+    },
+    "product-bundles": {
+      "selection_title": "Elige tu talla para {{count}} productos",
+      "unit_label": "Unidad {{num}}",
+      "add_to_cart": "Añadir al carrito",
+      "missing_selections": "Selecciona una talla para cada producto antes de comprar",
+      "savings": "Ahorras {{ amount }}"
     },
     "product_page": {
       "announcement_bar_text": "La faja que no se nota ni bailando · Envío gratis · Cambio de talla gratis 30 días",
-      "gallery_label": "AJUSTE ANCLADO™ · DISEÑO SIN COSTURAS",
+      "gallery_label": "AJUSTE ANCLADO · DISEÑO SIN COSTURAS",
       "position_indicator": "Imagen {{ index }} de {{ total }}",
       "editorial_headline": "No era tu cuerpo. Eran las costuras.",
       "editorial_paragraph": "La faja moldeadora invisible Nuvel está diseñada para desaparecer bajo tu ropa y acompañarte con un ajuste cómodo. Su diseño sin costuras y su tejido flexible están pensados para que te muevas con confianza durante todo el día.",
-      "editorial_feature_1_title": "Ajuste Anclado™",
+      "editorial_feature_1_title": "Ajuste Anclado",
       "editorial_feature_1_subtitle": "Sin costuras, sin marcas",
       "editorial_feature_2_title": "Suave y transpirable",
       "editorial_feature_2_subtitle": "Comodidad todo el día",
@@ -837,6 +845,7 @@
       "eyebrow": "LA COMODIDAD QUE NO SE VE",
       "shipping_row_title": "ENVÍO GRATIS INCLUIDO",
       "shipping_row_text": "Envío gratis en tu pedido, sin costes de envío adicionales.",
+      "shipping_timeline_text": "Entrega en 7-15 días laborables",
       "size_selector_label": "ELIGE TU TALLA",
       "packs_title": "PACKS Y OFERTAS",
       "pack_solo_title": "Solo una faja",
@@ -859,10 +868,16 @@
       "benefit_3_text": "Tejido flexible que se adapta a tu figura",
       "accordion_sizes_title": "Guía de tallas",
       "accordion_sizes_content": "Disponible en tallas S a 2XL",
+      "size_guide_how_to_measure": "Cómo medirte",
+      "size_guide_size": "Talla",
+      "size_guide_bust": "Busto",
+      "size_guide_waist": "Cintura",
+      "size_guide_hip": "Cadera",
+      "size_guide_how_to_measure_text": "Mide tu contorno de busto, cintura y cadera con una cinta métrica flexible. Mantén la cinta paralela al suelo y no la aprietes demasiado. Compara tus medidas con la tabla para encontrar tu talla ideal.",
       "accordion_shipping_title": "Envío y devoluciones",
       "accordion_shipping_content": "Envío gratis en todos los pedidos. Cambio de talla gratis durante 30 días.",
       "accordion_nuvel_title": "¿Qué hace diferente a Nuvel?",
-      "accordion_nuvel_content": "Diseño sin costuras con Ajuste Anclado™ pensado para no verse ni notarse.",
+      "accordion_nuvel_content": "Diseño sin costuras con Ajuste Anclado pensado para no verse ni notarse.",
       "size_s": "S",
       "size_m": "M",
       "size_l": "L",

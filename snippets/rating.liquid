@@ -1,0 +1,9 @@
+{%- comment -%}
+  Fallback for native Rise 'rating' block snippet
+{%- endcomment -%}
+{%- if product.metafields.reviews.rating.value != blank -%}
+  <div class="rating" role="img" aria-label="{{ product.metafields.reviews.rating.value | round: 1 }} out of 5 stars">
+    <span class="rating__stars" style="--rating: {{ product.metafields.reviews.rating.value | round: 1 }}; --rating-max: 5"></span>
+    <span class="rating__caption visually-hidden">{{ product.metafields.reviews.rating.value | round: 1 }} out of 5 stars</span>
+  </div>
+{%- endif -%}
